@@ -23,7 +23,7 @@ import "product/v0/product.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
-option go_package = "vitainmove.com/proto-go/proto/training_session/v0;trainingsesssionpb";
+option go_package = "github.com/mikhail5545/proto-go/proto/training_session/v0;trainingsesssionpb";
 
 message TrainingSession{
     string id = 1;

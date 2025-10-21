@@ -22,7 +22,7 @@ package product.v0;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
-option go_package = "vitainmove.com/proto-go/proto/product/v0;productpb";
+option go_package = "github.com/mikhail5545/proto-go/proto/product/v0;productpb";
 
 message Product{
     string id = 1;

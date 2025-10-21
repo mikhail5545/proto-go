@@ -24,14 +24,15 @@
 package coursepb
 
 import (
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
+	v0 "github.com/mikhail5545/proto-go/proto/product/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-	v0 "vitainmove.com/proto-go/proto/product/v0"
 )
 
 const (

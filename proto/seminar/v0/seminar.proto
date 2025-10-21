@@ -24,7 +24,7 @@ import "product/v0/product.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
-option go_package = "vitainmove.com/proto-go/proto/seminar/v0;seminarpb";
+option go_package = "github.com/mikhail5545/proto-go/proto/seminar/v0;seminarpb";
 
 message Seminar{
     string id = 1;

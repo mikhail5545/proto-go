@@ -1,4 +1,4 @@
-module vitainmove.com/proto-go
+module github.com/mikhail5545/proto-go
 
 go 1.23
 
