@@ -1,4 +1,4 @@
-// vitainmove.com/proto-go
+// github.com/mikhail5545/proto-go
 // shared proto module for vitainmove project microservices
 // Copyright (C) 2025  Mikhail Kulik
 

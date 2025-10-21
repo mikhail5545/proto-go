@@ -1,4 +1,4 @@
-// vitainmove.com/proto-go
+// github.com/mikhail5545/proto-go
 // shared proto module for vitainmove project microservices
 // Copyright (C) 2025  Mikhail Kulik
 
@@ -24,15 +24,14 @@
 package seminarpb
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	v0 "github.com/mikhail5545/proto-go/proto/product/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -1073,7 +1072,7 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\fListSeminars\x12\x1f.seminar.v0.ListSeminarsRequest\x1a .seminar.v0.ListSeminarsResponse\"\x00\x12V\n" +
 	"\rCreateSeminar\x12 .seminar.v0.CreateSeminarRequest\x1a!.seminar.v0.CreateSeminarResponse\"\x00\x12V\n" +
 	"\rUpdateSeminar\x12 .seminar.v0.UpdateSeminarRequest\x1a!.seminar.v0.UpdateSeminarResponse\"\x00\x12V\n" +
-	"\rDeleteSeminar\x12 .seminar.v0.DeleteSeminarRequest\x1a!.seminar.v0.DeleteSeminarResponse\"\x00B4Z2vitainmove.com/proto-go/proto/seminar/v0;seminarpbb\x06proto3"
+	"\rDeleteSeminar\x12 .seminar.v0.DeleteSeminarRequest\x1a!.seminar.v0.DeleteSeminarResponse\"\x00B<Z:github.com/mikhail5545/proto-go/proto/seminar/v0;seminarpbb\x06proto3"
 
 var (
 	file_seminar_v0_seminar_proto_rawDescOnce sync.Once

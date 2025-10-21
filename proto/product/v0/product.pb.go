@@ -1,4 +1,4 @@
-// vitainmove.com/proto-go
+// github.com/mikhail5545/proto-go
 // shared proto module for vitainmove project microservices
 // Copyright (C) 2025  Mikhail Kulik
 
@@ -880,7 +880,7 @@ const file_product_v0_product_proto_rawDesc = "" +
 	"\fListProducts\x12\x1f.product.v0.ListProductsRequest\x1a .product.v0.ListProductsResponse\"\x00\x12V\n" +
 	"\rCreateProduct\x12 .product.v0.CreateProductRequest\x1a!.product.v0.CreateProductResponse\"\x00\x12V\n" +
 	"\rUpdateProduct\x12 .product.v0.UpdateProductRequest\x1a!.product.v0.UpdateProductResponse\"\x00\x12V\n" +
-	"\rDeleteProduct\x12 .product.v0.DeleteProductRequest\x1a!.product.v0.DeleteProductResponse\"\x00B4Z2vitainmove.com/proto-go/proto/product/v0;productpbb\x06proto3"
+	"\rDeleteProduct\x12 .product.v0.DeleteProductRequest\x1a!.product.v0.DeleteProductResponse\"\x00B<Z:github.com/mikhail5545/proto-go/proto/product/v0;productpbb\x06proto3"
 
 var (
 	file_product_v0_product_proto_rawDescOnce sync.Once

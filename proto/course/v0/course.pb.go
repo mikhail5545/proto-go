@@ -1,4 +1,4 @@
-// vitainmove.com/proto-go
+// github.com/mikhail5545/proto-go
 // shared proto module for vitainmove project microservices
 // Copyright (C) 2025  Mikhail Kulik
 
@@ -24,15 +24,14 @@
 package coursepb
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	v0 "github.com/mikhail5545/proto-go/proto/product/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -1146,7 +1145,7 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\vListCourses\x12\x1d.course.v0.ListCoursesRequest\x1a\x1e.course.v0.ListCoursesResponse\"\x00\x12Q\n" +
 	"\fCreateCourse\x12\x1e.course.v0.CreateCourseRequest\x1a\x1f.course.v0.CreateCourseResponse\"\x00\x12Q\n" +
 	"\fUpdateCourse\x12\x1e.course.v0.UpdateCourseRequest\x1a\x1f.course.v0.UpdateCourseResponse\"\x00\x12Q\n" +
-	"\fDeleteCourse\x12\x1e.course.v0.DeleteCourseRequest\x1a\x1f.course.v0.DeleteCourseResponse\"\x00B2Z0vitainmove.com/proto-go/proto/course/v0;coursepbb\x06proto3"
+	"\fDeleteCourse\x12\x1e.course.v0.DeleteCourseRequest\x1a\x1f.course.v0.DeleteCourseResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
 
 var (
 	file_course_v0_course_proto_rawDescOnce sync.Once

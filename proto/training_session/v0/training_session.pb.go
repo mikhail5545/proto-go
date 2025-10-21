@@ -1,4 +1,4 @@
-// vitainmove.com/proto-go
+// github.com/mikhail5545/proto-go
 // shared proto module for vitainmove project microservices
 // Copyright (C) 2025  Mikhail Kulik
 
@@ -24,15 +24,14 @@
 package trainingsesssionpb
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	v0 "github.com/mikhail5545/proto-go/proto/product/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -764,7 +763,7 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x14ListTrainingSessions\x120.training_session.v0.ListTrainingSessionsRequest\x1a1.training_session.v0.ListTrainingSessionsResponse\"\x00\x12\x80\x01\n" +
 	"\x15CreateTrainingSession\x121.training_session.v0.CreateTrainingSessionRequest\x1a2.training_session.v0.CreateTrainingSessionResponse\"\x00\x12\x80\x01\n" +
 	"\x15UpdateTrainingSession\x121.training_session.v0.UpdateTrainingSessionRequest\x1a2.training_session.v0.UpdateTrainingSessionResponse\"\x00\x12\x80\x01\n" +
-	"\x15DeleteTrainingSession\x121.training_session.v0.DeleteTrainingSessionRequest\x1a2.training_session.v0.DeleteTrainingSessionResponse\"\x00BFZDvitainmove.com/proto-go/proto/training_session/v0;trainingsesssionpbb\x06proto3"
+	"\x15DeleteTrainingSession\x121.training_session.v0.DeleteTrainingSessionRequest\x1a2.training_session.v0.DeleteTrainingSessionResponse\"\x00BNZLgithub.com/mikhail5545/proto-go/proto/training_session/v0;trainingsesssionpbb\x06proto3"
 
 var (
 	file_training_session_v0_training_session_proto_rawDescOnce sync.Once
