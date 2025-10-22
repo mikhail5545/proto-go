@@ -146,6 +146,31 @@ message ListCoursePartsResponse{
     int64 total = 2;
 }
 
+message CreateCoursePartRequest{
+    string name = 1;
+    string description = 2;
+    string number = 3;
+    string course_id = 4;
+    optional string mux_video_id = 5;
+}
+
+message CreateCoursePartResponse{
+    CoursePart course_part = 1;
+}
+
+message UpdateCoursePartRequest{
+    string id = 1;
+    optional string name = 2;
+    optional string description = 3;
+    optional int32 number = 4;
+    optional string mux_video_id = 5;
+    google.protobuf.FieldMask update_mask = 6;
+}
+
+message UpdateCoursePartResponse{
+    CoursePart course_part = 1;
+}
+
 service CourseService{
     rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {}
     rpc GetCourseWithoutParts(GetCourseWithoutPartsRequest) returns (GetCourseWithoutPartsResponse) {}
@@ -155,4 +180,6 @@ service CourseService{
     rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse) {}
     rpc GetCoursePart(GetCoursePartRequest) returns (GetCoursePartResponse) {}
     rpc ListCourseParts(ListCoursePartsRequest) returns (ListCoursePartsResponse) {}
+    rpc CreateCoursePart(CreateCoursePartRequest) returns (CreateCoursePartResponse) {}
+    rpc UpdateCoursePart(UpdateCoursePartRequest) returns (UpdateCoursePartResponse) {}
 }
