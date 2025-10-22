@@ -20,31 +20,19 @@ syntax = "proto3";
 package course.v0;
 
 import "product/v0/product.proto";
+import "mux_upload/v0/mux_upload.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/course/v0;coursepb";
 
-message MUXUpload{
+message CoursePart{
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
-    optional string mux_upload_id = 4;
-    optional string mux_asset_id = 5;
-    optional string mux_playback_id = 6;
-    string video_processing_status = 7;
-    optional float duration = 8;
-    optional string aspect_ratio = 9;
-    optional int32 width = 10;
-    optional int32 height = 11;
-    optional google.protobuf.Timestamp asset_created_at = 12;
-}
-
-message CoursePartInternal{
-    string id = 1;
     string name = 4;
     string description = 5;
-    optional MUXUpload mux_video = 6;
+    optional mux_upload.v0.MuxUpload mux_video = 6;
     int32 number = 7;
     string course_id = 8;
     optional string mux_video_id = 10;
@@ -52,23 +40,27 @@ message CoursePartInternal{
 
 message Course {
     string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
     string name = 4;
     string description = 5;
     string topic = 7;
     string product_id = 8;
     product.v0.Product product = 9;
     int32 access_duration = 10;
-    repeated CoursePartInternal course_parts = 11;
+    repeated CoursePart course_parts = 11;
 }
 
 message CourseListItem {
     string id = 1;
-    string name = 2;
-    string description = 3;
-    string topic = 4;
-    string product_id = 5;
-    product.v0.Product product = 6;
-    int32 access_duration = 7;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+    string name = 4;
+    string description = 5;
+    string topic = 6;
+    string product_id = 7;
+    product.v0.Product product = 8;
+    int32 access_duration = 9;
 }
 
 message GetCourseRequest{
@@ -77,6 +69,14 @@ message GetCourseRequest{
 
 message GetCourseResponse{
     Course course = 1;
+}
+
+message GetCourseWithoutPartsRequest{
+    string id = 1;
+}
+
+message GetCourseWithoutPartsResponse{
+    CourseListItem course = 1;
 }
 
 message ListCoursesRequest{
@@ -127,10 +127,32 @@ message DeleteCourseResponse{
     string id = 1;
 }
 
+message GetCoursePartRequest{
+    string id = 1;
+}
+
+message GetCoursePartResponse{
+    CoursePart course_part = 1;
+}
+
+message ListCoursePartsRequest{
+    string course_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+}
+
+message ListCoursePartsResponse{
+    repeated CoursePart course_parts = 1;
+    int64 total = 2;
+}
+
 service CourseService{
     rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {}
+    rpc GetCourseWithoutParts(GetCourseWithoutPartsRequest) returns (GetCourseWithoutPartsResponse) {}
     rpc ListCourses(ListCoursesRequest) returns (ListCoursesResponse) {}
     rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse) {}
     rpc UpdateCourse(UpdateCourseRequest) returns (UpdateCourseResponse) {}
     rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse) {}
+    rpc GetCoursePart(GetCoursePartRequest) returns (GetCoursePartResponse) {}
+    rpc ListCourseParts(ListCoursePartsRequest) returns (ListCoursePartsResponse) {}
 }

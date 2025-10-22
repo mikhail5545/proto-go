@@ -36,11 +36,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CourseService_GetCourse_FullMethodName    = "/course.v0.CourseService/GetCourse"
-	CourseService_ListCourses_FullMethodName  = "/course.v0.CourseService/ListCourses"
-	CourseService_CreateCourse_FullMethodName = "/course.v0.CourseService/CreateCourse"
-	CourseService_UpdateCourse_FullMethodName = "/course.v0.CourseService/UpdateCourse"
-	CourseService_DeleteCourse_FullMethodName = "/course.v0.CourseService/DeleteCourse"
+	CourseService_GetCourse_FullMethodName             = "/course.v0.CourseService/GetCourse"
+	CourseService_GetCourseWithoutParts_FullMethodName = "/course.v0.CourseService/GetCourseWithoutParts"
+	CourseService_ListCourses_FullMethodName           = "/course.v0.CourseService/ListCourses"
+	CourseService_CreateCourse_FullMethodName          = "/course.v0.CourseService/CreateCourse"
+	CourseService_UpdateCourse_FullMethodName          = "/course.v0.CourseService/UpdateCourse"
+	CourseService_DeleteCourse_FullMethodName          = "/course.v0.CourseService/DeleteCourse"
+	CourseService_GetCoursePart_FullMethodName         = "/course.v0.CourseService/GetCoursePart"
+	CourseService_ListCourseParts_FullMethodName       = "/course.v0.CourseService/ListCourseParts"
 )
 
 // CourseServiceClient is the client API for CourseService service.
@@ -48,10 +51,13 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CourseServiceClient interface {
 	GetCourse(ctx context.Context, in *GetCourseRequest, opts ...grpc.CallOption) (*GetCourseResponse, error)
+	GetCourseWithoutParts(ctx context.Context, in *GetCourseWithoutPartsRequest, opts ...grpc.CallOption) (*GetCourseWithoutPartsResponse, error)
 	ListCourses(ctx context.Context, in *ListCoursesRequest, opts ...grpc.CallOption) (*ListCoursesResponse, error)
 	CreateCourse(ctx context.Context, in *CreateCourseRequest, opts ...grpc.CallOption) (*CreateCourseResponse, error)
 	UpdateCourse(ctx context.Context, in *UpdateCourseRequest, opts ...grpc.CallOption) (*UpdateCourseResponse, error)
 	DeleteCourse(ctx context.Context, in *DeleteCourseRequest, opts ...grpc.CallOption) (*DeleteCourseResponse, error)
+	GetCoursePart(ctx context.Context, in *GetCoursePartRequest, opts ...grpc.CallOption) (*GetCoursePartResponse, error)
+	ListCourseParts(ctx context.Context, in *ListCoursePartsRequest, opts ...grpc.CallOption) (*ListCoursePartsResponse, error)
 }
 
 type courseServiceClient struct {
@@ -66,6 +72,16 @@ func (c *courseServiceClient) GetCourse(ctx context.Context, in *GetCourseReques
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetCourseResponse)
 	err := c.cc.Invoke(ctx, CourseService_GetCourse_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *courseServiceClient) GetCourseWithoutParts(ctx context.Context, in *GetCourseWithoutPartsRequest, opts ...grpc.CallOption) (*GetCourseWithoutPartsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCourseWithoutPartsResponse)
+	err := c.cc.Invoke(ctx, CourseService_GetCourseWithoutParts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,15 +128,38 @@ func (c *courseServiceClient) DeleteCourse(ctx context.Context, in *DeleteCourse
 	return out, nil
 }
 
+func (c *courseServiceClient) GetCoursePart(ctx context.Context, in *GetCoursePartRequest, opts ...grpc.CallOption) (*GetCoursePartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCoursePartResponse)
+	err := c.cc.Invoke(ctx, CourseService_GetCoursePart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *courseServiceClient) ListCourseParts(ctx context.Context, in *ListCoursePartsRequest, opts ...grpc.CallOption) (*ListCoursePartsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCoursePartsResponse)
+	err := c.cc.Invoke(ctx, CourseService_ListCourseParts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CourseServiceServer is the server API for CourseService service.
 // All implementations must embed UnimplementedCourseServiceServer
 // for forward compatibility.
 type CourseServiceServer interface {
 	GetCourse(context.Context, *GetCourseRequest) (*GetCourseResponse, error)
+	GetCourseWithoutParts(context.Context, *GetCourseWithoutPartsRequest) (*GetCourseWithoutPartsResponse, error)
 	ListCourses(context.Context, *ListCoursesRequest) (*ListCoursesResponse, error)
 	CreateCourse(context.Context, *CreateCourseRequest) (*CreateCourseResponse, error)
 	UpdateCourse(context.Context, *UpdateCourseRequest) (*UpdateCourseResponse, error)
 	DeleteCourse(context.Context, *DeleteCourseRequest) (*DeleteCourseResponse, error)
+	GetCoursePart(context.Context, *GetCoursePartRequest) (*GetCoursePartResponse, error)
+	ListCourseParts(context.Context, *ListCoursePartsRequest) (*ListCoursePartsResponse, error)
 	mustEmbedUnimplementedCourseServiceServer()
 }
 
@@ -134,6 +173,9 @@ type UnimplementedCourseServiceServer struct{}
 func (UnimplementedCourseServiceServer) GetCourse(context.Context, *GetCourseRequest) (*GetCourseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCourse not implemented")
 }
+func (UnimplementedCourseServiceServer) GetCourseWithoutParts(context.Context, *GetCourseWithoutPartsRequest) (*GetCourseWithoutPartsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCourseWithoutParts not implemented")
+}
 func (UnimplementedCourseServiceServer) ListCourses(context.Context, *ListCoursesRequest) (*ListCoursesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListCourses not implemented")
 }
@@ -145,6 +187,12 @@ func (UnimplementedCourseServiceServer) UpdateCourse(context.Context, *UpdateCou
 }
 func (UnimplementedCourseServiceServer) DeleteCourse(context.Context, *DeleteCourseRequest) (*DeleteCourseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCourse not implemented")
+}
+func (UnimplementedCourseServiceServer) GetCoursePart(context.Context, *GetCoursePartRequest) (*GetCoursePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCoursePart not implemented")
+}
+func (UnimplementedCourseServiceServer) ListCourseParts(context.Context, *ListCoursePartsRequest) (*ListCoursePartsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCourseParts not implemented")
 }
 func (UnimplementedCourseServiceServer) mustEmbedUnimplementedCourseServiceServer() {}
 func (UnimplementedCourseServiceServer) testEmbeddedByValue()                       {}
@@ -181,6 +229,24 @@ func _CourseService_GetCourse_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CourseServiceServer).GetCourse(ctx, req.(*GetCourseRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CourseService_GetCourseWithoutParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCourseWithoutPartsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CourseServiceServer).GetCourseWithoutParts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CourseService_GetCourseWithoutParts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CourseServiceServer).GetCourseWithoutParts(ctx, req.(*GetCourseWithoutPartsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,6 +323,42 @@ func _CourseService_DeleteCourse_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CourseService_GetCoursePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCoursePartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CourseServiceServer).GetCoursePart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CourseService_GetCoursePart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CourseServiceServer).GetCoursePart(ctx, req.(*GetCoursePartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CourseService_ListCourseParts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCoursePartsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CourseServiceServer).ListCourseParts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CourseService_ListCourseParts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CourseServiceServer).ListCourseParts(ctx, req.(*ListCoursePartsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CourseService_ServiceDesc is the grpc.ServiceDesc for CourseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -267,6 +369,10 @@ var CourseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCourse",
 			Handler:    _CourseService_GetCourse_Handler,
+		},
+		{
+			MethodName: "GetCourseWithoutParts",
+			Handler:    _CourseService_GetCourseWithoutParts_Handler,
 		},
 		{
 			MethodName: "ListCourses",
@@ -283,6 +389,14 @@ var CourseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCourse",
 			Handler:    _CourseService_DeleteCourse_Handler,
+		},
+		{
+			MethodName: "GetCoursePart",
+			Handler:    _CourseService_GetCoursePart_Handler,
+		},
+		{
+			MethodName: "ListCourseParts",
+			Handler:    _CourseService_ListCourseParts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
