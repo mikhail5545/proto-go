@@ -36,16 +36,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CourseService_GetCourse_FullMethodName             = "/course.v0.CourseService/GetCourse"
-	CourseService_GetCourseWithoutParts_FullMethodName = "/course.v0.CourseService/GetCourseWithoutParts"
-	CourseService_ListCourses_FullMethodName           = "/course.v0.CourseService/ListCourses"
-	CourseService_CreateCourse_FullMethodName          = "/course.v0.CourseService/CreateCourse"
-	CourseService_UpdateCourse_FullMethodName          = "/course.v0.CourseService/UpdateCourse"
-	CourseService_DeleteCourse_FullMethodName          = "/course.v0.CourseService/DeleteCourse"
-	CourseService_GetCoursePart_FullMethodName         = "/course.v0.CourseService/GetCoursePart"
-	CourseService_ListCourseParts_FullMethodName       = "/course.v0.CourseService/ListCourseParts"
-	CourseService_CreateCoursePart_FullMethodName      = "/course.v0.CourseService/CreateCoursePart"
-	CourseService_UpdateCoursePart_FullMethodName      = "/course.v0.CourseService/UpdateCoursePart"
+	CourseService_GetCourse_FullMethodName               = "/course.v0.CourseService/GetCourse"
+	CourseService_GetCourseWithoutParts_FullMethodName   = "/course.v0.CourseService/GetCourseWithoutParts"
+	CourseService_ListCourses_FullMethodName             = "/course.v0.CourseService/ListCourses"
+	CourseService_CreateCourse_FullMethodName            = "/course.v0.CourseService/CreateCourse"
+	CourseService_UpdateCourse_FullMethodName            = "/course.v0.CourseService/UpdateCourse"
+	CourseService_DeleteCourse_FullMethodName            = "/course.v0.CourseService/DeleteCourse"
+	CourseService_GetCoursePart_FullMethodName           = "/course.v0.CourseService/GetCoursePart"
+	CourseService_ListCourseParts_FullMethodName         = "/course.v0.CourseService/ListCourseParts"
+	CourseService_CreateCoursePart_FullMethodName        = "/course.v0.CourseService/CreateCoursePart"
+	CourseService_UpdateCoursePart_FullMethodName        = "/course.v0.CourseService/UpdateCoursePart"
+	CourseService_AddMuxVideoToCoursePart_FullMethodName = "/course.v0.CourseService/AddMuxVideoToCoursePart"
 )
 
 // CourseServiceClient is the client API for CourseService service.
@@ -62,6 +63,7 @@ type CourseServiceClient interface {
 	ListCourseParts(ctx context.Context, in *ListCoursePartsRequest, opts ...grpc.CallOption) (*ListCoursePartsResponse, error)
 	CreateCoursePart(ctx context.Context, in *CreateCoursePartRequest, opts ...grpc.CallOption) (*CreateCoursePartResponse, error)
 	UpdateCoursePart(ctx context.Context, in *UpdateCoursePartRequest, opts ...grpc.CallOption) (*UpdateCoursePartResponse, error)
+	AddMuxVideoToCoursePart(ctx context.Context, in *AddMuxVideoToCoursePartRequest, opts ...grpc.CallOption) (*AddMuxVideoToCoursePartResponse, error)
 }
 
 type courseServiceClient struct {
@@ -172,6 +174,16 @@ func (c *courseServiceClient) UpdateCoursePart(ctx context.Context, in *UpdateCo
 	return out, nil
 }
 
+func (c *courseServiceClient) AddMuxVideoToCoursePart(ctx context.Context, in *AddMuxVideoToCoursePartRequest, opts ...grpc.CallOption) (*AddMuxVideoToCoursePartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddMuxVideoToCoursePartResponse)
+	err := c.cc.Invoke(ctx, CourseService_AddMuxVideoToCoursePart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CourseServiceServer is the server API for CourseService service.
 // All implementations must embed UnimplementedCourseServiceServer
 // for forward compatibility.
@@ -186,6 +198,7 @@ type CourseServiceServer interface {
 	ListCourseParts(context.Context, *ListCoursePartsRequest) (*ListCoursePartsResponse, error)
 	CreateCoursePart(context.Context, *CreateCoursePartRequest) (*CreateCoursePartResponse, error)
 	UpdateCoursePart(context.Context, *UpdateCoursePartRequest) (*UpdateCoursePartResponse, error)
+	AddMuxVideoToCoursePart(context.Context, *AddMuxVideoToCoursePartRequest) (*AddMuxVideoToCoursePartResponse, error)
 	mustEmbedUnimplementedCourseServiceServer()
 }
 
@@ -225,6 +238,9 @@ func (UnimplementedCourseServiceServer) CreateCoursePart(context.Context, *Creat
 }
 func (UnimplementedCourseServiceServer) UpdateCoursePart(context.Context, *UpdateCoursePartRequest) (*UpdateCoursePartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCoursePart not implemented")
+}
+func (UnimplementedCourseServiceServer) AddMuxVideoToCoursePart(context.Context, *AddMuxVideoToCoursePartRequest) (*AddMuxVideoToCoursePartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddMuxVideoToCoursePart not implemented")
 }
 func (UnimplementedCourseServiceServer) mustEmbedUnimplementedCourseServiceServer() {}
 func (UnimplementedCourseServiceServer) testEmbeddedByValue()                       {}
@@ -427,6 +443,24 @@ func _CourseService_UpdateCoursePart_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CourseService_AddMuxVideoToCoursePart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddMuxVideoToCoursePartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CourseServiceServer).AddMuxVideoToCoursePart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CourseService_AddMuxVideoToCoursePart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CourseServiceServer).AddMuxVideoToCoursePart(ctx, req.(*AddMuxVideoToCoursePartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CourseService_ServiceDesc is the grpc.ServiceDesc for CourseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -473,6 +507,10 @@ var CourseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateCoursePart",
 			Handler:    _CourseService_UpdateCoursePart_Handler,
+		},
+		{
+			MethodName: "AddMuxVideoToCoursePart",
+			Handler:    _CourseService_AddMuxVideoToCoursePart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

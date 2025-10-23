@@ -700,6 +700,94 @@ func (*DeleteMuxUploadResponse) Descriptor() ([]byte, []int) {
 	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{10}
 }
 
+type CreateCoursePartUploadURLRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PartId        string                 `protobuf:"bytes,1,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateCoursePartUploadURLRequest) Reset() {
+	*x = CreateCoursePartUploadURLRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateCoursePartUploadURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCoursePartUploadURLRequest) ProtoMessage() {}
+
+func (x *CreateCoursePartUploadURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCoursePartUploadURLRequest.ProtoReflect.Descriptor instead.
+func (*CreateCoursePartUploadURLRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *CreateCoursePartUploadURLRequest) GetPartId() string {
+	if x != nil {
+		return x.PartId
+	}
+	return ""
+}
+
+type CreateCoursePartUploadURLResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UploadUrl     string                 `protobuf:"bytes,1,opt,name=upload_url,json=uploadUrl,proto3" json:"upload_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateCoursePartUploadURLResponse) Reset() {
+	*x = CreateCoursePartUploadURLResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateCoursePartUploadURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCoursePartUploadURLResponse) ProtoMessage() {}
+
+func (x *CreateCoursePartUploadURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCoursePartUploadURLResponse.ProtoReflect.Descriptor instead.
+func (*CreateCoursePartUploadURLResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateCoursePartUploadURLResponse) GetUploadUrl() string {
+	if x != nil {
+		return x.UploadUrl
+	}
+	return ""
+}
+
 var File_mux_upload_v0_mux_upload_proto protoreflect.FileDescriptor
 
 const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
@@ -779,13 +867,19 @@ const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"(\n" +
 	"\x16DeleteMuxUploadRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x19\n" +
-	"\x17DeleteMuxUploadResponse2\xfa\x03\n" +
+	"\x17DeleteMuxUploadResponse\";\n" +
+	" CreateCoursePartUploadURLRequest\x12\x17\n" +
+	"\apart_id\x18\x01 \x01(\tR\x06partId\"B\n" +
+	"!CreateCoursePartUploadURLResponse\x12\x1d\n" +
+	"\n" +
+	"upload_url\x18\x01 \x01(\tR\tuploadUrl2\xfd\x04\n" +
 	"\x10MuxUploadService\x12Y\n" +
 	"\fGetMuxUpload\x12\".mux_upload.v0.GetMuxUploadRequest\x1a#.mux_upload.v0.GetMuxUploadResponse\"\x00\x12_\n" +
 	"\x0eListMuxUploads\x12$.mux_upload.v0.ListMuxUploadsRequest\x1a%.mux_upload.v0.ListMuxUploadsResponse\"\x00\x12b\n" +
 	"\x0fCreateMuxUpload\x12%.mux_upload.v0.CreateMuxUploadRequest\x1a&.mux_upload.v0.CreateMuxUploadResponse\"\x00\x12b\n" +
 	"\x0fUpdateMuxUpload\x12%.mux_upload.v0.UpdateMuxUploadRequest\x1a&.mux_upload.v0.UpdateMuxUploadResponse\"\x00\x12b\n" +
-	"\x0fDeleteMuxUpload\x12%.mux_upload.v0.DeleteMuxUploadRequest\x1a&.mux_upload.v0.DeleteMuxUploadResponse\"\x00B;Z9github.com/mikhail5545/proto-go/proto/mux_upload/v0;muxpbb\x06proto3"
+	"\x0fDeleteMuxUpload\x12%.mux_upload.v0.DeleteMuxUploadRequest\x1a&.mux_upload.v0.DeleteMuxUploadResponse\"\x00\x12\x80\x01\n" +
+	"\x19CreateCoursePartUploadURL\x12/.mux_upload.v0.CreateCoursePartUploadURLRequest\x1a0.mux_upload.v0.CreateCoursePartUploadURLResponse\"\x00B;Z9github.com/mikhail5545/proto-go/proto/mux_upload/v0;muxpbb\x06proto3"
 
 var (
 	file_mux_upload_v0_mux_upload_proto_rawDescOnce sync.Once
@@ -799,44 +893,48 @@ func file_mux_upload_v0_mux_upload_proto_rawDescGZIP() []byte {
 	return file_mux_upload_v0_mux_upload_proto_rawDescData
 }
 
-var file_mux_upload_v0_mux_upload_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_mux_upload_v0_mux_upload_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_mux_upload_v0_mux_upload_proto_goTypes = []any{
-	(*MuxUpload)(nil),               // 0: mux_upload.v0.MuxUpload
-	(*GetMuxUploadRequest)(nil),     // 1: mux_upload.v0.GetMuxUploadRequest
-	(*GetMuxUploadResponse)(nil),    // 2: mux_upload.v0.GetMuxUploadResponse
-	(*ListMuxUploadsRequest)(nil),   // 3: mux_upload.v0.ListMuxUploadsRequest
-	(*ListMuxUploadsResponse)(nil),  // 4: mux_upload.v0.ListMuxUploadsResponse
-	(*CreateMuxUploadRequest)(nil),  // 5: mux_upload.v0.CreateMuxUploadRequest
-	(*CreateMuxUploadResponse)(nil), // 6: mux_upload.v0.CreateMuxUploadResponse
-	(*UpdateMuxUploadRequest)(nil),  // 7: mux_upload.v0.UpdateMuxUploadRequest
-	(*UpdateMuxUploadResponse)(nil), // 8: mux_upload.v0.UpdateMuxUploadResponse
-	(*DeleteMuxUploadRequest)(nil),  // 9: mux_upload.v0.DeleteMuxUploadRequest
-	(*DeleteMuxUploadResponse)(nil), // 10: mux_upload.v0.DeleteMuxUploadResponse
-	(*timestamppb.Timestamp)(nil),   // 11: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),   // 12: google.protobuf.FieldMask
+	(*MuxUpload)(nil),                         // 0: mux_upload.v0.MuxUpload
+	(*GetMuxUploadRequest)(nil),               // 1: mux_upload.v0.GetMuxUploadRequest
+	(*GetMuxUploadResponse)(nil),              // 2: mux_upload.v0.GetMuxUploadResponse
+	(*ListMuxUploadsRequest)(nil),             // 3: mux_upload.v0.ListMuxUploadsRequest
+	(*ListMuxUploadsResponse)(nil),            // 4: mux_upload.v0.ListMuxUploadsResponse
+	(*CreateMuxUploadRequest)(nil),            // 5: mux_upload.v0.CreateMuxUploadRequest
+	(*CreateMuxUploadResponse)(nil),           // 6: mux_upload.v0.CreateMuxUploadResponse
+	(*UpdateMuxUploadRequest)(nil),            // 7: mux_upload.v0.UpdateMuxUploadRequest
+	(*UpdateMuxUploadResponse)(nil),           // 8: mux_upload.v0.UpdateMuxUploadResponse
+	(*DeleteMuxUploadRequest)(nil),            // 9: mux_upload.v0.DeleteMuxUploadRequest
+	(*DeleteMuxUploadResponse)(nil),           // 10: mux_upload.v0.DeleteMuxUploadResponse
+	(*CreateCoursePartUploadURLRequest)(nil),  // 11: mux_upload.v0.CreateCoursePartUploadURLRequest
+	(*CreateCoursePartUploadURLResponse)(nil), // 12: mux_upload.v0.CreateCoursePartUploadURLResponse
+	(*timestamppb.Timestamp)(nil),             // 13: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),             // 14: google.protobuf.FieldMask
 }
 var file_mux_upload_v0_mux_upload_proto_depIdxs = []int32{
-	11, // 0: mux_upload.v0.MuxUpload.created_at:type_name -> google.protobuf.Timestamp
-	11, // 1: mux_upload.v0.MuxUpload.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 2: mux_upload.v0.MuxUpload.asset_created_at:type_name -> google.protobuf.Timestamp
+	13, // 0: mux_upload.v0.MuxUpload.created_at:type_name -> google.protobuf.Timestamp
+	13, // 1: mux_upload.v0.MuxUpload.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 2: mux_upload.v0.MuxUpload.asset_created_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: mux_upload.v0.GetMuxUploadResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
 	0,  // 4: mux_upload.v0.ListMuxUploadsResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
 	0,  // 5: mux_upload.v0.CreateMuxUploadResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
-	11, // 6: mux_upload.v0.UpdateMuxUploadRequest.asset_created_at:type_name -> google.protobuf.Timestamp
-	12, // 7: mux_upload.v0.UpdateMuxUploadRequest.update_mask:type_name -> google.protobuf.FieldMask
+	13, // 6: mux_upload.v0.UpdateMuxUploadRequest.asset_created_at:type_name -> google.protobuf.Timestamp
+	14, // 7: mux_upload.v0.UpdateMuxUploadRequest.update_mask:type_name -> google.protobuf.FieldMask
 	0,  // 8: mux_upload.v0.UpdateMuxUploadResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
 	1,  // 9: mux_upload.v0.MuxUploadService.GetMuxUpload:input_type -> mux_upload.v0.GetMuxUploadRequest
 	3,  // 10: mux_upload.v0.MuxUploadService.ListMuxUploads:input_type -> mux_upload.v0.ListMuxUploadsRequest
 	5,  // 11: mux_upload.v0.MuxUploadService.CreateMuxUpload:input_type -> mux_upload.v0.CreateMuxUploadRequest
 	7,  // 12: mux_upload.v0.MuxUploadService.UpdateMuxUpload:input_type -> mux_upload.v0.UpdateMuxUploadRequest
 	9,  // 13: mux_upload.v0.MuxUploadService.DeleteMuxUpload:input_type -> mux_upload.v0.DeleteMuxUploadRequest
-	2,  // 14: mux_upload.v0.MuxUploadService.GetMuxUpload:output_type -> mux_upload.v0.GetMuxUploadResponse
-	4,  // 15: mux_upload.v0.MuxUploadService.ListMuxUploads:output_type -> mux_upload.v0.ListMuxUploadsResponse
-	6,  // 16: mux_upload.v0.MuxUploadService.CreateMuxUpload:output_type -> mux_upload.v0.CreateMuxUploadResponse
-	8,  // 17: mux_upload.v0.MuxUploadService.UpdateMuxUpload:output_type -> mux_upload.v0.UpdateMuxUploadResponse
-	10, // 18: mux_upload.v0.MuxUploadService.DeleteMuxUpload:output_type -> mux_upload.v0.DeleteMuxUploadResponse
-	14, // [14:19] is the sub-list for method output_type
-	9,  // [9:14] is the sub-list for method input_type
+	11, // 14: mux_upload.v0.MuxUploadService.CreateCoursePartUploadURL:input_type -> mux_upload.v0.CreateCoursePartUploadURLRequest
+	2,  // 15: mux_upload.v0.MuxUploadService.GetMuxUpload:output_type -> mux_upload.v0.GetMuxUploadResponse
+	4,  // 16: mux_upload.v0.MuxUploadService.ListMuxUploads:output_type -> mux_upload.v0.ListMuxUploadsResponse
+	6,  // 17: mux_upload.v0.MuxUploadService.CreateMuxUpload:output_type -> mux_upload.v0.CreateMuxUploadResponse
+	8,  // 18: mux_upload.v0.MuxUploadService.UpdateMuxUpload:output_type -> mux_upload.v0.UpdateMuxUploadResponse
+	10, // 19: mux_upload.v0.MuxUploadService.DeleteMuxUpload:output_type -> mux_upload.v0.DeleteMuxUploadResponse
+	12, // 20: mux_upload.v0.MuxUploadService.CreateCoursePartUploadURL:output_type -> mux_upload.v0.CreateCoursePartUploadURLResponse
+	15, // [15:21] is the sub-list for method output_type
+	9,  // [9:15] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
 	9,  // [9:9] is the sub-list for extension extendee
 	0,  // [0:9] is the sub-list for field type_name
@@ -856,7 +954,7 @@ func file_mux_upload_v0_mux_upload_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_mux_upload_v0_mux_upload_proto_rawDesc), len(file_mux_upload_v0_mux_upload_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

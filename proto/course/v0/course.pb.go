@@ -1490,6 +1490,182 @@ func (x *UpdateCoursePartResponse) GetCoursePart() *CoursePart {
 	return nil
 }
 
+type AddMuxVideoToCoursePartRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	MuxVideoId    string                 `protobuf:"bytes,2,opt,name=mux_video_id,json=muxVideoId,proto3" json:"mux_video_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddMuxVideoToCoursePartRequest) Reset() {
+	*x = AddMuxVideoToCoursePartRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddMuxVideoToCoursePartRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMuxVideoToCoursePartRequest) ProtoMessage() {}
+
+func (x *AddMuxVideoToCoursePartRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMuxVideoToCoursePartRequest.ProtoReflect.Descriptor instead.
+func (*AddMuxVideoToCoursePartRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AddMuxVideoToCoursePartRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AddMuxVideoToCoursePartRequest) GetMuxVideoId() string {
+	if x != nil {
+		return x.MuxVideoId
+	}
+	return ""
+}
+
+type AddMuxVideoToCoursePartResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MuxVideoId    string                 `protobuf:"bytes,1,opt,name=mux_video_id,json=muxVideoId,proto3" json:"mux_video_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddMuxVideoToCoursePartResponse) Reset() {
+	*x = AddMuxVideoToCoursePartResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddMuxVideoToCoursePartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddMuxVideoToCoursePartResponse) ProtoMessage() {}
+
+func (x *AddMuxVideoToCoursePartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddMuxVideoToCoursePartResponse.ProtoReflect.Descriptor instead.
+func (*AddMuxVideoToCoursePartResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *AddMuxVideoToCoursePartResponse) GetMuxVideoId() string {
+	if x != nil {
+		return x.MuxVideoId
+	}
+	return ""
+}
+
+type DeleteCoursePartRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCoursePartRequest) Reset() {
+	*x = DeleteCoursePartRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCoursePartRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCoursePartRequest) ProtoMessage() {}
+
+func (x *DeleteCoursePartRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCoursePartRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCoursePartRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteCoursePartRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteCoursePartResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCoursePartResponse) Reset() {
+	*x = DeleteCoursePartResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCoursePartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCoursePartResponse) ProtoMessage() {}
+
+func (x *DeleteCoursePartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCoursePartResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCoursePartResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{27}
+}
+
 var File_course_v0_course_proto protoreflect.FileDescriptor
 
 const file_course_v0_course_proto_rawDesc = "" +
@@ -1623,7 +1799,17 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\r_mux_video_id\"R\n" +
 	"\x18UpdateCoursePartResponse\x126\n" +
 	"\vcourse_part\x18\x01 \x01(\v2\x15.course.v0.CoursePartR\n" +
-	"coursePart2\x80\a\n" +
+	"coursePart\"R\n" +
+	"\x1eAddMuxVideoToCoursePartRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
+	"\fmux_video_id\x18\x02 \x01(\tR\n" +
+	"muxVideoId\"C\n" +
+	"\x1fAddMuxVideoToCoursePartResponse\x12 \n" +
+	"\fmux_video_id\x18\x01 \x01(\tR\n" +
+	"muxVideoId\")\n" +
+	"\x17DeleteCoursePartRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x1a\n" +
+	"\x18DeleteCoursePartResponse2\xf4\a\n" +
 	"\rCourseService\x12H\n" +
 	"\tGetCourse\x12\x1b.course.v0.GetCourseRequest\x1a\x1c.course.v0.GetCourseResponse\"\x00\x12l\n" +
 	"\x15GetCourseWithoutParts\x12'.course.v0.GetCourseWithoutPartsRequest\x1a(.course.v0.GetCourseWithoutPartsResponse\"\x00\x12N\n" +
@@ -1634,7 +1820,8 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\rGetCoursePart\x12\x1f.course.v0.GetCoursePartRequest\x1a .course.v0.GetCoursePartResponse\"\x00\x12Z\n" +
 	"\x0fListCourseParts\x12!.course.v0.ListCoursePartsRequest\x1a\".course.v0.ListCoursePartsResponse\"\x00\x12]\n" +
 	"\x10CreateCoursePart\x12\".course.v0.CreateCoursePartRequest\x1a#.course.v0.CreateCoursePartResponse\"\x00\x12]\n" +
-	"\x10UpdateCoursePart\x12\".course.v0.UpdateCoursePartRequest\x1a#.course.v0.UpdateCoursePartResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
+	"\x10UpdateCoursePart\x12\".course.v0.UpdateCoursePartRequest\x1a#.course.v0.UpdateCoursePartResponse\"\x00\x12r\n" +
+	"\x17AddMuxVideoToCoursePart\x12).course.v0.AddMuxVideoToCoursePartRequest\x1a*.course.v0.AddMuxVideoToCoursePartResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
 
 var (
 	file_course_v0_course_proto_rawDescOnce sync.Once
@@ -1648,60 +1835,64 @@ func file_course_v0_course_proto_rawDescGZIP() []byte {
 	return file_course_v0_course_proto_rawDescData
 }
 
-var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_course_v0_course_proto_goTypes = []any{
-	(*CoursePart)(nil),                    // 0: course.v0.CoursePart
-	(*Course)(nil),                        // 1: course.v0.Course
-	(*CourseListItem)(nil),                // 2: course.v0.CourseListItem
-	(*GetCourseRequest)(nil),              // 3: course.v0.GetCourseRequest
-	(*GetCourseResponse)(nil),             // 4: course.v0.GetCourseResponse
-	(*GetCourseWithoutPartsRequest)(nil),  // 5: course.v0.GetCourseWithoutPartsRequest
-	(*GetCourseWithoutPartsResponse)(nil), // 6: course.v0.GetCourseWithoutPartsResponse
-	(*ListCoursesRequest)(nil),            // 7: course.v0.ListCoursesRequest
-	(*ListCoursesResponse)(nil),           // 8: course.v0.ListCoursesResponse
-	(*CourseProductInfo)(nil),             // 9: course.v0.CourseProductInfo
-	(*CreateCourseRequest)(nil),           // 10: course.v0.CreateCourseRequest
-	(*CreateCourseResponse)(nil),          // 11: course.v0.CreateCourseResponse
-	(*UpdateCourseRequest)(nil),           // 12: course.v0.UpdateCourseRequest
-	(*UpdateCourseResponse)(nil),          // 13: course.v0.UpdateCourseResponse
-	(*DeleteCourseRequest)(nil),           // 14: course.v0.DeleteCourseRequest
-	(*DeleteCourseResponse)(nil),          // 15: course.v0.DeleteCourseResponse
-	(*GetCoursePartRequest)(nil),          // 16: course.v0.GetCoursePartRequest
-	(*GetCoursePartResponse)(nil),         // 17: course.v0.GetCoursePartResponse
-	(*ListCoursePartsRequest)(nil),        // 18: course.v0.ListCoursePartsRequest
-	(*ListCoursePartsResponse)(nil),       // 19: course.v0.ListCoursePartsResponse
-	(*CreateCoursePartRequest)(nil),       // 20: course.v0.CreateCoursePartRequest
-	(*CreateCoursePartResponse)(nil),      // 21: course.v0.CreateCoursePartResponse
-	(*UpdateCoursePartRequest)(nil),       // 22: course.v0.UpdateCoursePartRequest
-	(*UpdateCoursePartResponse)(nil),      // 23: course.v0.UpdateCoursePartResponse
-	(*timestamppb.Timestamp)(nil),         // 24: google.protobuf.Timestamp
-	(*v0.MuxUpload)(nil),                  // 25: mux_upload.v0.MuxUpload
-	(*v01.Product)(nil),                   // 26: product.v0.Product
-	(*fieldmaskpb.FieldMask)(nil),         // 27: google.protobuf.FieldMask
+	(*CoursePart)(nil),                      // 0: course.v0.CoursePart
+	(*Course)(nil),                          // 1: course.v0.Course
+	(*CourseListItem)(nil),                  // 2: course.v0.CourseListItem
+	(*GetCourseRequest)(nil),                // 3: course.v0.GetCourseRequest
+	(*GetCourseResponse)(nil),               // 4: course.v0.GetCourseResponse
+	(*GetCourseWithoutPartsRequest)(nil),    // 5: course.v0.GetCourseWithoutPartsRequest
+	(*GetCourseWithoutPartsResponse)(nil),   // 6: course.v0.GetCourseWithoutPartsResponse
+	(*ListCoursesRequest)(nil),              // 7: course.v0.ListCoursesRequest
+	(*ListCoursesResponse)(nil),             // 8: course.v0.ListCoursesResponse
+	(*CourseProductInfo)(nil),               // 9: course.v0.CourseProductInfo
+	(*CreateCourseRequest)(nil),             // 10: course.v0.CreateCourseRequest
+	(*CreateCourseResponse)(nil),            // 11: course.v0.CreateCourseResponse
+	(*UpdateCourseRequest)(nil),             // 12: course.v0.UpdateCourseRequest
+	(*UpdateCourseResponse)(nil),            // 13: course.v0.UpdateCourseResponse
+	(*DeleteCourseRequest)(nil),             // 14: course.v0.DeleteCourseRequest
+	(*DeleteCourseResponse)(nil),            // 15: course.v0.DeleteCourseResponse
+	(*GetCoursePartRequest)(nil),            // 16: course.v0.GetCoursePartRequest
+	(*GetCoursePartResponse)(nil),           // 17: course.v0.GetCoursePartResponse
+	(*ListCoursePartsRequest)(nil),          // 18: course.v0.ListCoursePartsRequest
+	(*ListCoursePartsResponse)(nil),         // 19: course.v0.ListCoursePartsResponse
+	(*CreateCoursePartRequest)(nil),         // 20: course.v0.CreateCoursePartRequest
+	(*CreateCoursePartResponse)(nil),        // 21: course.v0.CreateCoursePartResponse
+	(*UpdateCoursePartRequest)(nil),         // 22: course.v0.UpdateCoursePartRequest
+	(*UpdateCoursePartResponse)(nil),        // 23: course.v0.UpdateCoursePartResponse
+	(*AddMuxVideoToCoursePartRequest)(nil),  // 24: course.v0.AddMuxVideoToCoursePartRequest
+	(*AddMuxVideoToCoursePartResponse)(nil), // 25: course.v0.AddMuxVideoToCoursePartResponse
+	(*DeleteCoursePartRequest)(nil),         // 26: course.v0.DeleteCoursePartRequest
+	(*DeleteCoursePartResponse)(nil),        // 27: course.v0.DeleteCoursePartResponse
+	(*timestamppb.Timestamp)(nil),           // 28: google.protobuf.Timestamp
+	(*v0.MuxUpload)(nil),                    // 29: mux_upload.v0.MuxUpload
+	(*v01.Product)(nil),                     // 30: product.v0.Product
+	(*fieldmaskpb.FieldMask)(nil),           // 31: google.protobuf.FieldMask
 }
 var file_course_v0_course_proto_depIdxs = []int32{
-	24, // 0: course.v0.CoursePart.created_at:type_name -> google.protobuf.Timestamp
-	24, // 1: course.v0.CoursePart.updated_at:type_name -> google.protobuf.Timestamp
-	25, // 2: course.v0.CoursePart.mux_video:type_name -> mux_upload.v0.MuxUpload
-	24, // 3: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
-	24, // 4: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 5: course.v0.Course.product:type_name -> product.v0.Product
+	28, // 0: course.v0.CoursePart.created_at:type_name -> google.protobuf.Timestamp
+	28, // 1: course.v0.CoursePart.updated_at:type_name -> google.protobuf.Timestamp
+	29, // 2: course.v0.CoursePart.mux_video:type_name -> mux_upload.v0.MuxUpload
+	28, // 3: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
+	28, // 4: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
+	30, // 5: course.v0.Course.product:type_name -> product.v0.Product
 	0,  // 6: course.v0.Course.course_parts:type_name -> course.v0.CoursePart
-	24, // 7: course.v0.CourseListItem.created_at:type_name -> google.protobuf.Timestamp
-	24, // 8: course.v0.CourseListItem.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 9: course.v0.CourseListItem.product:type_name -> product.v0.Product
+	28, // 7: course.v0.CourseListItem.created_at:type_name -> google.protobuf.Timestamp
+	28, // 8: course.v0.CourseListItem.updated_at:type_name -> google.protobuf.Timestamp
+	30, // 9: course.v0.CourseListItem.product:type_name -> product.v0.Product
 	1,  // 10: course.v0.GetCourseResponse.course:type_name -> course.v0.Course
 	2,  // 11: course.v0.GetCourseWithoutPartsResponse.course:type_name -> course.v0.CourseListItem
 	2,  // 12: course.v0.ListCoursesResponse.courses:type_name -> course.v0.CourseListItem
 	9,  // 13: course.v0.CreateCourseRequest.product_info:type_name -> course.v0.CourseProductInfo
 	1,  // 14: course.v0.CreateCourseResponse.course:type_name -> course.v0.Course
 	9,  // 15: course.v0.UpdateCourseRequest.product_info:type_name -> course.v0.CourseProductInfo
-	27, // 16: course.v0.UpdateCourseRequest.update_mask:type_name -> google.protobuf.FieldMask
+	31, // 16: course.v0.UpdateCourseRequest.update_mask:type_name -> google.protobuf.FieldMask
 	1,  // 17: course.v0.UpdateCourseResponse.course:type_name -> course.v0.Course
 	0,  // 18: course.v0.GetCoursePartResponse.course_part:type_name -> course.v0.CoursePart
 	0,  // 19: course.v0.ListCoursePartsResponse.course_parts:type_name -> course.v0.CoursePart
 	0,  // 20: course.v0.CreateCoursePartResponse.course_part:type_name -> course.v0.CoursePart
-	27, // 21: course.v0.UpdateCoursePartRequest.update_mask:type_name -> google.protobuf.FieldMask
+	31, // 21: course.v0.UpdateCoursePartRequest.update_mask:type_name -> google.protobuf.FieldMask
 	0,  // 22: course.v0.UpdateCoursePartResponse.course_part:type_name -> course.v0.CoursePart
 	3,  // 23: course.v0.CourseService.GetCourse:input_type -> course.v0.GetCourseRequest
 	5,  // 24: course.v0.CourseService.GetCourseWithoutParts:input_type -> course.v0.GetCourseWithoutPartsRequest
@@ -1713,18 +1904,20 @@ var file_course_v0_course_proto_depIdxs = []int32{
 	18, // 30: course.v0.CourseService.ListCourseParts:input_type -> course.v0.ListCoursePartsRequest
 	20, // 31: course.v0.CourseService.CreateCoursePart:input_type -> course.v0.CreateCoursePartRequest
 	22, // 32: course.v0.CourseService.UpdateCoursePart:input_type -> course.v0.UpdateCoursePartRequest
-	4,  // 33: course.v0.CourseService.GetCourse:output_type -> course.v0.GetCourseResponse
-	6,  // 34: course.v0.CourseService.GetCourseWithoutParts:output_type -> course.v0.GetCourseWithoutPartsResponse
-	8,  // 35: course.v0.CourseService.ListCourses:output_type -> course.v0.ListCoursesResponse
-	11, // 36: course.v0.CourseService.CreateCourse:output_type -> course.v0.CreateCourseResponse
-	13, // 37: course.v0.CourseService.UpdateCourse:output_type -> course.v0.UpdateCourseResponse
-	15, // 38: course.v0.CourseService.DeleteCourse:output_type -> course.v0.DeleteCourseResponse
-	17, // 39: course.v0.CourseService.GetCoursePart:output_type -> course.v0.GetCoursePartResponse
-	19, // 40: course.v0.CourseService.ListCourseParts:output_type -> course.v0.ListCoursePartsResponse
-	21, // 41: course.v0.CourseService.CreateCoursePart:output_type -> course.v0.CreateCoursePartResponse
-	23, // 42: course.v0.CourseService.UpdateCoursePart:output_type -> course.v0.UpdateCoursePartResponse
-	33, // [33:43] is the sub-list for method output_type
-	23, // [23:33] is the sub-list for method input_type
+	24, // 33: course.v0.CourseService.AddMuxVideoToCoursePart:input_type -> course.v0.AddMuxVideoToCoursePartRequest
+	4,  // 34: course.v0.CourseService.GetCourse:output_type -> course.v0.GetCourseResponse
+	6,  // 35: course.v0.CourseService.GetCourseWithoutParts:output_type -> course.v0.GetCourseWithoutPartsResponse
+	8,  // 36: course.v0.CourseService.ListCourses:output_type -> course.v0.ListCoursesResponse
+	11, // 37: course.v0.CourseService.CreateCourse:output_type -> course.v0.CreateCourseResponse
+	13, // 38: course.v0.CourseService.UpdateCourse:output_type -> course.v0.UpdateCourseResponse
+	15, // 39: course.v0.CourseService.DeleteCourse:output_type -> course.v0.DeleteCourseResponse
+	17, // 40: course.v0.CourseService.GetCoursePart:output_type -> course.v0.GetCoursePartResponse
+	19, // 41: course.v0.CourseService.ListCourseParts:output_type -> course.v0.ListCoursePartsResponse
+	21, // 42: course.v0.CourseService.CreateCoursePart:output_type -> course.v0.CreateCoursePartResponse
+	23, // 43: course.v0.CourseService.UpdateCoursePart:output_type -> course.v0.UpdateCoursePartResponse
+	25, // 44: course.v0.CourseService.AddMuxVideoToCoursePart:output_type -> course.v0.AddMuxVideoToCoursePartResponse
+	34, // [34:45] is the sub-list for method output_type
+	23, // [23:34] is the sub-list for method input_type
 	23, // [23:23] is the sub-list for extension type_name
 	23, // [23:23] is the sub-list for extension extendee
 	0,  // [0:23] is the sub-list for field type_name
@@ -1745,7 +1938,7 @@ func file_course_v0_course_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_course_v0_course_proto_rawDesc), len(file_course_v0_course_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

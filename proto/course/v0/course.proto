@@ -171,6 +171,22 @@ message UpdateCoursePartResponse{
     CoursePart course_part = 1;
 }
 
+message AddMuxVideoToCoursePartRequest{
+    string id = 1;
+    string mux_video_id = 2;
+}
+
+message AddMuxVideoToCoursePartResponse{
+    string mux_video_id = 1;
+}
+
+message DeleteCoursePartRequest{
+    string id = 1;
+}
+
+message DeleteCoursePartResponse{
+}
+
 service CourseService{
     rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {}
     rpc GetCourseWithoutParts(GetCourseWithoutPartsRequest) returns (GetCourseWithoutPartsResponse) {}
@@ -182,4 +198,5 @@ service CourseService{
     rpc ListCourseParts(ListCoursePartsRequest) returns (ListCoursePartsResponse) {}
     rpc CreateCoursePart(CreateCoursePartRequest) returns (CreateCoursePartResponse) {}
     rpc UpdateCoursePart(UpdateCoursePartRequest) returns (UpdateCoursePartResponse) {}
+    rpc AddMuxVideoToCoursePart(AddMuxVideoToCoursePartRequest) returns (AddMuxVideoToCoursePartResponse) {}
 }

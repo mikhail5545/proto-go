@@ -90,10 +90,20 @@ message DeleteMuxUploadRequest {
 message DeleteMuxUploadResponse {
 }
 
+message CreateCoursePartUploadURLRequest {
+    string part_id = 1;
+}
+
+message CreateCoursePartUploadURLResponse {
+    string upload_url = 1;
+}
+
+
 service MuxUploadService{
     rpc GetMuxUpload(GetMuxUploadRequest) returns (GetMuxUploadResponse) {}
     rpc ListMuxUploads(ListMuxUploadsRequest) returns (ListMuxUploadsResponse) {}
     rpc CreateMuxUpload(CreateMuxUploadRequest) returns (CreateMuxUploadResponse) {}
     rpc UpdateMuxUpload(UpdateMuxUploadRequest) returns (UpdateMuxUploadResponse) {}
     rpc DeleteMuxUpload(DeleteMuxUploadRequest) returns (DeleteMuxUploadResponse) {}
+    rpc CreateCoursePartUploadURL(CreateCoursePartUploadURLRequest) returns (CreateCoursePartUploadURLResponse) {}
 }
