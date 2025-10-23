@@ -49,7 +49,7 @@ type User struct {
 	FirstName     string                 `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName      string                 `protobuf:"bytes,5,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	Gender        *string                `protobuf:"bytes,7,opt,name=gender,proto3,oneof" json:"gender,omitempty"`
-	DateOfBirth   *string                `protobuf:"bytes,8,opt,name=date_of_birth,json=dateOfBirth,proto3,oneof" json:"date_of_birth,omitempty"`
+	DateOfBirth   *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=date_of_birth,json=dateOfBirth,proto3,oneof" json:"date_of_birth,omitempty"`
 	Email         string                 `protobuf:"bytes,9,opt,name=email,proto3" json:"email,omitempty"`
 	PhoneNumber   *string                `protobuf:"bytes,10,opt,name=phone_number,json=phoneNumber,proto3,oneof" json:"phone_number,omitempty"`
 	Country       *string                `protobuf:"bytes,11,opt,name=country,proto3,oneof" json:"country,omitempty"`
@@ -132,11 +132,11 @@ func (x *User) GetGender() string {
 	return ""
 }
 
-func (x *User) GetDateOfBirth() string {
-	if x != nil && x.DateOfBirth != nil {
-		return *x.DateOfBirth
+func (x *User) GetDateOfBirth() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DateOfBirth
 	}
-	return ""
+	return nil
 }
 
 func (x *User) GetEmail() string {
@@ -799,7 +799,7 @@ type UpdateUserRequest struct {
 	FirstName     *string                `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
 	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	Gender        *string                `protobuf:"bytes,4,opt,name=gender,proto3,oneof" json:"gender,omitempty"`
-	DateOfBirth   *string                `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3,oneof" json:"date_of_birth,omitempty"`
+	DateOfBirth   *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3,oneof" json:"date_of_birth,omitempty"`
 	Email         *string                `protobuf:"bytes,6,opt,name=email,proto3,oneof" json:"email,omitempty"`
 	PhoneNumber   *string                `protobuf:"bytes,7,opt,name=phone_number,json=phoneNumber,proto3,oneof" json:"phone_number,omitempty"`
 	Country       *string                `protobuf:"bytes,8,opt,name=country,proto3,oneof" json:"country,omitempty"`
@@ -868,11 +868,11 @@ func (x *UpdateUserRequest) GetGender() string {
 	return ""
 }
 
-func (x *UpdateUserRequest) GetDateOfBirth() string {
-	if x != nil && x.DateOfBirth != nil {
-		return *x.DateOfBirth
+func (x *UpdateUserRequest) GetDateOfBirth() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DateOfBirth
 	}
-	return ""
+	return nil
 }
 
 func (x *UpdateUserRequest) GetEmail() string {
@@ -1045,7 +1045,7 @@ var File_user_v0_user_proto protoreflect.FileDescriptor
 
 const file_user_v0_user_proto_rawDesc = "" +
 	"\n" +
-	"\x12user/v0/user.proto\x12\auser.v0\x1a\x18address/v0/address.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x94\x04\n" +
+	"\x12user/v0/user.proto\x12\auser.v0\x1a\x18address/v0/address.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xb0\x04\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1055,8 +1055,8 @@ const file_user_v0_user_proto_rawDesc = "" +
 	"\n" +
 	"first_name\x18\x04 \x01(\tR\tfirstName\x12\x1b\n" +
 	"\tlast_name\x18\x05 \x01(\tR\blastName\x12\x1b\n" +
-	"\x06gender\x18\a \x01(\tH\x00R\x06gender\x88\x01\x01\x12'\n" +
-	"\rdate_of_birth\x18\b \x01(\tH\x01R\vdateOfBirth\x88\x01\x01\x12\x14\n" +
+	"\x06gender\x18\a \x01(\tH\x00R\x06gender\x88\x01\x01\x12C\n" +
+	"\rdate_of_birth\x18\b \x01(\v2\x1a.google.protobuf.TimestampH\x01R\vdateOfBirth\x88\x01\x01\x12\x14\n" +
 	"\x05email\x18\t \x01(\tR\x05email\x12&\n" +
 	"\fphone_number\x18\n" +
 	" \x01(\tH\x02R\vphoneNumber\x88\x01\x01\x12\x1d\n" +
@@ -1115,14 +1115,14 @@ const file_user_v0_user_proto_rawDesc = "" +
 	"\vis_verified\x18\x05 \x01(\bR\n" +
 	"isVerified\"K\n" +
 	"\x1eCreateUserFromProviderResponse\x12)\n" +
-	"\x04user\x18\x01 \x01(\v2\x15.user.v0.UserListItemR\x04user\"\x92\x04\n" +
+	"\x04user\x18\x01 \x01(\v2\x15.user.v0.UserListItemR\x04user\"\xae\x04\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
 	"\tlast_name\x18\x03 \x01(\tH\x01R\blastName\x88\x01\x01\x12\x1b\n" +
-	"\x06gender\x18\x04 \x01(\tH\x02R\x06gender\x88\x01\x01\x12'\n" +
-	"\rdate_of_birth\x18\x05 \x01(\tH\x03R\vdateOfBirth\x88\x01\x01\x12\x19\n" +
+	"\x06gender\x18\x04 \x01(\tH\x02R\x06gender\x88\x01\x01\x12C\n" +
+	"\rdate_of_birth\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\vdateOfBirth\x88\x01\x01\x12\x19\n" +
 	"\x05email\x18\x06 \x01(\tH\x04R\x05email\x88\x01\x01\x12&\n" +
 	"\fphone_number\x18\a \x01(\tH\x05R\vphoneNumber\x88\x01\x01\x12\x1d\n" +
 	"\acountry\x18\b \x01(\tH\x06R\acountry\x88\x01\x01\x12$\n" +
@@ -1197,35 +1197,37 @@ var file_user_v0_user_proto_goTypes = []any{
 var file_user_v0_user_proto_depIdxs = []int32{
 	16, // 0: user.v0.User.created_at:type_name -> google.protobuf.Timestamp
 	16, // 1: user.v0.User.updated_at:type_name -> google.protobuf.Timestamp
-	17, // 2: user.v0.User.addresses:type_name -> address.v0.Address
-	16, // 3: user.v0.UserListItem.created_at:type_name -> google.protobuf.Timestamp
-	16, // 4: user.v0.UserListItem.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 5: user.v0.GetUserResponse.user:type_name -> user.v0.User
-	1,  // 6: user.v0.GetUserWithoutAddressesResponse.user:type_name -> user.v0.UserListItem
-	1,  // 7: user.v0.ListUsersResponse.users:type_name -> user.v0.UserListItem
-	0,  // 8: user.v0.CreateUserResponse.user:type_name -> user.v0.User
-	1,  // 9: user.v0.CreateUserFromProviderResponse.user:type_name -> user.v0.UserListItem
-	18, // 10: user.v0.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
-	0,  // 11: user.v0.UpdateUserResponse.user:type_name -> user.v0.User
-	2,  // 12: user.v0.UserService.GetUser:input_type -> user.v0.GetUserRequest
-	4,  // 13: user.v0.UserService.GetUserWithoutAddresses:input_type -> user.v0.GetUserWithoutAddressesRequest
-	6,  // 14: user.v0.UserService.ListUsers:input_type -> user.v0.ListUsersRequest
-	8,  // 15: user.v0.UserService.CreateUser:input_type -> user.v0.CreateUserRequest
-	10, // 16: user.v0.UserService.CreateUserFromProvider:input_type -> user.v0.CreateUserFromProviderRequest
-	12, // 17: user.v0.UserService.UpdateUser:input_type -> user.v0.UpdateUserRequest
-	14, // 18: user.v0.UserService.DeleteUser:input_type -> user.v0.DeleteUserRequest
-	3,  // 19: user.v0.UserService.GetUser:output_type -> user.v0.GetUserResponse
-	5,  // 20: user.v0.UserService.GetUserWithoutAddresses:output_type -> user.v0.GetUserWithoutAddressesResponse
-	7,  // 21: user.v0.UserService.ListUsers:output_type -> user.v0.ListUsersResponse
-	9,  // 22: user.v0.UserService.CreateUser:output_type -> user.v0.CreateUserResponse
-	11, // 23: user.v0.UserService.CreateUserFromProvider:output_type -> user.v0.CreateUserFromProviderResponse
-	13, // 24: user.v0.UserService.UpdateUser:output_type -> user.v0.UpdateUserResponse
-	15, // 25: user.v0.UserService.DeleteUser:output_type -> user.v0.DeleteUserResponse
-	19, // [19:26] is the sub-list for method output_type
-	12, // [12:19] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	16, // 2: user.v0.User.date_of_birth:type_name -> google.protobuf.Timestamp
+	17, // 3: user.v0.User.addresses:type_name -> address.v0.Address
+	16, // 4: user.v0.UserListItem.created_at:type_name -> google.protobuf.Timestamp
+	16, // 5: user.v0.UserListItem.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 6: user.v0.GetUserResponse.user:type_name -> user.v0.User
+	1,  // 7: user.v0.GetUserWithoutAddressesResponse.user:type_name -> user.v0.UserListItem
+	1,  // 8: user.v0.ListUsersResponse.users:type_name -> user.v0.UserListItem
+	0,  // 9: user.v0.CreateUserResponse.user:type_name -> user.v0.User
+	1,  // 10: user.v0.CreateUserFromProviderResponse.user:type_name -> user.v0.UserListItem
+	16, // 11: user.v0.UpdateUserRequest.date_of_birth:type_name -> google.protobuf.Timestamp
+	18, // 12: user.v0.UpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	0,  // 13: user.v0.UpdateUserResponse.user:type_name -> user.v0.User
+	2,  // 14: user.v0.UserService.GetUser:input_type -> user.v0.GetUserRequest
+	4,  // 15: user.v0.UserService.GetUserWithoutAddresses:input_type -> user.v0.GetUserWithoutAddressesRequest
+	6,  // 16: user.v0.UserService.ListUsers:input_type -> user.v0.ListUsersRequest
+	8,  // 17: user.v0.UserService.CreateUser:input_type -> user.v0.CreateUserRequest
+	10, // 18: user.v0.UserService.CreateUserFromProvider:input_type -> user.v0.CreateUserFromProviderRequest
+	12, // 19: user.v0.UserService.UpdateUser:input_type -> user.v0.UpdateUserRequest
+	14, // 20: user.v0.UserService.DeleteUser:input_type -> user.v0.DeleteUserRequest
+	3,  // 21: user.v0.UserService.GetUser:output_type -> user.v0.GetUserResponse
+	5,  // 22: user.v0.UserService.GetUserWithoutAddresses:output_type -> user.v0.GetUserWithoutAddressesResponse
+	7,  // 23: user.v0.UserService.ListUsers:output_type -> user.v0.ListUsersResponse
+	9,  // 24: user.v0.UserService.CreateUser:output_type -> user.v0.CreateUserResponse
+	11, // 25: user.v0.UserService.CreateUserFromProvider:output_type -> user.v0.CreateUserFromProviderResponse
+	13, // 26: user.v0.UserService.UpdateUser:output_type -> user.v0.UpdateUserResponse
+	15, // 27: user.v0.UserService.DeleteUser:output_type -> user.v0.DeleteUserResponse
+	21, // [21:28] is the sub-list for method output_type
+	14, // [14:21] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_user_v0_user_proto_init() }

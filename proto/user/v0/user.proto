@@ -32,7 +32,7 @@ message User{
     string first_name = 4;
     string last_name = 5;
     optional string gender = 7;
-    optional string date_of_birth = 8;
+    optional google.protobuf.Timestamp date_of_birth = 8;
     string email = 9;
     optional string phone_number = 10;
     optional string country = 11;
@@ -106,7 +106,7 @@ message UpdateUserRequest{
     optional string first_name = 2;
     optional string last_name = 3;
     optional string gender = 4;
-    optional string date_of_birth = 5;
+    optional google.protobuf.Timestamp date_of_birth = 5;
     optional string email = 6;
     optional string phone_number = 7;
     optional string country = 8;
