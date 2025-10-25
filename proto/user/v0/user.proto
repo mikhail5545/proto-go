@@ -156,6 +156,7 @@ message DeleteRequest{
 }
 
 message DeleteResponse{
+    string id = 1;
 }
 
 service UserService{

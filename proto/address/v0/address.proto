@@ -54,6 +54,7 @@ message ListRequest{
 
 message ListResponse{
     repeated Address addresses = 1;
+    int64 total = 2;
 }
 
 message GetDefaultIDRequest{
@@ -80,6 +81,7 @@ message ListByUserRequest{
 
 message ListByUserResponse{
     repeated Address addresses = 1;
+    int64 total = 2;
 }
 
 message CreateRequest{
@@ -121,11 +123,13 @@ message UpdateResponse{
     optional string street = 7;
     optional string house = 8;
     optional string apartment = 9;
-    google.protobuf.FieldMask update_mask = 10;
+    google.protobuf.FieldMask updated = 10;
 }
 
 message SetDefaultRequest{
     string id = 1;
+    string user_id = 2;
+    string is_default = 3;
 }
 
 message SetDefaultResponse{

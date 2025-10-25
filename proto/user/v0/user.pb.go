@@ -1311,6 +1311,7 @@ func (x *DeleteRequest) GetId() string {
 
 type DeleteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1343,6 +1344,13 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
 	return file_user_v0_user_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 var File_user_v0_user_proto protoreflect.FileDescriptor
@@ -1493,8 +1501,9 @@ const file_user_v0_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
 	"\bis_admin\x18\x02 \x01(\bR\aisAdmin\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x10\n" +
-	"\x0eDeleteResponse2\xb1\x04\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
+	"\x0eDeleteResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xb1\x04\n" +
 	"\vUserService\x122\n" +
 	"\x03Get\x12\x13.user.v0.GetRequest\x1a\x14.user.v0.GetResponse\"\x00\x12G\n" +
 	"\n" +

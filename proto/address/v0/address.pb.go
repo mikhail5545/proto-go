@@ -315,6 +315,7 @@ func (x *ListRequest) GetOffset() int32 {
 type ListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Addresses     []*Address             `protobuf:"bytes,1,rep,name=addresses,proto3" json:"addresses,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -354,6 +355,13 @@ func (x *ListResponse) GetAddresses() []*Address {
 		return x.Addresses
 	}
 	return nil
+}
+
+func (x *ListResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type GetDefaultIDRequest struct {
@@ -595,6 +603,7 @@ func (x *ListByUserRequest) GetOffset() int32 {
 type ListByUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Addresses     []*Address             `protobuf:"bytes,1,rep,name=addresses,proto3" json:"addresses,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -634,6 +643,13 @@ func (x *ListByUserResponse) GetAddresses() []*Address {
 		return x.Addresses
 	}
 	return nil
+}
+
+func (x *ListByUserResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type CreateRequest struct {
@@ -915,7 +931,7 @@ type UpdateResponse struct {
 	Street        *string                `protobuf:"bytes,7,opt,name=street,proto3,oneof" json:"street,omitempty"`
 	House         *string                `protobuf:"bytes,8,opt,name=house,proto3,oneof" json:"house,omitempty"`
 	Apartment     *string                `protobuf:"bytes,9,opt,name=apartment,proto3,oneof" json:"apartment,omitempty"`
-	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,10,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	Updated       *fieldmaskpb.FieldMask `protobuf:"bytes,10,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1013,9 +1029,9 @@ func (x *UpdateResponse) GetApartment() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
 	if x != nil {
-		return x.UpdateMask
+		return x.Updated
 	}
 	return nil
 }
@@ -1023,6 +1039,8 @@ func (x *UpdateResponse) GetUpdateMask() *fieldmaskpb.FieldMask {
 type SetDefaultRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	IsDefault     string                 `protobuf:"bytes,3,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1060,6 +1078,20 @@ func (*SetDefaultRequest) Descriptor() ([]byte, []int) {
 func (x *SetDefaultRequest) GetId() string {
 	if x != nil {
 		return x.Id
+	}
+	return ""
+}
+
+func (x *SetDefaultRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SetDefaultRequest) GetIsDefault() string {
+	if x != nil {
+		return x.IsDefault
 	}
 	return ""
 }
@@ -1245,9 +1277,10 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"\aaddress\x18\x01 \x01(\v2\x13.address.v0.AddressR\aaddress\";\n" +
 	"\vListRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"A\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"W\n" +
 	"\fListResponse\x121\n" +
-	"\taddresses\x18\x01 \x03(\v2\x13.address.v0.AddressR\taddresses\".\n" +
+	"\taddresses\x18\x01 \x03(\v2\x13.address.v0.AddressR\taddresses\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\".\n" +
 	"\x13GetDefaultIDRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"&\n" +
 	"\x14GetDefaultIDResponse\x12\x0e\n" +
@@ -1259,9 +1292,10 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"\x11ListByUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"G\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"]\n" +
 	"\x12ListByUserResponse\x121\n" +
-	"\taddresses\x18\x01 \x03(\v2\x13.address.v0.AddressR\taddresses\"\x89\x02\n" +
+	"\taddresses\x18\x01 \x03(\v2\x13.address.v0.AddressR\taddresses\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\x89\x02\n" +
 	"\rCreateRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x1d\n" +
@@ -1302,7 +1336,7 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"\a_streetB\b\n" +
 	"\x06_houseB\f\n" +
 	"\n" +
-	"_apartment\"\xb3\x03\n" +
+	"_apartment\"\xac\x03\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04type\x18\x02 \x01(\tH\x00R\x04type\x88\x01\x01\x12\"\n" +
@@ -1314,10 +1348,9 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"postalCode\x88\x01\x01\x12\x1b\n" +
 	"\x06street\x18\a \x01(\tH\x05R\x06street\x88\x01\x01\x12\x19\n" +
 	"\x05house\x18\b \x01(\tH\x06R\x05house\x88\x01\x01\x12!\n" +
-	"\tapartment\x18\t \x01(\tH\aR\tapartment\x88\x01\x01\x12;\n" +
-	"\vupdate_mask\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMaskB\a\n" +
+	"\tapartment\x18\t \x01(\tH\aR\tapartment\x88\x01\x01\x124\n" +
+	"\aupdated\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\a\n" +
 	"\x05_typeB\r\n" +
 	"\v_is_defaultB\n" +
 	"\n" +
@@ -1327,9 +1360,12 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"\a_streetB\b\n" +
 	"\x06_houseB\f\n" +
 	"\n" +
-	"_apartment\"#\n" +
+	"_apartment\"[\n" +
 	"\x11SetDefaultRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\\\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
+	"\n" +
+	"is_default\x18\x03 \x01(\tR\tisDefault\"\\\n" +
 	"\x12SetDefaultResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -1399,7 +1435,7 @@ var file_address_v0_address_proto_depIdxs = []int32{
 	0,  // 5: address.v0.ListByUserResponse.addresses:type_name -> address.v0.Address
 	0,  // 6: address.v0.CreateResponse.address:type_name -> address.v0.Address
 	20, // 7: address.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	20, // 8: address.v0.UpdateResponse.update_mask:type_name -> google.protobuf.FieldMask
+	20, // 8: address.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	1,  // 9: address.v0.AddressService.GetAddress:input_type -> address.v0.GetRequest
 	5,  // 10: address.v0.AddressService.GetDefaultID:input_type -> address.v0.GetDefaultIDRequest
 	7,  // 11: address.v0.AddressService.GetDefault:input_type -> address.v0.GetDefaultRequest
