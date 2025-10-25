@@ -79,6 +79,8 @@ message ListResponse{
 
 message CourseProductInfo {
     float price = 1;
+    optional string name = 2;
+    optional string description = 3;
 }
 
 message CreateRequest{
@@ -86,7 +88,7 @@ message CreateRequest{
     string description = 2;
     string topic = 3;
     int32 access_duration = 4;
-    CourseProductInfo product_info = 5;
+    CourseProductInfo product = 5;
 }
 
 message CreateResponse{
@@ -99,7 +101,7 @@ message UpdateRequest{
     optional string description = 3;
     optional string topic = 4;
     optional int32 access_duration = 5;
-    optional CourseProductInfo product_info = 6;
+    optional CourseProductInfo product = 6;
     google.protobuf.FieldMask update_mask = 7;
 }
 
@@ -109,7 +111,7 @@ message UpdateResponse{
     optional string description = 3;
     optional string topic = 4;
     optional int32 access_duration = 5;
-    optional CourseProductInfo product_info = 6;
+    optional CourseProductInfo product = 6;
     google.protobuf.FieldMask updated = 7;
 }
 

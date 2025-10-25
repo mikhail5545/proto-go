@@ -549,6 +549,8 @@ func (x *ListResponse) GetTotal() int64 {
 type CourseProductInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Price         float32                `protobuf:"fixed32,1,opt,name=price,proto3" json:"price,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -590,13 +592,27 @@ func (x *CourseProductInfo) GetPrice() float32 {
 	return 0
 }
 
+func (x *CourseProductInfo) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *CourseProductInfo) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
 type CreateRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Name           string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description    string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Topic          string                 `protobuf:"bytes,3,opt,name=topic,proto3" json:"topic,omitempty"`
 	AccessDuration int32                  `protobuf:"varint,4,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
-	ProductInfo    *CourseProductInfo     `protobuf:"bytes,5,opt,name=product_info,json=productInfo,proto3" json:"product_info,omitempty"`
+	Product        *CourseProductInfo     `protobuf:"bytes,5,opt,name=product,proto3" json:"product,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -659,9 +675,9 @@ func (x *CreateRequest) GetAccessDuration() int32 {
 	return 0
 }
 
-func (x *CreateRequest) GetProductInfo() *CourseProductInfo {
+func (x *CreateRequest) GetProduct() *CourseProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -717,7 +733,7 @@ type UpdateRequest struct {
 	Description    *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	Topic          *string                `protobuf:"bytes,4,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
 	AccessDuration *int32                 `protobuf:"varint,5,opt,name=access_duration,json=accessDuration,proto3,oneof" json:"access_duration,omitempty"`
-	ProductInfo    *CourseProductInfo     `protobuf:"bytes,6,opt,name=product_info,json=productInfo,proto3,oneof" json:"product_info,omitempty"`
+	Product        *CourseProductInfo     `protobuf:"bytes,6,opt,name=product,proto3,oneof" json:"product,omitempty"`
 	UpdateMask     *fieldmaskpb.FieldMask `protobuf:"bytes,7,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -788,9 +804,9 @@ func (x *UpdateRequest) GetAccessDuration() int32 {
 	return 0
 }
 
-func (x *UpdateRequest) GetProductInfo() *CourseProductInfo {
+func (x *UpdateRequest) GetProduct() *CourseProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -809,7 +825,7 @@ type UpdateResponse struct {
 	Description    *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	Topic          *string                `protobuf:"bytes,4,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
 	AccessDuration *int32                 `protobuf:"varint,5,opt,name=access_duration,json=accessDuration,proto3,oneof" json:"access_duration,omitempty"`
-	ProductInfo    *CourseProductInfo     `protobuf:"bytes,6,opt,name=product_info,json=productInfo,proto3,oneof" json:"product_info,omitempty"`
+	Product        *CourseProductInfo     `protobuf:"bytes,6,opt,name=product,proto3,oneof" json:"product,omitempty"`
 	Updated        *fieldmaskpb.FieldMask `protobuf:"bytes,7,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -880,9 +896,9 @@ func (x *UpdateResponse) GetAccessDuration() int32 {
 	return 0
 }
 
-func (x *UpdateResponse) GetProductInfo() *CourseProductInfo {
+func (x *UpdateResponse) GetProduct() *CourseProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -1029,44 +1045,50 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"Y\n" +
 	"\fListResponse\x123\n" +
 	"\acourses\x18\x01 \x03(\v2\x19.course.v0.CourseListItemR\acourses\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\")\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\x82\x01\n" +
 	"\x11CourseProductInfo\x12\x14\n" +
-	"\x05price\x18\x01 \x01(\x02R\x05price\"\xc5\x01\n" +
+	"\x05price\x18\x01 \x01(\x02R\x05price\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01B\a\n" +
+	"\x05_nameB\x0e\n" +
+	"\f_description\"\xbc\x01\n" +
 	"\rCreateRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05topic\x18\x03 \x01(\tR\x05topic\x12'\n" +
-	"\x0faccess_duration\x18\x04 \x01(\x05R\x0eaccessDuration\x12?\n" +
-	"\fproduct_info\x18\x05 \x01(\v2\x1c.course.v0.CourseProductInfoR\vproductInfo\";\n" +
+	"\x0faccess_duration\x18\x04 \x01(\x05R\x0eaccessDuration\x126\n" +
+	"\aproduct\x18\x05 \x01(\v2\x1c.course.v0.CourseProductInfoR\aproduct\";\n" +
 	"\x0eCreateResponse\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\xf3\x02\n" +
+	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\xe5\x02\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x19\n" +
 	"\x05topic\x18\x04 \x01(\tH\x02R\x05topic\x88\x01\x01\x12,\n" +
-	"\x0faccess_duration\x18\x05 \x01(\x05H\x03R\x0eaccessDuration\x88\x01\x01\x12D\n" +
-	"\fproduct_info\x18\x06 \x01(\v2\x1c.course.v0.CourseProductInfoH\x04R\vproductInfo\x88\x01\x01\x12;\n" +
+	"\x0faccess_duration\x18\x05 \x01(\x05H\x03R\x0eaccessDuration\x88\x01\x01\x12;\n" +
+	"\aproduct\x18\x06 \x01(\v2\x1c.course.v0.CourseProductInfoH\x04R\aproduct\x88\x01\x01\x12;\n" +
 	"\vupdate_mask\x18\a \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMaskB\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_topicB\x12\n" +
-	"\x10_access_durationB\x0f\n" +
-	"\r_product_info\"\xed\x02\n" +
+	"\x10_access_durationB\n" +
+	"\n" +
+	"\b_product\"\xdf\x02\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x19\n" +
 	"\x05topic\x18\x04 \x01(\tH\x02R\x05topic\x88\x01\x01\x12,\n" +
-	"\x0faccess_duration\x18\x05 \x01(\x05H\x03R\x0eaccessDuration\x88\x01\x01\x12D\n" +
-	"\fproduct_info\x18\x06 \x01(\v2\x1c.course.v0.CourseProductInfoH\x04R\vproductInfo\x88\x01\x01\x124\n" +
+	"\x0faccess_duration\x18\x05 \x01(\x05H\x03R\x0eaccessDuration\x88\x01\x01\x12;\n" +
+	"\aproduct\x18\x06 \x01(\v2\x1c.course.v0.CourseProductInfoH\x04R\aproduct\x88\x01\x01\x124\n" +
 	"\aupdated\x18\a \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_topicB\x12\n" +
-	"\x10_access_durationB\x0f\n" +
-	"\r_product_info\"\x1f\n" +
+	"\x10_access_durationB\n" +
+	"\n" +
+	"\b_product\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -1125,11 +1147,11 @@ var file_course_v0_course_proto_depIdxs = []int32{
 	0,  // 7: course.v0.GetResponse.course:type_name -> course.v0.Course
 	1,  // 8: course.v0.GetReducedResponse.course:type_name -> course.v0.CourseListItem
 	1,  // 9: course.v0.ListResponse.courses:type_name -> course.v0.CourseListItem
-	8,  // 10: course.v0.CreateRequest.product_info:type_name -> course.v0.CourseProductInfo
+	8,  // 10: course.v0.CreateRequest.product:type_name -> course.v0.CourseProductInfo
 	0,  // 11: course.v0.CreateResponse.course:type_name -> course.v0.Course
-	8,  // 12: course.v0.UpdateRequest.product_info:type_name -> course.v0.CourseProductInfo
+	8,  // 12: course.v0.UpdateRequest.product:type_name -> course.v0.CourseProductInfo
 	18, // 13: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	8,  // 14: course.v0.UpdateResponse.product_info:type_name -> course.v0.CourseProductInfo
+	8,  // 14: course.v0.UpdateResponse.product:type_name -> course.v0.CourseProductInfo
 	18, // 15: course.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	2,  // 16: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
 	4,  // 17: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
@@ -1155,6 +1177,7 @@ func file_course_v0_course_proto_init() {
 	if File_course_v0_course_proto != nil {
 		return
 	}
+	file_course_v0_course_proto_msgTypes[8].OneofWrappers = []any{}
 	file_course_v0_course_proto_msgTypes[11].OneofWrappers = []any{}
 	file_course_v0_course_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}

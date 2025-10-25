@@ -37,9 +37,9 @@ message TrainingSession{
 
 message TrainingSessionProductInfo{
     float price = 1;
-    string name = 2;
-    string description = 3;
-    string image_url = 4;
+    optional string name = 2;
+    optional string description = 3;
+    optional string image_url = 4;
 }
 
 message GetRequest{
@@ -63,7 +63,7 @@ message ListResponse{
 message CreateRequest{
     int32 duration_minutes = 1;
     string format = 2;
-    TrainingSessionProductInfo product_info = 3;
+    TrainingSessionProductInfo product = 3;
 }
 
 message CreateResponse{
@@ -74,7 +74,7 @@ message UpdateRequest{
     string id = 1;
     optional int32 duration_minutes = 2;
     optional string format = 3;
-    optional TrainingSessionProductInfo product_info = 4;
+    optional TrainingSessionProductInfo product = 4;
     google.protobuf.FieldMask update_mask = 5;
 }
 
@@ -82,7 +82,7 @@ message UpdateResponse{
     string id = 1;
     optional int32 duration_minutes = 2;
     optional string format = 3;
-    optional TrainingSessionProductInfo product_info = 4;
+    optional TrainingSessionProductInfo product = 4;
     google.protobuf.FieldMask updated = 5;
 }
 

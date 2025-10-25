@@ -136,9 +136,9 @@ func (x *TrainingSession) GetFormat() string {
 type TrainingSessionProductInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Price         float32                `protobuf:"fixed32,1,opt,name=price,proto3" json:"price,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	ImageUrl      string                 `protobuf:"bytes,4,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ImageUrl      *string                `protobuf:"bytes,4,opt,name=image_url,json=imageUrl,proto3,oneof" json:"image_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -181,22 +181,22 @@ func (x *TrainingSessionProductInfo) GetPrice() float32 {
 }
 
 func (x *TrainingSessionProductInfo) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
 
 func (x *TrainingSessionProductInfo) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
 
 func (x *TrainingSessionProductInfo) GetImageUrl() string {
-	if x != nil {
-		return x.ImageUrl
+	if x != nil && x.ImageUrl != nil {
+		return *x.ImageUrl
 	}
 	return ""
 }
@@ -397,7 +397,7 @@ type CreateRequest struct {
 	state           protoimpl.MessageState      `protogen:"open.v1"`
 	DurationMinutes int32                       `protobuf:"varint,1,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
 	Format          string                      `protobuf:"bytes,2,opt,name=format,proto3" json:"format,omitempty"`
-	ProductInfo     *TrainingSessionProductInfo `protobuf:"bytes,3,opt,name=product_info,json=productInfo,proto3" json:"product_info,omitempty"`
+	Product         *TrainingSessionProductInfo `protobuf:"bytes,3,opt,name=product,proto3" json:"product,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -446,9 +446,9 @@ func (x *CreateRequest) GetFormat() string {
 	return ""
 }
 
-func (x *CreateRequest) GetProductInfo() *TrainingSessionProductInfo {
+func (x *CreateRequest) GetProduct() *TrainingSessionProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -502,7 +502,7 @@ type UpdateRequest struct {
 	Id              string                      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	DurationMinutes *int32                      `protobuf:"varint,2,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
 	Format          *string                     `protobuf:"bytes,3,opt,name=format,proto3,oneof" json:"format,omitempty"`
-	ProductInfo     *TrainingSessionProductInfo `protobuf:"bytes,4,opt,name=product_info,json=productInfo,proto3,oneof" json:"product_info,omitempty"`
+	Product         *TrainingSessionProductInfo `protobuf:"bytes,4,opt,name=product,proto3,oneof" json:"product,omitempty"`
 	UpdateMask      *fieldmaskpb.FieldMask      `protobuf:"bytes,5,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -559,9 +559,9 @@ func (x *UpdateRequest) GetFormat() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetProductInfo() *TrainingSessionProductInfo {
+func (x *UpdateRequest) GetProduct() *TrainingSessionProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -578,7 +578,7 @@ type UpdateResponse struct {
 	Id              string                      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	DurationMinutes *int32                      `protobuf:"varint,2,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
 	Format          *string                     `protobuf:"bytes,3,opt,name=format,proto3,oneof" json:"format,omitempty"`
-	ProductInfo     *TrainingSessionProductInfo `protobuf:"bytes,4,opt,name=product_info,json=productInfo,proto3,oneof" json:"product_info,omitempty"`
+	Product         *TrainingSessionProductInfo `protobuf:"bytes,4,opt,name=product,proto3,oneof" json:"product,omitempty"`
 	Updated         *fieldmaskpb.FieldMask      `protobuf:"bytes,5,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -635,9 +635,9 @@ func (x *UpdateResponse) GetFormat() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetProductInfo() *TrainingSessionProductInfo {
+func (x *UpdateResponse) GetProduct() *TrainingSessionProductInfo {
 	if x != nil {
-		return x.ProductInfo
+		return x.Product
 	}
 	return nil
 }
@@ -752,12 +752,16 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"product_id\x18\x04 \x01(\tR\tproductId\x12-\n" +
 	"\aproduct\x18\x05 \x01(\v2\x13.product.v0.ProductR\aproduct\x12)\n" +
 	"\x10duration_minutes\x18\x06 \x01(\x05R\x0fdurationMinutes\x12\x16\n" +
-	"\x06format\x18\a \x01(\tR\x06format\"\x85\x01\n" +
+	"\x06format\x18\a \x01(\tR\x06format\"\xbb\x01\n" +
 	"\x1aTrainingSessionProductInfo\x12\x14\n" +
-	"\x05price\x18\x01 \x01(\x02R\x05price\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1b\n" +
-	"\timage_url\x18\x04 \x01(\tR\bimageUrl\"\x1c\n" +
+	"\x05price\x18\x01 \x01(\x02R\x05price\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12 \n" +
+	"\timage_url\x18\x04 \x01(\tH\x02R\bimageUrl\x88\x01\x01B\a\n" +
+	"\x05_nameB\x0e\n" +
+	"\f_descriptionB\f\n" +
+	"\n" +
+	"_image_url\"\x1c\n" +
 	"\n" +
 	"GetRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"^\n" +
@@ -768,32 +772,34 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"w\n" +
 	"\fListResponse\x12Q\n" +
 	"\x11training_sessions\x18\x01 \x03(\v2$.training_session.v0.TrainingSessionR\x10trainingSessions\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"\xa6\x01\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\x9d\x01\n" +
 	"\rCreateRequest\x12)\n" +
 	"\x10duration_minutes\x18\x01 \x01(\x05R\x0fdurationMinutes\x12\x16\n" +
-	"\x06format\x18\x02 \x01(\tR\x06format\x12R\n" +
-	"\fproduct_info\x18\x03 \x01(\v2/.training_session.v0.TrainingSessionProductInfoR\vproductInfo\"a\n" +
+	"\x06format\x18\x02 \x01(\tR\x06format\x12I\n" +
+	"\aproduct\x18\x03 \x01(\v2/.training_session.v0.TrainingSessionProductInfoR\aproduct\"a\n" +
 	"\x0eCreateResponse\x12O\n" +
-	"\x10training_session\x18\x01 \x01(\v2$.training_session.v0.TrainingSessionR\x0ftrainingSession\"\xb3\x02\n" +
+	"\x10training_session\x18\x01 \x01(\v2$.training_session.v0.TrainingSessionR\x0ftrainingSession\"\xa5\x02\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x10duration_minutes\x18\x02 \x01(\x05H\x00R\x0fdurationMinutes\x88\x01\x01\x12\x1b\n" +
-	"\x06format\x18\x03 \x01(\tH\x01R\x06format\x88\x01\x01\x12W\n" +
-	"\fproduct_info\x18\x04 \x01(\v2/.training_session.v0.TrainingSessionProductInfoH\x02R\vproductInfo\x88\x01\x01\x12;\n" +
+	"\x06format\x18\x03 \x01(\tH\x01R\x06format\x88\x01\x01\x12N\n" +
+	"\aproduct\x18\x04 \x01(\v2/.training_session.v0.TrainingSessionProductInfoH\x02R\aproduct\x88\x01\x01\x12;\n" +
 	"\vupdate_mask\x18\x05 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMaskB\x13\n" +
 	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\x0f\n" +
-	"\r_product_info\"\xad\x02\n" +
+	"\a_formatB\n" +
+	"\n" +
+	"\b_product\"\x9f\x02\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x10duration_minutes\x18\x02 \x01(\x05H\x00R\x0fdurationMinutes\x88\x01\x01\x12\x1b\n" +
-	"\x06format\x18\x03 \x01(\tH\x01R\x06format\x88\x01\x01\x12W\n" +
-	"\fproduct_info\x18\x04 \x01(\v2/.training_session.v0.TrainingSessionProductInfoH\x02R\vproductInfo\x88\x01\x01\x124\n" +
+	"\x06format\x18\x03 \x01(\tH\x01R\x06format\x88\x01\x01\x12N\n" +
+	"\aproduct\x18\x04 \x01(\v2/.training_session.v0.TrainingSessionProductInfoH\x02R\aproduct\x88\x01\x01\x124\n" +
 	"\aupdated\x18\x05 \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\x13\n" +
 	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\x0f\n" +
-	"\r_product_info\"\x1f\n" +
+	"\a_formatB\n" +
+	"\n" +
+	"\b_product\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -841,11 +847,11 @@ var file_training_session_v0_training_session_proto_depIdxs = []int32{
 	13, // 2: training_session.v0.TrainingSession.product:type_name -> product.v0.Product
 	0,  // 3: training_session.v0.GetResponse.training_session:type_name -> training_session.v0.TrainingSession
 	0,  // 4: training_session.v0.ListResponse.training_sessions:type_name -> training_session.v0.TrainingSession
-	1,  // 5: training_session.v0.CreateRequest.product_info:type_name -> training_session.v0.TrainingSessionProductInfo
+	1,  // 5: training_session.v0.CreateRequest.product:type_name -> training_session.v0.TrainingSessionProductInfo
 	0,  // 6: training_session.v0.CreateResponse.training_session:type_name -> training_session.v0.TrainingSession
-	1,  // 7: training_session.v0.UpdateRequest.product_info:type_name -> training_session.v0.TrainingSessionProductInfo
+	1,  // 7: training_session.v0.UpdateRequest.product:type_name -> training_session.v0.TrainingSessionProductInfo
 	14, // 8: training_session.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 9: training_session.v0.UpdateResponse.product_info:type_name -> training_session.v0.TrainingSessionProductInfo
+	1,  // 9: training_session.v0.UpdateResponse.product:type_name -> training_session.v0.TrainingSessionProductInfo
 	14, // 10: training_session.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	2,  // 11: training_session.v0.TrainingSessionService.Get:input_type -> training_session.v0.GetRequest
 	4,  // 12: training_session.v0.TrainingSessionService.List:input_type -> training_session.v0.ListRequest
@@ -869,6 +875,7 @@ func file_training_session_v0_training_session_proto_init() {
 	if File_training_session_v0_training_session_proto != nil {
 		return
 	}
+	file_training_session_v0_training_session_proto_msgTypes[1].OneofWrappers = []any{}
 	file_training_session_v0_training_session_proto_msgTypes[8].OneofWrappers = []any{}
 	file_training_session_v0_training_session_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
