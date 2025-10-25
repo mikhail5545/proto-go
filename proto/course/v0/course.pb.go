@@ -24,8 +24,8 @@
 package coursepb
 
 import (
-	v0 "github.com/mikhail5545/proto-go/proto/mux_upload/v0"
-	v01 "github.com/mikhail5545/proto-go/proto/product/v0"
+	v01 "github.com/mikhail5545/proto-go/proto/course_part/v0"
+	v0 "github.com/mikhail5545/proto-go/proto/product/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -42,114 +42,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CoursePart struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	MuxVideo      *v0.MuxUpload          `protobuf:"bytes,6,opt,name=mux_video,json=muxVideo,proto3,oneof" json:"mux_video,omitempty"`
-	Number        int32                  `protobuf:"varint,7,opt,name=number,proto3" json:"number,omitempty"`
-	CourseId      string                 `protobuf:"bytes,8,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
-	MuxVideoId    *string                `protobuf:"bytes,10,opt,name=mux_video_id,json=muxVideoId,proto3,oneof" json:"mux_video_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CoursePart) Reset() {
-	*x = CoursePart{}
-	mi := &file_course_v0_course_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CoursePart) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CoursePart) ProtoMessage() {}
-
-func (x *CoursePart) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CoursePart.ProtoReflect.Descriptor instead.
-func (*CoursePart) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *CoursePart) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *CoursePart) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *CoursePart) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *CoursePart) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CoursePart) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *CoursePart) GetMuxVideo() *v0.MuxUpload {
-	if x != nil {
-		return x.MuxVideo
-	}
-	return nil
-}
-
-func (x *CoursePart) GetNumber() int32 {
-	if x != nil {
-		return x.Number
-	}
-	return 0
-}
-
-func (x *CoursePart) GetCourseId() string {
-	if x != nil {
-		return x.CourseId
-	}
-	return ""
-}
-
-func (x *CoursePart) GetMuxVideoId() string {
-	if x != nil && x.MuxVideoId != nil {
-		return *x.MuxVideoId
-	}
-	return ""
-}
-
 type Course struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -159,16 +51,16 @@ type Course struct {
 	Description    string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Topic          string                 `protobuf:"bytes,7,opt,name=topic,proto3" json:"topic,omitempty"`
 	ProductId      string                 `protobuf:"bytes,8,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	Product        *v01.Product           `protobuf:"bytes,9,opt,name=product,proto3" json:"product,omitempty"`
+	Product        *v0.Product            `protobuf:"bytes,9,opt,name=product,proto3" json:"product,omitempty"`
 	AccessDuration int32                  `protobuf:"varint,10,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
-	CourseParts    []*CoursePart          `protobuf:"bytes,11,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
+	CourseParts    []*v01.CoursePart      `protobuf:"bytes,11,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Course) Reset() {
 	*x = Course{}
-	mi := &file_course_v0_course_proto_msgTypes[1]
+	mi := &file_course_v0_course_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -180,7 +72,7 @@ func (x *Course) String() string {
 func (*Course) ProtoMessage() {}
 
 func (x *Course) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[1]
+	mi := &file_course_v0_course_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -193,7 +85,7 @@ func (x *Course) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Course.ProtoReflect.Descriptor instead.
 func (*Course) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{1}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Course) GetId() string {
@@ -245,7 +137,7 @@ func (x *Course) GetProductId() string {
 	return ""
 }
 
-func (x *Course) GetProduct() *v01.Product {
+func (x *Course) GetProduct() *v0.Product {
 	if x != nil {
 		return x.Product
 	}
@@ -259,7 +151,7 @@ func (x *Course) GetAccessDuration() int32 {
 	return 0
 }
 
-func (x *Course) GetCourseParts() []*CoursePart {
+func (x *Course) GetCourseParts() []*v01.CoursePart {
 	if x != nil {
 		return x.CourseParts
 	}
@@ -275,7 +167,7 @@ type CourseListItem struct {
 	Description    string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Topic          string                 `protobuf:"bytes,6,opt,name=topic,proto3" json:"topic,omitempty"`
 	ProductId      string                 `protobuf:"bytes,7,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	Product        *v01.Product           `protobuf:"bytes,8,opt,name=product,proto3" json:"product,omitempty"`
+	Product        *v0.Product            `protobuf:"bytes,8,opt,name=product,proto3" json:"product,omitempty"`
 	AccessDuration int32                  `protobuf:"varint,9,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -283,7 +175,7 @@ type CourseListItem struct {
 
 func (x *CourseListItem) Reset() {
 	*x = CourseListItem{}
-	mi := &file_course_v0_course_proto_msgTypes[2]
+	mi := &file_course_v0_course_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -295,7 +187,7 @@ func (x *CourseListItem) String() string {
 func (*CourseListItem) ProtoMessage() {}
 
 func (x *CourseListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[2]
+	mi := &file_course_v0_course_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -308,7 +200,7 @@ func (x *CourseListItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourseListItem.ProtoReflect.Descriptor instead.
 func (*CourseListItem) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{2}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CourseListItem) GetId() string {
@@ -360,7 +252,7 @@ func (x *CourseListItem) GetProductId() string {
 	return ""
 }
 
-func (x *CourseListItem) GetProduct() *v01.Product {
+func (x *CourseListItem) GetProduct() *v0.Product {
 	if x != nil {
 		return x.Product
 	}
@@ -374,28 +266,28 @@ func (x *CourseListItem) GetAccessDuration() int32 {
 	return 0
 }
 
-type GetCourseRequest struct {
+type GetRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCourseRequest) Reset() {
-	*x = GetCourseRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[3]
+func (x *GetRequest) Reset() {
+	*x = GetRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCourseRequest) String() string {
+func (x *GetRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCourseRequest) ProtoMessage() {}
+func (*GetRequest) ProtoMessage() {}
 
-func (x *GetCourseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[3]
+func (x *GetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -406,40 +298,40 @@ func (x *GetCourseRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCourseRequest.ProtoReflect.Descriptor instead.
-func (*GetCourseRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
+func (*GetRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetCourseRequest) GetId() string {
+func (x *GetRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type GetCourseResponse struct {
+type GetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Course        *Course                `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCourseResponse) Reset() {
-	*x = GetCourseResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[4]
+func (x *GetResponse) Reset() {
+	*x = GetResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCourseResponse) String() string {
+func (x *GetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCourseResponse) ProtoMessage() {}
+func (*GetResponse) ProtoMessage() {}
 
-func (x *GetCourseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[4]
+func (x *GetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -450,40 +342,40 @@ func (x *GetCourseResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCourseResponse.ProtoReflect.Descriptor instead.
-func (*GetCourseResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
+func (*GetResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetCourseResponse) GetCourse() *Course {
+func (x *GetResponse) GetCourse() *Course {
 	if x != nil {
 		return x.Course
 	}
 	return nil
 }
 
-type GetCourseWithoutPartsRequest struct {
+type GetReducedRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCourseWithoutPartsRequest) Reset() {
-	*x = GetCourseWithoutPartsRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[5]
+func (x *GetReducedRequest) Reset() {
+	*x = GetReducedRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCourseWithoutPartsRequest) String() string {
+func (x *GetReducedRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCourseWithoutPartsRequest) ProtoMessage() {}
+func (*GetReducedRequest) ProtoMessage() {}
 
-func (x *GetCourseWithoutPartsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[5]
+func (x *GetReducedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,40 +386,40 @@ func (x *GetCourseWithoutPartsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCourseWithoutPartsRequest.ProtoReflect.Descriptor instead.
-func (*GetCourseWithoutPartsRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{5}
+// Deprecated: Use GetReducedRequest.ProtoReflect.Descriptor instead.
+func (*GetReducedRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetCourseWithoutPartsRequest) GetId() string {
+func (x *GetReducedRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type GetCourseWithoutPartsResponse struct {
+type GetReducedResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Course        *CourseListItem        `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetCourseWithoutPartsResponse) Reset() {
-	*x = GetCourseWithoutPartsResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[6]
+func (x *GetReducedResponse) Reset() {
+	*x = GetReducedResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetCourseWithoutPartsResponse) String() string {
+func (x *GetReducedResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetCourseWithoutPartsResponse) ProtoMessage() {}
+func (*GetReducedResponse) ProtoMessage() {}
 
-func (x *GetCourseWithoutPartsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[6]
+func (x *GetReducedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -538,19 +430,19 @@ func (x *GetCourseWithoutPartsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetCourseWithoutPartsResponse.ProtoReflect.Descriptor instead.
-func (*GetCourseWithoutPartsResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{6}
+// Deprecated: Use GetReducedResponse.ProtoReflect.Descriptor instead.
+func (*GetReducedResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetCourseWithoutPartsResponse) GetCourse() *CourseListItem {
+func (x *GetReducedResponse) GetCourse() *CourseListItem {
 	if x != nil {
 		return x.Course
 	}
 	return nil
 }
 
-type ListCoursesRequest struct {
+type ListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
@@ -558,21 +450,21 @@ type ListCoursesRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListCoursesRequest) Reset() {
-	*x = ListCoursesRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[7]
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListCoursesRequest) String() string {
+func (x *ListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListCoursesRequest) ProtoMessage() {}
+func (*ListRequest) ProtoMessage() {}
 
-func (x *ListCoursesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[7]
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -583,26 +475,26 @@ func (x *ListCoursesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListCoursesRequest.ProtoReflect.Descriptor instead.
-func (*ListCoursesRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ListCoursesRequest) GetLimit() int32 {
+func (x *ListRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *ListCoursesRequest) GetOffset() int32 {
+func (x *ListRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-type ListCoursesResponse struct {
+type ListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Courses       []*CourseListItem      `protobuf:"bytes,1,rep,name=courses,proto3" json:"courses,omitempty"`
 	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
@@ -610,21 +502,21 @@ type ListCoursesResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListCoursesResponse) Reset() {
-	*x = ListCoursesResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[8]
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListCoursesResponse) String() string {
+func (x *ListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListCoursesResponse) ProtoMessage() {}
+func (*ListResponse) ProtoMessage() {}
 
-func (x *ListCoursesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[8]
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -635,19 +527,19 @@ func (x *ListCoursesResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListCoursesResponse.ProtoReflect.Descriptor instead.
-func (*ListCoursesResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{8}
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ListCoursesResponse) GetCourses() []*CourseListItem {
+func (x *ListResponse) GetCourses() []*CourseListItem {
 	if x != nil {
 		return x.Courses
 	}
 	return nil
 }
 
-func (x *ListCoursesResponse) GetTotal() int64 {
+func (x *ListResponse) GetTotal() int64 {
 	if x != nil {
 		return x.Total
 	}
@@ -663,7 +555,7 @@ type CourseProductInfo struct {
 
 func (x *CourseProductInfo) Reset() {
 	*x = CourseProductInfo{}
-	mi := &file_course_v0_course_proto_msgTypes[9]
+	mi := &file_course_v0_course_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -675,7 +567,7 @@ func (x *CourseProductInfo) String() string {
 func (*CourseProductInfo) ProtoMessage() {}
 
 func (x *CourseProductInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[9]
+	mi := &file_course_v0_course_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -688,7 +580,7 @@ func (x *CourseProductInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourseProductInfo.ProtoReflect.Descriptor instead.
 func (*CourseProductInfo) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{9}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CourseProductInfo) GetPrice() float32 {
@@ -698,7 +590,7 @@ func (x *CourseProductInfo) GetPrice() float32 {
 	return 0
 }
 
-type CreateCourseRequest struct {
+type CreateRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Name           string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description    string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
@@ -709,21 +601,21 @@ type CreateCourseRequest struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *CreateCourseRequest) Reset() {
-	*x = CreateCourseRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[10]
+func (x *CreateRequest) Reset() {
+	*x = CreateRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateCourseRequest) String() string {
+func (x *CreateRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateCourseRequest) ProtoMessage() {}
+func (*CreateRequest) ProtoMessage() {}
 
-func (x *CreateCourseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[10]
+func (x *CreateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -734,68 +626,68 @@ func (x *CreateCourseRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateCourseRequest.ProtoReflect.Descriptor instead.
-func (*CreateCourseRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{10}
+// Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
+func (*CreateRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *CreateCourseRequest) GetName() string {
+func (x *CreateRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *CreateCourseRequest) GetDescription() string {
+func (x *CreateRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *CreateCourseRequest) GetTopic() string {
+func (x *CreateRequest) GetTopic() string {
 	if x != nil {
 		return x.Topic
 	}
 	return ""
 }
 
-func (x *CreateCourseRequest) GetAccessDuration() int32 {
+func (x *CreateRequest) GetAccessDuration() int32 {
 	if x != nil {
 		return x.AccessDuration
 	}
 	return 0
 }
 
-func (x *CreateCourseRequest) GetProductInfo() *CourseProductInfo {
+func (x *CreateRequest) GetProductInfo() *CourseProductInfo {
 	if x != nil {
 		return x.ProductInfo
 	}
 	return nil
 }
 
-type CreateCourseResponse struct {
+type CreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Course        *Course                `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateCourseResponse) Reset() {
-	*x = CreateCourseResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[11]
+func (x *CreateResponse) Reset() {
+	*x = CreateResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateCourseResponse) String() string {
+func (x *CreateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateCourseResponse) ProtoMessage() {}
+func (*CreateResponse) ProtoMessage() {}
 
-func (x *CreateCourseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[11]
+func (x *CreateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -806,19 +698,19 @@ func (x *CreateCourseResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateCourseResponse.ProtoReflect.Descriptor instead.
-func (*CreateCourseResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
+func (*CreateResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *CreateCourseResponse) GetCourse() *Course {
+func (x *CreateResponse) GetCourse() *Course {
 	if x != nil {
 		return x.Course
 	}
 	return nil
 }
 
-type UpdateCourseRequest struct {
+type UpdateRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name           *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
@@ -831,21 +723,21 @@ type UpdateCourseRequest struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *UpdateCourseRequest) Reset() {
-	*x = UpdateCourseRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[12]
+func (x *UpdateRequest) Reset() {
+	*x = UpdateRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateCourseRequest) String() string {
+func (x *UpdateRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateCourseRequest) ProtoMessage() {}
+func (*UpdateRequest) ProtoMessage() {}
 
-func (x *UpdateCourseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[12]
+func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -856,82 +748,82 @@ func (x *UpdateCourseRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateCourseRequest.ProtoReflect.Descriptor instead.
-func (*UpdateCourseRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *UpdateCourseRequest) GetId() string {
+func (x *UpdateRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *UpdateCourseRequest) GetName() string {
+func (x *UpdateRequest) GetName() string {
 	if x != nil && x.Name != nil {
 		return *x.Name
 	}
 	return ""
 }
 
-func (x *UpdateCourseRequest) GetDescription() string {
+func (x *UpdateRequest) GetDescription() string {
 	if x != nil && x.Description != nil {
 		return *x.Description
 	}
 	return ""
 }
 
-func (x *UpdateCourseRequest) GetTopic() string {
+func (x *UpdateRequest) GetTopic() string {
 	if x != nil && x.Topic != nil {
 		return *x.Topic
 	}
 	return ""
 }
 
-func (x *UpdateCourseRequest) GetAccessDuration() int32 {
+func (x *UpdateRequest) GetAccessDuration() int32 {
 	if x != nil && x.AccessDuration != nil {
 		return *x.AccessDuration
 	}
 	return 0
 }
 
-func (x *UpdateCourseRequest) GetProductInfo() *CourseProductInfo {
+func (x *UpdateRequest) GetProductInfo() *CourseProductInfo {
 	if x != nil {
 		return x.ProductInfo
 	}
 	return nil
 }
 
-func (x *UpdateCourseRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
 	}
 	return nil
 }
 
-type UpdateCourseResponse struct {
+type UpdateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Course        *Course                `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateCourseResponse) Reset() {
-	*x = UpdateCourseResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[13]
+func (x *UpdateResponse) Reset() {
+	*x = UpdateResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateCourseResponse) String() string {
+func (x *UpdateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateCourseResponse) ProtoMessage() {}
+func (*UpdateResponse) ProtoMessage() {}
 
-func (x *UpdateCourseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[13]
+func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -942,39 +834,83 @@ func (x *UpdateCourseResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateCourseResponse.ProtoReflect.Descriptor instead.
-func (*UpdateCourseResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{13}
+// Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *UpdateCourseResponse) GetCourse() *Course {
+func (x *UpdateResponse) GetCourse() *Course {
 	if x != nil {
 		return x.Course
 	}
 	return nil
 }
 
-type DeleteCourseRequest struct {
+type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteCourseRequest) Reset() {
-	*x = DeleteCourseRequest{}
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteResponse) Reset() {
+	*x = DeleteResponse{}
 	mi := &file_course_v0_course_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteCourseRequest) String() string {
+func (x *DeleteResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteCourseRequest) ProtoMessage() {}
+func (*DeleteResponse) ProtoMessage() {}
 
-func (x *DeleteCourseRequest) ProtoReflect() protoreflect.Message {
+func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_course_v0_course_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -986,709 +922,23 @@ func (x *DeleteCourseRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteCourseRequest.ProtoReflect.Descriptor instead.
-func (*DeleteCourseRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
 	return file_course_v0_course_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *DeleteCourseRequest) GetId() string {
+func (x *DeleteResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
-}
-
-type DeleteCourseResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteCourseResponse) Reset() {
-	*x = DeleteCourseResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteCourseResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteCourseResponse) ProtoMessage() {}
-
-func (x *DeleteCourseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteCourseResponse.ProtoReflect.Descriptor instead.
-func (*DeleteCourseResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *DeleteCourseResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetCoursePartRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetCoursePartRequest) Reset() {
-	*x = GetCoursePartRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetCoursePartRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetCoursePartRequest) ProtoMessage() {}
-
-func (x *GetCoursePartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetCoursePartRequest.ProtoReflect.Descriptor instead.
-func (*GetCoursePartRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *GetCoursePartRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetCoursePartResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CoursePart    *CoursePart            `protobuf:"bytes,1,opt,name=course_part,json=coursePart,proto3" json:"course_part,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetCoursePartResponse) Reset() {
-	*x = GetCoursePartResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetCoursePartResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetCoursePartResponse) ProtoMessage() {}
-
-func (x *GetCoursePartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetCoursePartResponse.ProtoReflect.Descriptor instead.
-func (*GetCoursePartResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *GetCoursePartResponse) GetCoursePart() *CoursePart {
-	if x != nil {
-		return x.CoursePart
-	}
-	return nil
-}
-
-type ListCoursePartsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseId      string                 `protobuf:"bytes,1,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListCoursePartsRequest) Reset() {
-	*x = ListCoursePartsRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListCoursePartsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListCoursePartsRequest) ProtoMessage() {}
-
-func (x *ListCoursePartsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListCoursePartsRequest.ProtoReflect.Descriptor instead.
-func (*ListCoursePartsRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *ListCoursePartsRequest) GetCourseId() string {
-	if x != nil {
-		return x.CourseId
-	}
-	return ""
-}
-
-func (x *ListCoursePartsRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *ListCoursePartsRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-type ListCoursePartsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseParts   []*CoursePart          `protobuf:"bytes,1,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListCoursePartsResponse) Reset() {
-	*x = ListCoursePartsResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListCoursePartsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListCoursePartsResponse) ProtoMessage() {}
-
-func (x *ListCoursePartsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListCoursePartsResponse.ProtoReflect.Descriptor instead.
-func (*ListCoursePartsResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *ListCoursePartsResponse) GetCourseParts() []*CoursePart {
-	if x != nil {
-		return x.CourseParts
-	}
-	return nil
-}
-
-func (x *ListCoursePartsResponse) GetTotal() int64 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
-
-type CreateCoursePartRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	Number        string                 `protobuf:"bytes,3,opt,name=number,proto3" json:"number,omitempty"`
-	CourseId      string                 `protobuf:"bytes,4,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
-	MuxVideoId    *string                `protobuf:"bytes,5,opt,name=mux_video_id,json=muxVideoId,proto3,oneof" json:"mux_video_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateCoursePartRequest) Reset() {
-	*x = CreateCoursePartRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateCoursePartRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateCoursePartRequest) ProtoMessage() {}
-
-func (x *CreateCoursePartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateCoursePartRequest.ProtoReflect.Descriptor instead.
-func (*CreateCoursePartRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *CreateCoursePartRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateCoursePartRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *CreateCoursePartRequest) GetNumber() string {
-	if x != nil {
-		return x.Number
-	}
-	return ""
-}
-
-func (x *CreateCoursePartRequest) GetCourseId() string {
-	if x != nil {
-		return x.CourseId
-	}
-	return ""
-}
-
-func (x *CreateCoursePartRequest) GetMuxVideoId() string {
-	if x != nil && x.MuxVideoId != nil {
-		return *x.MuxVideoId
-	}
-	return ""
-}
-
-type CreateCoursePartResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CoursePart    *CoursePart            `protobuf:"bytes,1,opt,name=course_part,json=coursePart,proto3" json:"course_part,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateCoursePartResponse) Reset() {
-	*x = CreateCoursePartResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateCoursePartResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateCoursePartResponse) ProtoMessage() {}
-
-func (x *CreateCoursePartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateCoursePartResponse.ProtoReflect.Descriptor instead.
-func (*CreateCoursePartResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *CreateCoursePartResponse) GetCoursePart() *CoursePart {
-	if x != nil {
-		return x.CoursePart
-	}
-	return nil
-}
-
-type UpdateCoursePartRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Number        *int32                 `protobuf:"varint,4,opt,name=number,proto3,oneof" json:"number,omitempty"`
-	MuxVideoId    *string                `protobuf:"bytes,5,opt,name=mux_video_id,json=muxVideoId,proto3,oneof" json:"mux_video_id,omitempty"`
-	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,6,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateCoursePartRequest) Reset() {
-	*x = UpdateCoursePartRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateCoursePartRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateCoursePartRequest) ProtoMessage() {}
-
-func (x *UpdateCoursePartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateCoursePartRequest.ProtoReflect.Descriptor instead.
-func (*UpdateCoursePartRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *UpdateCoursePartRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *UpdateCoursePartRequest) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
-	}
-	return ""
-}
-
-func (x *UpdateCoursePartRequest) GetDescription() string {
-	if x != nil && x.Description != nil {
-		return *x.Description
-	}
-	return ""
-}
-
-func (x *UpdateCoursePartRequest) GetNumber() int32 {
-	if x != nil && x.Number != nil {
-		return *x.Number
-	}
-	return 0
-}
-
-func (x *UpdateCoursePartRequest) GetMuxVideoId() string {
-	if x != nil && x.MuxVideoId != nil {
-		return *x.MuxVideoId
-	}
-	return ""
-}
-
-func (x *UpdateCoursePartRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
-	if x != nil {
-		return x.UpdateMask
-	}
-	return nil
-}
-
-type UpdateCoursePartResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CoursePart    *CoursePart            `protobuf:"bytes,1,opt,name=course_part,json=coursePart,proto3" json:"course_part,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateCoursePartResponse) Reset() {
-	*x = UpdateCoursePartResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateCoursePartResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateCoursePartResponse) ProtoMessage() {}
-
-func (x *UpdateCoursePartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateCoursePartResponse.ProtoReflect.Descriptor instead.
-func (*UpdateCoursePartResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *UpdateCoursePartResponse) GetCoursePart() *CoursePart {
-	if x != nil {
-		return x.CoursePart
-	}
-	return nil
-}
-
-type AddMuxVideoToCoursePartRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	MuxVideoId    string                 `protobuf:"bytes,2,opt,name=mux_video_id,json=muxVideoId,proto3" json:"mux_video_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddMuxVideoToCoursePartRequest) Reset() {
-	*x = AddMuxVideoToCoursePartRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[24]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddMuxVideoToCoursePartRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddMuxVideoToCoursePartRequest) ProtoMessage() {}
-
-func (x *AddMuxVideoToCoursePartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[24]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddMuxVideoToCoursePartRequest.ProtoReflect.Descriptor instead.
-func (*AddMuxVideoToCoursePartRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{24}
-}
-
-func (x *AddMuxVideoToCoursePartRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *AddMuxVideoToCoursePartRequest) GetMuxVideoId() string {
-	if x != nil {
-		return x.MuxVideoId
-	}
-	return ""
-}
-
-type AddMuxVideoToCoursePartResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	MuxVideoId    string                 `protobuf:"bytes,1,opt,name=mux_video_id,json=muxVideoId,proto3" json:"mux_video_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddMuxVideoToCoursePartResponse) Reset() {
-	*x = AddMuxVideoToCoursePartResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddMuxVideoToCoursePartResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddMuxVideoToCoursePartResponse) ProtoMessage() {}
-
-func (x *AddMuxVideoToCoursePartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddMuxVideoToCoursePartResponse.ProtoReflect.Descriptor instead.
-func (*AddMuxVideoToCoursePartResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *AddMuxVideoToCoursePartResponse) GetMuxVideoId() string {
-	if x != nil {
-		return x.MuxVideoId
-	}
-	return ""
-}
-
-type DeleteCoursePartRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteCoursePartRequest) Reset() {
-	*x = DeleteCoursePartRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteCoursePartRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteCoursePartRequest) ProtoMessage() {}
-
-func (x *DeleteCoursePartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteCoursePartRequest.ProtoReflect.Descriptor instead.
-func (*DeleteCoursePartRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *DeleteCoursePartRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeleteCoursePartResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteCoursePartResponse) Reset() {
-	*x = DeleteCoursePartResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[27]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteCoursePartResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteCoursePartResponse) ProtoMessage() {}
-
-func (x *DeleteCoursePartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[27]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteCoursePartResponse.ProtoReflect.Descriptor instead.
-func (*DeleteCoursePartResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{27}
 }
 
 var File_course_v0_course_proto protoreflect.FileDescriptor
 
 const file_course_v0_course_proto_rawDesc = "" +
 	"\n" +
-	"\x16course/v0/course.proto\x12\tcourse.v0\x1a\x18product/v0/product.proto\x1a\x1emux_upload/v0/mux_upload.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xff\x02\n" +
-	"\n" +
-	"CoursePart\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
-	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
-	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n" +
-	"\x04name\x18\x04 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12:\n" +
-	"\tmux_video\x18\x06 \x01(\v2\x18.mux_upload.v0.MuxUploadH\x00R\bmuxVideo\x88\x01\x01\x12\x16\n" +
-	"\x06number\x18\a \x01(\x05R\x06number\x12\x1b\n" +
-	"\tcourse_id\x18\b \x01(\tR\bcourseId\x12%\n" +
-	"\fmux_video_id\x18\n" +
-	" \x01(\tH\x01R\n" +
-	"muxVideoId\x88\x01\x01B\f\n" +
-	"\n" +
-	"_mux_videoB\x0f\n" +
-	"\r_mux_video_id\"\x8b\x03\n" +
+	"\x16course/v0/course.proto\x12\tcourse.v0\x1a\x18product/v0/product.proto\x1a course_part/v0/course_part.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x90\x03\n" +
 	"\x06Course\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1702,8 +952,8 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"product_id\x18\b \x01(\tR\tproductId\x12-\n" +
 	"\aproduct\x18\t \x01(\v2\x13.product.v0.ProductR\aproduct\x12'\n" +
 	"\x0faccess_duration\x18\n" +
-	" \x01(\x05R\x0eaccessDuration\x128\n" +
-	"\fcourse_parts\x18\v \x03(\v2\x15.course.v0.CoursePartR\vcourseParts\"\xd9\x02\n" +
+	" \x01(\x05R\x0eaccessDuration\x12=\n" +
+	"\fcourse_parts\x18\v \x03(\v2\x1a.course_part.v0.CoursePartR\vcourseParts\"\xd9\x02\n" +
 	"\x0eCourseListItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1716,32 +966,33 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\n" +
 	"product_id\x18\a \x01(\tR\tproductId\x12-\n" +
 	"\aproduct\x18\b \x01(\v2\x13.product.v0.ProductR\aproduct\x12'\n" +
-	"\x0faccess_duration\x18\t \x01(\x05R\x0eaccessDuration\"\"\n" +
-	"\x10GetCourseRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\">\n" +
-	"\x11GetCourseResponse\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\".\n" +
-	"\x1cGetCourseWithoutPartsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"R\n" +
-	"\x1dGetCourseWithoutPartsResponse\x121\n" +
-	"\x06course\x18\x01 \x01(\v2\x19.course.v0.CourseListItemR\x06course\"B\n" +
-	"\x12ListCoursesRequest\x12\x14\n" +
+	"\x0faccess_duration\x18\t \x01(\x05R\x0eaccessDuration\"\x1c\n" +
+	"\n" +
+	"GetRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"8\n" +
+	"\vGetResponse\x12)\n" +
+	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"#\n" +
+	"\x11GetReducedRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"G\n" +
+	"\x12GetReducedResponse\x121\n" +
+	"\x06course\x18\x01 \x01(\v2\x19.course.v0.CourseListItemR\x06course\";\n" +
+	"\vListRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"`\n" +
-	"\x13ListCoursesResponse\x123\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"Y\n" +
+	"\fListResponse\x123\n" +
 	"\acourses\x18\x01 \x03(\v2\x19.course.v0.CourseListItemR\acourses\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\")\n" +
 	"\x11CourseProductInfo\x12\x14\n" +
-	"\x05price\x18\x01 \x01(\x02R\x05price\"\xcb\x01\n" +
-	"\x13CreateCourseRequest\x12\x12\n" +
+	"\x05price\x18\x01 \x01(\x02R\x05price\"\xc5\x01\n" +
+	"\rCreateRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05topic\x18\x03 \x01(\tR\x05topic\x12'\n" +
 	"\x0faccess_duration\x18\x04 \x01(\x05R\x0eaccessDuration\x12?\n" +
-	"\fproduct_info\x18\x05 \x01(\v2\x1c.course.v0.CourseProductInfoR\vproductInfo\"A\n" +
-	"\x14CreateCourseResponse\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\xf9\x02\n" +
-	"\x13UpdateCourseRequest\x12\x0e\n" +
+	"\fproduct_info\x18\x05 \x01(\v2\x1c.course.v0.CourseProductInfoR\vproductInfo\";\n" +
+	"\x0eCreateResponse\x12)\n" +
+	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\xf3\x02\n" +
+	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x19\n" +
@@ -1754,74 +1005,21 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\f_descriptionB\b\n" +
 	"\x06_topicB\x12\n" +
 	"\x10_access_durationB\x0f\n" +
-	"\r_product_info\"A\n" +
-	"\x14UpdateCourseResponse\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"%\n" +
-	"\x13DeleteCourseRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
-	"\x14DeleteCourseResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
-	"\x14GetCoursePartRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"O\n" +
-	"\x15GetCoursePartResponse\x126\n" +
-	"\vcourse_part\x18\x01 \x01(\v2\x15.course.v0.CoursePartR\n" +
-	"coursePart\"c\n" +
-	"\x16ListCoursePartsRequest\x12\x1b\n" +
-	"\tcourse_id\x18\x01 \x01(\tR\bcourseId\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"i\n" +
-	"\x17ListCoursePartsResponse\x128\n" +
-	"\fcourse_parts\x18\x01 \x03(\v2\x15.course.v0.CoursePartR\vcourseParts\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"\xbc\x01\n" +
-	"\x17CreateCoursePartRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x16\n" +
-	"\x06number\x18\x03 \x01(\tR\x06number\x12\x1b\n" +
-	"\tcourse_id\x18\x04 \x01(\tR\bcourseId\x12%\n" +
-	"\fmux_video_id\x18\x05 \x01(\tH\x00R\n" +
-	"muxVideoId\x88\x01\x01B\x0f\n" +
-	"\r_mux_video_id\"R\n" +
-	"\x18CreateCoursePartResponse\x126\n" +
-	"\vcourse_part\x18\x01 \x01(\v2\x15.course.v0.CoursePartR\n" +
-	"coursePart\"\x9f\x02\n" +
-	"\x17UpdateCoursePartRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x1b\n" +
-	"\x06number\x18\x04 \x01(\x05H\x02R\x06number\x88\x01\x01\x12%\n" +
-	"\fmux_video_id\x18\x05 \x01(\tH\x03R\n" +
-	"muxVideoId\x88\x01\x01\x12;\n" +
-	"\vupdate_mask\x18\x06 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMaskB\a\n" +
-	"\x05_nameB\x0e\n" +
-	"\f_descriptionB\t\n" +
-	"\a_numberB\x0f\n" +
-	"\r_mux_video_id\"R\n" +
-	"\x18UpdateCoursePartResponse\x126\n" +
-	"\vcourse_part\x18\x01 \x01(\v2\x15.course.v0.CoursePartR\n" +
-	"coursePart\"R\n" +
-	"\x1eAddMuxVideoToCoursePartRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
-	"\fmux_video_id\x18\x02 \x01(\tR\n" +
-	"muxVideoId\"C\n" +
-	"\x1fAddMuxVideoToCoursePartResponse\x12 \n" +
-	"\fmux_video_id\x18\x01 \x01(\tR\n" +
-	"muxVideoId\")\n" +
-	"\x17DeleteCoursePartRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x1a\n" +
-	"\x18DeleteCoursePartResponse2\xf4\a\n" +
-	"\rCourseService\x12H\n" +
-	"\tGetCourse\x12\x1b.course.v0.GetCourseRequest\x1a\x1c.course.v0.GetCourseResponse\"\x00\x12l\n" +
-	"\x15GetCourseWithoutParts\x12'.course.v0.GetCourseWithoutPartsRequest\x1a(.course.v0.GetCourseWithoutPartsResponse\"\x00\x12N\n" +
-	"\vListCourses\x12\x1d.course.v0.ListCoursesRequest\x1a\x1e.course.v0.ListCoursesResponse\"\x00\x12Q\n" +
-	"\fCreateCourse\x12\x1e.course.v0.CreateCourseRequest\x1a\x1f.course.v0.CreateCourseResponse\"\x00\x12Q\n" +
-	"\fUpdateCourse\x12\x1e.course.v0.UpdateCourseRequest\x1a\x1f.course.v0.UpdateCourseResponse\"\x00\x12Q\n" +
-	"\fDeleteCourse\x12\x1e.course.v0.DeleteCourseRequest\x1a\x1f.course.v0.DeleteCourseResponse\"\x00\x12T\n" +
-	"\rGetCoursePart\x12\x1f.course.v0.GetCoursePartRequest\x1a .course.v0.GetCoursePartResponse\"\x00\x12Z\n" +
-	"\x0fListCourseParts\x12!.course.v0.ListCoursePartsRequest\x1a\".course.v0.ListCoursePartsResponse\"\x00\x12]\n" +
-	"\x10CreateCoursePart\x12\".course.v0.CreateCoursePartRequest\x1a#.course.v0.CreateCoursePartResponse\"\x00\x12]\n" +
-	"\x10UpdateCoursePart\x12\".course.v0.UpdateCoursePartRequest\x1a#.course.v0.UpdateCoursePartResponse\"\x00\x12r\n" +
-	"\x17AddMuxVideoToCoursePart\x12).course.v0.AddMuxVideoToCoursePartRequest\x1a*.course.v0.AddMuxVideoToCoursePartResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
+	"\r_product_info\";\n" +
+	"\x0eUpdateResponse\x12)\n" +
+	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\x1f\n" +
+	"\rDeleteRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
+	"\x0eDeleteResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\x91\x03\n" +
+	"\rCourseService\x126\n" +
+	"\x03Get\x12\x15.course.v0.GetRequest\x1a\x16.course.v0.GetResponse\"\x00\x12K\n" +
+	"\n" +
+	"GetReduced\x12\x1c.course.v0.GetReducedRequest\x1a\x1d.course.v0.GetReducedResponse\"\x00\x129\n" +
+	"\x04List\x12\x16.course.v0.ListRequest\x1a\x17.course.v0.ListResponse\"\x00\x12?\n" +
+	"\x06Create\x12\x18.course.v0.CreateRequest\x1a\x19.course.v0.CreateResponse\"\x00\x12>\n" +
+	"\x05Updae\x12\x18.course.v0.UpdateRequest\x1a\x19.course.v0.UpdateResponse\"\x00\x12?\n" +
+	"\x06Delete\x12\x18.course.v0.DeleteRequest\x1a\x19.course.v0.DeleteResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
 
 var (
 	file_course_v0_course_proto_rawDescOnce sync.Once
@@ -1835,92 +1033,61 @@ func file_course_v0_course_proto_rawDescGZIP() []byte {
 	return file_course_v0_course_proto_rawDescData
 }
 
-var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_course_v0_course_proto_goTypes = []any{
-	(*CoursePart)(nil),                      // 0: course.v0.CoursePart
-	(*Course)(nil),                          // 1: course.v0.Course
-	(*CourseListItem)(nil),                  // 2: course.v0.CourseListItem
-	(*GetCourseRequest)(nil),                // 3: course.v0.GetCourseRequest
-	(*GetCourseResponse)(nil),               // 4: course.v0.GetCourseResponse
-	(*GetCourseWithoutPartsRequest)(nil),    // 5: course.v0.GetCourseWithoutPartsRequest
-	(*GetCourseWithoutPartsResponse)(nil),   // 6: course.v0.GetCourseWithoutPartsResponse
-	(*ListCoursesRequest)(nil),              // 7: course.v0.ListCoursesRequest
-	(*ListCoursesResponse)(nil),             // 8: course.v0.ListCoursesResponse
-	(*CourseProductInfo)(nil),               // 9: course.v0.CourseProductInfo
-	(*CreateCourseRequest)(nil),             // 10: course.v0.CreateCourseRequest
-	(*CreateCourseResponse)(nil),            // 11: course.v0.CreateCourseResponse
-	(*UpdateCourseRequest)(nil),             // 12: course.v0.UpdateCourseRequest
-	(*UpdateCourseResponse)(nil),            // 13: course.v0.UpdateCourseResponse
-	(*DeleteCourseRequest)(nil),             // 14: course.v0.DeleteCourseRequest
-	(*DeleteCourseResponse)(nil),            // 15: course.v0.DeleteCourseResponse
-	(*GetCoursePartRequest)(nil),            // 16: course.v0.GetCoursePartRequest
-	(*GetCoursePartResponse)(nil),           // 17: course.v0.GetCoursePartResponse
-	(*ListCoursePartsRequest)(nil),          // 18: course.v0.ListCoursePartsRequest
-	(*ListCoursePartsResponse)(nil),         // 19: course.v0.ListCoursePartsResponse
-	(*CreateCoursePartRequest)(nil),         // 20: course.v0.CreateCoursePartRequest
-	(*CreateCoursePartResponse)(nil),        // 21: course.v0.CreateCoursePartResponse
-	(*UpdateCoursePartRequest)(nil),         // 22: course.v0.UpdateCoursePartRequest
-	(*UpdateCoursePartResponse)(nil),        // 23: course.v0.UpdateCoursePartResponse
-	(*AddMuxVideoToCoursePartRequest)(nil),  // 24: course.v0.AddMuxVideoToCoursePartRequest
-	(*AddMuxVideoToCoursePartResponse)(nil), // 25: course.v0.AddMuxVideoToCoursePartResponse
-	(*DeleteCoursePartRequest)(nil),         // 26: course.v0.DeleteCoursePartRequest
-	(*DeleteCoursePartResponse)(nil),        // 27: course.v0.DeleteCoursePartResponse
-	(*timestamppb.Timestamp)(nil),           // 28: google.protobuf.Timestamp
-	(*v0.MuxUpload)(nil),                    // 29: mux_upload.v0.MuxUpload
-	(*v01.Product)(nil),                     // 30: product.v0.Product
-	(*fieldmaskpb.FieldMask)(nil),           // 31: google.protobuf.FieldMask
+	(*Course)(nil),                // 0: course.v0.Course
+	(*CourseListItem)(nil),        // 1: course.v0.CourseListItem
+	(*GetRequest)(nil),            // 2: course.v0.GetRequest
+	(*GetResponse)(nil),           // 3: course.v0.GetResponse
+	(*GetReducedRequest)(nil),     // 4: course.v0.GetReducedRequest
+	(*GetReducedResponse)(nil),    // 5: course.v0.GetReducedResponse
+	(*ListRequest)(nil),           // 6: course.v0.ListRequest
+	(*ListResponse)(nil),          // 7: course.v0.ListResponse
+	(*CourseProductInfo)(nil),     // 8: course.v0.CourseProductInfo
+	(*CreateRequest)(nil),         // 9: course.v0.CreateRequest
+	(*CreateResponse)(nil),        // 10: course.v0.CreateResponse
+	(*UpdateRequest)(nil),         // 11: course.v0.UpdateRequest
+	(*UpdateResponse)(nil),        // 12: course.v0.UpdateResponse
+	(*DeleteRequest)(nil),         // 13: course.v0.DeleteRequest
+	(*DeleteResponse)(nil),        // 14: course.v0.DeleteResponse
+	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
+	(*v0.Product)(nil),            // 16: product.v0.Product
+	(*v01.CoursePart)(nil),        // 17: course_part.v0.CoursePart
+	(*fieldmaskpb.FieldMask)(nil), // 18: google.protobuf.FieldMask
 }
 var file_course_v0_course_proto_depIdxs = []int32{
-	28, // 0: course.v0.CoursePart.created_at:type_name -> google.protobuf.Timestamp
-	28, // 1: course.v0.CoursePart.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 2: course.v0.CoursePart.mux_video:type_name -> mux_upload.v0.MuxUpload
-	28, // 3: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
-	28, // 4: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
-	30, // 5: course.v0.Course.product:type_name -> product.v0.Product
-	0,  // 6: course.v0.Course.course_parts:type_name -> course.v0.CoursePart
-	28, // 7: course.v0.CourseListItem.created_at:type_name -> google.protobuf.Timestamp
-	28, // 8: course.v0.CourseListItem.updated_at:type_name -> google.protobuf.Timestamp
-	30, // 9: course.v0.CourseListItem.product:type_name -> product.v0.Product
-	1,  // 10: course.v0.GetCourseResponse.course:type_name -> course.v0.Course
-	2,  // 11: course.v0.GetCourseWithoutPartsResponse.course:type_name -> course.v0.CourseListItem
-	2,  // 12: course.v0.ListCoursesResponse.courses:type_name -> course.v0.CourseListItem
-	9,  // 13: course.v0.CreateCourseRequest.product_info:type_name -> course.v0.CourseProductInfo
-	1,  // 14: course.v0.CreateCourseResponse.course:type_name -> course.v0.Course
-	9,  // 15: course.v0.UpdateCourseRequest.product_info:type_name -> course.v0.CourseProductInfo
-	31, // 16: course.v0.UpdateCourseRequest.update_mask:type_name -> google.protobuf.FieldMask
-	1,  // 17: course.v0.UpdateCourseResponse.course:type_name -> course.v0.Course
-	0,  // 18: course.v0.GetCoursePartResponse.course_part:type_name -> course.v0.CoursePart
-	0,  // 19: course.v0.ListCoursePartsResponse.course_parts:type_name -> course.v0.CoursePart
-	0,  // 20: course.v0.CreateCoursePartResponse.course_part:type_name -> course.v0.CoursePart
-	31, // 21: course.v0.UpdateCoursePartRequest.update_mask:type_name -> google.protobuf.FieldMask
-	0,  // 22: course.v0.UpdateCoursePartResponse.course_part:type_name -> course.v0.CoursePart
-	3,  // 23: course.v0.CourseService.GetCourse:input_type -> course.v0.GetCourseRequest
-	5,  // 24: course.v0.CourseService.GetCourseWithoutParts:input_type -> course.v0.GetCourseWithoutPartsRequest
-	7,  // 25: course.v0.CourseService.ListCourses:input_type -> course.v0.ListCoursesRequest
-	10, // 26: course.v0.CourseService.CreateCourse:input_type -> course.v0.CreateCourseRequest
-	12, // 27: course.v0.CourseService.UpdateCourse:input_type -> course.v0.UpdateCourseRequest
-	14, // 28: course.v0.CourseService.DeleteCourse:input_type -> course.v0.DeleteCourseRequest
-	16, // 29: course.v0.CourseService.GetCoursePart:input_type -> course.v0.GetCoursePartRequest
-	18, // 30: course.v0.CourseService.ListCourseParts:input_type -> course.v0.ListCoursePartsRequest
-	20, // 31: course.v0.CourseService.CreateCoursePart:input_type -> course.v0.CreateCoursePartRequest
-	22, // 32: course.v0.CourseService.UpdateCoursePart:input_type -> course.v0.UpdateCoursePartRequest
-	24, // 33: course.v0.CourseService.AddMuxVideoToCoursePart:input_type -> course.v0.AddMuxVideoToCoursePartRequest
-	4,  // 34: course.v0.CourseService.GetCourse:output_type -> course.v0.GetCourseResponse
-	6,  // 35: course.v0.CourseService.GetCourseWithoutParts:output_type -> course.v0.GetCourseWithoutPartsResponse
-	8,  // 36: course.v0.CourseService.ListCourses:output_type -> course.v0.ListCoursesResponse
-	11, // 37: course.v0.CourseService.CreateCourse:output_type -> course.v0.CreateCourseResponse
-	13, // 38: course.v0.CourseService.UpdateCourse:output_type -> course.v0.UpdateCourseResponse
-	15, // 39: course.v0.CourseService.DeleteCourse:output_type -> course.v0.DeleteCourseResponse
-	17, // 40: course.v0.CourseService.GetCoursePart:output_type -> course.v0.GetCoursePartResponse
-	19, // 41: course.v0.CourseService.ListCourseParts:output_type -> course.v0.ListCoursePartsResponse
-	21, // 42: course.v0.CourseService.CreateCoursePart:output_type -> course.v0.CreateCoursePartResponse
-	23, // 43: course.v0.CourseService.UpdateCoursePart:output_type -> course.v0.UpdateCoursePartResponse
-	25, // 44: course.v0.CourseService.AddMuxVideoToCoursePart:output_type -> course.v0.AddMuxVideoToCoursePartResponse
-	34, // [34:45] is the sub-list for method output_type
-	23, // [23:34] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	15, // 0: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
+	15, // 1: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
+	16, // 2: course.v0.Course.product:type_name -> product.v0.Product
+	17, // 3: course.v0.Course.course_parts:type_name -> course_part.v0.CoursePart
+	15, // 4: course.v0.CourseListItem.created_at:type_name -> google.protobuf.Timestamp
+	15, // 5: course.v0.CourseListItem.updated_at:type_name -> google.protobuf.Timestamp
+	16, // 6: course.v0.CourseListItem.product:type_name -> product.v0.Product
+	0,  // 7: course.v0.GetResponse.course:type_name -> course.v0.Course
+	1,  // 8: course.v0.GetReducedResponse.course:type_name -> course.v0.CourseListItem
+	1,  // 9: course.v0.ListResponse.courses:type_name -> course.v0.CourseListItem
+	8,  // 10: course.v0.CreateRequest.product_info:type_name -> course.v0.CourseProductInfo
+	0,  // 11: course.v0.CreateResponse.course:type_name -> course.v0.Course
+	8,  // 12: course.v0.UpdateRequest.product_info:type_name -> course.v0.CourseProductInfo
+	18, // 13: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	0,  // 14: course.v0.UpdateResponse.course:type_name -> course.v0.Course
+	2,  // 15: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
+	4,  // 16: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
+	6,  // 17: course.v0.CourseService.List:input_type -> course.v0.ListRequest
+	9,  // 18: course.v0.CourseService.Create:input_type -> course.v0.CreateRequest
+	11, // 19: course.v0.CourseService.Updae:input_type -> course.v0.UpdateRequest
+	13, // 20: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
+	3,  // 21: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
+	5,  // 22: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
+	7,  // 23: course.v0.CourseService.List:output_type -> course.v0.ListResponse
+	10, // 24: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
+	12, // 25: course.v0.CourseService.Updae:output_type -> course.v0.UpdateResponse
+	14, // 26: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
+	21, // [21:27] is the sub-list for method output_type
+	15, // [15:21] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_course_v0_course_proto_init() }
@@ -1928,17 +1095,14 @@ func file_course_v0_course_proto_init() {
 	if File_course_v0_course_proto != nil {
 		return
 	}
-	file_course_v0_course_proto_msgTypes[0].OneofWrappers = []any{}
-	file_course_v0_course_proto_msgTypes[12].OneofWrappers = []any{}
-	file_course_v0_course_proto_msgTypes[20].OneofWrappers = []any{}
-	file_course_v0_course_proto_msgTypes[22].OneofWrappers = []any{}
+	file_course_v0_course_proto_msgTypes[11].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_course_v0_course_proto_rawDesc), len(file_course_v0_course_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   28,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

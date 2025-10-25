@@ -39,33 +39,33 @@ message MuxUpload{
     optional google.protobuf.Timestamp asset_created_at = 12;
 }
 
-message GetMuxUploadRequest {
+message GetRequest {
     string id = 1;
 }
 
-message GetMuxUploadResponse {
+message GetResponse {
     MuxUpload mux_upload = 1;
 }
 
-message ListMuxUploadsRequest {
+message ListRequest {
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message ListMuxUploadsResponse {
+message ListResponse {
     repeated MuxUpload mux_uploads = 1;
 }
 
-message CreateMuxUploadRequest {
+message CreateRequest {
     optional string mux_upload_id = 1;
     optional string mux_asset_id = 2;
 }
 
-message CreateMuxUploadResponse {
+message CreateResponse {
     MuxUpload mux_upload = 1;
 }
 
-message UpdateMuxUploadRequest {
+message UpdateRequest {
     string id = 1;
     optional string mux_upload_id = 4;
     optional string mux_asset_id = 5;
@@ -79,31 +79,42 @@ message UpdateMuxUploadRequest {
     optional google.protobuf.FieldMask update_mask = 13;
 }
 
-message UpdateMuxUploadResponse {
-    MuxUpload mux_upload = 1;
+message UpdateResponse {
+    string id = 1;
+    optional string mux_upload_id = 4;
+    optional string mux_asset_id = 5;
+    optional string mux_playback_id = 6;
+    string video_processing_status = 7;
+    optional float duration = 8;
+    optional string aspect_ratio = 9;
+    optional int32 width = 10;
+    optional int32 height = 11;
+    optional google.protobuf.Timestamp asset_created_at = 12;
+    optional google.protobuf.FieldMask updated = 13;
 }
 
-message DeleteMuxUploadRequest {
+message DeleteRequest {
     string id = 1;
 }
 
-message DeleteMuxUploadResponse {
+message DeleteResponse {
+    string id = 1;
 }
 
-message CreateCoursePartUploadURLRequest {
+message CreateUploadURLRequest {
     string part_id = 1;
 }
 
-message CreateCoursePartUploadURLResponse {
+message CreateUploadURLResponse {
     string upload_url = 1;
 }
 
 
 service MuxUploadService{
-    rpc GetMuxUpload(GetMuxUploadRequest) returns (GetMuxUploadResponse) {}
-    rpc ListMuxUploads(ListMuxUploadsRequest) returns (ListMuxUploadsResponse) {}
-    rpc CreateMuxUpload(CreateMuxUploadRequest) returns (CreateMuxUploadResponse) {}
-    rpc UpdateMuxUpload(UpdateMuxUploadRequest) returns (UpdateMuxUploadResponse) {}
-    rpc DeleteMuxUpload(DeleteMuxUploadRequest) returns (DeleteMuxUploadResponse) {}
-    rpc CreateCoursePartUploadURL(CreateCoursePartUploadURLRequest) returns (CreateCoursePartUploadURLResponse) {}
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc CreatetUploadURL(CreateUploadURLRequest) returns (CreateUploadURLResponse) {}
 }

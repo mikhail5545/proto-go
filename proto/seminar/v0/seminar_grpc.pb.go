@@ -36,22 +36,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SeminarService_GetSeminar_FullMethodName    = "/seminar.v0.SeminarService/GetSeminar"
-	SeminarService_ListSeminars_FullMethodName  = "/seminar.v0.SeminarService/ListSeminars"
-	SeminarService_CreateSeminar_FullMethodName = "/seminar.v0.SeminarService/CreateSeminar"
-	SeminarService_UpdateSeminar_FullMethodName = "/seminar.v0.SeminarService/UpdateSeminar"
-	SeminarService_DeleteSeminar_FullMethodName = "/seminar.v0.SeminarService/DeleteSeminar"
+	SeminarService_Get_FullMethodName    = "/seminar.v0.SeminarService/Get"
+	SeminarService_List_FullMethodName   = "/seminar.v0.SeminarService/List"
+	SeminarService_Create_FullMethodName = "/seminar.v0.SeminarService/Create"
+	SeminarService_Update_FullMethodName = "/seminar.v0.SeminarService/Update"
+	SeminarService_Delete_FullMethodName = "/seminar.v0.SeminarService/Delete"
 )
 
 // SeminarServiceClient is the client API for SeminarService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SeminarServiceClient interface {
-	GetSeminar(ctx context.Context, in *GetSeminarRequest, opts ...grpc.CallOption) (*GetSeminarResponse, error)
-	ListSeminars(ctx context.Context, in *ListSeminarsRequest, opts ...grpc.CallOption) (*ListSeminarsResponse, error)
-	CreateSeminar(ctx context.Context, in *CreateSeminarRequest, opts ...grpc.CallOption) (*CreateSeminarResponse, error)
-	UpdateSeminar(ctx context.Context, in *UpdateSeminarRequest, opts ...grpc.CallOption) (*UpdateSeminarResponse, error)
-	DeleteSeminar(ctx context.Context, in *DeleteSeminarRequest, opts ...grpc.CallOption) (*DeleteSeminarResponse, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
 type seminarServiceClient struct {
@@ -62,50 +62,50 @@ func NewSeminarServiceClient(cc grpc.ClientConnInterface) SeminarServiceClient {
 	return &seminarServiceClient{cc}
 }
 
-func (c *seminarServiceClient) GetSeminar(ctx context.Context, in *GetSeminarRequest, opts ...grpc.CallOption) (*GetSeminarResponse, error) {
+func (c *seminarServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSeminarResponse)
-	err := c.cc.Invoke(ctx, SeminarService_GetSeminar_FullMethodName, in, out, cOpts...)
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, SeminarService_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seminarServiceClient) ListSeminars(ctx context.Context, in *ListSeminarsRequest, opts ...grpc.CallOption) (*ListSeminarsResponse, error) {
+func (c *seminarServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSeminarsResponse)
-	err := c.cc.Invoke(ctx, SeminarService_ListSeminars_FullMethodName, in, out, cOpts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, SeminarService_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seminarServiceClient) CreateSeminar(ctx context.Context, in *CreateSeminarRequest, opts ...grpc.CallOption) (*CreateSeminarResponse, error) {
+func (c *seminarServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateSeminarResponse)
-	err := c.cc.Invoke(ctx, SeminarService_CreateSeminar_FullMethodName, in, out, cOpts...)
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, SeminarService_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seminarServiceClient) UpdateSeminar(ctx context.Context, in *UpdateSeminarRequest, opts ...grpc.CallOption) (*UpdateSeminarResponse, error) {
+func (c *seminarServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateSeminarResponse)
-	err := c.cc.Invoke(ctx, SeminarService_UpdateSeminar_FullMethodName, in, out, cOpts...)
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, SeminarService_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *seminarServiceClient) DeleteSeminar(ctx context.Context, in *DeleteSeminarRequest, opts ...grpc.CallOption) (*DeleteSeminarResponse, error) {
+func (c *seminarServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteSeminarResponse)
-	err := c.cc.Invoke(ctx, SeminarService_DeleteSeminar_FullMethodName, in, out, cOpts...)
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, SeminarService_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -116,11 +116,11 @@ func (c *seminarServiceClient) DeleteSeminar(ctx context.Context, in *DeleteSemi
 // All implementations must embed UnimplementedSeminarServiceServer
 // for forward compatibility.
 type SeminarServiceServer interface {
-	GetSeminar(context.Context, *GetSeminarRequest) (*GetSeminarResponse, error)
-	ListSeminars(context.Context, *ListSeminarsRequest) (*ListSeminarsResponse, error)
-	CreateSeminar(context.Context, *CreateSeminarRequest) (*CreateSeminarResponse, error)
-	UpdateSeminar(context.Context, *UpdateSeminarRequest) (*UpdateSeminarResponse, error)
-	DeleteSeminar(context.Context, *DeleteSeminarRequest) (*DeleteSeminarResponse, error)
+	Get(context.Context, *GetRequest) (*GetResponse, error)
+	List(context.Context, *ListRequest) (*ListResponse, error)
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	mustEmbedUnimplementedSeminarServiceServer()
 }
 
@@ -131,20 +131,20 @@ type SeminarServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSeminarServiceServer struct{}
 
-func (UnimplementedSeminarServiceServer) GetSeminar(context.Context, *GetSeminarRequest) (*GetSeminarResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSeminar not implemented")
+func (UnimplementedSeminarServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedSeminarServiceServer) ListSeminars(context.Context, *ListSeminarsRequest) (*ListSeminarsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSeminars not implemented")
+func (UnimplementedSeminarServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedSeminarServiceServer) CreateSeminar(context.Context, *CreateSeminarRequest) (*CreateSeminarResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateSeminar not implemented")
+func (UnimplementedSeminarServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedSeminarServiceServer) UpdateSeminar(context.Context, *UpdateSeminarRequest) (*UpdateSeminarResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSeminar not implemented")
+func (UnimplementedSeminarServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedSeminarServiceServer) DeleteSeminar(context.Context, *DeleteSeminarRequest) (*DeleteSeminarResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSeminar not implemented")
+func (UnimplementedSeminarServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedSeminarServiceServer) mustEmbedUnimplementedSeminarServiceServer() {}
 func (UnimplementedSeminarServiceServer) testEmbeddedByValue()                        {}
@@ -167,92 +167,92 @@ func RegisterSeminarServiceServer(s grpc.ServiceRegistrar, srv SeminarServiceSer
 	s.RegisterService(&SeminarService_ServiceDesc, srv)
 }
 
-func _SeminarService_GetSeminar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSeminarRequest)
+func _SeminarService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).GetSeminar(ctx, in)
+		return srv.(SeminarServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_GetSeminar_FullMethodName,
+		FullMethod: SeminarService_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).GetSeminar(ctx, req.(*GetSeminarRequest))
+		return srv.(SeminarServiceServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeminarService_ListSeminars_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSeminarsRequest)
+func _SeminarService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).ListSeminars(ctx, in)
+		return srv.(SeminarServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_ListSeminars_FullMethodName,
+		FullMethod: SeminarService_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).ListSeminars(ctx, req.(*ListSeminarsRequest))
+		return srv.(SeminarServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeminarService_CreateSeminar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSeminarRequest)
+func _SeminarService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).CreateSeminar(ctx, in)
+		return srv.(SeminarServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_CreateSeminar_FullMethodName,
+		FullMethod: SeminarService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).CreateSeminar(ctx, req.(*CreateSeminarRequest))
+		return srv.(SeminarServiceServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeminarService_UpdateSeminar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSeminarRequest)
+func _SeminarService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).UpdateSeminar(ctx, in)
+		return srv.(SeminarServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_UpdateSeminar_FullMethodName,
+		FullMethod: SeminarService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).UpdateSeminar(ctx, req.(*UpdateSeminarRequest))
+		return srv.(SeminarServiceServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeminarService_DeleteSeminar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSeminarRequest)
+func _SeminarService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).DeleteSeminar(ctx, in)
+		return srv.(SeminarServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_DeleteSeminar_FullMethodName,
+		FullMethod: SeminarService_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).DeleteSeminar(ctx, req.(*DeleteSeminarRequest))
+		return srv.(SeminarServiceServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -265,24 +265,24 @@ var SeminarService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SeminarServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSeminar",
-			Handler:    _SeminarService_GetSeminar_Handler,
+			MethodName: "Get",
+			Handler:    _SeminarService_Get_Handler,
 		},
 		{
-			MethodName: "ListSeminars",
-			Handler:    _SeminarService_ListSeminars_Handler,
+			MethodName: "List",
+			Handler:    _SeminarService_List_Handler,
 		},
 		{
-			MethodName: "CreateSeminar",
-			Handler:    _SeminarService_CreateSeminar_Handler,
+			MethodName: "Create",
+			Handler:    _SeminarService_Create_Handler,
 		},
 		{
-			MethodName: "UpdateSeminar",
-			Handler:    _SeminarService_UpdateSeminar_Handler,
+			MethodName: "Update",
+			Handler:    _SeminarService_Update_Handler,
 		},
 		{
-			MethodName: "DeleteSeminar",
-			Handler:    _SeminarService_DeleteSeminar_Handler,
+			MethodName: "Delete",
+			Handler:    _SeminarService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

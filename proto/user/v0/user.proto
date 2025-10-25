@@ -52,44 +52,41 @@ message UserListItem{
     bool is_admin = 13;
 }
 
-message GetUserRequest{
+message GetRequest{
     string id = 1;
 }
 
-message GetUserResponse{
+message GetResponse{
     User user = 1;
 }
 
-message GetUserWithoutAddressesRequest{
+message GetByEmailRequest{
+    string email = 1;
+}
+
+message GetByEmailResponse{
+    User user = 1;
+}
+
+message GetReducedRequest{
     string id = 1;
 }
 
-message GetUserWithoutAddressesResponse{
+message GetReducedResponse{
     UserListItem user = 1;
 }
 
-message ListUsersRequest{
+message ListRequest{
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message ListUsersResponse{
+message ListResponse{
     repeated UserListItem users = 1;
     int64 total = 2;
 }
 
-message CreateUserRequest{
-    string first_name = 1;
-    string last_name = 2;
-    string email = 3;
-    bool is_admin = 4;
-}
-
-message CreateUserResponse{
-    User user = 1;
-}
-
-message CreateUserFromProviderRequest{
+message CreateRequest{
     string provider_id = 1;
     string email = 2;
     string first_name = 3;
@@ -97,11 +94,16 @@ message CreateUserFromProviderRequest{
     bool is_verified = 5;
 }
 
-message CreateUserFromProviderResponse{
-    UserListItem user = 1;
+message CreateResponse{
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    bool is_verified = 5;
+    google.protobuf.Timestamp created_at = 6;
 }
 
-message UpdateUserRequest{
+message UpdateRequest{
     string id = 1;
     optional string first_name = 2;
     optional string last_name = 3;
@@ -115,23 +117,54 @@ message UpdateUserRequest{
     google.protobuf.FieldMask update_mask = 11;
 }
 
-message UpdateUserResponse{
-    User user = 1;
+message UpdateResponse{
+    string id = 1;
+    optional string first_name = 2;
+    optional string last_name = 3;
+    optional string gender = 4;
+    optional google.protobuf.Timestamp date_of_birth = 5;
+    optional string email = 6;
+    optional string phone_number = 7;
+    optional string country = 8;
+    optional bool is_verified = 9;
+    optional bool is_admin = 10;
+    google.protobuf.FieldMask updated = 11;
 }
 
-message DeleteUserRequest{
+message SetVerificationStatusRequest{
+    string id = 1;
+    bool is_verified = 2;
+}
+
+message SetVerificationStatusResponse{
+    string id = 1;
+    bool is_verified = 2;
+}
+
+message SetRoleClaimRequest{
+    string id = 1;
+    bool is_admin = 2;
+}
+
+message SetRoleClaimResponse{
+    string id = 1;
+    bool is_admin = 2;
+}
+
+message DeleteRequest{
     string id = 1;
 }
 
-message DeleteUserResponse{
+message DeleteResponse{
 }
 
 service UserService{
-    rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
-    rpc GetUserWithoutAddresses(GetUserWithoutAddressesRequest) returns (GetUserWithoutAddressesResponse) {}
-    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
-    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
-    rpc CreateUserFromProvider(CreateUserFromProviderRequest) returns (CreateUserFromProviderResponse) {}
-    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
-    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetReduced(GetReducedRequest) returns (GetReducedResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc SetVerificationStatus(SetVerificationStatusRequest) returns (SetVerificationStatusResponse) {}
+    rpc SetRoleClaim(SetRoleClaimRequest) returns (SetRoleClaimResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 }

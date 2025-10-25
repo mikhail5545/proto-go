@@ -20,23 +20,11 @@ syntax = "proto3";
 package course.v0;
 
 import "product/v0/product.proto";
-import "mux_upload/v0/mux_upload.proto";
+import "course_part/v0/course_part.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/course/v0;coursepb";
-
-message CoursePart{
-    string id = 1;
-    google.protobuf.Timestamp created_at = 2;
-    google.protobuf.Timestamp updated_at = 3;
-    string name = 4;
-    string description = 5;
-    optional mux_upload.v0.MuxUpload mux_video = 6;
-    int32 number = 7;
-    string course_id = 8;
-    optional string mux_video_id = 10;
-}
 
 message Course {
     string id = 1;
@@ -48,7 +36,7 @@ message Course {
     string product_id = 8;
     product.v0.Product product = 9;
     int32 access_duration = 10;
-    repeated CoursePart course_parts = 11;
+    repeated course_part.v0.CoursePart course_parts = 11;
 }
 
 message CourseListItem {
@@ -63,28 +51,28 @@ message CourseListItem {
     int32 access_duration = 9;
 }
 
-message GetCourseRequest{
+message GetRequest{
     string id = 1;
 }
 
-message GetCourseResponse{
+message GetResponse{
     Course course = 1;
 }
 
-message GetCourseWithoutPartsRequest{
+message GetReducedRequest{
     string id = 1;
 }
 
-message GetCourseWithoutPartsResponse{
+message GetReducedResponse{
     CourseListItem course = 1;
 }
 
-message ListCoursesRequest{
+message ListRequest{
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message ListCoursesResponse{
+message ListResponse{
     repeated CourseListItem courses = 1;
     int64 total = 2;
 }
@@ -93,7 +81,7 @@ message CourseProductInfo {
     float price = 1;
 }
 
-message CreateCourseRequest{
+message CreateRequest{
     string name = 1;
     string description = 2;
     string topic = 3;
@@ -101,11 +89,11 @@ message CreateCourseRequest{
     CourseProductInfo product_info = 5;
 }
 
-message CreateCourseResponse{
+message CreateResponse{
     Course course = 1;
 }
 
-message UpdateCourseRequest{
+message UpdateRequest{
     string id = 1;
     optional string name = 2;
     optional string description = 3;
@@ -115,88 +103,23 @@ message UpdateCourseRequest{
     google.protobuf.FieldMask update_mask = 7;
 }
 
-message UpdateCourseResponse{
+message UpdateResponse{
     Course course = 1;
 }
 
-message DeleteCourseRequest{
+message DeleteRequest{
     string id = 1;
 }
 
-message DeleteCourseResponse{
+message DeleteResponse{
     string id = 1;
-}
-
-message GetCoursePartRequest{
-    string id = 1;
-}
-
-message GetCoursePartResponse{
-    CoursePart course_part = 1;
-}
-
-message ListCoursePartsRequest{
-    string course_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-}
-
-message ListCoursePartsResponse{
-    repeated CoursePart course_parts = 1;
-    int64 total = 2;
-}
-
-message CreateCoursePartRequest{
-    string name = 1;
-    string description = 2;
-    string number = 3;
-    string course_id = 4;
-    optional string mux_video_id = 5;
-}
-
-message CreateCoursePartResponse{
-    CoursePart course_part = 1;
-}
-
-message UpdateCoursePartRequest{
-    string id = 1;
-    optional string name = 2;
-    optional string description = 3;
-    optional int32 number = 4;
-    optional string mux_video_id = 5;
-    google.protobuf.FieldMask update_mask = 6;
-}
-
-message UpdateCoursePartResponse{
-    CoursePart course_part = 1;
-}
-
-message AddMuxVideoToCoursePartRequest{
-    string id = 1;
-    string mux_video_id = 2;
-}
-
-message AddMuxVideoToCoursePartResponse{
-    string mux_video_id = 1;
-}
-
-message DeleteCoursePartRequest{
-    string id = 1;
-}
-
-message DeleteCoursePartResponse{
 }
 
 service CourseService{
-    rpc GetCourse(GetCourseRequest) returns (GetCourseResponse) {}
-    rpc GetCourseWithoutParts(GetCourseWithoutPartsRequest) returns (GetCourseWithoutPartsResponse) {}
-    rpc ListCourses(ListCoursesRequest) returns (ListCoursesResponse) {}
-    rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse) {}
-    rpc UpdateCourse(UpdateCourseRequest) returns (UpdateCourseResponse) {}
-    rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse) {}
-    rpc GetCoursePart(GetCoursePartRequest) returns (GetCoursePartResponse) {}
-    rpc ListCourseParts(ListCoursePartsRequest) returns (ListCoursePartsResponse) {}
-    rpc CreateCoursePart(CreateCoursePartRequest) returns (CreateCoursePartResponse) {}
-    rpc UpdateCoursePart(UpdateCoursePartRequest) returns (UpdateCoursePartResponse) {}
-    rpc AddMuxVideoToCoursePart(AddMuxVideoToCoursePartRequest) returns (AddMuxVideoToCoursePartResponse) {}
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetReduced(GetReducedRequest) returns (GetReducedResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Updae(UpdateRequest) returns (UpdateResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 }

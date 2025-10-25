@@ -39,34 +39,50 @@ message Address{
     optional string apartment = 12;
 }
 
-message GetAddressRequest{
+message GetRequest{
     string id = 1;
 }
 
-message GetAddressResponse{
+message GetResponse{
     Address address = 1;
 }
 
-message ListAddressesRequest{
+message ListRequest{
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message ListAddressesResponse{
+message ListResponse{
     repeated Address addresses = 1;
 }
 
-message ListUserAddressesRequest{
+message GetDefaultIDRequest{
+    string user_id = 1;
+}
+
+message GetDefaultIDResponse{
+    string id = 1;
+}
+
+message GetDefaultRequest{
+    string user_id = 1;
+}
+
+message GetDefaultResponse{
+    Address address = 1;
+}
+
+message ListByUserRequest{
     string user_id = 1;
     int32 limit = 2;
     int32 offset = 3;
 }
 
-message ListUserAddressesResponse{
+message ListByUserResponse{
     repeated Address addresses = 1;
 }
 
-message CreateAddressRequest{
+message CreateRequest{
     string user_id = 1;
     string type = 2;
     bool is_default = 3;
@@ -78,11 +94,11 @@ message CreateAddressRequest{
     optional string apartment = 9;
 }
 
-message CreateAddressResponse{
+message CreateResponse{
     Address address = 1;
 }
 
-message UpdateAddressRequest{
+message UpdateRequest{
     string id = 1;
     optional string type = 2;
     optional bool is_default = 3;
@@ -95,33 +111,45 @@ message UpdateAddressRequest{
     google.protobuf.FieldMask update_mask = 10;
 }
 
-message MakeDefaultRequest{
+message UpdateResponse{
+    string id = 1;
+    optional string type = 2;
+    optional bool is_default = 3;
+    optional string country = 4;
+    optional string city = 5;
+    optional string postal_code = 6;
+    optional string street = 7;
+    optional string house = 8;
+    optional string apartment = 9;
+    google.protobuf.FieldMask update_mask = 10;
+}
+
+message SetDefaultRequest{
     string id = 1;
 }
 
-message MakeDefaultResponse{
+message SetDefaultResponse{
     string id = 1;
     string user_id = 2;
     bool is_default = 3;
 }
 
-message UpdateAddressResponse{
-    Address address = 1;
-}
-
-message DeleteAddressRequest{
+message DeleteRequest{
     string id = 1;
 }
 
-message DeleteAddressResponse{
+message DeleteResponse{
+    string id = 1;
 }
 
 service AddressService{
-    rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {}
-    rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse) {}
-    rpc ListUserAddresses(ListUserAddressesRequest) returns (ListUserAddressesResponse) {}
-    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse) {}
-    rpc UpdateAddress(UpdateAddressRequest) returns (UpdateAddressResponse) {}
-    rpc MakeDefault(MakeDefaultRequest) returns (MakeDefaultResponse) {}
-    rpc DeleteAddress(DeleteAddressRequest) returns (DeleteAddressResponse) {}
+    rpc GetAddress(GetRequest) returns (GetResponse) {}
+    rpc GetDefaultID(GetDefaultIDRequest) returns (GetDefaultIDResponse) {}
+    rpc GetDefault(GetDefaultRequest) returns (GetDefaultResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListByUser(ListByUserRequest) returns (ListByUserResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc SetDefault(SetDefaultRequest) returns (SetDefaultResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 }

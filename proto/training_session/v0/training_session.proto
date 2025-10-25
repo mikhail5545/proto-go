@@ -42,35 +42,35 @@ message TrainingSessionProductInfo{
     string image_url = 4;
 }
 
-message GetTrainingSessionRequest{
+message GetRequest{
     string id = 1;
 }
 
-message GetTrainingSessionResponse{
+message GetResponse{
     TrainingSession training_session = 1;
 }
 
-message ListTrainingSessionsRequest{
+message ListRequest{
     int32 limit = 1;
     int32 offset = 2;
 }
 
-message ListTrainingSessionsResponse{
+message ListResponse{
     repeated TrainingSession training_sessions = 1;
     int64 total = 2;
 }
 
-message CreateTrainingSessionRequest{
+message CreateRequest{
     int32 duration_minutes = 1;
     string format = 2;
     TrainingSessionProductInfo product_info = 3;
 }
 
-message CreateTrainingSessionResponse{
+message CreateResponse{
     TrainingSession training_session = 1;
 }
 
-message UpdateTrainingSessionRequest{
+message UpdateRequest{
     string id = 1;
     optional int32 duration_minutes = 2;
     optional string format = 3;
@@ -78,22 +78,26 @@ message UpdateTrainingSessionRequest{
     google.protobuf.FieldMask update_mask = 5;
 }
 
-message UpdateTrainingSessionResponse{
-    TrainingSession training_session = 1;
+message UpdateResponse{
+    string id = 1;
+    optional int32 duration_minutes = 2;
+    optional string format = 3;
+    optional TrainingSessionProductInfo product_info = 4;
+    google.protobuf.FieldMask updated = 5;
 }
 
-message DeleteTrainingSessionRequest{
+message DeleteRequest{
     string id = 1;
 }
 
-message DeleteTrainingSessionResponse{
+message DeleteResponse{
     string id = 1;
 }
 
 service TrainingSessionService{
-    rpc GetTrainingSession(GetTrainingSessionRequest) returns (GetTrainingSessionResponse) {}
-    rpc ListTrainingSessions(ListTrainingSessionsRequest) returns (ListTrainingSessionsResponse) {}
-    rpc CreateTrainingSession(CreateTrainingSessionRequest) returns (CreateTrainingSessionResponse) {}
-    rpc UpdateTrainingSession(UpdateTrainingSessionRequest) returns (UpdateTrainingSessionResponse) {}
-    rpc DeleteTrainingSession(DeleteTrainingSessionRequest) returns (DeleteTrainingSessionResponse) {}
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
 }

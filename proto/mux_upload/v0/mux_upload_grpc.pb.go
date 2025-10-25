@@ -36,24 +36,24 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MuxUploadService_GetMuxUpload_FullMethodName              = "/mux_upload.v0.MuxUploadService/GetMuxUpload"
-	MuxUploadService_ListMuxUploads_FullMethodName            = "/mux_upload.v0.MuxUploadService/ListMuxUploads"
-	MuxUploadService_CreateMuxUpload_FullMethodName           = "/mux_upload.v0.MuxUploadService/CreateMuxUpload"
-	MuxUploadService_UpdateMuxUpload_FullMethodName           = "/mux_upload.v0.MuxUploadService/UpdateMuxUpload"
-	MuxUploadService_DeleteMuxUpload_FullMethodName           = "/mux_upload.v0.MuxUploadService/DeleteMuxUpload"
-	MuxUploadService_CreateCoursePartUploadURL_FullMethodName = "/mux_upload.v0.MuxUploadService/CreateCoursePartUploadURL"
+	MuxUploadService_Get_FullMethodName              = "/mux_upload.v0.MuxUploadService/Get"
+	MuxUploadService_List_FullMethodName             = "/mux_upload.v0.MuxUploadService/List"
+	MuxUploadService_Create_FullMethodName           = "/mux_upload.v0.MuxUploadService/Create"
+	MuxUploadService_Update_FullMethodName           = "/mux_upload.v0.MuxUploadService/Update"
+	MuxUploadService_Delete_FullMethodName           = "/mux_upload.v0.MuxUploadService/Delete"
+	MuxUploadService_CreatetUploadURL_FullMethodName = "/mux_upload.v0.MuxUploadService/CreatetUploadURL"
 )
 
 // MuxUploadServiceClient is the client API for MuxUploadService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MuxUploadServiceClient interface {
-	GetMuxUpload(ctx context.Context, in *GetMuxUploadRequest, opts ...grpc.CallOption) (*GetMuxUploadResponse, error)
-	ListMuxUploads(ctx context.Context, in *ListMuxUploadsRequest, opts ...grpc.CallOption) (*ListMuxUploadsResponse, error)
-	CreateMuxUpload(ctx context.Context, in *CreateMuxUploadRequest, opts ...grpc.CallOption) (*CreateMuxUploadResponse, error)
-	UpdateMuxUpload(ctx context.Context, in *UpdateMuxUploadRequest, opts ...grpc.CallOption) (*UpdateMuxUploadResponse, error)
-	DeleteMuxUpload(ctx context.Context, in *DeleteMuxUploadRequest, opts ...grpc.CallOption) (*DeleteMuxUploadResponse, error)
-	CreateCoursePartUploadURL(ctx context.Context, in *CreateCoursePartUploadURLRequest, opts ...grpc.CallOption) (*CreateCoursePartUploadURLResponse, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	CreatetUploadURL(ctx context.Context, in *CreateUploadURLRequest, opts ...grpc.CallOption) (*CreateUploadURLResponse, error)
 }
 
 type muxUploadServiceClient struct {
@@ -64,60 +64,60 @@ func NewMuxUploadServiceClient(cc grpc.ClientConnInterface) MuxUploadServiceClie
 	return &muxUploadServiceClient{cc}
 }
 
-func (c *muxUploadServiceClient) GetMuxUpload(ctx context.Context, in *GetMuxUploadRequest, opts ...grpc.CallOption) (*GetMuxUploadResponse, error) {
+func (c *muxUploadServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMuxUploadResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_GetMuxUpload_FullMethodName, in, out, cOpts...)
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) ListMuxUploads(ctx context.Context, in *ListMuxUploadsRequest, opts ...grpc.CallOption) (*ListMuxUploadsResponse, error) {
+func (c *muxUploadServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListMuxUploadsResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_ListMuxUploads_FullMethodName, in, out, cOpts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) CreateMuxUpload(ctx context.Context, in *CreateMuxUploadRequest, opts ...grpc.CallOption) (*CreateMuxUploadResponse, error) {
+func (c *muxUploadServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateMuxUploadResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_CreateMuxUpload_FullMethodName, in, out, cOpts...)
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) UpdateMuxUpload(ctx context.Context, in *UpdateMuxUploadRequest, opts ...grpc.CallOption) (*UpdateMuxUploadResponse, error) {
+func (c *muxUploadServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateMuxUploadResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_UpdateMuxUpload_FullMethodName, in, out, cOpts...)
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) DeleteMuxUpload(ctx context.Context, in *DeleteMuxUploadRequest, opts ...grpc.CallOption) (*DeleteMuxUploadResponse, error) {
+func (c *muxUploadServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteMuxUploadResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_DeleteMuxUpload_FullMethodName, in, out, cOpts...)
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) CreateCoursePartUploadURL(ctx context.Context, in *CreateCoursePartUploadURLRequest, opts ...grpc.CallOption) (*CreateCoursePartUploadURLResponse, error) {
+func (c *muxUploadServiceClient) CreatetUploadURL(ctx context.Context, in *CreateUploadURLRequest, opts ...grpc.CallOption) (*CreateUploadURLResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCoursePartUploadURLResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_CreateCoursePartUploadURL_FullMethodName, in, out, cOpts...)
+	out := new(CreateUploadURLResponse)
+	err := c.cc.Invoke(ctx, MuxUploadService_CreatetUploadURL_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -128,12 +128,12 @@ func (c *muxUploadServiceClient) CreateCoursePartUploadURL(ctx context.Context, 
 // All implementations must embed UnimplementedMuxUploadServiceServer
 // for forward compatibility.
 type MuxUploadServiceServer interface {
-	GetMuxUpload(context.Context, *GetMuxUploadRequest) (*GetMuxUploadResponse, error)
-	ListMuxUploads(context.Context, *ListMuxUploadsRequest) (*ListMuxUploadsResponse, error)
-	CreateMuxUpload(context.Context, *CreateMuxUploadRequest) (*CreateMuxUploadResponse, error)
-	UpdateMuxUpload(context.Context, *UpdateMuxUploadRequest) (*UpdateMuxUploadResponse, error)
-	DeleteMuxUpload(context.Context, *DeleteMuxUploadRequest) (*DeleteMuxUploadResponse, error)
-	CreateCoursePartUploadURL(context.Context, *CreateCoursePartUploadURLRequest) (*CreateCoursePartUploadURLResponse, error)
+	Get(context.Context, *GetRequest) (*GetResponse, error)
+	List(context.Context, *ListRequest) (*ListResponse, error)
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	CreatetUploadURL(context.Context, *CreateUploadURLRequest) (*CreateUploadURLResponse, error)
 	mustEmbedUnimplementedMuxUploadServiceServer()
 }
 
@@ -144,23 +144,23 @@ type MuxUploadServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMuxUploadServiceServer struct{}
 
-func (UnimplementedMuxUploadServiceServer) GetMuxUpload(context.Context, *GetMuxUploadRequest) (*GetMuxUploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMuxUpload not implemented")
+func (UnimplementedMuxUploadServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) ListMuxUploads(context.Context, *ListMuxUploadsRequest) (*ListMuxUploadsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListMuxUploads not implemented")
+func (UnimplementedMuxUploadServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) CreateMuxUpload(context.Context, *CreateMuxUploadRequest) (*CreateMuxUploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMuxUpload not implemented")
+func (UnimplementedMuxUploadServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) UpdateMuxUpload(context.Context, *UpdateMuxUploadRequest) (*UpdateMuxUploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMuxUpload not implemented")
+func (UnimplementedMuxUploadServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) DeleteMuxUpload(context.Context, *DeleteMuxUploadRequest) (*DeleteMuxUploadResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteMuxUpload not implemented")
+func (UnimplementedMuxUploadServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) CreateCoursePartUploadURL(context.Context, *CreateCoursePartUploadURLRequest) (*CreateCoursePartUploadURLResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCoursePartUploadURL not implemented")
+func (UnimplementedMuxUploadServiceServer) CreatetUploadURL(context.Context, *CreateUploadURLRequest) (*CreateUploadURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatetUploadURL not implemented")
 }
 func (UnimplementedMuxUploadServiceServer) mustEmbedUnimplementedMuxUploadServiceServer() {}
 func (UnimplementedMuxUploadServiceServer) testEmbeddedByValue()                          {}
@@ -183,110 +183,110 @@ func RegisterMuxUploadServiceServer(s grpc.ServiceRegistrar, srv MuxUploadServic
 	s.RegisterService(&MuxUploadService_ServiceDesc, srv)
 }
 
-func _MuxUploadService_GetMuxUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMuxUploadRequest)
+func _MuxUploadService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).GetMuxUpload(ctx, in)
+		return srv.(MuxUploadServiceServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_GetMuxUpload_FullMethodName,
+		FullMethod: MuxUploadService_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).GetMuxUpload(ctx, req.(*GetMuxUploadRequest))
+		return srv.(MuxUploadServiceServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_ListMuxUploads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListMuxUploadsRequest)
+func _MuxUploadService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).ListMuxUploads(ctx, in)
+		return srv.(MuxUploadServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_ListMuxUploads_FullMethodName,
+		FullMethod: MuxUploadService_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).ListMuxUploads(ctx, req.(*ListMuxUploadsRequest))
+		return srv.(MuxUploadServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_CreateMuxUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMuxUploadRequest)
+func _MuxUploadService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).CreateMuxUpload(ctx, in)
+		return srv.(MuxUploadServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_CreateMuxUpload_FullMethodName,
+		FullMethod: MuxUploadService_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).CreateMuxUpload(ctx, req.(*CreateMuxUploadRequest))
+		return srv.(MuxUploadServiceServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_UpdateMuxUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMuxUploadRequest)
+func _MuxUploadService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).UpdateMuxUpload(ctx, in)
+		return srv.(MuxUploadServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_UpdateMuxUpload_FullMethodName,
+		FullMethod: MuxUploadService_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).UpdateMuxUpload(ctx, req.(*UpdateMuxUploadRequest))
+		return srv.(MuxUploadServiceServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_DeleteMuxUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteMuxUploadRequest)
+func _MuxUploadService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).DeleteMuxUpload(ctx, in)
+		return srv.(MuxUploadServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_DeleteMuxUpload_FullMethodName,
+		FullMethod: MuxUploadService_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).DeleteMuxUpload(ctx, req.(*DeleteMuxUploadRequest))
+		return srv.(MuxUploadServiceServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_CreateCoursePartUploadURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCoursePartUploadURLRequest)
+func _MuxUploadService_CreatetUploadURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUploadURLRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).CreateCoursePartUploadURL(ctx, in)
+		return srv.(MuxUploadServiceServer).CreatetUploadURL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MuxUploadService_CreateCoursePartUploadURL_FullMethodName,
+		FullMethod: MuxUploadService_CreatetUploadURL_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).CreateCoursePartUploadURL(ctx, req.(*CreateCoursePartUploadURLRequest))
+		return srv.(MuxUploadServiceServer).CreatetUploadURL(ctx, req.(*CreateUploadURLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -299,28 +299,28 @@ var MuxUploadService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MuxUploadServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMuxUpload",
-			Handler:    _MuxUploadService_GetMuxUpload_Handler,
+			MethodName: "Get",
+			Handler:    _MuxUploadService_Get_Handler,
 		},
 		{
-			MethodName: "ListMuxUploads",
-			Handler:    _MuxUploadService_ListMuxUploads_Handler,
+			MethodName: "List",
+			Handler:    _MuxUploadService_List_Handler,
 		},
 		{
-			MethodName: "CreateMuxUpload",
-			Handler:    _MuxUploadService_CreateMuxUpload_Handler,
+			MethodName: "Create",
+			Handler:    _MuxUploadService_Create_Handler,
 		},
 		{
-			MethodName: "UpdateMuxUpload",
-			Handler:    _MuxUploadService_UpdateMuxUpload_Handler,
+			MethodName: "Update",
+			Handler:    _MuxUploadService_Update_Handler,
 		},
 		{
-			MethodName: "DeleteMuxUpload",
-			Handler:    _MuxUploadService_DeleteMuxUpload_Handler,
+			MethodName: "Delete",
+			Handler:    _MuxUploadService_Delete_Handler,
 		},
 		{
-			MethodName: "CreateCoursePartUploadURL",
-			Handler:    _MuxUploadService_CreateCoursePartUploadURL_Handler,
+			MethodName: "CreatetUploadURL",
+			Handler:    _MuxUploadService_CreatetUploadURL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
