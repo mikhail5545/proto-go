@@ -129,7 +129,7 @@ message UpdateResponse{
 message SetDefaultRequest{
     string id = 1;
     string user_id = 2;
-    string is_default = 3;
+    bool is_default = 3;
 }
 
 message SetDefaultResponse{

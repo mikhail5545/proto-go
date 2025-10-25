@@ -1040,7 +1040,7 @@ type SetDefaultRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	IsDefault     string                 `protobuf:"bytes,3,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
+	IsDefault     bool                   `protobuf:"varint,3,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1089,11 +1089,11 @@ func (x *SetDefaultRequest) GetUserId() string {
 	return ""
 }
 
-func (x *SetDefaultRequest) GetIsDefault() string {
+func (x *SetDefaultRequest) GetIsDefault() bool {
 	if x != nil {
 		return x.IsDefault
 	}
-	return ""
+	return false
 }
 
 type SetDefaultResponse struct {
@@ -1365,7 +1365,7 @@ const file_address_v0_address_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
-	"is_default\x18\x03 \x01(\tR\tisDefault\"\\\n" +
+	"is_default\x18\x03 \x01(\bR\tisDefault\"\\\n" +
 	"\x12SetDefaultResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
