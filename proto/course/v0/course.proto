@@ -104,7 +104,13 @@ message UpdateRequest{
 }
 
 message UpdateResponse{
-    Course course = 1;
+    string id = 1;
+    optional string name = 2;
+    optional string description = 3;
+    optional string topic = 4;
+    optional int32 access_duration = 5;
+    optional CourseProductInfo product_info = 6;
+    google.protobuf.FieldMask updated = 7;
 }
 
 message DeleteRequest{

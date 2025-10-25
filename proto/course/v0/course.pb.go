@@ -803,10 +803,16 @@ func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 }
 
 type UpdateResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Course        *Course                `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name           *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description    *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Topic          *string                `protobuf:"bytes,4,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
+	AccessDuration *int32                 `protobuf:"varint,5,opt,name=access_duration,json=accessDuration,proto3,oneof" json:"access_duration,omitempty"`
+	ProductInfo    *CourseProductInfo     `protobuf:"bytes,6,opt,name=product_info,json=productInfo,proto3,oneof" json:"product_info,omitempty"`
+	Updated        *fieldmaskpb.FieldMask `protobuf:"bytes,7,opt,name=updated,proto3" json:"updated,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UpdateResponse) Reset() {
@@ -839,9 +845,51 @@ func (*UpdateResponse) Descriptor() ([]byte, []int) {
 	return file_course_v0_course_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *UpdateResponse) GetCourse() *Course {
+func (x *UpdateResponse) GetId() string {
 	if x != nil {
-		return x.Course
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetTopic() string {
+	if x != nil && x.Topic != nil {
+		return *x.Topic
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetAccessDuration() int32 {
+	if x != nil && x.AccessDuration != nil {
+		return *x.AccessDuration
+	}
+	return 0
+}
+
+func (x *UpdateResponse) GetProductInfo() *CourseProductInfo {
+	if x != nil {
+		return x.ProductInfo
+	}
+	return nil
+}
+
+func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.Updated
 	}
 	return nil
 }
@@ -1005,9 +1053,20 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\f_descriptionB\b\n" +
 	"\x06_topicB\x12\n" +
 	"\x10_access_durationB\x0f\n" +
-	"\r_product_info\";\n" +
-	"\x0eUpdateResponse\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v0.CourseR\x06course\"\x1f\n" +
+	"\r_product_info\"\xed\x02\n" +
+	"\x0eUpdateResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x19\n" +
+	"\x05topic\x18\x04 \x01(\tH\x02R\x05topic\x88\x01\x01\x12,\n" +
+	"\x0faccess_duration\x18\x05 \x01(\x05H\x03R\x0eaccessDuration\x88\x01\x01\x12D\n" +
+	"\fproduct_info\x18\x06 \x01(\v2\x1c.course.v0.CourseProductInfoH\x04R\vproductInfo\x88\x01\x01\x124\n" +
+	"\aupdated\x18\a \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\a\n" +
+	"\x05_nameB\x0e\n" +
+	"\f_descriptionB\b\n" +
+	"\x06_topicB\x12\n" +
+	"\x10_access_durationB\x0f\n" +
+	"\r_product_info\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -1070,24 +1129,25 @@ var file_course_v0_course_proto_depIdxs = []int32{
 	0,  // 11: course.v0.CreateResponse.course:type_name -> course.v0.Course
 	8,  // 12: course.v0.UpdateRequest.product_info:type_name -> course.v0.CourseProductInfo
 	18, // 13: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	0,  // 14: course.v0.UpdateResponse.course:type_name -> course.v0.Course
-	2,  // 15: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
-	4,  // 16: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
-	6,  // 17: course.v0.CourseService.List:input_type -> course.v0.ListRequest
-	9,  // 18: course.v0.CourseService.Create:input_type -> course.v0.CreateRequest
-	11, // 19: course.v0.CourseService.Updae:input_type -> course.v0.UpdateRequest
-	13, // 20: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
-	3,  // 21: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
-	5,  // 22: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
-	7,  // 23: course.v0.CourseService.List:output_type -> course.v0.ListResponse
-	10, // 24: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
-	12, // 25: course.v0.CourseService.Updae:output_type -> course.v0.UpdateResponse
-	14, // 26: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
-	21, // [21:27] is the sub-list for method output_type
-	15, // [15:21] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	8,  // 14: course.v0.UpdateResponse.product_info:type_name -> course.v0.CourseProductInfo
+	18, // 15: course.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	2,  // 16: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
+	4,  // 17: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
+	6,  // 18: course.v0.CourseService.List:input_type -> course.v0.ListRequest
+	9,  // 19: course.v0.CourseService.Create:input_type -> course.v0.CreateRequest
+	11, // 20: course.v0.CourseService.Updae:input_type -> course.v0.UpdateRequest
+	13, // 21: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
+	3,  // 22: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
+	5,  // 23: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
+	7,  // 24: course.v0.CourseService.List:output_type -> course.v0.ListResponse
+	10, // 25: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
+	12, // 26: course.v0.CourseService.Updae:output_type -> course.v0.UpdateResponse
+	14, // 27: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
+	22, // [22:28] is the sub-list for method output_type
+	16, // [16:22] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_course_v0_course_proto_init() }
@@ -1096,6 +1156,7 @@ func file_course_v0_course_proto_init() {
 		return
 	}
 	file_course_v0_course_proto_msgTypes[11].OneofWrappers = []any{}
+	file_course_v0_course_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
