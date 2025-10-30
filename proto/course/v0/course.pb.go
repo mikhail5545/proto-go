@@ -24,8 +24,7 @@
 package coursepb
 
 import (
-	v01 "github.com/mikhail5545/proto-go/proto/course_part/v0"
-	v0 "github.com/mikhail5545/proto-go/proto/image/v0"
+	v0 "github.com/mikhail5545/proto-go/proto/course_part/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -42,6 +41,82 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Image struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PublicUrl     string                 `protobuf:"bytes,1,opt,name=public_url,json=publicUrl,proto3" json:"public_url,omitempty"`
+	SecureUrl     string                 `protobuf:"bytes,2,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	CloudinaryId  string                 `protobuf:"bytes,3,opt,name=cloudinary_id,json=cloudinaryId,proto3" json:"cloudinary_id,omitempty"`
+	IsPrimary     bool                   `protobuf:"varint,4,opt,name=is_primary,json=isPrimary,proto3" json:"is_primary,omitempty"`
+	Order         int32                  `protobuf:"varint,5,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Image) Reset() {
+	*x = Image{}
+	mi := &file_course_v0_course_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Image) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Image) ProtoMessage() {}
+
+func (x *Image) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Image.ProtoReflect.Descriptor instead.
+func (*Image) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Image) GetPublicUrl() string {
+	if x != nil {
+		return x.PublicUrl
+	}
+	return ""
+}
+
+func (x *Image) GetSecureUrl() string {
+	if x != nil {
+		return x.SecureUrl
+	}
+	return ""
+}
+
+func (x *Image) GetCloudinaryId() string {
+	if x != nil {
+		return x.CloudinaryId
+	}
+	return ""
+}
+
+func (x *Image) GetIsPrimary() bool {
+	if x != nil {
+		return x.IsPrimary
+	}
+	return false
+}
+
+func (x *Image) GetOrder() int32 {
+	if x != nil {
+		return x.Order
+	}
+	return 0
+}
+
 type Course struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -55,15 +130,15 @@ type Course struct {
 	Tags             []string               `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags,omitempty"`
 	AccessDuration   int32                  `protobuf:"varint,10,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
 	InStock          bool                   `protobuf:"varint,11,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
-	Images           []*v0.Image            `protobuf:"bytes,12,rep,name=images,proto3" json:"images,omitempty"`
-	CourseParts      []*v01.CoursePart      `protobuf:"bytes,13,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
+	Images           []*Image               `protobuf:"bytes,12,rep,name=images,proto3" json:"images,omitempty"`
+	CourseParts      []*v0.CoursePart       `protobuf:"bytes,13,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Course) Reset() {
 	*x = Course{}
-	mi := &file_course_v0_course_proto_msgTypes[0]
+	mi := &file_course_v0_course_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -75,7 +150,7 @@ func (x *Course) String() string {
 func (*Course) ProtoMessage() {}
 
 func (x *Course) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[0]
+	mi := &file_course_v0_course_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -88,7 +163,7 @@ func (x *Course) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Course.ProtoReflect.Descriptor instead.
 func (*Course) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{0}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Course) GetId() string {
@@ -168,14 +243,14 @@ func (x *Course) GetInStock() bool {
 	return false
 }
 
-func (x *Course) GetImages() []*v0.Image {
+func (x *Course) GetImages() []*Image {
 	if x != nil {
 		return x.Images
 	}
 	return nil
 }
 
-func (x *Course) GetCourseParts() []*v01.CoursePart {
+func (x *Course) GetCourseParts() []*v0.CoursePart {
 	if x != nil {
 		return x.CourseParts
 	}
@@ -193,7 +268,7 @@ type CourseDetails struct {
 
 func (x *CourseDetails) Reset() {
 	*x = CourseDetails{}
-	mi := &file_course_v0_course_proto_msgTypes[1]
+	mi := &file_course_v0_course_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +280,7 @@ func (x *CourseDetails) String() string {
 func (*CourseDetails) ProtoMessage() {}
 
 func (x *CourseDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[1]
+	mi := &file_course_v0_course_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +293,7 @@ func (x *CourseDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourseDetails.ProtoReflect.Descriptor instead.
 func (*CourseDetails) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{1}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CourseDetails) GetCourse() *Course {
@@ -251,7 +326,7 @@ type GetRequest struct {
 
 func (x *GetRequest) Reset() {
 	*x = GetRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[2]
+	mi := &file_course_v0_course_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -263,7 +338,7 @@ func (x *GetRequest) String() string {
 func (*GetRequest) ProtoMessage() {}
 
 func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[2]
+	mi := &file_course_v0_course_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -276,7 +351,7 @@ func (x *GetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
 func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{2}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetRequest) GetId() string {
@@ -295,7 +370,7 @@ type GetResponse struct {
 
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[3]
+	mi := &file_course_v0_course_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -307,7 +382,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[3]
+	mi := &file_course_v0_course_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -320,7 +395,7 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{3}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetResponse) GetCourseDetails() *CourseDetails {
@@ -339,7 +414,7 @@ type GetWithDeletedRequest struct {
 
 func (x *GetWithDeletedRequest) Reset() {
 	*x = GetWithDeletedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[4]
+	mi := &file_course_v0_course_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -351,7 +426,7 @@ func (x *GetWithDeletedRequest) String() string {
 func (*GetWithDeletedRequest) ProtoMessage() {}
 
 func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[4]
+	mi := &file_course_v0_course_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -364,7 +439,7 @@ func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedRequest.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{4}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetWithDeletedRequest) GetId() string {
@@ -383,7 +458,7 @@ type GetWithDeletedResponse struct {
 
 func (x *GetWithDeletedResponse) Reset() {
 	*x = GetWithDeletedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[5]
+	mi := &file_course_v0_course_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -395,7 +470,7 @@ func (x *GetWithDeletedResponse) String() string {
 func (*GetWithDeletedResponse) ProtoMessage() {}
 
 func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[5]
+	mi := &file_course_v0_course_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +483,7 @@ func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedResponse.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{5}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetWithDeletedResponse) GetCourseDetails() *CourseDetails {
@@ -427,7 +502,7 @@ type GetWithUnpublishedRequest struct {
 
 func (x *GetWithUnpublishedRequest) Reset() {
 	*x = GetWithUnpublishedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[6]
+	mi := &file_course_v0_course_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -439,7 +514,7 @@ func (x *GetWithUnpublishedRequest) String() string {
 func (*GetWithUnpublishedRequest) ProtoMessage() {}
 
 func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[6]
+	mi := &file_course_v0_course_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,7 +527,7 @@ func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithUnpublishedRequest.ProtoReflect.Descriptor instead.
 func (*GetWithUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{6}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetWithUnpublishedRequest) GetId() string {
@@ -471,7 +546,7 @@ type GetWithUnpublishedResponse struct {
 
 func (x *GetWithUnpublishedResponse) Reset() {
 	*x = GetWithUnpublishedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[7]
+	mi := &file_course_v0_course_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -483,7 +558,7 @@ func (x *GetWithUnpublishedResponse) String() string {
 func (*GetWithUnpublishedResponse) ProtoMessage() {}
 
 func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[7]
+	mi := &file_course_v0_course_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -496,7 +571,7 @@ func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithUnpublishedResponse.ProtoReflect.Descriptor instead.
 func (*GetWithUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{7}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetWithUnpublishedResponse) GetCourseDetails() *CourseDetails {
@@ -515,7 +590,7 @@ type GetReducedRequest struct {
 
 func (x *GetReducedRequest) Reset() {
 	*x = GetReducedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[8]
+	mi := &file_course_v0_course_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -527,7 +602,7 @@ func (x *GetReducedRequest) String() string {
 func (*GetReducedRequest) ProtoMessage() {}
 
 func (x *GetReducedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[8]
+	mi := &file_course_v0_course_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -540,7 +615,7 @@ func (x *GetReducedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReducedRequest.ProtoReflect.Descriptor instead.
 func (*GetReducedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{8}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetReducedRequest) GetId() string {
@@ -559,7 +634,7 @@ type GetReducedResponse struct {
 
 func (x *GetReducedResponse) Reset() {
 	*x = GetReducedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[9]
+	mi := &file_course_v0_course_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -571,7 +646,7 @@ func (x *GetReducedResponse) String() string {
 func (*GetReducedResponse) ProtoMessage() {}
 
 func (x *GetReducedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[9]
+	mi := &file_course_v0_course_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -584,7 +659,7 @@ func (x *GetReducedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReducedResponse.ProtoReflect.Descriptor instead.
 func (*GetReducedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{9}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetReducedResponse) GetCourseDetails() *CourseDetails {
@@ -603,7 +678,7 @@ type GetReducedWithDeletedRequest struct {
 
 func (x *GetReducedWithDeletedRequest) Reset() {
 	*x = GetReducedWithDeletedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[10]
+	mi := &file_course_v0_course_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +690,7 @@ func (x *GetReducedWithDeletedRequest) String() string {
 func (*GetReducedWithDeletedRequest) ProtoMessage() {}
 
 func (x *GetReducedWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[10]
+	mi := &file_course_v0_course_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +703,7 @@ func (x *GetReducedWithDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReducedWithDeletedRequest.ProtoReflect.Descriptor instead.
 func (*GetReducedWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{10}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetReducedWithDeletedRequest) GetId() string {
@@ -647,7 +722,7 @@ type GetReducedWithDeletedResponse struct {
 
 func (x *GetReducedWithDeletedResponse) Reset() {
 	*x = GetReducedWithDeletedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[11]
+	mi := &file_course_v0_course_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -659,7 +734,7 @@ func (x *GetReducedWithDeletedResponse) String() string {
 func (*GetReducedWithDeletedResponse) ProtoMessage() {}
 
 func (x *GetReducedWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[11]
+	mi := &file_course_v0_course_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,7 +747,7 @@ func (x *GetReducedWithDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReducedWithDeletedResponse.ProtoReflect.Descriptor instead.
 func (*GetReducedWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{11}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetReducedWithDeletedResponse) GetCourseDetails() *CourseDetails {
@@ -692,7 +767,7 @@ type ListRequest struct {
 
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[12]
+	mi := &file_course_v0_course_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -704,7 +779,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[12]
+	mi := &file_course_v0_course_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -717,7 +792,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{12}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListRequest) GetLimit() int32 {
@@ -744,7 +819,7 @@ type ListResponse struct {
 
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[13]
+	mi := &file_course_v0_course_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -756,7 +831,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[13]
+	mi := &file_course_v0_course_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -769,7 +844,7 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{13}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListResponse) GetCourseDetails() []*CourseDetails {
@@ -796,7 +871,7 @@ type ListDeletedRequest struct {
 
 func (x *ListDeletedRequest) Reset() {
 	*x = ListDeletedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[14]
+	mi := &file_course_v0_course_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -808,7 +883,7 @@ func (x *ListDeletedRequest) String() string {
 func (*ListDeletedRequest) ProtoMessage() {}
 
 func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[14]
+	mi := &file_course_v0_course_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -821,7 +896,7 @@ func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedRequest.ProtoReflect.Descriptor instead.
 func (*ListDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{14}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListDeletedRequest) GetLimit() int32 {
@@ -848,7 +923,7 @@ type ListDeletedResponse struct {
 
 func (x *ListDeletedResponse) Reset() {
 	*x = ListDeletedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[15]
+	mi := &file_course_v0_course_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -860,7 +935,7 @@ func (x *ListDeletedResponse) String() string {
 func (*ListDeletedResponse) ProtoMessage() {}
 
 func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[15]
+	mi := &file_course_v0_course_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -873,7 +948,7 @@ func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedResponse.ProtoReflect.Descriptor instead.
 func (*ListDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{15}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListDeletedResponse) GetCourseDetails() []*CourseDetails {
@@ -900,7 +975,7 @@ type ListUnpublishedRequest struct {
 
 func (x *ListUnpublishedRequest) Reset() {
 	*x = ListUnpublishedRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[16]
+	mi := &file_course_v0_course_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -912,7 +987,7 @@ func (x *ListUnpublishedRequest) String() string {
 func (*ListUnpublishedRequest) ProtoMessage() {}
 
 func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[16]
+	mi := &file_course_v0_course_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -925,7 +1000,7 @@ func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnpublishedRequest.ProtoReflect.Descriptor instead.
 func (*ListUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{16}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListUnpublishedRequest) GetLimit() int32 {
@@ -952,7 +1027,7 @@ type ListUnpublishedResponse struct {
 
 func (x *ListUnpublishedResponse) Reset() {
 	*x = ListUnpublishedResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[17]
+	mi := &file_course_v0_course_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -964,7 +1039,7 @@ func (x *ListUnpublishedResponse) String() string {
 func (*ListUnpublishedResponse) ProtoMessage() {}
 
 func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[17]
+	mi := &file_course_v0_course_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,7 +1052,7 @@ func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnpublishedResponse.ProtoReflect.Descriptor instead.
 func (*ListUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{17}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListUnpublishedResponse) GetCourseDetails() []*CourseDetails {
@@ -1007,7 +1082,7 @@ type CreateRequest struct {
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[18]
+	mi := &file_course_v0_course_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1019,7 +1094,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[18]
+	mi := &file_course_v0_course_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1032,7 +1107,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{18}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *CreateRequest) GetName() string {
@@ -1080,7 +1155,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[19]
+	mi := &file_course_v0_course_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1092,7 +1167,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[19]
+	mi := &file_course_v0_course_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1105,7 +1180,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{19}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CreateResponse) GetId() string {
@@ -1131,7 +1206,7 @@ type PublishRequest struct {
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[20]
+	mi := &file_course_v0_course_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1143,7 +1218,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[20]
+	mi := &file_course_v0_course_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +1231,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{20}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *PublishRequest) GetId() string {
@@ -1175,7 +1250,7 @@ type PublishResponse struct {
 
 func (x *PublishResponse) Reset() {
 	*x = PublishResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[21]
+	mi := &file_course_v0_course_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1187,7 +1262,7 @@ func (x *PublishResponse) String() string {
 func (*PublishResponse) ProtoMessage() {}
 
 func (x *PublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[21]
+	mi := &file_course_v0_course_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1200,7 +1275,7 @@ func (x *PublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishResponse.ProtoReflect.Descriptor instead.
 func (*PublishResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{21}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *PublishResponse) GetId() string {
@@ -1219,7 +1294,7 @@ type UnpublishRequest struct {
 
 func (x *UnpublishRequest) Reset() {
 	*x = UnpublishRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[22]
+	mi := &file_course_v0_course_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1231,7 +1306,7 @@ func (x *UnpublishRequest) String() string {
 func (*UnpublishRequest) ProtoMessage() {}
 
 func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[22]
+	mi := &file_course_v0_course_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,7 +1319,7 @@ func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpublishRequest.ProtoReflect.Descriptor instead.
 func (*UnpublishRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{22}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *UnpublishRequest) GetId() string {
@@ -1263,7 +1338,7 @@ type UnpublishResponse struct {
 
 func (x *UnpublishResponse) Reset() {
 	*x = UnpublishResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[23]
+	mi := &file_course_v0_course_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1275,7 +1350,7 @@ func (x *UnpublishResponse) String() string {
 func (*UnpublishResponse) ProtoMessage() {}
 
 func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[23]
+	mi := &file_course_v0_course_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1288,7 +1363,7 @@ func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpublishResponse.ProtoReflect.Descriptor instead.
 func (*UnpublishResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{23}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *UnpublishResponse) GetId() string {
@@ -1315,7 +1390,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[24]
+	mi := &file_course_v0_course_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1327,7 +1402,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[24]
+	mi := &file_course_v0_course_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1340,7 +1415,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{24}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -1423,7 +1498,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[25]
+	mi := &file_course_v0_course_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1435,7 +1510,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[25]
+	mi := &file_course_v0_course_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1448,7 +1523,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{25}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdateResponse) GetId() string {
@@ -1523,7 +1598,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[26]
+	mi := &file_course_v0_course_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1535,7 +1610,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[26]
+	mi := &file_course_v0_course_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1548,7 +1623,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{26}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1567,7 +1642,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[27]
+	mi := &file_course_v0_course_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1579,7 +1654,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[27]
+	mi := &file_course_v0_course_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1592,7 +1667,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{27}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1611,7 +1686,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[28]
+	mi := &file_course_v0_course_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1623,7 +1698,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[28]
+	mi := &file_course_v0_course_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1636,7 +1711,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{28}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1655,7 +1730,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[29]
+	mi := &file_course_v0_course_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1667,7 +1742,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[29]
+	mi := &file_course_v0_course_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1680,7 +1755,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{29}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -1699,7 +1774,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[30]
+	mi := &file_course_v0_course_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1711,7 +1786,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[30]
+	mi := &file_course_v0_course_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1724,7 +1799,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{30}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -1743,7 +1818,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[31]
+	mi := &file_course_v0_course_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1755,7 +1830,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[31]
+	mi := &file_course_v0_course_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1768,7 +1843,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{31}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -1782,7 +1857,16 @@ var File_course_v0_course_proto protoreflect.FileDescriptor
 
 const file_course_v0_course_proto_rawDesc = "" +
 	"\n" +
-	"\x16course/v0/course.proto\x12\tcourse.v0\x1a\x14image/v0/image.proto\x1a course_part/v0/course_part.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x9f\x04\n" +
+	"\x16course/v0/course.proto\x12\tcourse.v0\x1a course_part/v0/course_part.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x9f\x01\n" +
+	"\x05Image\x12\x1d\n" +
+	"\n" +
+	"public_url\x18\x01 \x01(\tR\tpublicUrl\x12\x1d\n" +
+	"\n" +
+	"secure_url\x18\x02 \x01(\tR\tsecureUrl\x12#\n" +
+	"\rcloudinary_id\x18\x03 \x01(\tR\fcloudinaryId\x12\x1d\n" +
+	"\n" +
+	"is_primary\x18\x04 \x01(\bR\tisPrimary\x12\x14\n" +
+	"\x05order\x18\x05 \x01(\x05R\x05order\"\xa0\x04\n" +
 	"\x06Course\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1798,8 +1882,8 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\x04tags\x18\t \x03(\tR\x04tags\x12'\n" +
 	"\x0faccess_duration\x18\n" +
 	" \x01(\x05R\x0eaccessDuration\x12\x19\n" +
-	"\bin_stock\x18\v \x01(\bR\ainStock\x12'\n" +
-	"\x06images\x18\f \x03(\v2\x0f.image.v0.ImageR\x06images\x12=\n" +
+	"\bin_stock\x18\v \x01(\bR\ainStock\x12(\n" +
+	"\x06images\x18\f \x03(\v2\x10.course.v0.ImageR\x06images\x12=\n" +
 	"\fcourse_parts\x18\r \x03(\v2\x1a.course_part.v0.CoursePartR\vcoursePartsB\r\n" +
 	"\v_deleted_at\"o\n" +
 	"\rCourseDetails\x12)\n" +
@@ -1939,92 +2023,92 @@ func file_course_v0_course_proto_rawDescGZIP() []byte {
 	return file_course_v0_course_proto_rawDescData
 }
 
-var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
+var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_course_v0_course_proto_goTypes = []any{
-	(*Course)(nil),                        // 0: course.v0.Course
-	(*CourseDetails)(nil),                 // 1: course.v0.CourseDetails
-	(*GetRequest)(nil),                    // 2: course.v0.GetRequest
-	(*GetResponse)(nil),                   // 3: course.v0.GetResponse
-	(*GetWithDeletedRequest)(nil),         // 4: course.v0.GetWithDeletedRequest
-	(*GetWithDeletedResponse)(nil),        // 5: course.v0.GetWithDeletedResponse
-	(*GetWithUnpublishedRequest)(nil),     // 6: course.v0.GetWithUnpublishedRequest
-	(*GetWithUnpublishedResponse)(nil),    // 7: course.v0.GetWithUnpublishedResponse
-	(*GetReducedRequest)(nil),             // 8: course.v0.GetReducedRequest
-	(*GetReducedResponse)(nil),            // 9: course.v0.GetReducedResponse
-	(*GetReducedWithDeletedRequest)(nil),  // 10: course.v0.GetReducedWithDeletedRequest
-	(*GetReducedWithDeletedResponse)(nil), // 11: course.v0.GetReducedWithDeletedResponse
-	(*ListRequest)(nil),                   // 12: course.v0.ListRequest
-	(*ListResponse)(nil),                  // 13: course.v0.ListResponse
-	(*ListDeletedRequest)(nil),            // 14: course.v0.ListDeletedRequest
-	(*ListDeletedResponse)(nil),           // 15: course.v0.ListDeletedResponse
-	(*ListUnpublishedRequest)(nil),        // 16: course.v0.ListUnpublishedRequest
-	(*ListUnpublishedResponse)(nil),       // 17: course.v0.ListUnpublishedResponse
-	(*CreateRequest)(nil),                 // 18: course.v0.CreateRequest
-	(*CreateResponse)(nil),                // 19: course.v0.CreateResponse
-	(*PublishRequest)(nil),                // 20: course.v0.PublishRequest
-	(*PublishResponse)(nil),               // 21: course.v0.PublishResponse
-	(*UnpublishRequest)(nil),              // 22: course.v0.UnpublishRequest
-	(*UnpublishResponse)(nil),             // 23: course.v0.UnpublishResponse
-	(*UpdateRequest)(nil),                 // 24: course.v0.UpdateRequest
-	(*UpdateResponse)(nil),                // 25: course.v0.UpdateResponse
-	(*DeleteRequest)(nil),                 // 26: course.v0.DeleteRequest
-	(*DeleteResponse)(nil),                // 27: course.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),        // 28: course.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),       // 29: course.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),                // 30: course.v0.RestoreRequest
-	(*RestoreResponse)(nil),               // 31: course.v0.RestoreResponse
-	(*timestamppb.Timestamp)(nil),         // 32: google.protobuf.Timestamp
-	(*v0.Image)(nil),                      // 33: image.v0.Image
-	(*v01.CoursePart)(nil),                // 34: course_part.v0.CoursePart
+	(*Image)(nil),                         // 0: course.v0.Image
+	(*Course)(nil),                        // 1: course.v0.Course
+	(*CourseDetails)(nil),                 // 2: course.v0.CourseDetails
+	(*GetRequest)(nil),                    // 3: course.v0.GetRequest
+	(*GetResponse)(nil),                   // 4: course.v0.GetResponse
+	(*GetWithDeletedRequest)(nil),         // 5: course.v0.GetWithDeletedRequest
+	(*GetWithDeletedResponse)(nil),        // 6: course.v0.GetWithDeletedResponse
+	(*GetWithUnpublishedRequest)(nil),     // 7: course.v0.GetWithUnpublishedRequest
+	(*GetWithUnpublishedResponse)(nil),    // 8: course.v0.GetWithUnpublishedResponse
+	(*GetReducedRequest)(nil),             // 9: course.v0.GetReducedRequest
+	(*GetReducedResponse)(nil),            // 10: course.v0.GetReducedResponse
+	(*GetReducedWithDeletedRequest)(nil),  // 11: course.v0.GetReducedWithDeletedRequest
+	(*GetReducedWithDeletedResponse)(nil), // 12: course.v0.GetReducedWithDeletedResponse
+	(*ListRequest)(nil),                   // 13: course.v0.ListRequest
+	(*ListResponse)(nil),                  // 14: course.v0.ListResponse
+	(*ListDeletedRequest)(nil),            // 15: course.v0.ListDeletedRequest
+	(*ListDeletedResponse)(nil),           // 16: course.v0.ListDeletedResponse
+	(*ListUnpublishedRequest)(nil),        // 17: course.v0.ListUnpublishedRequest
+	(*ListUnpublishedResponse)(nil),       // 18: course.v0.ListUnpublishedResponse
+	(*CreateRequest)(nil),                 // 19: course.v0.CreateRequest
+	(*CreateResponse)(nil),                // 20: course.v0.CreateResponse
+	(*PublishRequest)(nil),                // 21: course.v0.PublishRequest
+	(*PublishResponse)(nil),               // 22: course.v0.PublishResponse
+	(*UnpublishRequest)(nil),              // 23: course.v0.UnpublishRequest
+	(*UnpublishResponse)(nil),             // 24: course.v0.UnpublishResponse
+	(*UpdateRequest)(nil),                 // 25: course.v0.UpdateRequest
+	(*UpdateResponse)(nil),                // 26: course.v0.UpdateResponse
+	(*DeleteRequest)(nil),                 // 27: course.v0.DeleteRequest
+	(*DeleteResponse)(nil),                // 28: course.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),        // 29: course.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),       // 30: course.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),                // 31: course.v0.RestoreRequest
+	(*RestoreResponse)(nil),               // 32: course.v0.RestoreResponse
+	(*timestamppb.Timestamp)(nil),         // 33: google.protobuf.Timestamp
+	(*v0.CoursePart)(nil),                 // 34: course_part.v0.CoursePart
 	(*fieldmaskpb.FieldMask)(nil),         // 35: google.protobuf.FieldMask
 }
 var file_course_v0_course_proto_depIdxs = []int32{
-	32, // 0: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
-	32, // 1: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
-	32, // 2: course.v0.Course.deleted_at:type_name -> google.protobuf.Timestamp
-	33, // 3: course.v0.Course.images:type_name -> image.v0.Image
+	33, // 0: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
+	33, // 1: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
+	33, // 2: course.v0.Course.deleted_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: course.v0.Course.images:type_name -> course.v0.Image
 	34, // 4: course.v0.Course.course_parts:type_name -> course_part.v0.CoursePart
-	0,  // 5: course.v0.CourseDetails.course:type_name -> course.v0.Course
-	1,  // 6: course.v0.GetResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 7: course.v0.GetWithDeletedResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 8: course.v0.GetWithUnpublishedResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 9: course.v0.GetReducedResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 10: course.v0.GetReducedWithDeletedResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 11: course.v0.ListResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 12: course.v0.ListDeletedResponse.course_details:type_name -> course.v0.CourseDetails
-	1,  // 13: course.v0.ListUnpublishedResponse.course_details:type_name -> course.v0.CourseDetails
+	1,  // 5: course.v0.CourseDetails.course:type_name -> course.v0.Course
+	2,  // 6: course.v0.GetResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 7: course.v0.GetWithDeletedResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 8: course.v0.GetWithUnpublishedResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 9: course.v0.GetReducedResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 10: course.v0.GetReducedWithDeletedResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 11: course.v0.ListResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 12: course.v0.ListDeletedResponse.course_details:type_name -> course.v0.CourseDetails
+	2,  // 13: course.v0.ListUnpublishedResponse.course_details:type_name -> course.v0.CourseDetails
 	35, // 14: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
 	35, // 15: course.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
-	2,  // 16: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
-	4,  // 17: course.v0.CourseService.GetWithDeleted:input_type -> course.v0.GetWithDeletedRequest
-	6,  // 18: course.v0.CourseService.GetWithUnpublished:input_type -> course.v0.GetWithUnpublishedRequest
-	8,  // 19: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
-	10, // 20: course.v0.CourseService.GetReducedWithDeleted:input_type -> course.v0.GetReducedWithDeletedRequest
-	12, // 21: course.v0.CourseService.List:input_type -> course.v0.ListRequest
-	14, // 22: course.v0.CourseService.ListDeleted:input_type -> course.v0.ListDeletedRequest
-	16, // 23: course.v0.CourseService.ListUnpublished:input_type -> course.v0.ListUnpublishedRequest
-	18, // 24: course.v0.CourseService.Create:input_type -> course.v0.CreateRequest
-	20, // 25: course.v0.CourseService.Publish:input_type -> course.v0.PublishRequest
-	22, // 26: course.v0.CourseService.Unpublish:input_type -> course.v0.UnpublishRequest
-	24, // 27: course.v0.CourseService.Update:input_type -> course.v0.UpdateRequest
-	26, // 28: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
-	28, // 29: course.v0.CourseService.DeletePermanent:input_type -> course.v0.DeletePermanentRequest
-	30, // 30: course.v0.CourseService.Restore:input_type -> course.v0.RestoreRequest
-	3,  // 31: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
-	5,  // 32: course.v0.CourseService.GetWithDeleted:output_type -> course.v0.GetWithDeletedResponse
-	7,  // 33: course.v0.CourseService.GetWithUnpublished:output_type -> course.v0.GetWithUnpublishedResponse
-	9,  // 34: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
-	11, // 35: course.v0.CourseService.GetReducedWithDeleted:output_type -> course.v0.GetReducedWithDeletedResponse
-	13, // 36: course.v0.CourseService.List:output_type -> course.v0.ListResponse
-	15, // 37: course.v0.CourseService.ListDeleted:output_type -> course.v0.ListDeletedResponse
-	17, // 38: course.v0.CourseService.ListUnpublished:output_type -> course.v0.ListUnpublishedResponse
-	19, // 39: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
-	21, // 40: course.v0.CourseService.Publish:output_type -> course.v0.PublishResponse
-	23, // 41: course.v0.CourseService.Unpublish:output_type -> course.v0.UnpublishResponse
-	25, // 42: course.v0.CourseService.Update:output_type -> course.v0.UpdateResponse
-	27, // 43: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
-	29, // 44: course.v0.CourseService.DeletePermanent:output_type -> course.v0.DeletePermanentResponse
-	31, // 45: course.v0.CourseService.Restore:output_type -> course.v0.RestoreResponse
+	3,  // 16: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
+	5,  // 17: course.v0.CourseService.GetWithDeleted:input_type -> course.v0.GetWithDeletedRequest
+	7,  // 18: course.v0.CourseService.GetWithUnpublished:input_type -> course.v0.GetWithUnpublishedRequest
+	9,  // 19: course.v0.CourseService.GetReduced:input_type -> course.v0.GetReducedRequest
+	11, // 20: course.v0.CourseService.GetReducedWithDeleted:input_type -> course.v0.GetReducedWithDeletedRequest
+	13, // 21: course.v0.CourseService.List:input_type -> course.v0.ListRequest
+	15, // 22: course.v0.CourseService.ListDeleted:input_type -> course.v0.ListDeletedRequest
+	17, // 23: course.v0.CourseService.ListUnpublished:input_type -> course.v0.ListUnpublishedRequest
+	19, // 24: course.v0.CourseService.Create:input_type -> course.v0.CreateRequest
+	21, // 25: course.v0.CourseService.Publish:input_type -> course.v0.PublishRequest
+	23, // 26: course.v0.CourseService.Unpublish:input_type -> course.v0.UnpublishRequest
+	25, // 27: course.v0.CourseService.Update:input_type -> course.v0.UpdateRequest
+	27, // 28: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
+	29, // 29: course.v0.CourseService.DeletePermanent:input_type -> course.v0.DeletePermanentRequest
+	31, // 30: course.v0.CourseService.Restore:input_type -> course.v0.RestoreRequest
+	4,  // 31: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
+	6,  // 32: course.v0.CourseService.GetWithDeleted:output_type -> course.v0.GetWithDeletedResponse
+	8,  // 33: course.v0.CourseService.GetWithUnpublished:output_type -> course.v0.GetWithUnpublishedResponse
+	10, // 34: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
+	12, // 35: course.v0.CourseService.GetReducedWithDeleted:output_type -> course.v0.GetReducedWithDeletedResponse
+	14, // 36: course.v0.CourseService.List:output_type -> course.v0.ListResponse
+	16, // 37: course.v0.CourseService.ListDeleted:output_type -> course.v0.ListDeletedResponse
+	18, // 38: course.v0.CourseService.ListUnpublished:output_type -> course.v0.ListUnpublishedResponse
+	20, // 39: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
+	22, // 40: course.v0.CourseService.Publish:output_type -> course.v0.PublishResponse
+	24, // 41: course.v0.CourseService.Unpublish:output_type -> course.v0.UnpublishResponse
+	26, // 42: course.v0.CourseService.Update:output_type -> course.v0.UpdateResponse
+	28, // 43: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
+	30, // 44: course.v0.CourseService.DeletePermanent:output_type -> course.v0.DeletePermanentResponse
+	32, // 45: course.v0.CourseService.Restore:output_type -> course.v0.RestoreResponse
 	31, // [31:46] is the sub-list for method output_type
 	16, // [16:31] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
@@ -2037,16 +2121,16 @@ func file_course_v0_course_proto_init() {
 	if File_course_v0_course_proto != nil {
 		return
 	}
-	file_course_v0_course_proto_msgTypes[0].OneofWrappers = []any{}
-	file_course_v0_course_proto_msgTypes[24].OneofWrappers = []any{}
+	file_course_v0_course_proto_msgTypes[1].OneofWrappers = []any{}
 	file_course_v0_course_proto_msgTypes[25].OneofWrappers = []any{}
+	file_course_v0_course_proto_msgTypes[26].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_course_v0_course_proto_rawDesc), len(file_course_v0_course_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   32,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

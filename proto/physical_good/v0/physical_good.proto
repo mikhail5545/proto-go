@@ -19,12 +19,18 @@ syntax = "proto3";
 
 package physical_good.v0;
 
-import "image/v0/image.proto";
-
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/physical_good/v0;physicalgoodpb";
+
+message Image{
+    string public_url = 1;
+    string secure_url = 2;
+    string cloudinary_id = 3;
+    bool is_primary = 4;
+    int32 order = 5;
+}
 
 message PhysicalGood{
     string id = 1;
@@ -38,7 +44,7 @@ message PhysicalGood{
     float price = 9;
     int32 amount = 10;
     bool in_stock = 11;
-    repeated image.v0.Image images = 12;
+    repeated Image images = 12;
     bool shipping_required = 13;
 }
 

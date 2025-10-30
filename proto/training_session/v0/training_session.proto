@@ -19,11 +19,18 @@ syntax = "proto3";
 
 package training_session.v0;
 
-import "image/v0/image.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/training_session/v0;trainingsesssionpb";
+
+message Image{
+    string public_url = 1;
+    string secure_url = 2;
+    string cloudinary_id = 3;
+    bool is_primary = 4;
+    int32 order = 5;
+}
 
 message TrainingSession{
     string id = 1;
@@ -31,7 +38,7 @@ message TrainingSession{
     google.protobuf.Timestamp updated_at = 3;
     optional google.protobuf.Timestamp deleted_at = 4;
     repeated string tags = 5;
-    repeated image.v0.Image images = 6;
+    repeated Image images = 6;
     string name = 7;
     string short_description = 8;
     string long_description = 9;

@@ -19,12 +19,18 @@ syntax = "proto3";
 
 package seminar.v0;
 
-import "image/v0/image.proto";
-
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/seminar/v0;seminarpb";
+
+message Image{
+    string public_url = 1;
+    string secure_url = 2;
+    string cloudinary_id = 3;
+    bool is_primary = 4;
+    int32 order = 5;
+}
 
 message Seminar{
     string id = 1;
@@ -35,7 +41,7 @@ message Seminar{
     string short_description = 6;
     string long_description = 7;
     repeated string tags = 8;
-    repeated image.v0.Image images = 9;
+    repeated Image images = 9;
     string reservation_product_id = 10;
     string early_product_id = 11;
     string late_product_id = 12;

@@ -19,13 +19,20 @@ syntax = "proto3";
 
 package course.v0;
 
-import "image/v0/image.proto";
 import "course_part/v0/course_part.proto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/course/v0;coursepb";
+
+message Image{
+    string public_url = 1;
+    string secure_url = 2;
+    string cloudinary_id = 3;
+    bool is_primary = 4;
+    int32 order = 5;
+}
 
 message Course {
     string id = 1;
@@ -39,7 +46,7 @@ message Course {
     repeated string tags = 9;
     int32 access_duration = 10;
     bool in_stock = 11;
-    repeated image.v0.Image images = 12;
+    repeated Image images = 12;
     repeated course_part.v0.CoursePart course_parts = 13;
 }
 
