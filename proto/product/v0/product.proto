@@ -20,7 +20,6 @@ syntax = "proto3";
 package product.v0;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/field_mask.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product/v0;productpb";
 
@@ -28,13 +27,12 @@ message Product{
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
-    string name = 4;
-    string description = 5;
-    float price = 6;
-    string image_url = 7;
-    int32 amount = 8;
-    string product_type = 9;
-    bool shipping_required = 10;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    float price = 5;
+    bool in_stock = 6;
+    string details_id = 7;
+    string details_type = 8;
+
 }
 
 message GetRequest{
@@ -42,6 +40,14 @@ message GetRequest{
 }
 
 message GetResponse{
+    Product product = 1;
+}
+
+message GetByDetailsIDRequest{
+    string details_id = 1;
+}
+
+message GetByDetailsIDResponse{
     Product product = 1;
 }
 
@@ -55,64 +61,31 @@ message ListResponse{
     int64 total = 2;
 }
 
-message ListByTypeRequest{
-    string product_type = 1;
+message ListByDetailsTypeRequest{
+    string details_type = 1;
     int32 limit = 2;
     int32 offset = 3;
 }
 
-message ListByTypeResponse{
+message ListByDetailsTypeResponse{
     repeated Product products = 1;
     int64 total = 2;
 }
 
-message CreateRequest{
-    string name = 1;
-    string description = 2;
-    float price = 3;
-    int32 amount = 5;
-    bool shipping_required = 7;
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
 }
 
-message CreateResponse{
-    Product product = 1;
-}
-
-message UpdateRequest{
-    string id = 1;
-    optional string name = 2;
-    optional string description = 3;
-    optional float price = 4;
-    optional string image_url = 5;
-    optional int32 amount = 6;
-    optional bool shipping_required = 8;
-    google.protobuf.FieldMask update_mask = 9;
-}
-
-message UpdateResponse{
-    string id = 1;
-    optional string name = 2;
-    optional string description = 3;
-    optional float price = 4;
-    optional string image_url = 5;
-    optional int32 amount = 6;
-    optional bool shipping_required = 8;
-    google.protobuf.FieldMask updated = 9;
-}
-
-message DeleteRequest{
-    string id = 1;
-}
-
-message DeleteResponse{
-    string id = 1;
+message ListDeletedResponse{
+    repeated Product products = 1;
+    int64 total = 2;
 }
 
 service ProductService{
     rpc Get(GetRequest) returns (GetResponse) {}
-    rpc ListByType(ListByTypeRequest) returns (ListByTypeResponse) {}
+    rpc GetByDetailsID(GetByDetailsIDRequest) returns (GetByDetailsIDResponse) {}
     rpc List(ListRequest) returns (ListResponse) {}
-    rpc Create(CreateRequest) returns (CreateResponse) {}
-    rpc Update(UpdateRequest) returns (UpdateResponse) {}
-    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc ListByDetailsType(ListByDetailsTypeRequest) returns (ListByDetailsTypeResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse){}
 }

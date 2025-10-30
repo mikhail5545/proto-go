@@ -19,8 +19,9 @@ syntax = "proto3";
 
 package course.v0;
 
-import "product/v0/product.proto";
+import "image/v0/image.proto";
 import "course_part/v0/course_part.proto";
+
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
@@ -30,25 +31,22 @@ message Course {
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
-    string name = 4;
-    string description = 5;
-    string topic = 7;
-    string product_id = 8;
-    product.v0.Product product = 9;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    string name = 5;
+    string short_description = 6;
+    string long_description = 7;
+    string topic = 8;
+    repeated string tags = 9;
     int32 access_duration = 10;
-    repeated course_part.v0.CoursePart course_parts = 11;
+    bool in_stock = 11;
+    repeated image.v0.Image images = 12;
+    repeated course_part.v0.CoursePart course_parts = 13;
 }
 
-message CourseListItem {
-    string id = 1;
-    google.protobuf.Timestamp created_at = 2;
-    google.protobuf.Timestamp updated_at = 3;
-    string name = 4;
-    string description = 5;
-    string topic = 6;
-    string product_id = 7;
-    product.v0.Product product = 8;
-    int32 access_duration = 9;
+message CourseDetails{
+    Course course = 1;
+    float price = 2;
+    string product_id = 3;
 }
 
 message GetRequest{
@@ -56,7 +54,23 @@ message GetRequest{
 }
 
 message GetResponse{
-    Course course = 1;
+    CourseDetails course_details = 1;
+}
+
+message GetWithDeletedRequest{
+    string id = 1;
+}
+
+message GetWithDeletedResponse{
+    CourseDetails course_details = 1;
+}
+
+message GetWithUnpublishedRequest{
+    string id = 1;
+}
+
+message GetWithUnpublishedResponse{
+    CourseDetails course_details = 1;
 }
 
 message GetReducedRequest{
@@ -64,7 +78,15 @@ message GetReducedRequest{
 }
 
 message GetReducedResponse{
-    CourseListItem course = 1;
+    CourseDetails course_details = 1;
+}
+
+message GetReducedWithDeletedRequest{
+    string id = 1;
+}
+
+message GetReducedWithDeletedResponse{
+    CourseDetails course_details = 1;
 }
 
 message ListRequest{
@@ -73,46 +95,81 @@ message ListRequest{
 }
 
 message ListResponse{
-    repeated CourseListItem courses = 1;
+    repeated CourseDetails course_details = 1;
     int64 total = 2;
 }
 
-message CourseProductInfo {
-    float price = 1;
-    optional string name = 2;
-    optional string description = 3;
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListDeletedResponse{
+    repeated CourseDetails course_details = 1;
+    int64 total = 2;
+}
+
+message ListUnpublishedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListUnpublishedResponse{
+    repeated CourseDetails course_details = 1;
+    int64 total = 2;
 }
 
 message CreateRequest{
     string name = 1;
-    string description = 2;
+    string short_description = 2;
     string topic = 3;
-    int32 access_duration = 4;
-    CourseProductInfo product = 5;
+    float price = 4;
+    int32 access_duration = 5;
 }
 
 message CreateResponse{
-    Course course = 1;
+    string id = 1;
+    string product_id = 2;
+}
+
+message PublishRequest{
+    string id = 1;
+}
+
+message PublishResponse{
+    string id = 1;
+}
+
+message UnpublishRequest{
+    string id = 1;
+}
+
+message UnpublishResponse{
+    string id = 1;
 }
 
 message UpdateRequest{
     string id = 1;
     optional string name = 2;
-    optional string description = 3;
-    optional string topic = 4;
-    optional int32 access_duration = 5;
-    optional CourseProductInfo product = 6;
-    google.protobuf.FieldMask update_mask = 7;
+    optional string short_description = 3;
+    optional string long_description = 4;
+    optional string topic = 5;
+    optional int32 access_duration = 6;
+    repeated string tags = 7;
+    optional float price = 8;
+    google.protobuf.FieldMask update_mask = 9;
 }
 
 message UpdateResponse{
     string id = 1;
     optional string name = 2;
-    optional string description = 3;
-    optional string topic = 4;
-    optional int32 access_duration = 5;
-    optional CourseProductInfo product = 6;
-    google.protobuf.FieldMask updated = 7;
+    optional string short_description = 3;
+    optional string long_description = 4;
+    optional string topic = 5;
+    optional int32 access_duration = 6;
+    repeated string tags = 7;
+    optional float price = 8;
+    google.protobuf.FieldMask updated = 9;
 }
 
 message DeleteRequest{
@@ -123,11 +180,36 @@ message DeleteResponse{
     string id = 1;
 }
 
+message DeletePermanentRequest{
+    string id = 1;
+}
+
+message DeletePermanentResponse{
+    string id = 1;
+}
+
+message RestoreRequest{
+    string id = 1;
+}
+
+message RestoreResponse{
+    string id = 1;
+}
+
 service CourseService{
     rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    rpc GetWithUnpublished(GetWithUnpublishedRequest) returns (GetWithUnpublishedResponse) {}
     rpc GetReduced(GetReducedRequest) returns (GetReducedResponse) {}
+    rpc GetReducedWithDeleted(GetReducedWithDeletedRequest) returns (GetReducedWithDeletedResponse) {}
     rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    rpc ListUnpublished(ListUnpublishedRequest) returns (ListUnpublishedResponse) {}
     rpc Create(CreateRequest) returns (CreateResponse) {}
-    rpc Updae(UpdateRequest) returns (UpdateResponse) {}
+    rpc Publish(PublishRequest) returns (PublishResponse) {}
+    rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
 }

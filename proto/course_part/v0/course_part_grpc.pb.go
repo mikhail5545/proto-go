@@ -36,28 +36,48 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CoursePartService_Get_FullMethodName         = "/course_part.v0.CoursePartService/Get"
-	CoursePartService_GetReduced_FullMethodName  = "/course_part.v0.CoursePartService/GetReduced"
-	CoursePartService_List_FullMethodName        = "/course_part.v0.CoursePartService/List"
-	CoursePartService_ListReduced_FullMethodName = "/course_part.v0.CoursePartService/ListReduced"
-	CoursePartService_Create_FullMethodName      = "/course_part.v0.CoursePartService/Create"
-	CoursePartService_Update_FullMethodName      = "/course_part.v0.CoursePartService/Update"
-	CoursePartService_AddVideo_FullMethodName    = "/course_part.v0.CoursePartService/AddVideo"
-	CoursePartService_Delete_FullMethodName      = "/course_part.v0.CoursePartService/Delete"
+	CoursePartService_Get_FullMethodName                       = "/course_part.v0.CoursePartService/Get"
+	CoursePartService_GetWithDeleted_FullMethodName            = "/course_part.v0.CoursePartService/GetWithDeleted"
+	CoursePartService_GetWithUnpublished_FullMethodName        = "/course_part.v0.CoursePartService/GetWithUnpublished"
+	CoursePartService_GetReduced_FullMethodName                = "/course_part.v0.CoursePartService/GetReduced"
+	CoursePartService_GetWithDeletedReduced_FullMethodName     = "/course_part.v0.CoursePartService/GetWithDeletedReduced"
+	CoursePartService_GetWithUnpublishedReduced_FullMethodName = "/course_part.v0.CoursePartService/GetWithUnpublishedReduced"
+	CoursePartService_List_FullMethodName                      = "/course_part.v0.CoursePartService/List"
+	CoursePartService_ListDeleted_FullMethodName               = "/course_part.v0.CoursePartService/ListDeleted"
+	CoursePartService_ListUnpublished_FullMethodName           = "/course_part.v0.CoursePartService/ListUnpublished"
+	CoursePartService_ListReduced_FullMethodName               = "/course_part.v0.CoursePartService/ListReduced"
+	CoursePartService_Create_FullMethodName                    = "/course_part.v0.CoursePartService/Create"
+	CoursePartService_Publish_FullMethodName                   = "/course_part.v0.CoursePartService/Publish"
+	CoursePartService_Unpublish_FullMethodName                 = "/course_part.v0.CoursePartService/Unpublish"
+	CoursePartService_Update_FullMethodName                    = "/course_part.v0.CoursePartService/Update"
+	CoursePartService_AddVideo_FullMethodName                  = "/course_part.v0.CoursePartService/AddVideo"
+	CoursePartService_Delete_FullMethodName                    = "/course_part.v0.CoursePartService/Delete"
+	CoursePartService_DeletePermanent_FullMethodName           = "/course_part.v0.CoursePartService/DeletePermanent"
+	CoursePartService_Restore_FullMethodName                   = "/course_part.v0.CoursePartService/Restore"
 )
 
 // CoursePartServiceClient is the client API for CoursePartService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CoursePartServiceClient interface {
-	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetPartResponse, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
+	GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error)
 	GetReduced(ctx context.Context, in *GetReducedRequest, opts ...grpc.CallOption) (*GetReducedResponse, error)
+	GetWithDeletedReduced(ctx context.Context, in *GetWithDeletedReducedRequest, opts ...grpc.CallOption) (*GetWithDeletedReducedResponse, error)
+	GetWithUnpublishedReduced(ctx context.Context, in *GetWithUnpublishedReducedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedReducedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error)
 	ListReduced(ctx context.Context, in *ListReducedRequest, opts ...grpc.CallOption) (*ListReducedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
+	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	AddVideo(ctx context.Context, in *AddVideoRequest, opts ...grpc.CallOption) (*AddVideoResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
+	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
 }
 
 type coursePartServiceClient struct {
@@ -68,10 +88,30 @@ func NewCoursePartServiceClient(cc grpc.ClientConnInterface) CoursePartServiceCl
 	return &coursePartServiceClient{cc}
 }
 
-func (c *coursePartServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetPartResponse, error) {
+func (c *coursePartServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPartResponse)
+	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, CoursePartService_Get_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithDeletedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_GetWithDeleted_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithUnpublishedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_GetWithUnpublished_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,10 +128,50 @@ func (c *coursePartServiceClient) GetReduced(ctx context.Context, in *GetReduced
 	return out, nil
 }
 
+func (c *coursePartServiceClient) GetWithDeletedReduced(ctx context.Context, in *GetWithDeletedReducedRequest, opts ...grpc.CallOption) (*GetWithDeletedReducedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithDeletedReducedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_GetWithDeletedReduced_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) GetWithUnpublishedReduced(ctx context.Context, in *GetWithUnpublishedReducedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedReducedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithUnpublishedReducedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_GetWithUnpublishedReduced_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *coursePartServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListResponse)
 	err := c.cc.Invoke(ctx, CoursePartService_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListDeletedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_ListDeleted_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListUnpublishedResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_ListUnpublished_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,6 +192,26 @@ func (c *coursePartServiceClient) Create(ctx context.Context, in *CreateRequest,
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateResponse)
 	err := c.cc.Invoke(ctx, CoursePartService_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublishResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_Publish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnpublishResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_Unpublish_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,18 +248,48 @@ func (c *coursePartServiceClient) Delete(ctx context.Context, in *DeleteRequest,
 	return out, nil
 }
 
+func (c *coursePartServiceClient) DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeletePermanentResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_DeletePermanent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coursePartServiceClient) Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RestoreResponse)
+	err := c.cc.Invoke(ctx, CoursePartService_Restore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoursePartServiceServer is the server API for CoursePartService service.
 // All implementations must embed UnimplementedCoursePartServiceServer
 // for forward compatibility.
 type CoursePartServiceServer interface {
-	Get(context.Context, *GetRequest) (*GetPartResponse, error)
+	Get(context.Context, *GetRequest) (*GetResponse, error)
+	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
+	GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error)
 	GetReduced(context.Context, *GetReducedRequest) (*GetReducedResponse, error)
+	GetWithDeletedReduced(context.Context, *GetWithDeletedReducedRequest) (*GetWithDeletedReducedResponse, error)
+	GetWithUnpublishedReduced(context.Context, *GetWithUnpublishedReducedRequest) (*GetWithUnpublishedReducedResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
+	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error)
 	ListReduced(context.Context, *ListReducedRequest) (*ListReducedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
+	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	AddVideo(context.Context, *AddVideoRequest) (*AddVideoResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
+	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
 	mustEmbedUnimplementedCoursePartServiceServer()
 }
 
@@ -170,20 +300,44 @@ type CoursePartServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCoursePartServiceServer struct{}
 
-func (UnimplementedCoursePartServiceServer) Get(context.Context, *GetRequest) (*GetPartResponse, error) {
+func (UnimplementedCoursePartServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedCoursePartServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
+}
+func (UnimplementedCoursePartServiceServer) GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithUnpublished not implemented")
 }
 func (UnimplementedCoursePartServiceServer) GetReduced(context.Context, *GetReducedRequest) (*GetReducedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReduced not implemented")
 }
+func (UnimplementedCoursePartServiceServer) GetWithDeletedReduced(context.Context, *GetWithDeletedReducedRequest) (*GetWithDeletedReducedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeletedReduced not implemented")
+}
+func (UnimplementedCoursePartServiceServer) GetWithUnpublishedReduced(context.Context, *GetWithUnpublishedReducedRequest) (*GetWithUnpublishedReducedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithUnpublishedReduced not implemented")
+}
 func (UnimplementedCoursePartServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedCoursePartServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
+}
+func (UnimplementedCoursePartServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnpublished not implemented")
 }
 func (UnimplementedCoursePartServiceServer) ListReduced(context.Context, *ListReducedRequest) (*ListReducedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListReduced not implemented")
 }
 func (UnimplementedCoursePartServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCoursePartServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
+}
+func (UnimplementedCoursePartServiceServer) Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unpublish not implemented")
 }
 func (UnimplementedCoursePartServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -193,6 +347,12 @@ func (UnimplementedCoursePartServiceServer) AddVideo(context.Context, *AddVideoR
 }
 func (UnimplementedCoursePartServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedCoursePartServiceServer) DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePermanent not implemented")
+}
+func (UnimplementedCoursePartServiceServer) Restore(context.Context, *RestoreRequest) (*RestoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
 func (UnimplementedCoursePartServiceServer) mustEmbedUnimplementedCoursePartServiceServer() {}
 func (UnimplementedCoursePartServiceServer) testEmbeddedByValue()                           {}
@@ -233,6 +393,42 @@ func _CoursePartService_Get_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CoursePartService_GetWithDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithDeletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).GetWithDeleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_GetWithDeleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).GetWithDeleted(ctx, req.(*GetWithDeletedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_GetWithUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithUnpublishedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).GetWithUnpublished(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_GetWithUnpublished_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).GetWithUnpublished(ctx, req.(*GetWithUnpublishedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CoursePartService_GetReduced_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetReducedRequest)
 	if err := dec(in); err != nil {
@@ -251,6 +447,42 @@ func _CoursePartService_GetReduced_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CoursePartService_GetWithDeletedReduced_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithDeletedReducedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).GetWithDeletedReduced(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_GetWithDeletedReduced_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).GetWithDeletedReduced(ctx, req.(*GetWithDeletedReducedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_GetWithUnpublishedReduced_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithUnpublishedReducedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).GetWithUnpublishedReduced(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_GetWithUnpublishedReduced_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).GetWithUnpublishedReduced(ctx, req.(*GetWithUnpublishedReducedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CoursePartService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
@@ -265,6 +497,42 @@ func _CoursePartService_List_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoursePartServiceServer).List(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_ListDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDeletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).ListDeleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_ListDeleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).ListDeleted(ctx, req.(*ListDeletedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_ListUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnpublishedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).ListUnpublished(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_ListUnpublished_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).ListUnpublished(ctx, req.(*ListUnpublishedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -301,6 +569,42 @@ func _CoursePartService_Create_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CoursePartServiceServer).Create(ctx, req.(*CreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_Publish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_Unpublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).Unpublish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_Unpublish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).Unpublish(ctx, req.(*UnpublishRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -359,6 +663,42 @@ func _CoursePartService_Delete_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CoursePartService_DeletePermanent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePermanentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).DeletePermanent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_DeletePermanent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).DeletePermanent(ctx, req.(*DeletePermanentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CoursePartService_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoursePartServiceServer).Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CoursePartService_Restore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoursePartServiceServer).Restore(ctx, req.(*RestoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CoursePartService_ServiceDesc is the grpc.ServiceDesc for CoursePartService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -371,12 +711,36 @@ var CoursePartService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CoursePartService_Get_Handler,
 		},
 		{
+			MethodName: "GetWithDeleted",
+			Handler:    _CoursePartService_GetWithDeleted_Handler,
+		},
+		{
+			MethodName: "GetWithUnpublished",
+			Handler:    _CoursePartService_GetWithUnpublished_Handler,
+		},
+		{
 			MethodName: "GetReduced",
 			Handler:    _CoursePartService_GetReduced_Handler,
 		},
 		{
+			MethodName: "GetWithDeletedReduced",
+			Handler:    _CoursePartService_GetWithDeletedReduced_Handler,
+		},
+		{
+			MethodName: "GetWithUnpublishedReduced",
+			Handler:    _CoursePartService_GetWithUnpublishedReduced_Handler,
+		},
+		{
 			MethodName: "List",
 			Handler:    _CoursePartService_List_Handler,
+		},
+		{
+			MethodName: "ListDeleted",
+			Handler:    _CoursePartService_ListDeleted_Handler,
+		},
+		{
+			MethodName: "ListUnpublished",
+			Handler:    _CoursePartService_ListUnpublished_Handler,
 		},
 		{
 			MethodName: "ListReduced",
@@ -385,6 +749,14 @@ var CoursePartService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _CoursePartService_Create_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _CoursePartService_Publish_Handler,
+		},
+		{
+			MethodName: "Unpublish",
+			Handler:    _CoursePartService_Unpublish_Handler,
 		},
 		{
 			MethodName: "Update",
@@ -397,6 +769,14 @@ var CoursePartService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _CoursePartService_Delete_Handler,
+		},
+		{
+			MethodName: "DeletePermanent",
+			Handler:    _CoursePartService_DeletePermanent_Handler,
+		},
+		{
+			MethodName: "Restore",
+			Handler:    _CoursePartService_Restore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

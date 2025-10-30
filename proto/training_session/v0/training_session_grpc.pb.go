@@ -36,11 +36,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrainingSessionService_Get_FullMethodName    = "/training_session.v0.TrainingSessionService/Get"
-	TrainingSessionService_List_FullMethodName   = "/training_session.v0.TrainingSessionService/List"
-	TrainingSessionService_Create_FullMethodName = "/training_session.v0.TrainingSessionService/Create"
-	TrainingSessionService_Update_FullMethodName = "/training_session.v0.TrainingSessionService/Update"
-	TrainingSessionService_Delete_FullMethodName = "/training_session.v0.TrainingSessionService/Delete"
+	TrainingSessionService_Get_FullMethodName                = "/training_session.v0.TrainingSessionService/Get"
+	TrainingSessionService_GetWithDeleted_FullMethodName     = "/training_session.v0.TrainingSessionService/GetWithDeleted"
+	TrainingSessionService_GetWithUnpublished_FullMethodName = "/training_session.v0.TrainingSessionService/GetWithUnpublished"
+	TrainingSessionService_List_FullMethodName               = "/training_session.v0.TrainingSessionService/List"
+	TrainingSessionService_ListDeleted_FullMethodName        = "/training_session.v0.TrainingSessionService/ListDeleted"
+	TrainingSessionService_ListUnpublished_FullMethodName    = "/training_session.v0.TrainingSessionService/ListUnpublished"
+	TrainingSessionService_Create_FullMethodName             = "/training_session.v0.TrainingSessionService/Create"
+	TrainingSessionService_Publish_FullMethodName            = "/training_session.v0.TrainingSessionService/Publish"
+	TrainingSessionService_Unpublish_FullMethodName          = "/training_session.v0.TrainingSessionService/Unpublish"
+	TrainingSessionService_Update_FullMethodName             = "/training_session.v0.TrainingSessionService/Update"
+	TrainingSessionService_Delete_FullMethodName             = "/training_session.v0.TrainingSessionService/Delete"
+	TrainingSessionService_DeletePermanent_FullMethodName    = "/training_session.v0.TrainingSessionService/DeletePermanent"
+	TrainingSessionService_Restore_FullMethodName            = "/training_session.v0.TrainingSessionService/Restore"
 )
 
 // TrainingSessionServiceClient is the client API for TrainingSessionService service.
@@ -48,10 +56,18 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrainingSessionServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
+	GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
+	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
+	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
 }
 
 type trainingSessionServiceClient struct {
@@ -72,6 +88,26 @@ func (c *trainingSessionServiceClient) Get(ctx context.Context, in *GetRequest, 
 	return out, nil
 }
 
+func (c *trainingSessionServiceClient) GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithDeletedResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_GetWithDeleted_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithUnpublishedResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_GetWithUnpublished_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *trainingSessionServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListResponse)
@@ -82,10 +118,50 @@ func (c *trainingSessionServiceClient) List(ctx context.Context, in *ListRequest
 	return out, nil
 }
 
+func (c *trainingSessionServiceClient) ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListDeletedResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_ListDeleted_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListDeletedResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_ListUnpublished_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *trainingSessionServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateResponse)
 	err := c.cc.Invoke(ctx, TrainingSessionService_Create_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublishResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_Publish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnpublishResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_Unpublish_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,15 +188,43 @@ func (c *trainingSessionServiceClient) Delete(ctx context.Context, in *DeleteReq
 	return out, nil
 }
 
+func (c *trainingSessionServiceClient) DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeletePermanentResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_DeletePermanent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RestoreResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_Restore_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TrainingSessionServiceServer is the server API for TrainingSessionService service.
 // All implementations must embed UnimplementedTrainingSessionServiceServer
 // for forward compatibility.
 type TrainingSessionServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
+	GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
+	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListDeletedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
+	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
+	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
+	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
 	mustEmbedUnimplementedTrainingSessionServiceServer()
 }
 
@@ -134,17 +238,41 @@ type UnimplementedTrainingSessionServiceServer struct{}
 func (UnimplementedTrainingSessionServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
+func (UnimplementedTrainingSessionServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithUnpublished not implemented")
+}
 func (UnimplementedTrainingSessionServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
+func (UnimplementedTrainingSessionServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnpublished not implemented")
+}
 func (UnimplementedTrainingSessionServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unpublish not implemented")
 }
 func (UnimplementedTrainingSessionServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedTrainingSessionServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePermanent not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) Restore(context.Context, *RestoreRequest) (*RestoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
 func (UnimplementedTrainingSessionServiceServer) mustEmbedUnimplementedTrainingSessionServiceServer() {
 }
@@ -186,6 +314,42 @@ func _TrainingSessionService_Get_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrainingSessionService_GetWithDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithDeletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).GetWithDeleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_GetWithDeleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).GetWithDeleted(ctx, req.(*GetWithDeletedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_GetWithUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithUnpublishedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).GetWithUnpublished(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_GetWithUnpublished_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).GetWithUnpublished(ctx, req.(*GetWithUnpublishedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TrainingSessionService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
@@ -204,6 +368,42 @@ func _TrainingSessionService_List_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrainingSessionService_ListDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDeletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).ListDeleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_ListDeleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).ListDeleted(ctx, req.(*ListDeletedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_ListUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnpublishedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).ListUnpublished(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_ListUnpublished_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).ListUnpublished(ctx, req.(*ListUnpublishedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TrainingSessionService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRequest)
 	if err := dec(in); err != nil {
@@ -218,6 +418,42 @@ func _TrainingSessionService_Create_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TrainingSessionServiceServer).Create(ctx, req.(*CreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).Publish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_Publish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).Publish(ctx, req.(*PublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_Unpublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnpublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).Unpublish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_Unpublish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).Unpublish(ctx, req.(*UnpublishRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -258,6 +494,42 @@ func _TrainingSessionService_Delete_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrainingSessionService_DeletePermanent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePermanentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).DeletePermanent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_DeletePermanent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).DeletePermanent(ctx, req.(*DeletePermanentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_Restore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).Restore(ctx, req.(*RestoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TrainingSessionService_ServiceDesc is the grpc.ServiceDesc for TrainingSessionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -270,12 +542,36 @@ var TrainingSessionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TrainingSessionService_Get_Handler,
 		},
 		{
+			MethodName: "GetWithDeleted",
+			Handler:    _TrainingSessionService_GetWithDeleted_Handler,
+		},
+		{
+			MethodName: "GetWithUnpublished",
+			Handler:    _TrainingSessionService_GetWithUnpublished_Handler,
+		},
+		{
 			MethodName: "List",
 			Handler:    _TrainingSessionService_List_Handler,
 		},
 		{
+			MethodName: "ListDeleted",
+			Handler:    _TrainingSessionService_ListDeleted_Handler,
+		},
+		{
+			MethodName: "ListUnpublished",
+			Handler:    _TrainingSessionService_ListUnpublished_Handler,
+		},
+		{
 			MethodName: "Create",
 			Handler:    _TrainingSessionService_Create_Handler,
+		},
+		{
+			MethodName: "Publish",
+			Handler:    _TrainingSessionService_Publish_Handler,
+		},
+		{
+			MethodName: "Unpublish",
+			Handler:    _TrainingSessionService_Unpublish_Handler,
 		},
 		{
 			MethodName: "Update",
@@ -284,6 +580,14 @@ var TrainingSessionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _TrainingSessionService_Delete_Handler,
+		},
+		{
+			MethodName: "DeletePermanent",
+			Handler:    _TrainingSessionService_DeletePermanent_Handler,
+		},
+		{
+			MethodName: "Restore",
+			Handler:    _TrainingSessionService_Restore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
