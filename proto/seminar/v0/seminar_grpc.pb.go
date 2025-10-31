@@ -44,7 +44,7 @@ const (
 	SeminarService_ListUnpublished_FullMethodName    = "/seminar.v0.SeminarService/ListUnpublished"
 	SeminarService_Create_FullMethodName             = "/seminar.v0.SeminarService/Create"
 	SeminarService_Publish_FullMethodName            = "/seminar.v0.SeminarService/Publish"
-	SeminarService_Unublish_FullMethodName           = "/seminar.v0.SeminarService/Unublish"
+	SeminarService_Unpublish_FullMethodName          = "/seminar.v0.SeminarService/Unpublish"
 	SeminarService_Update_FullMethodName             = "/seminar.v0.SeminarService/Update"
 	SeminarService_Delete_FullMethodName             = "/seminar.v0.SeminarService/Delete"
 	SeminarService_DeletePermanent_FullMethodName    = "/seminar.v0.SeminarService/DeletePermanent"
@@ -63,7 +63,7 @@ type SeminarServiceClient interface {
 	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
-	Unublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
+	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
@@ -158,10 +158,10 @@ func (c *seminarServiceClient) Publish(ctx context.Context, in *PublishRequest, 
 	return out, nil
 }
 
-func (c *seminarServiceClient) Unublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error) {
+func (c *seminarServiceClient) Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UnpublishResponse)
-	err := c.cc.Invoke(ctx, SeminarService_Unublish_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SeminarService_Unpublish_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -220,7 +220,7 @@ type SeminarServiceServer interface {
 	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
-	Unublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
+	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
@@ -259,8 +259,8 @@ func (UnimplementedSeminarServiceServer) Create(context.Context, *CreateRequest)
 func (UnimplementedSeminarServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
 }
-func (UnimplementedSeminarServiceServer) Unublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unublish not implemented")
+func (UnimplementedSeminarServiceServer) Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unpublish not implemented")
 }
 func (UnimplementedSeminarServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -439,20 +439,20 @@ func _SeminarService_Publish_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SeminarService_Unublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SeminarService_Unpublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnpublishRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SeminarServiceServer).Unublish(ctx, in)
+		return srv.(SeminarServiceServer).Unpublish(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SeminarService_Unublish_FullMethodName,
+		FullMethod: SeminarService_Unpublish_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeminarServiceServer).Unublish(ctx, req.(*UnpublishRequest))
+		return srv.(SeminarServiceServer).Unpublish(ctx, req.(*UnpublishRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -569,8 +569,8 @@ var SeminarService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SeminarService_Publish_Handler,
 		},
 		{
-			MethodName: "Unublish",
-			Handler:    _SeminarService_Unublish_Handler,
+			MethodName: "Unpublish",
+			Handler:    _SeminarService_Unpublish_Handler,
 		},
 		{
 			MethodName: "Update",

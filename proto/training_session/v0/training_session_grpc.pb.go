@@ -60,7 +60,7 @@ type TrainingSessionServiceClient interface {
 	GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
-	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
@@ -128,9 +128,9 @@ func (c *trainingSessionServiceClient) ListDeleted(ctx context.Context, in *List
 	return out, nil
 }
 
-func (c *trainingSessionServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
+func (c *trainingSessionServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListDeletedResponse)
+	out := new(ListUnpublishedResponse)
 	err := c.cc.Invoke(ctx, TrainingSessionService_ListUnpublished_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -217,7 +217,7 @@ type TrainingSessionServiceServer interface {
 	GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
-	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListDeletedResponse, error)
+	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
@@ -250,7 +250,7 @@ func (UnimplementedTrainingSessionServiceServer) List(context.Context, *ListRequ
 func (UnimplementedTrainingSessionServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
 }
-func (UnimplementedTrainingSessionServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListDeletedResponse, error) {
+func (UnimplementedTrainingSessionServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUnpublished not implemented")
 }
 func (UnimplementedTrainingSessionServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {

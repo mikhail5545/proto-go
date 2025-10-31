@@ -1798,14 +1798,14 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xe6\t\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xea\t\n" +
 	"\x16TrainingSessionService\x12J\n" +
 	"\x03Get\x12\x1f.training_session.v0.GetRequest\x1a .training_session.v0.GetResponse\"\x00\x12k\n" +
 	"\x0eGetWithDeleted\x12*.training_session.v0.GetWithDeletedRequest\x1a+.training_session.v0.GetWithDeletedResponse\"\x00\x12w\n" +
 	"\x12GetWithUnpublished\x12..training_session.v0.GetWithUnpublishedRequest\x1a/.training_session.v0.GetWithUnpublishedResponse\"\x00\x12M\n" +
 	"\x04List\x12 .training_session.v0.ListRequest\x1a!.training_session.v0.ListResponse\"\x00\x12b\n" +
-	"\vListDeleted\x12'.training_session.v0.ListDeletedRequest\x1a(.training_session.v0.ListDeletedResponse\"\x00\x12j\n" +
-	"\x0fListUnpublished\x12+.training_session.v0.ListUnpublishedRequest\x1a(.training_session.v0.ListDeletedResponse\"\x00\x12S\n" +
+	"\vListDeleted\x12'.training_session.v0.ListDeletedRequest\x1a(.training_session.v0.ListDeletedResponse\"\x00\x12n\n" +
+	"\x0fListUnpublished\x12+.training_session.v0.ListUnpublishedRequest\x1a,.training_session.v0.ListUnpublishedResponse\"\x00\x12S\n" +
 	"\x06Create\x12\".training_session.v0.CreateRequest\x1a#.training_session.v0.CreateResponse\"\x00\x12V\n" +
 	"\aPublish\x12#.training_session.v0.PublishRequest\x1a$.training_session.v0.PublishResponse\"\x00\x12\\\n" +
 	"\tUnpublish\x12%.training_session.v0.UnpublishRequest\x1a&.training_session.v0.UnpublishResponse\"\x00\x12S\n" +
@@ -1892,7 +1892,7 @@ var file_training_session_v0_training_session_proto_depIdxs = []int32{
 	8,  // 28: training_session.v0.TrainingSessionService.GetWithUnpublished:output_type -> training_session.v0.GetWithUnpublishedResponse
 	10, // 29: training_session.v0.TrainingSessionService.List:output_type -> training_session.v0.ListResponse
 	12, // 30: training_session.v0.TrainingSessionService.ListDeleted:output_type -> training_session.v0.ListDeletedResponse
-	12, // 31: training_session.v0.TrainingSessionService.ListUnpublished:output_type -> training_session.v0.ListDeletedResponse
+	14, // 31: training_session.v0.TrainingSessionService.ListUnpublished:output_type -> training_session.v0.ListUnpublishedResponse
 	16, // 32: training_session.v0.TrainingSessionService.Create:output_type -> training_session.v0.CreateResponse
 	18, // 33: training_session.v0.TrainingSessionService.Publish:output_type -> training_session.v0.PublishResponse
 	20, // 34: training_session.v0.TrainingSessionService.Unpublish:output_type -> training_session.v0.UnpublishResponse

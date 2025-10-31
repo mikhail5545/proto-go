@@ -2151,7 +2151,7 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xf7\a\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xf8\a\n" +
 	"\x0eSeminarService\x128\n" +
 	"\x03Get\x12\x16.seminar.v0.GetRequest\x1a\x17.seminar.v0.GetResponse\"\x00\x12Y\n" +
 	"\x0eGetWithDeleted\x12!.seminar.v0.GetWithDeletedRequest\x1a\".seminar.v0.GetWithDeletedResponse\"\x00\x12e\n" +
@@ -2160,8 +2160,8 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\vListDeleted\x12\x1e.seminar.v0.ListDeletedRequest\x1a\x1f.seminar.v0.ListDeletedResponse\"\x00\x12\\\n" +
 	"\x0fListUnpublished\x12\".seminar.v0.ListUnpublishedRequest\x1a#.seminar.v0.ListUnpublishedResponse\"\x00\x12A\n" +
 	"\x06Create\x12\x19.seminar.v0.CreateRequest\x1a\x1a.seminar.v0.CreateResponse\"\x00\x12D\n" +
-	"\aPublish\x12\x1a.seminar.v0.PublishRequest\x1a\x1b.seminar.v0.PublishResponse\"\x00\x12I\n" +
-	"\bUnublish\x12\x1c.seminar.v0.UnpublishRequest\x1a\x1d.seminar.v0.UnpublishResponse\"\x00\x12A\n" +
+	"\aPublish\x12\x1a.seminar.v0.PublishRequest\x1a\x1b.seminar.v0.PublishResponse\"\x00\x12J\n" +
+	"\tUnpublish\x12\x1c.seminar.v0.UnpublishRequest\x1a\x1d.seminar.v0.UnpublishResponse\"\x00\x12A\n" +
 	"\x06Update\x12\x19.seminar.v0.UpdateRequest\x1a\x1a.seminar.v0.UpdateResponse\"\x00\x12A\n" +
 	"\x06Delete\x12\x19.seminar.v0.DeleteRequest\x1a\x1a.seminar.v0.DeleteResponse\"\x00\x12\\\n" +
 	"\x0fDeletePermanent\x12\".seminar.v0.DeletePermanentRequest\x1a#.seminar.v0.DeletePermanentResponse\"\x00\x12D\n" +
@@ -2247,7 +2247,7 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	13, // 30: seminar.v0.SeminarService.ListUnpublished:input_type -> seminar.v0.ListUnpublishedRequest
 	15, // 31: seminar.v0.SeminarService.Create:input_type -> seminar.v0.CreateRequest
 	17, // 32: seminar.v0.SeminarService.Publish:input_type -> seminar.v0.PublishRequest
-	19, // 33: seminar.v0.SeminarService.Unublish:input_type -> seminar.v0.UnpublishRequest
+	19, // 33: seminar.v0.SeminarService.Unpublish:input_type -> seminar.v0.UnpublishRequest
 	21, // 34: seminar.v0.SeminarService.Update:input_type -> seminar.v0.UpdateRequest
 	23, // 35: seminar.v0.SeminarService.Delete:input_type -> seminar.v0.DeleteRequest
 	25, // 36: seminar.v0.SeminarService.DeletePermanent:input_type -> seminar.v0.DeletePermanentRequest
@@ -2260,7 +2260,7 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	14, // 43: seminar.v0.SeminarService.ListUnpublished:output_type -> seminar.v0.ListUnpublishedResponse
 	16, // 44: seminar.v0.SeminarService.Create:output_type -> seminar.v0.CreateResponse
 	18, // 45: seminar.v0.SeminarService.Publish:output_type -> seminar.v0.PublishResponse
-	20, // 46: seminar.v0.SeminarService.Unublish:output_type -> seminar.v0.UnpublishResponse
+	20, // 46: seminar.v0.SeminarService.Unpublish:output_type -> seminar.v0.UnpublishResponse
 	22, // 47: seminar.v0.SeminarService.Update:output_type -> seminar.v0.UpdateResponse
 	24, // 48: seminar.v0.SeminarService.Delete:output_type -> seminar.v0.DeleteResponse
 	26, // 49: seminar.v0.SeminarService.DeletePermanent:output_type -> seminar.v0.DeletePermanentResponse
