@@ -112,6 +112,7 @@ message CreateRequest{
     string short_description = 2;
     string format = 3;
     float price = 4;
+    int32 duration_minutes = 5;
 }
 
 message CreateResponse{

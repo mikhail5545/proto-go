@@ -890,6 +890,7 @@ type CreateRequest struct {
 	ShortDescription string                 `protobuf:"bytes,2,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
 	Format           string                 `protobuf:"bytes,3,opt,name=format,proto3" json:"format,omitempty"`
 	Price            float32                `protobuf:"fixed32,4,opt,name=price,proto3" json:"price,omitempty"`
+	DurationMinutes  int32                  `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -948,6 +949,13 @@ func (x *CreateRequest) GetFormat() string {
 func (x *CreateRequest) GetPrice() float32 {
 	if x != nil {
 		return x.Price
+	}
+	return 0
+}
+
+func (x *CreateRequest) GetDurationMinutes() int32 {
+	if x != nil {
+		return x.DurationMinutes
 	}
 	return 0
 }
@@ -1727,12 +1735,13 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x98\x01\n" +
 	"\x17ListUnpublishedResponse\x12g\n" +
 	"\x19training_sessions_details\x18\x01 \x03(\v2+.training_session.v0.TrainingSessionDetailsR\x17trainingSessionsDetails\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"~\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\xa9\x01\n" +
 	"\rCreateRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12+\n" +
 	"\x11short_description\x18\x02 \x01(\tR\x10shortDescription\x12\x16\n" +
 	"\x06format\x18\x03 \x01(\tR\x06format\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x02R\x05price\"?\n" +
+	"\x05price\x18\x04 \x01(\x02R\x05price\x12)\n" +
+	"\x10duration_minutes\x18\x05 \x01(\x05R\x0fdurationMinutes\"?\n" +
 	"\x0eCreateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +

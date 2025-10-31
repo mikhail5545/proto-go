@@ -1292,27 +1292,27 @@ func (x *PublishResponse) GetId() string {
 	return ""
 }
 
-type UnublishRequest struct {
+type UnpublishRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UnublishRequest) Reset() {
-	*x = UnublishRequest{}
+func (x *UnpublishRequest) Reset() {
+	*x = UnpublishRequest{}
 	mi := &file_seminar_v0_seminar_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UnublishRequest) String() string {
+func (x *UnpublishRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UnublishRequest) ProtoMessage() {}
+func (*UnpublishRequest) ProtoMessage() {}
 
-func (x *UnublishRequest) ProtoReflect() protoreflect.Message {
+func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_seminar_v0_seminar_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1324,39 +1324,39 @@ func (x *UnublishRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UnublishRequest.ProtoReflect.Descriptor instead.
-func (*UnublishRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UnpublishRequest.ProtoReflect.Descriptor instead.
+func (*UnpublishRequest) Descriptor() ([]byte, []int) {
 	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *UnublishRequest) GetId() string {
+func (x *UnpublishRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type UnublishResponse struct {
+type UnpublishResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UnublishResponse) Reset() {
-	*x = UnublishResponse{}
+func (x *UnpublishResponse) Reset() {
+	*x = UnpublishResponse{}
 	mi := &file_seminar_v0_seminar_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UnublishResponse) String() string {
+func (x *UnpublishResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UnublishResponse) ProtoMessage() {}
+func (*UnpublishResponse) ProtoMessage() {}
 
-func (x *UnublishResponse) ProtoReflect() protoreflect.Message {
+func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_seminar_v0_seminar_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1368,12 +1368,12 @@ func (x *UnublishResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UnublishResponse.ProtoReflect.Descriptor instead.
-func (*UnublishResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UnpublishResponse.ProtoReflect.Descriptor instead.
+func (*UnpublishResponse) Descriptor() ([]byte, []int) {
 	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *UnublishResponse) GetId() string {
+func (x *UnpublishResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -2068,10 +2068,10 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x0ePublishRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fPublishResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
-	"\x0fUnublishRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\"\n" +
-	"\x10UnublishResponse\x12\x0e\n" +
+	"\x10UnpublishRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"#\n" +
+	"\x11UnpublishResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x8b\a\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
@@ -2151,7 +2151,7 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xf5\a\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xf7\a\n" +
 	"\x0eSeminarService\x128\n" +
 	"\x03Get\x12\x16.seminar.v0.GetRequest\x1a\x17.seminar.v0.GetResponse\"\x00\x12Y\n" +
 	"\x0eGetWithDeleted\x12!.seminar.v0.GetWithDeletedRequest\x1a\".seminar.v0.GetWithDeletedResponse\"\x00\x12e\n" +
@@ -2160,8 +2160,8 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\vListDeleted\x12\x1e.seminar.v0.ListDeletedRequest\x1a\x1f.seminar.v0.ListDeletedResponse\"\x00\x12\\\n" +
 	"\x0fListUnpublished\x12\".seminar.v0.ListUnpublishedRequest\x1a#.seminar.v0.ListUnpublishedResponse\"\x00\x12A\n" +
 	"\x06Create\x12\x19.seminar.v0.CreateRequest\x1a\x1a.seminar.v0.CreateResponse\"\x00\x12D\n" +
-	"\aPublish\x12\x1a.seminar.v0.PublishRequest\x1a\x1b.seminar.v0.PublishResponse\"\x00\x12G\n" +
-	"\bUnublish\x12\x1b.seminar.v0.UnublishRequest\x1a\x1c.seminar.v0.UnublishResponse\"\x00\x12A\n" +
+	"\aPublish\x12\x1a.seminar.v0.PublishRequest\x1a\x1b.seminar.v0.PublishResponse\"\x00\x12I\n" +
+	"\bUnublish\x12\x1c.seminar.v0.UnpublishRequest\x1a\x1d.seminar.v0.UnpublishResponse\"\x00\x12A\n" +
 	"\x06Update\x12\x19.seminar.v0.UpdateRequest\x1a\x1a.seminar.v0.UpdateResponse\"\x00\x12A\n" +
 	"\x06Delete\x12\x19.seminar.v0.DeleteRequest\x1a\x1a.seminar.v0.DeleteResponse\"\x00\x12\\\n" +
 	"\x0fDeletePermanent\x12\".seminar.v0.DeletePermanentRequest\x1a#.seminar.v0.DeletePermanentResponse\"\x00\x12D\n" +
@@ -2200,8 +2200,8 @@ var file_seminar_v0_seminar_proto_goTypes = []any{
 	(*CreateResponse)(nil),             // 16: seminar.v0.CreateResponse
 	(*PublishRequest)(nil),             // 17: seminar.v0.PublishRequest
 	(*PublishResponse)(nil),            // 18: seminar.v0.PublishResponse
-	(*UnublishRequest)(nil),            // 19: seminar.v0.UnublishRequest
-	(*UnublishResponse)(nil),           // 20: seminar.v0.UnublishResponse
+	(*UnpublishRequest)(nil),           // 19: seminar.v0.UnpublishRequest
+	(*UnpublishResponse)(nil),          // 20: seminar.v0.UnpublishResponse
 	(*UpdateRequest)(nil),              // 21: seminar.v0.UpdateRequest
 	(*UpdateResponse)(nil),             // 22: seminar.v0.UpdateResponse
 	(*DeleteRequest)(nil),              // 23: seminar.v0.DeleteRequest
@@ -2247,7 +2247,7 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	13, // 30: seminar.v0.SeminarService.ListUnpublished:input_type -> seminar.v0.ListUnpublishedRequest
 	15, // 31: seminar.v0.SeminarService.Create:input_type -> seminar.v0.CreateRequest
 	17, // 32: seminar.v0.SeminarService.Publish:input_type -> seminar.v0.PublishRequest
-	19, // 33: seminar.v0.SeminarService.Unublish:input_type -> seminar.v0.UnublishRequest
+	19, // 33: seminar.v0.SeminarService.Unublish:input_type -> seminar.v0.UnpublishRequest
 	21, // 34: seminar.v0.SeminarService.Update:input_type -> seminar.v0.UpdateRequest
 	23, // 35: seminar.v0.SeminarService.Delete:input_type -> seminar.v0.DeleteRequest
 	25, // 36: seminar.v0.SeminarService.DeletePermanent:input_type -> seminar.v0.DeletePermanentRequest
@@ -2260,7 +2260,7 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	14, // 43: seminar.v0.SeminarService.ListUnpublished:output_type -> seminar.v0.ListUnpublishedResponse
 	16, // 44: seminar.v0.SeminarService.Create:output_type -> seminar.v0.CreateResponse
 	18, // 45: seminar.v0.SeminarService.Publish:output_type -> seminar.v0.PublishResponse
-	20, // 46: seminar.v0.SeminarService.Unublish:output_type -> seminar.v0.UnublishResponse
+	20, // 46: seminar.v0.SeminarService.Unublish:output_type -> seminar.v0.UnpublishResponse
 	22, // 47: seminar.v0.SeminarService.Update:output_type -> seminar.v0.UpdateResponse
 	24, // 48: seminar.v0.SeminarService.Delete:output_type -> seminar.v0.DeleteResponse
 	26, // 49: seminar.v0.SeminarService.DeletePermanent:output_type -> seminar.v0.DeletePermanentResponse

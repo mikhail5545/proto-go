@@ -152,11 +152,11 @@ message PublishResponse{
     string id = 1;
 }
 
-message UnublishRequest{
+message UnpublishRequest{
     string id = 1;
 }
 
-message UnublishResponse{
+message UnpublishResponse{
     string id = 1;
 }
 
@@ -229,7 +229,7 @@ service SeminarService {
     rpc ListUnpublished(ListUnpublishedRequest) returns (ListUnpublishedResponse) {}
     rpc Create(CreateRequest) returns (CreateResponse) {}
     rpc Publish(PublishRequest) returns (PublishResponse) {}
-    rpc Unublish(UnublishRequest) returns (UnublishResponse) {}
+    rpc Unublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
