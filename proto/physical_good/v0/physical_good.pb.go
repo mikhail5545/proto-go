@@ -126,11 +126,10 @@ type PhysicalGood struct {
 	Tags             []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
 	ShortDescription string                 `protobuf:"bytes,7,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
 	LongDescription  string                 `protobuf:"bytes,8,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
-	Price            float32                `protobuf:"fixed32,9,opt,name=price,proto3" json:"price,omitempty"`
-	Amount           int32                  `protobuf:"varint,10,opt,name=amount,proto3" json:"amount,omitempty"`
-	InStock          bool                   `protobuf:"varint,11,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
-	Images           []*Image               `protobuf:"bytes,12,rep,name=images,proto3" json:"images,omitempty"`
-	ShippingRequired bool                   `protobuf:"varint,13,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
+	Amount           int32                  `protobuf:"varint,9,opt,name=amount,proto3" json:"amount,omitempty"`
+	InStock          bool                   `protobuf:"varint,10,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
+	Images           []*Image               `protobuf:"bytes,11,rep,name=images,proto3" json:"images,omitempty"`
+	ShippingRequired bool                   `protobuf:"varint,12,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -219,13 +218,6 @@ func (x *PhysicalGood) GetLongDescription() string {
 		return x.LongDescription
 	}
 	return ""
-}
-
-func (x *PhysicalGood) GetPrice() float32 {
-	if x != nil {
-		return x.Price
-	}
-	return 0
 }
 
 func (x *PhysicalGood) GetAmount() int32 {
@@ -1205,6 +1197,7 @@ type UpdateRequest struct {
 	Amount           *int32                 `protobuf:"varint,5,opt,name=amount,proto3,oneof" json:"amount,omitempty"`
 	ShippingRequired *bool                  `protobuf:"varint,6,opt,name=shipping_required,json=shippingRequired,proto3,oneof" json:"shipping_required,omitempty"`
 	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
+	Name             *string                `protobuf:"bytes,8,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	UpdateMask       *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -1289,6 +1282,13 @@ func (x *UpdateRequest) GetTags() []string {
 	return nil
 }
 
+func (x *UpdateRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
 func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.UpdateMask
@@ -1305,6 +1305,7 @@ type UpdateResponse struct {
 	Amount           *int32                 `protobuf:"varint,5,opt,name=amount,proto3,oneof" json:"amount,omitempty"`
 	ShippingRequired *bool                  `protobuf:"varint,6,opt,name=shipping_required,json=shippingRequired,proto3,oneof" json:"shipping_required,omitempty"`
 	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
+	Name             *string                `protobuf:"bytes,8,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	Updated          *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -1387,6 +1388,13 @@ func (x *UpdateResponse) GetTags() []string {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *UpdateResponse) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
 }
 
 func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
@@ -1673,7 +1681,7 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\rcloudinary_id\x18\x03 \x01(\tR\fcloudinaryId\x12\x1d\n" +
 	"\n" +
 	"is_primary\x18\x04 \x01(\bR\tisPrimary\x12\x14\n" +
-	"\x05order\x18\x05 \x01(\x05R\x05order\"\x8a\x04\n" +
+	"\x05order\x18\x05 \x01(\x05R\x05order\"\xf4\x03\n" +
 	"\fPhysicalGood\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1685,13 +1693,12 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x04name\x18\x05 \x01(\tR\x04name\x12\x12\n" +
 	"\x04tags\x18\x06 \x03(\tR\x04tags\x12+\n" +
 	"\x11short_description\x18\a \x01(\tR\x10shortDescription\x12)\n" +
-	"\x10long_description\x18\b \x01(\tR\x0flongDescription\x12\x14\n" +
-	"\x05price\x18\t \x01(\x02R\x05price\x12\x16\n" +
-	"\x06amount\x18\n" +
-	" \x01(\x05R\x06amount\x12\x19\n" +
-	"\bin_stock\x18\v \x01(\bR\ainStock\x12/\n" +
-	"\x06images\x18\f \x03(\v2\x17.physical_good.v0.ImageR\x06images\x12+\n" +
-	"\x11shipping_required\x18\r \x01(\bR\x10shippingRequiredB\r\n" +
+	"\x10long_description\x18\b \x01(\tR\x0flongDescription\x12\x16\n" +
+	"\x06amount\x18\t \x01(\x05R\x06amount\x12\x19\n" +
+	"\bin_stock\x18\n" +
+	" \x01(\bR\ainStock\x12/\n" +
+	"\x06images\x18\v \x03(\v2\x17.physical_good.v0.ImageR\x06images\x12+\n" +
+	"\x11shipping_required\x18\f \x01(\bR\x10shippingRequiredB\r\n" +
 	"\v_deleted_at\"\x8f\x01\n" +
 	"\x13PhysicalGoodDetails\x12C\n" +
 	"\rphysical_good\x18\x01 \x01(\v2\x1e.physical_good.v0.PhysicalGoodR\fphysicalGood\x12\x14\n" +
@@ -1746,7 +1753,7 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x10UnpublishRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"#\n" +
 	"\x11UnpublishResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x92\x03\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xb4\x03\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x11short_description\x18\x02 \x01(\tH\x00R\x10shortDescription\x88\x01\x01\x12.\n" +
@@ -1754,14 +1761,16 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x05price\x18\x04 \x01(\x02H\x02R\x05price\x88\x01\x01\x12\x1b\n" +
 	"\x06amount\x18\x05 \x01(\x05H\x03R\x06amount\x88\x01\x01\x120\n" +
 	"\x11shipping_required\x18\x06 \x01(\bH\x04R\x10shippingRequired\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x12;\n" +
+	"\x04tags\x18\a \x03(\tR\x04tags\x12\x17\n" +
+	"\x04name\x18\b \x01(\tH\x05R\x04name\x88\x01\x01\x12;\n" +
 	"\vupdate_mask\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMaskB\x14\n" +
 	"\x12_short_descriptionB\x13\n" +
 	"\x11_long_descriptionB\b\n" +
 	"\x06_priceB\t\n" +
 	"\a_amountB\x14\n" +
-	"\x12_shipping_required\"\x8c\x03\n" +
+	"\x12_shipping_requiredB\a\n" +
+	"\x05_name\"\xae\x03\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
 	"\x11short_description\x18\x02 \x01(\tH\x00R\x10shortDescription\x88\x01\x01\x12.\n" +
@@ -1769,13 +1778,15 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x05price\x18\x04 \x01(\x02H\x02R\x05price\x88\x01\x01\x12\x1b\n" +
 	"\x06amount\x18\x05 \x01(\x05H\x03R\x06amount\x88\x01\x01\x120\n" +
 	"\x11shipping_required\x18\x06 \x01(\bH\x04R\x10shippingRequired\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x124\n" +
+	"\x04tags\x18\a \x03(\tR\x04tags\x12\x17\n" +
+	"\x04name\x18\b \x01(\tH\x05R\x04name\x88\x01\x01\x124\n" +
 	"\aupdated\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\x14\n" +
 	"\x12_short_descriptionB\x13\n" +
 	"\x11_long_descriptionB\b\n" +
 	"\x06_priceB\t\n" +
 	"\a_amountB\x14\n" +
-	"\x12_shipping_required\"\x1f\n" +
+	"\x12_shipping_requiredB\a\n" +
+	"\x05_name\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +

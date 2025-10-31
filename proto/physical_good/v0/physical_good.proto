@@ -41,11 +41,10 @@ message PhysicalGood{
     repeated string tags = 6;
     string short_description = 7;
     string long_description = 8;
-    float price = 9;
-    int32 amount = 10;
-    bool in_stock = 11;
-    repeated Image images = 12;
-    bool shipping_required = 13;
+    int32 amount = 9;
+    bool in_stock = 10;
+    repeated Image images = 11;
+    bool shipping_required = 12;
 }
 
 message PhysicalGoodDetails{
@@ -145,6 +144,7 @@ message UpdateRequest{
     optional int32 amount = 5;
     optional bool shipping_required = 6;
     repeated string tags = 7;
+    optional string name = 8;
     google.protobuf.FieldMask update_mask = 9;
 }
 
@@ -156,6 +156,7 @@ message UpdateResponse{
     optional int32 amount = 5;
     optional bool shipping_required = 6;
     repeated string tags = 7;
+    optional string name = 8;
     google.protobuf.FieldMask updated = 9;
 }
 
