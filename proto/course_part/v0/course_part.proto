@@ -137,7 +137,7 @@ message CreateRequest{
     string course_id = 1;
     string name = 2;
     string short_description = 3;
-    string number = 4;
+    int32 number = 4;
 }
 
 message CreateResponse{

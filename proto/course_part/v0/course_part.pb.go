@@ -1162,7 +1162,7 @@ type CreateRequest struct {
 	CourseId         string                 `protobuf:"bytes,1,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
 	Name             string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	ShortDescription string                 `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	Number           string                 `protobuf:"bytes,4,opt,name=number,proto3" json:"number,omitempty"`
+	Number           int32                  `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1218,11 +1218,11 @@ func (x *CreateRequest) GetShortDescription() string {
 	return ""
 }
 
-func (x *CreateRequest) GetNumber() string {
+func (x *CreateRequest) GetNumber() int32 {
 	if x != nil {
 		return x.Number
 	}
-	return ""
+	return 0
 }
 
 type CreateResponse struct {
@@ -2105,7 +2105,7 @@ const file_course_part_v0_course_part_proto_rawDesc = "" +
 	"\tcourse_id\x18\x01 \x01(\tR\bcourseId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12+\n" +
 	"\x11short_description\x18\x03 \x01(\tR\x10shortDescription\x12\x16\n" +
-	"\x06number\x18\x04 \x01(\tR\x06number\"=\n" +
+	"\x06number\x18\x04 \x01(\x05R\x06number\"=\n" +
 	"\x0eCreateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tcourse_id\x18\x02 \x01(\tR\bcourseId\" \n" +
