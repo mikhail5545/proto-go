@@ -45,15 +45,16 @@ type MuxUpload struct {
 	Id                    string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	CreatedAt             *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt             *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	MuxUploadId           *string                `protobuf:"bytes,4,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
-	MuxAssetId            *string                `protobuf:"bytes,5,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
-	MuxPlaybackId         *string                `protobuf:"bytes,6,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
-	VideoProcessingStatus string                 `protobuf:"bytes,7,opt,name=video_processing_status,json=videoProcessingStatus,proto3" json:"video_processing_status,omitempty"`
-	Duration              *float32               `protobuf:"fixed32,8,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
-	AspectRatio           *string                `protobuf:"bytes,9,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
-	Width                 *int32                 `protobuf:"varint,10,opt,name=width,proto3,oneof" json:"width,omitempty"`
-	Height                *int32                 `protobuf:"varint,11,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	AssetCreatedAt        *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=asset_created_at,json=assetCreatedAt,proto3,oneof" json:"asset_created_at,omitempty"`
+	DeletedAt             *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	MuxUploadId           *string                `protobuf:"bytes,5,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
+	MuxAssetId            *string                `protobuf:"bytes,6,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
+	MuxPlaybackId         *string                `protobuf:"bytes,7,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
+	VideoProcessingStatus string                 `protobuf:"bytes,8,opt,name=video_processing_status,json=videoProcessingStatus,proto3" json:"video_processing_status,omitempty"`
+	Duration              *float32               `protobuf:"fixed32,9,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
+	AspectRatio           *string                `protobuf:"bytes,10,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
+	Width                 *int32                 `protobuf:"varint,11,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height                *int32                 `protobuf:"varint,12,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	AssetCreatedAt        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=asset_created_at,json=assetCreatedAt,proto3,oneof" json:"asset_created_at,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -105,6 +106,13 @@ func (x *MuxUpload) GetCreatedAt() *timestamppb.Timestamp {
 func (x *MuxUpload) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *MuxUpload) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
 	}
 	return nil
 }
@@ -260,6 +268,182 @@ func (x *GetResponse) GetMuxUpload() *MuxUpload {
 	return nil
 }
 
+type GetWithDeletedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWithDeletedRequest) Reset() {
+	*x = GetWithDeletedRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWithDeletedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWithDeletedRequest) ProtoMessage() {}
+
+func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWithDeletedRequest.ProtoReflect.Descriptor instead.
+func (*GetWithDeletedRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetWithDeletedRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetWithDeletedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MuxUpload     *MuxUpload             `protobuf:"bytes,1,opt,name=mux_upload,json=muxUpload,proto3" json:"mux_upload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWithDeletedResponse) Reset() {
+	*x = GetWithDeletedResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWithDeletedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWithDeletedResponse) ProtoMessage() {}
+
+func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWithDeletedResponse.ProtoReflect.Descriptor instead.
+func (*GetWithDeletedResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetWithDeletedResponse) GetMuxUpload() *MuxUpload {
+	if x != nil {
+		return x.MuxUpload
+	}
+	return nil
+}
+
+type GetWithUnpublishedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWithUnpublishedRequest) Reset() {
+	*x = GetWithUnpublishedRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWithUnpublishedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWithUnpublishedRequest) ProtoMessage() {}
+
+func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWithUnpublishedRequest.ProtoReflect.Descriptor instead.
+func (*GetWithUnpublishedRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetWithUnpublishedRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetWithUnpublishedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MuxUpload     *MuxUpload             `protobuf:"bytes,1,opt,name=mux_upload,json=muxUpload,proto3" json:"mux_upload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetWithUnpublishedResponse) Reset() {
+	*x = GetWithUnpublishedResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetWithUnpublishedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetWithUnpublishedResponse) ProtoMessage() {}
+
+func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetWithUnpublishedResponse.ProtoReflect.Descriptor instead.
+func (*GetWithUnpublishedResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetWithUnpublishedResponse) GetMuxUpload() *MuxUpload {
+	if x != nil {
+		return x.MuxUpload
+	}
+	return nil
+}
+
 type ListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -270,7 +454,7 @@ type ListRequest struct {
 
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[3]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -282,7 +466,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[3]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -295,7 +479,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{3}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListRequest) GetLimit() int32 {
@@ -315,13 +499,14 @@ func (x *ListRequest) GetOffset() int32 {
 type ListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MuxUploads    []*MuxUpload           `protobuf:"bytes,1,rep,name=mux_uploads,json=muxUploads,proto3" json:"mux_uploads,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[4]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -333,7 +518,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[4]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -346,7 +531,7 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{4}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListResponse) GetMuxUploads() []*MuxUpload {
@@ -354,6 +539,221 @@ func (x *ListResponse) GetMuxUploads() []*MuxUpload {
 		return x.MuxUploads
 	}
 	return nil
+}
+
+func (x *ListResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type ListDeletedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListDeletedRequest) Reset() {
+	*x = ListDeletedRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListDeletedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListDeletedRequest) ProtoMessage() {}
+
+func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListDeletedRequest.ProtoReflect.Descriptor instead.
+func (*ListDeletedRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListDeletedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListDeletedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListDeletedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MuxUploads    []*MuxUpload           `protobuf:"bytes,1,rep,name=mux_uploads,json=muxUploads,proto3" json:"mux_uploads,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListDeletedResponse) Reset() {
+	*x = ListDeletedResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListDeletedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListDeletedResponse) ProtoMessage() {}
+
+func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListDeletedResponse.ProtoReflect.Descriptor instead.
+func (*ListDeletedResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListDeletedResponse) GetMuxUploads() []*MuxUpload {
+	if x != nil {
+		return x.MuxUploads
+	}
+	return nil
+}
+
+func (x *ListDeletedResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type ListUnpublishedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListUnpublishedRequest) Reset() {
+	*x = ListUnpublishedRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListUnpublishedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListUnpublishedRequest) ProtoMessage() {}
+
+func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListUnpublishedRequest.ProtoReflect.Descriptor instead.
+func (*ListUnpublishedRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListUnpublishedRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListUnpublishedRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListUnpublishedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MuxUploads    []*MuxUpload           `protobuf:"bytes,1,rep,name=mux_uploads,json=muxUploads,proto3" json:"mux_uploads,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListUnpublishedResponse) Reset() {
+	*x = ListUnpublishedResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListUnpublishedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListUnpublishedResponse) ProtoMessage() {}
+
+func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListUnpublishedResponse.ProtoReflect.Descriptor instead.
+func (*ListUnpublishedResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ListUnpublishedResponse) GetMuxUploads() []*MuxUpload {
+	if x != nil {
+		return x.MuxUploads
+	}
+	return nil
+}
+
+func (x *ListUnpublishedResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 type CreateRequest struct {
@@ -366,7 +766,7 @@ type CreateRequest struct {
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[5]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -378,7 +778,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[5]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +791,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{5}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateRequest) GetMuxUploadId() string {
@@ -417,7 +817,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[6]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +829,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[6]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +842,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{6}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CreateResponse) GetMuxUpload() *MuxUpload {
@@ -458,7 +858,7 @@ type UpdateRequest struct {
 	MuxUploadId           *string                `protobuf:"bytes,4,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
 	MuxAssetId            *string                `protobuf:"bytes,5,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
 	MuxPlaybackId         *string                `protobuf:"bytes,6,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
-	VideoProcessingStatus string                 `protobuf:"bytes,7,opt,name=video_processing_status,json=videoProcessingStatus,proto3" json:"video_processing_status,omitempty"`
+	VideoProcessingStatus *string                `protobuf:"bytes,7,opt,name=video_processing_status,json=videoProcessingStatus,proto3,oneof" json:"video_processing_status,omitempty"`
 	Duration              *float32               `protobuf:"fixed32,8,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
 	AspectRatio           *string                `protobuf:"bytes,9,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
 	Width                 *int32                 `protobuf:"varint,10,opt,name=width,proto3,oneof" json:"width,omitempty"`
@@ -471,7 +871,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[7]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -483,7 +883,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[7]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -496,7 +896,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{7}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -528,8 +928,8 @@ func (x *UpdateRequest) GetMuxPlaybackId() string {
 }
 
 func (x *UpdateRequest) GetVideoProcessingStatus() string {
-	if x != nil {
-		return x.VideoProcessingStatus
+	if x != nil && x.VideoProcessingStatus != nil {
+		return *x.VideoProcessingStatus
 	}
 	return ""
 }
@@ -582,7 +982,7 @@ type UpdateResponse struct {
 	MuxUploadId           *string                `protobuf:"bytes,4,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
 	MuxAssetId            *string                `protobuf:"bytes,5,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
 	MuxPlaybackId         *string                `protobuf:"bytes,6,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
-	VideoProcessingStatus string                 `protobuf:"bytes,7,opt,name=video_processing_status,json=videoProcessingStatus,proto3" json:"video_processing_status,omitempty"`
+	VideoProcessingStatus *string                `protobuf:"bytes,7,opt,name=video_processing_status,json=videoProcessingStatus,proto3,oneof" json:"video_processing_status,omitempty"`
 	Duration              *float32               `protobuf:"fixed32,8,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
 	AspectRatio           *string                `protobuf:"bytes,9,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
 	Width                 *int32                 `protobuf:"varint,10,opt,name=width,proto3,oneof" json:"width,omitempty"`
@@ -595,7 +995,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[8]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -607,7 +1007,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[8]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -620,7 +1020,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{8}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *UpdateResponse) GetId() string {
@@ -652,8 +1052,8 @@ func (x *UpdateResponse) GetMuxPlaybackId() string {
 }
 
 func (x *UpdateResponse) GetVideoProcessingStatus() string {
-	if x != nil {
-		return x.VideoProcessingStatus
+	if x != nil && x.VideoProcessingStatus != nil {
+		return *x.VideoProcessingStatus
 	}
 	return ""
 }
@@ -709,7 +1109,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[9]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -721,7 +1121,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[9]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -734,7 +1134,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{9}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -753,7 +1153,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[10]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -765,7 +1165,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[10]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -778,10 +1178,186 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{10}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *DeleteResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeletePermanentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeletePermanentRequest) Reset() {
+	*x = DeletePermanentRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeletePermanentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeletePermanentRequest) ProtoMessage() {}
+
+func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
+func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeletePermanentRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeletePermanentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeletePermanentResponse) Reset() {
+	*x = DeletePermanentResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeletePermanentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeletePermanentResponse) ProtoMessage() {}
+
+func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
+func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *DeletePermanentResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type RestoreRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RestoreRequest) Reset() {
+	*x = RestoreRequest{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RestoreRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RestoreRequest) ProtoMessage() {}
+
+func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
+func (*RestoreRequest) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *RestoreRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type RestoreResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RestoreResponse) Reset() {
+	*x = RestoreResponse{}
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RestoreResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RestoreResponse) ProtoMessage() {}
+
+func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
+func (*RestoreResponse) Descriptor() ([]byte, []int) {
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *RestoreResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -797,7 +1373,7 @@ type CreateUploadURLRequest struct {
 
 func (x *CreateUploadURLRequest) Reset() {
 	*x = CreateUploadURLRequest{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -809,7 +1385,7 @@ func (x *CreateUploadURLRequest) String() string {
 func (*CreateUploadURLRequest) ProtoMessage() {}
 
 func (x *CreateUploadURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[11]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -822,7 +1398,7 @@ func (x *CreateUploadURLRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUploadURLRequest.ProtoReflect.Descriptor instead.
 func (*CreateUploadURLRequest) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{11}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CreateUploadURLRequest) GetPartId() string {
@@ -841,7 +1417,7 @@ type CreateUploadURLResponse struct {
 
 func (x *CreateUploadURLResponse) Reset() {
 	*x = CreateUploadURLResponse{}
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -853,7 +1429,7 @@ func (x *CreateUploadURLResponse) String() string {
 func (*CreateUploadURLResponse) ProtoMessage() {}
 
 func (x *CreateUploadURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[12]
+	mi := &file_mux_upload_v0_mux_upload_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -866,7 +1442,7 @@ func (x *CreateUploadURLResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUploadURLResponse.ProtoReflect.Descriptor instead.
 func (*CreateUploadURLResponse) Descriptor() ([]byte, []int) {
-	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{12}
+	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *CreateUploadURLResponse) GetUploadUrl() string {
@@ -880,24 +1456,27 @@ var File_mux_upload_v0_mux_upload_proto protoreflect.FileDescriptor
 
 const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"\n" +
-	"\x1emux_upload/v0/mux_upload.proto\x12\rmux_upload.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x91\x05\n" +
+	"\x1emux_upload/v0/mux_upload.proto\x12\rmux_upload.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xe0\x05\n" +
 	"\tMuxUpload\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12'\n" +
-	"\rmux_upload_id\x18\x04 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
-	"\fmux_asset_id\x18\x05 \x01(\tH\x01R\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
+	"\n" +
+	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12'\n" +
+	"\rmux_upload_id\x18\x05 \x01(\tH\x01R\vmuxUploadId\x88\x01\x01\x12%\n" +
+	"\fmux_asset_id\x18\x06 \x01(\tH\x02R\n" +
 	"muxAssetId\x88\x01\x01\x12+\n" +
-	"\x0fmux_playback_id\x18\x06 \x01(\tH\x02R\rmuxPlaybackId\x88\x01\x01\x126\n" +
-	"\x17video_processing_status\x18\a \x01(\tR\x15videoProcessingStatus\x12\x1f\n" +
-	"\bduration\x18\b \x01(\x02H\x03R\bduration\x88\x01\x01\x12&\n" +
-	"\faspect_ratio\x18\t \x01(\tH\x04R\vaspectRatio\x88\x01\x01\x12\x19\n" +
-	"\x05width\x18\n" +
-	" \x01(\x05H\x05R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\v \x01(\x05H\x06R\x06height\x88\x01\x01\x12I\n" +
-	"\x10asset_created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\aR\x0eassetCreatedAt\x88\x01\x01B\x10\n" +
+	"\x0fmux_playback_id\x18\a \x01(\tH\x03R\rmuxPlaybackId\x88\x01\x01\x126\n" +
+	"\x17video_processing_status\x18\b \x01(\tR\x15videoProcessingStatus\x12\x1f\n" +
+	"\bduration\x18\t \x01(\x02H\x04R\bduration\x88\x01\x01\x12&\n" +
+	"\faspect_ratio\x18\n" +
+	" \x01(\tH\x05R\vaspectRatio\x88\x01\x01\x12\x19\n" +
+	"\x05width\x18\v \x01(\x05H\x06R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\f \x01(\x05H\aR\x06height\x88\x01\x01\x12I\n" +
+	"\x10asset_created_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\bR\x0eassetCreatedAt\x88\x01\x01B\r\n" +
+	"\v_deleted_atB\x10\n" +
 	"\x0e_mux_upload_idB\x0f\n" +
 	"\r_mux_asset_idB\x12\n" +
 	"\x10_mux_playback_idB\v\n" +
@@ -911,13 +1490,38 @@ const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"F\n" +
 	"\vGetResponse\x127\n" +
 	"\n" +
+	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"'\n" +
+	"\x15GetWithDeletedRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"Q\n" +
+	"\x16GetWithDeletedResponse\x127\n" +
+	"\n" +
+	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"+\n" +
+	"\x19GetWithUnpublishedRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
+	"\x1aGetWithUnpublishedResponse\x127\n" +
+	"\n" +
 	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\";\n" +
 	"\vListRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"I\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"_\n" +
 	"\fListResponse\x129\n" +
 	"\vmux_uploads\x18\x01 \x03(\v2\x18.mux_upload.v0.MuxUploadR\n" +
-	"muxUploads\"\x82\x01\n" +
+	"muxUploads\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"B\n" +
+	"\x12ListDeletedRequest\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"f\n" +
+	"\x13ListDeletedResponse\x129\n" +
+	"\vmux_uploads\x18\x01 \x03(\v2\x18.mux_upload.v0.MuxUploadR\n" +
+	"muxUploads\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"F\n" +
+	"\x16ListUnpublishedRequest\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"j\n" +
+	"\x17ListUnpublishedResponse\x129\n" +
+	"\vmux_uploads\x18\x01 \x03(\v2\x18.mux_upload.v0.MuxUploadR\n" +
+	"muxUploads\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\x82\x01\n" +
 	"\rCreateRequest\x12'\n" +
 	"\rmux_upload_id\x18\x01 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
 	"\fmux_asset_id\x18\x02 \x01(\tH\x01R\n" +
@@ -926,48 +1530,50 @@ const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"\r_mux_asset_id\"I\n" +
 	"\x0eCreateResponse\x127\n" +
 	"\n" +
-	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"\xf1\x04\n" +
+	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"\x92\x05\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
 	"\rmux_upload_id\x18\x04 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
 	"\fmux_asset_id\x18\x05 \x01(\tH\x01R\n" +
 	"muxAssetId\x88\x01\x01\x12+\n" +
-	"\x0fmux_playback_id\x18\x06 \x01(\tH\x02R\rmuxPlaybackId\x88\x01\x01\x126\n" +
-	"\x17video_processing_status\x18\a \x01(\tR\x15videoProcessingStatus\x12\x1f\n" +
-	"\bduration\x18\b \x01(\x02H\x03R\bduration\x88\x01\x01\x12&\n" +
-	"\faspect_ratio\x18\t \x01(\tH\x04R\vaspectRatio\x88\x01\x01\x12\x19\n" +
+	"\x0fmux_playback_id\x18\x06 \x01(\tH\x02R\rmuxPlaybackId\x88\x01\x01\x12;\n" +
+	"\x17video_processing_status\x18\a \x01(\tH\x03R\x15videoProcessingStatus\x88\x01\x01\x12\x1f\n" +
+	"\bduration\x18\b \x01(\x02H\x04R\bduration\x88\x01\x01\x12&\n" +
+	"\faspect_ratio\x18\t \x01(\tH\x05R\vaspectRatio\x88\x01\x01\x12\x19\n" +
 	"\x05width\x18\n" +
-	" \x01(\x05H\x05R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\v \x01(\x05H\x06R\x06height\x88\x01\x01\x12I\n" +
-	"\x10asset_created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\aR\x0eassetCreatedAt\x88\x01\x01\x12@\n" +
-	"\vupdate_mask\x18\r \x01(\v2\x1a.google.protobuf.FieldMaskH\bR\n" +
+	" \x01(\x05H\x06R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\v \x01(\x05H\aR\x06height\x88\x01\x01\x12I\n" +
+	"\x10asset_created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\bR\x0eassetCreatedAt\x88\x01\x01\x12@\n" +
+	"\vupdate_mask\x18\r \x01(\v2\x1a.google.protobuf.FieldMaskH\tR\n" +
 	"updateMask\x88\x01\x01B\x10\n" +
 	"\x0e_mux_upload_idB\x0f\n" +
 	"\r_mux_asset_idB\x12\n" +
-	"\x10_mux_playback_idB\v\n" +
+	"\x10_mux_playback_idB\x1a\n" +
+	"\x18_video_processing_statusB\v\n" +
 	"\t_durationB\x0f\n" +
 	"\r_aspect_ratioB\b\n" +
 	"\x06_widthB\t\n" +
 	"\a_heightB\x13\n" +
 	"\x11_asset_created_atB\x0e\n" +
-	"\f_update_mask\"\xe7\x04\n" +
+	"\f_update_mask\"\x88\x05\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
 	"\rmux_upload_id\x18\x04 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
 	"\fmux_asset_id\x18\x05 \x01(\tH\x01R\n" +
 	"muxAssetId\x88\x01\x01\x12+\n" +
-	"\x0fmux_playback_id\x18\x06 \x01(\tH\x02R\rmuxPlaybackId\x88\x01\x01\x126\n" +
-	"\x17video_processing_status\x18\a \x01(\tR\x15videoProcessingStatus\x12\x1f\n" +
-	"\bduration\x18\b \x01(\x02H\x03R\bduration\x88\x01\x01\x12&\n" +
-	"\faspect_ratio\x18\t \x01(\tH\x04R\vaspectRatio\x88\x01\x01\x12\x19\n" +
+	"\x0fmux_playback_id\x18\x06 \x01(\tH\x02R\rmuxPlaybackId\x88\x01\x01\x12;\n" +
+	"\x17video_processing_status\x18\a \x01(\tH\x03R\x15videoProcessingStatus\x88\x01\x01\x12\x1f\n" +
+	"\bduration\x18\b \x01(\x02H\x04R\bduration\x88\x01\x01\x12&\n" +
+	"\faspect_ratio\x18\t \x01(\tH\x05R\vaspectRatio\x88\x01\x01\x12\x19\n" +
 	"\x05width\x18\n" +
-	" \x01(\x05H\x05R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\v \x01(\x05H\x06R\x06height\x88\x01\x01\x12I\n" +
-	"\x10asset_created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\aR\x0eassetCreatedAt\x88\x01\x01\x129\n" +
-	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.FieldMaskH\bR\aupdated\x88\x01\x01B\x10\n" +
+	" \x01(\x05H\x06R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\v \x01(\x05H\aR\x06height\x88\x01\x01\x12I\n" +
+	"\x10asset_created_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\bR\x0eassetCreatedAt\x88\x01\x01\x129\n" +
+	"\aupdated\x18\r \x01(\v2\x1a.google.protobuf.FieldMaskH\tR\aupdated\x88\x01\x01B\x10\n" +
 	"\x0e_mux_upload_idB\x0f\n" +
 	"\r_mux_asset_idB\x12\n" +
-	"\x10_mux_playback_idB\v\n" +
+	"\x10_mux_playback_idB\x1a\n" +
+	"\x18_video_processing_statusB\v\n" +
 	"\t_durationB\x0f\n" +
 	"\r_aspect_ratioB\b\n" +
 	"\x06_widthB\t\n" +
@@ -978,18 +1584,32 @@ const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
+	"\x16DeletePermanentRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\")\n" +
+	"\x17DeletePermanentResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
+	"\x0eRestoreRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
+	"\x0fRestoreResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"1\n" +
 	"\x16CreateUploadURLRequest\x12\x17\n" +
 	"\apart_id\x18\x01 \x01(\tR\x06partId\"8\n" +
 	"\x17CreateUploadURLResponse\x12\x1d\n" +
 	"\n" +
-	"upload_url\x18\x01 \x01(\tR\tuploadUrl2\xd5\x03\n" +
+	"upload_url\x18\x01 \x01(\tR\tuploadUrl2\x8f\b\n" +
 	"\x10MuxUploadService\x12>\n" +
-	"\x03Get\x12\x19.mux_upload.v0.GetRequest\x1a\x1a.mux_upload.v0.GetResponse\"\x00\x12A\n" +
-	"\x04List\x12\x1a.mux_upload.v0.ListRequest\x1a\x1b.mux_upload.v0.ListResponse\"\x00\x12G\n" +
+	"\x03Get\x12\x19.mux_upload.v0.GetRequest\x1a\x1a.mux_upload.v0.GetResponse\"\x00\x12_\n" +
+	"\x0eGetWithDeleted\x12$.mux_upload.v0.GetWithDeletedRequest\x1a%.mux_upload.v0.GetWithDeletedResponse\"\x00\x12k\n" +
+	"\x12GetWithUnpublished\x12(.mux_upload.v0.GetWithUnpublishedRequest\x1a).mux_upload.v0.GetWithUnpublishedResponse\"\x00\x12A\n" +
+	"\x04List\x12\x1a.mux_upload.v0.ListRequest\x1a\x1b.mux_upload.v0.ListResponse\"\x00\x12V\n" +
+	"\vListDeleted\x12!.mux_upload.v0.ListDeletedRequest\x1a\".mux_upload.v0.ListDeletedResponse\"\x00\x12b\n" +
+	"\x0fListUnpublished\x12%.mux_upload.v0.ListUnpublishedRequest\x1a&.mux_upload.v0.ListUnpublishedResponse\"\x00\x12G\n" +
 	"\x06Create\x12\x1c.mux_upload.v0.CreateRequest\x1a\x1d.mux_upload.v0.CreateResponse\"\x00\x12G\n" +
 	"\x06Update\x12\x1c.mux_upload.v0.UpdateRequest\x1a\x1d.mux_upload.v0.UpdateResponse\"\x00\x12G\n" +
-	"\x06Delete\x12\x1c.mux_upload.v0.DeleteRequest\x1a\x1d.mux_upload.v0.DeleteResponse\"\x00\x12c\n" +
+	"\x06Delete\x12\x1c.mux_upload.v0.DeleteRequest\x1a\x1d.mux_upload.v0.DeleteResponse\"\x00\x12b\n" +
+	"\x0fDeletePermanent\x12%.mux_upload.v0.DeletePermanentRequest\x1a&.mux_upload.v0.DeletePermanentResponse\"\x00\x12J\n" +
+	"\aRestore\x12\x1d.mux_upload.v0.RestoreRequest\x1a\x1e.mux_upload.v0.RestoreResponse\"\x00\x12c\n" +
 	"\x10CreatetUploadURL\x12%.mux_upload.v0.CreateUploadURLRequest\x1a&.mux_upload.v0.CreateUploadURLResponse\"\x00B;Z9github.com/mikhail5545/proto-go/proto/mux_upload/v0;muxpbb\x06proto3"
 
 var (
@@ -1004,52 +1624,81 @@ func file_mux_upload_v0_mux_upload_proto_rawDescGZIP() []byte {
 	return file_mux_upload_v0_mux_upload_proto_rawDescData
 }
 
-var file_mux_upload_v0_mux_upload_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_mux_upload_v0_mux_upload_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_mux_upload_v0_mux_upload_proto_goTypes = []any{
-	(*MuxUpload)(nil),               // 0: mux_upload.v0.MuxUpload
-	(*GetRequest)(nil),              // 1: mux_upload.v0.GetRequest
-	(*GetResponse)(nil),             // 2: mux_upload.v0.GetResponse
-	(*ListRequest)(nil),             // 3: mux_upload.v0.ListRequest
-	(*ListResponse)(nil),            // 4: mux_upload.v0.ListResponse
-	(*CreateRequest)(nil),           // 5: mux_upload.v0.CreateRequest
-	(*CreateResponse)(nil),          // 6: mux_upload.v0.CreateResponse
-	(*UpdateRequest)(nil),           // 7: mux_upload.v0.UpdateRequest
-	(*UpdateResponse)(nil),          // 8: mux_upload.v0.UpdateResponse
-	(*DeleteRequest)(nil),           // 9: mux_upload.v0.DeleteRequest
-	(*DeleteResponse)(nil),          // 10: mux_upload.v0.DeleteResponse
-	(*CreateUploadURLRequest)(nil),  // 11: mux_upload.v0.CreateUploadURLRequest
-	(*CreateUploadURLResponse)(nil), // 12: mux_upload.v0.CreateUploadURLResponse
-	(*timestamppb.Timestamp)(nil),   // 13: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),   // 14: google.protobuf.FieldMask
+	(*MuxUpload)(nil),                  // 0: mux_upload.v0.MuxUpload
+	(*GetRequest)(nil),                 // 1: mux_upload.v0.GetRequest
+	(*GetResponse)(nil),                // 2: mux_upload.v0.GetResponse
+	(*GetWithDeletedRequest)(nil),      // 3: mux_upload.v0.GetWithDeletedRequest
+	(*GetWithDeletedResponse)(nil),     // 4: mux_upload.v0.GetWithDeletedResponse
+	(*GetWithUnpublishedRequest)(nil),  // 5: mux_upload.v0.GetWithUnpublishedRequest
+	(*GetWithUnpublishedResponse)(nil), // 6: mux_upload.v0.GetWithUnpublishedResponse
+	(*ListRequest)(nil),                // 7: mux_upload.v0.ListRequest
+	(*ListResponse)(nil),               // 8: mux_upload.v0.ListResponse
+	(*ListDeletedRequest)(nil),         // 9: mux_upload.v0.ListDeletedRequest
+	(*ListDeletedResponse)(nil),        // 10: mux_upload.v0.ListDeletedResponse
+	(*ListUnpublishedRequest)(nil),     // 11: mux_upload.v0.ListUnpublishedRequest
+	(*ListUnpublishedResponse)(nil),    // 12: mux_upload.v0.ListUnpublishedResponse
+	(*CreateRequest)(nil),              // 13: mux_upload.v0.CreateRequest
+	(*CreateResponse)(nil),             // 14: mux_upload.v0.CreateResponse
+	(*UpdateRequest)(nil),              // 15: mux_upload.v0.UpdateRequest
+	(*UpdateResponse)(nil),             // 16: mux_upload.v0.UpdateResponse
+	(*DeleteRequest)(nil),              // 17: mux_upload.v0.DeleteRequest
+	(*DeleteResponse)(nil),             // 18: mux_upload.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),     // 19: mux_upload.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),    // 20: mux_upload.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),             // 21: mux_upload.v0.RestoreRequest
+	(*RestoreResponse)(nil),            // 22: mux_upload.v0.RestoreResponse
+	(*CreateUploadURLRequest)(nil),     // 23: mux_upload.v0.CreateUploadURLRequest
+	(*CreateUploadURLResponse)(nil),    // 24: mux_upload.v0.CreateUploadURLResponse
+	(*timestamppb.Timestamp)(nil),      // 25: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),      // 26: google.protobuf.FieldMask
 }
 var file_mux_upload_v0_mux_upload_proto_depIdxs = []int32{
-	13, // 0: mux_upload.v0.MuxUpload.created_at:type_name -> google.protobuf.Timestamp
-	13, // 1: mux_upload.v0.MuxUpload.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 2: mux_upload.v0.MuxUpload.asset_created_at:type_name -> google.protobuf.Timestamp
-	0,  // 3: mux_upload.v0.GetResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
-	0,  // 4: mux_upload.v0.ListResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
-	0,  // 5: mux_upload.v0.CreateResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
-	13, // 6: mux_upload.v0.UpdateRequest.asset_created_at:type_name -> google.protobuf.Timestamp
-	14, // 7: mux_upload.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	13, // 8: mux_upload.v0.UpdateResponse.asset_created_at:type_name -> google.protobuf.Timestamp
-	14, // 9: mux_upload.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
-	1,  // 10: mux_upload.v0.MuxUploadService.Get:input_type -> mux_upload.v0.GetRequest
-	3,  // 11: mux_upload.v0.MuxUploadService.List:input_type -> mux_upload.v0.ListRequest
-	5,  // 12: mux_upload.v0.MuxUploadService.Create:input_type -> mux_upload.v0.CreateRequest
-	7,  // 13: mux_upload.v0.MuxUploadService.Update:input_type -> mux_upload.v0.UpdateRequest
-	9,  // 14: mux_upload.v0.MuxUploadService.Delete:input_type -> mux_upload.v0.DeleteRequest
-	11, // 15: mux_upload.v0.MuxUploadService.CreatetUploadURL:input_type -> mux_upload.v0.CreateUploadURLRequest
-	2,  // 16: mux_upload.v0.MuxUploadService.Get:output_type -> mux_upload.v0.GetResponse
-	4,  // 17: mux_upload.v0.MuxUploadService.List:output_type -> mux_upload.v0.ListResponse
-	6,  // 18: mux_upload.v0.MuxUploadService.Create:output_type -> mux_upload.v0.CreateResponse
-	8,  // 19: mux_upload.v0.MuxUploadService.Update:output_type -> mux_upload.v0.UpdateResponse
-	10, // 20: mux_upload.v0.MuxUploadService.Delete:output_type -> mux_upload.v0.DeleteResponse
-	12, // 21: mux_upload.v0.MuxUploadService.CreatetUploadURL:output_type -> mux_upload.v0.CreateUploadURLResponse
-	16, // [16:22] is the sub-list for method output_type
-	10, // [10:16] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	25, // 0: mux_upload.v0.MuxUpload.created_at:type_name -> google.protobuf.Timestamp
+	25, // 1: mux_upload.v0.MuxUpload.updated_at:type_name -> google.protobuf.Timestamp
+	25, // 2: mux_upload.v0.MuxUpload.deleted_at:type_name -> google.protobuf.Timestamp
+	25, // 3: mux_upload.v0.MuxUpload.asset_created_at:type_name -> google.protobuf.Timestamp
+	0,  // 4: mux_upload.v0.GetResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
+	0,  // 5: mux_upload.v0.GetWithDeletedResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
+	0,  // 6: mux_upload.v0.GetWithUnpublishedResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
+	0,  // 7: mux_upload.v0.ListResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
+	0,  // 8: mux_upload.v0.ListDeletedResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
+	0,  // 9: mux_upload.v0.ListUnpublishedResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
+	0,  // 10: mux_upload.v0.CreateResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
+	25, // 11: mux_upload.v0.UpdateRequest.asset_created_at:type_name -> google.protobuf.Timestamp
+	26, // 12: mux_upload.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	25, // 13: mux_upload.v0.UpdateResponse.asset_created_at:type_name -> google.protobuf.Timestamp
+	26, // 14: mux_upload.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	1,  // 15: mux_upload.v0.MuxUploadService.Get:input_type -> mux_upload.v0.GetRequest
+	3,  // 16: mux_upload.v0.MuxUploadService.GetWithDeleted:input_type -> mux_upload.v0.GetWithDeletedRequest
+	5,  // 17: mux_upload.v0.MuxUploadService.GetWithUnpublished:input_type -> mux_upload.v0.GetWithUnpublishedRequest
+	7,  // 18: mux_upload.v0.MuxUploadService.List:input_type -> mux_upload.v0.ListRequest
+	9,  // 19: mux_upload.v0.MuxUploadService.ListDeleted:input_type -> mux_upload.v0.ListDeletedRequest
+	11, // 20: mux_upload.v0.MuxUploadService.ListUnpublished:input_type -> mux_upload.v0.ListUnpublishedRequest
+	13, // 21: mux_upload.v0.MuxUploadService.Create:input_type -> mux_upload.v0.CreateRequest
+	15, // 22: mux_upload.v0.MuxUploadService.Update:input_type -> mux_upload.v0.UpdateRequest
+	17, // 23: mux_upload.v0.MuxUploadService.Delete:input_type -> mux_upload.v0.DeleteRequest
+	19, // 24: mux_upload.v0.MuxUploadService.DeletePermanent:input_type -> mux_upload.v0.DeletePermanentRequest
+	21, // 25: mux_upload.v0.MuxUploadService.Restore:input_type -> mux_upload.v0.RestoreRequest
+	23, // 26: mux_upload.v0.MuxUploadService.CreatetUploadURL:input_type -> mux_upload.v0.CreateUploadURLRequest
+	2,  // 27: mux_upload.v0.MuxUploadService.Get:output_type -> mux_upload.v0.GetResponse
+	4,  // 28: mux_upload.v0.MuxUploadService.GetWithDeleted:output_type -> mux_upload.v0.GetWithDeletedResponse
+	6,  // 29: mux_upload.v0.MuxUploadService.GetWithUnpublished:output_type -> mux_upload.v0.GetWithUnpublishedResponse
+	8,  // 30: mux_upload.v0.MuxUploadService.List:output_type -> mux_upload.v0.ListResponse
+	10, // 31: mux_upload.v0.MuxUploadService.ListDeleted:output_type -> mux_upload.v0.ListDeletedResponse
+	12, // 32: mux_upload.v0.MuxUploadService.ListUnpublished:output_type -> mux_upload.v0.ListUnpublishedResponse
+	14, // 33: mux_upload.v0.MuxUploadService.Create:output_type -> mux_upload.v0.CreateResponse
+	16, // 34: mux_upload.v0.MuxUploadService.Update:output_type -> mux_upload.v0.UpdateResponse
+	18, // 35: mux_upload.v0.MuxUploadService.Delete:output_type -> mux_upload.v0.DeleteResponse
+	20, // 36: mux_upload.v0.MuxUploadService.DeletePermanent:output_type -> mux_upload.v0.DeletePermanentResponse
+	22, // 37: mux_upload.v0.MuxUploadService.Restore:output_type -> mux_upload.v0.RestoreResponse
+	24, // 38: mux_upload.v0.MuxUploadService.CreatetUploadURL:output_type -> mux_upload.v0.CreateUploadURLResponse
+	27, // [27:39] is the sub-list for method output_type
+	15, // [15:27] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_mux_upload_v0_mux_upload_proto_init() }
@@ -1058,16 +1707,16 @@ func file_mux_upload_v0_mux_upload_proto_init() {
 		return
 	}
 	file_mux_upload_v0_mux_upload_proto_msgTypes[0].OneofWrappers = []any{}
-	file_mux_upload_v0_mux_upload_proto_msgTypes[5].OneofWrappers = []any{}
-	file_mux_upload_v0_mux_upload_proto_msgTypes[7].OneofWrappers = []any{}
-	file_mux_upload_v0_mux_upload_proto_msgTypes[8].OneofWrappers = []any{}
+	file_mux_upload_v0_mux_upload_proto_msgTypes[13].OneofWrappers = []any{}
+	file_mux_upload_v0_mux_upload_proto_msgTypes[15].OneofWrappers = []any{}
+	file_mux_upload_v0_mux_upload_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_mux_upload_v0_mux_upload_proto_rawDesc), len(file_mux_upload_v0_mux_upload_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

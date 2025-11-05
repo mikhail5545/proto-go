@@ -28,15 +28,16 @@ message MuxUpload{
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
-    optional string mux_upload_id = 4;
-    optional string mux_asset_id = 5;
-    optional string mux_playback_id = 6;
-    string video_processing_status = 7;
-    optional float duration = 8;
-    optional string aspect_ratio = 9;
-    optional int32 width = 10;
-    optional int32 height = 11;
-    optional google.protobuf.Timestamp asset_created_at = 12;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    optional string mux_upload_id = 5;
+    optional string mux_asset_id = 6;
+    optional string mux_playback_id = 7;
+    string video_processing_status = 8;
+    optional float duration = 9;
+    optional string aspect_ratio = 10;
+    optional int32 width = 11;
+    optional int32 height = 12;
+    optional google.protobuf.Timestamp asset_created_at = 13;
 }
 
 message GetRequest {
@@ -47,6 +48,22 @@ message GetResponse {
     MuxUpload mux_upload = 1;
 }
 
+message GetWithDeletedRequest {
+    string id = 1;
+}
+
+message GetWithDeletedResponse {
+    MuxUpload mux_upload = 1;
+}
+
+message GetWithUnpublishedRequest {
+    string id = 1;
+}
+
+message GetWithUnpublishedResponse {
+    MuxUpload mux_upload = 1;
+}
+
 message ListRequest {
     int32 limit = 1;
     int32 offset = 2;
@@ -54,6 +71,27 @@ message ListRequest {
 
 message ListResponse {
     repeated MuxUpload mux_uploads = 1;
+    int64 total = 2;
+}
+
+message ListDeletedRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListDeletedResponse {
+    repeated MuxUpload mux_uploads = 1;
+    int64 total = 2;
+}
+
+message ListUnpublishedRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListUnpublishedResponse {
+    repeated MuxUpload mux_uploads = 1;
+    int64 total = 2;
 }
 
 message CreateRequest {
@@ -70,7 +108,7 @@ message UpdateRequest {
     optional string mux_upload_id = 4;
     optional string mux_asset_id = 5;
     optional string mux_playback_id = 6;
-    string video_processing_status = 7;
+    optional string video_processing_status = 7;
     optional float duration = 8;
     optional string aspect_ratio = 9;
     optional int32 width = 10;
@@ -84,7 +122,7 @@ message UpdateResponse {
     optional string mux_upload_id = 4;
     optional string mux_asset_id = 5;
     optional string mux_playback_id = 6;
-    string video_processing_status = 7;
+    optional string video_processing_status = 7;
     optional float duration = 8;
     optional string aspect_ratio = 9;
     optional int32 width = 10;
@@ -101,6 +139,22 @@ message DeleteResponse {
     string id = 1;
 }
 
+message DeletePermanentRequest {
+    string id = 1;
+}
+
+message DeletePermanentResponse {
+    string id = 1;
+}
+
+message RestoreRequest {
+    string id = 1;
+}
+
+message RestoreResponse {
+    string id = 1;
+}
+
 message CreateUploadURLRequest {
     string part_id = 1;
 }
@@ -109,12 +163,17 @@ message CreateUploadURLResponse {
     string upload_url = 1;
 }
 
-
 service MuxUploadService{
     rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    rpc GetWithUnpublished(GetWithUnpublishedRequest) returns (GetWithUnpublishedResponse) {}
     rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    rpc ListUnpublished(ListUnpublishedRequest) returns (ListUnpublishedResponse) {}
     rpc Create(CreateRequest) returns (CreateResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
     rpc CreatetUploadURL(CreateUploadURLRequest) returns (CreateUploadURLResponse) {}
 }
