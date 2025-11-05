@@ -757,11 +757,13 @@ func (x *ListUnpublishedResponse) GetTotal() int64 {
 }
 
 type CreateRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	MuxUploadId   *string                `protobuf:"bytes,1,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
-	MuxAssetId    *string                `protobuf:"bytes,2,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	VideoProcessingStatus string                 `protobuf:"bytes,1,opt,name=video_processing_status,json=videoProcessingStatus,proto3" json:"video_processing_status,omitempty"`
+	CoursePartId          string                 `protobuf:"bytes,2,opt,name=course_part_id,json=coursePartId,proto3" json:"course_part_id,omitempty"`
+	MuxUploadId           string                 `protobuf:"bytes,3,opt,name=mux_upload_id,json=muxUploadId,proto3" json:"mux_upload_id,omitempty"`
+	MuxAssetId            string                 `protobuf:"bytes,4,opt,name=mux_asset_id,json=muxAssetId,proto3" json:"mux_asset_id,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *CreateRequest) Reset() {
@@ -794,23 +796,38 @@ func (*CreateRequest) Descriptor() ([]byte, []int) {
 	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{13}
 }
 
+func (x *CreateRequest) GetVideoProcessingStatus() string {
+	if x != nil {
+		return x.VideoProcessingStatus
+	}
+	return ""
+}
+
+func (x *CreateRequest) GetCoursePartId() string {
+	if x != nil {
+		return x.CoursePartId
+	}
+	return ""
+}
+
 func (x *CreateRequest) GetMuxUploadId() string {
-	if x != nil && x.MuxUploadId != nil {
-		return *x.MuxUploadId
+	if x != nil {
+		return x.MuxUploadId
 	}
 	return ""
 }
 
 func (x *CreateRequest) GetMuxAssetId() string {
-	if x != nil && x.MuxAssetId != nil {
-		return *x.MuxAssetId
+	if x != nil {
+		return x.MuxAssetId
 	}
 	return ""
 }
 
 type CreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MuxUpload     *MuxUpload             `protobuf:"bytes,1,opt,name=mux_upload,json=muxUpload,proto3" json:"mux_upload,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CoursePartId  string                 `protobuf:"bytes,2,opt,name=course_part_id,json=coursePartId,proto3" json:"course_part_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -845,11 +862,18 @@ func (*CreateResponse) Descriptor() ([]byte, []int) {
 	return file_mux_upload_v0_mux_upload_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *CreateResponse) GetMuxUpload() *MuxUpload {
+func (x *CreateResponse) GetId() string {
 	if x != nil {
-		return x.MuxUpload
+		return x.Id
 	}
-	return nil
+	return ""
+}
+
+func (x *CreateResponse) GetCoursePartId() string {
+	if x != nil {
+		return x.CoursePartId
+	}
+	return ""
 }
 
 type UpdateRequest struct {
@@ -1521,16 +1545,16 @@ const file_mux_upload_v0_mux_upload_proto_rawDesc = "" +
 	"\x17ListUnpublishedResponse\x129\n" +
 	"\vmux_uploads\x18\x01 \x03(\v2\x18.mux_upload.v0.MuxUploadR\n" +
 	"muxUploads\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"\x82\x01\n" +
-	"\rCreateRequest\x12'\n" +
-	"\rmux_upload_id\x18\x01 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
-	"\fmux_asset_id\x18\x02 \x01(\tH\x01R\n" +
-	"muxAssetId\x88\x01\x01B\x10\n" +
-	"\x0e_mux_upload_idB\x0f\n" +
-	"\r_mux_asset_id\"I\n" +
-	"\x0eCreateResponse\x127\n" +
-	"\n" +
-	"mux_upload\x18\x01 \x01(\v2\x18.mux_upload.v0.MuxUploadR\tmuxUpload\"\x92\x05\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\xb3\x01\n" +
+	"\rCreateRequest\x126\n" +
+	"\x17video_processing_status\x18\x01 \x01(\tR\x15videoProcessingStatus\x12$\n" +
+	"\x0ecourse_part_id\x18\x02 \x01(\tR\fcoursePartId\x12\"\n" +
+	"\rmux_upload_id\x18\x03 \x01(\tR\vmuxUploadId\x12 \n" +
+	"\fmux_asset_id\x18\x04 \x01(\tR\n" +
+	"muxAssetId\"F\n" +
+	"\x0eCreateResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12$\n" +
+	"\x0ecourse_part_id\x18\x02 \x01(\tR\fcoursePartId\"\x92\x05\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
 	"\rmux_upload_id\x18\x04 \x01(\tH\x00R\vmuxUploadId\x88\x01\x01\x12%\n" +
@@ -1665,40 +1689,39 @@ var file_mux_upload_v0_mux_upload_proto_depIdxs = []int32{
 	0,  // 7: mux_upload.v0.ListResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
 	0,  // 8: mux_upload.v0.ListDeletedResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
 	0,  // 9: mux_upload.v0.ListUnpublishedResponse.mux_uploads:type_name -> mux_upload.v0.MuxUpload
-	0,  // 10: mux_upload.v0.CreateResponse.mux_upload:type_name -> mux_upload.v0.MuxUpload
-	25, // 11: mux_upload.v0.UpdateRequest.asset_created_at:type_name -> google.protobuf.Timestamp
-	26, // 12: mux_upload.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	25, // 13: mux_upload.v0.UpdateResponse.asset_created_at:type_name -> google.protobuf.Timestamp
-	26, // 14: mux_upload.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
-	1,  // 15: mux_upload.v0.MuxUploadService.Get:input_type -> mux_upload.v0.GetRequest
-	3,  // 16: mux_upload.v0.MuxUploadService.GetWithDeleted:input_type -> mux_upload.v0.GetWithDeletedRequest
-	5,  // 17: mux_upload.v0.MuxUploadService.GetWithUnpublished:input_type -> mux_upload.v0.GetWithUnpublishedRequest
-	7,  // 18: mux_upload.v0.MuxUploadService.List:input_type -> mux_upload.v0.ListRequest
-	9,  // 19: mux_upload.v0.MuxUploadService.ListDeleted:input_type -> mux_upload.v0.ListDeletedRequest
-	11, // 20: mux_upload.v0.MuxUploadService.ListUnpublished:input_type -> mux_upload.v0.ListUnpublishedRequest
-	13, // 21: mux_upload.v0.MuxUploadService.Create:input_type -> mux_upload.v0.CreateRequest
-	15, // 22: mux_upload.v0.MuxUploadService.Update:input_type -> mux_upload.v0.UpdateRequest
-	17, // 23: mux_upload.v0.MuxUploadService.Delete:input_type -> mux_upload.v0.DeleteRequest
-	19, // 24: mux_upload.v0.MuxUploadService.DeletePermanent:input_type -> mux_upload.v0.DeletePermanentRequest
-	21, // 25: mux_upload.v0.MuxUploadService.Restore:input_type -> mux_upload.v0.RestoreRequest
-	23, // 26: mux_upload.v0.MuxUploadService.CreatetUploadURL:input_type -> mux_upload.v0.CreateUploadURLRequest
-	2,  // 27: mux_upload.v0.MuxUploadService.Get:output_type -> mux_upload.v0.GetResponse
-	4,  // 28: mux_upload.v0.MuxUploadService.GetWithDeleted:output_type -> mux_upload.v0.GetWithDeletedResponse
-	6,  // 29: mux_upload.v0.MuxUploadService.GetWithUnpublished:output_type -> mux_upload.v0.GetWithUnpublishedResponse
-	8,  // 30: mux_upload.v0.MuxUploadService.List:output_type -> mux_upload.v0.ListResponse
-	10, // 31: mux_upload.v0.MuxUploadService.ListDeleted:output_type -> mux_upload.v0.ListDeletedResponse
-	12, // 32: mux_upload.v0.MuxUploadService.ListUnpublished:output_type -> mux_upload.v0.ListUnpublishedResponse
-	14, // 33: mux_upload.v0.MuxUploadService.Create:output_type -> mux_upload.v0.CreateResponse
-	16, // 34: mux_upload.v0.MuxUploadService.Update:output_type -> mux_upload.v0.UpdateResponse
-	18, // 35: mux_upload.v0.MuxUploadService.Delete:output_type -> mux_upload.v0.DeleteResponse
-	20, // 36: mux_upload.v0.MuxUploadService.DeletePermanent:output_type -> mux_upload.v0.DeletePermanentResponse
-	22, // 37: mux_upload.v0.MuxUploadService.Restore:output_type -> mux_upload.v0.RestoreResponse
-	24, // 38: mux_upload.v0.MuxUploadService.CreatetUploadURL:output_type -> mux_upload.v0.CreateUploadURLResponse
-	27, // [27:39] is the sub-list for method output_type
-	15, // [15:27] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	25, // 10: mux_upload.v0.UpdateRequest.asset_created_at:type_name -> google.protobuf.Timestamp
+	26, // 11: mux_upload.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	25, // 12: mux_upload.v0.UpdateResponse.asset_created_at:type_name -> google.protobuf.Timestamp
+	26, // 13: mux_upload.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	1,  // 14: mux_upload.v0.MuxUploadService.Get:input_type -> mux_upload.v0.GetRequest
+	3,  // 15: mux_upload.v0.MuxUploadService.GetWithDeleted:input_type -> mux_upload.v0.GetWithDeletedRequest
+	5,  // 16: mux_upload.v0.MuxUploadService.GetWithUnpublished:input_type -> mux_upload.v0.GetWithUnpublishedRequest
+	7,  // 17: mux_upload.v0.MuxUploadService.List:input_type -> mux_upload.v0.ListRequest
+	9,  // 18: mux_upload.v0.MuxUploadService.ListDeleted:input_type -> mux_upload.v0.ListDeletedRequest
+	11, // 19: mux_upload.v0.MuxUploadService.ListUnpublished:input_type -> mux_upload.v0.ListUnpublishedRequest
+	13, // 20: mux_upload.v0.MuxUploadService.Create:input_type -> mux_upload.v0.CreateRequest
+	15, // 21: mux_upload.v0.MuxUploadService.Update:input_type -> mux_upload.v0.UpdateRequest
+	17, // 22: mux_upload.v0.MuxUploadService.Delete:input_type -> mux_upload.v0.DeleteRequest
+	19, // 23: mux_upload.v0.MuxUploadService.DeletePermanent:input_type -> mux_upload.v0.DeletePermanentRequest
+	21, // 24: mux_upload.v0.MuxUploadService.Restore:input_type -> mux_upload.v0.RestoreRequest
+	23, // 25: mux_upload.v0.MuxUploadService.CreatetUploadURL:input_type -> mux_upload.v0.CreateUploadURLRequest
+	2,  // 26: mux_upload.v0.MuxUploadService.Get:output_type -> mux_upload.v0.GetResponse
+	4,  // 27: mux_upload.v0.MuxUploadService.GetWithDeleted:output_type -> mux_upload.v0.GetWithDeletedResponse
+	6,  // 28: mux_upload.v0.MuxUploadService.GetWithUnpublished:output_type -> mux_upload.v0.GetWithUnpublishedResponse
+	8,  // 29: mux_upload.v0.MuxUploadService.List:output_type -> mux_upload.v0.ListResponse
+	10, // 30: mux_upload.v0.MuxUploadService.ListDeleted:output_type -> mux_upload.v0.ListDeletedResponse
+	12, // 31: mux_upload.v0.MuxUploadService.ListUnpublished:output_type -> mux_upload.v0.ListUnpublishedResponse
+	14, // 32: mux_upload.v0.MuxUploadService.Create:output_type -> mux_upload.v0.CreateResponse
+	16, // 33: mux_upload.v0.MuxUploadService.Update:output_type -> mux_upload.v0.UpdateResponse
+	18, // 34: mux_upload.v0.MuxUploadService.Delete:output_type -> mux_upload.v0.DeleteResponse
+	20, // 35: mux_upload.v0.MuxUploadService.DeletePermanent:output_type -> mux_upload.v0.DeletePermanentResponse
+	22, // 36: mux_upload.v0.MuxUploadService.Restore:output_type -> mux_upload.v0.RestoreResponse
+	24, // 37: mux_upload.v0.MuxUploadService.CreatetUploadURL:output_type -> mux_upload.v0.CreateUploadURLResponse
+	26, // [26:38] is the sub-list for method output_type
+	14, // [14:26] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_mux_upload_v0_mux_upload_proto_init() }
@@ -1707,7 +1730,6 @@ func file_mux_upload_v0_mux_upload_proto_init() {
 		return
 	}
 	file_mux_upload_v0_mux_upload_proto_msgTypes[0].OneofWrappers = []any{}
-	file_mux_upload_v0_mux_upload_proto_msgTypes[13].OneofWrappers = []any{}
 	file_mux_upload_v0_mux_upload_proto_msgTypes[15].OneofWrappers = []any{}
 	file_mux_upload_v0_mux_upload_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}

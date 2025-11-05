@@ -95,12 +95,15 @@ message ListUnpublishedResponse {
 }
 
 message CreateRequest {
-    optional string mux_upload_id = 1;
-    optional string mux_asset_id = 2;
+    string video_processing_status = 1;
+    string course_part_id = 2;
+    string mux_upload_id = 3;
+    string mux_asset_id = 4;
 }
 
 message CreateResponse {
-    MuxUpload mux_upload = 1;
+    string id = 1;
+    string course_part_id = 2;
 }
 
 message UpdateRequest {
