@@ -36,18 +36,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MuxUploadService_Get_FullMethodName                = "/mux_upload.v0.MuxUploadService/Get"
-	MuxUploadService_GetWithDeleted_FullMethodName     = "/mux_upload.v0.MuxUploadService/GetWithDeleted"
-	MuxUploadService_GetWithUnpublished_FullMethodName = "/mux_upload.v0.MuxUploadService/GetWithUnpublished"
-	MuxUploadService_List_FullMethodName               = "/mux_upload.v0.MuxUploadService/List"
-	MuxUploadService_ListDeleted_FullMethodName        = "/mux_upload.v0.MuxUploadService/ListDeleted"
-	MuxUploadService_ListUnpublished_FullMethodName    = "/mux_upload.v0.MuxUploadService/ListUnpublished"
-	MuxUploadService_Create_FullMethodName             = "/mux_upload.v0.MuxUploadService/Create"
-	MuxUploadService_Update_FullMethodName             = "/mux_upload.v0.MuxUploadService/Update"
-	MuxUploadService_Delete_FullMethodName             = "/mux_upload.v0.MuxUploadService/Delete"
-	MuxUploadService_DeletePermanent_FullMethodName    = "/mux_upload.v0.MuxUploadService/DeletePermanent"
-	MuxUploadService_Restore_FullMethodName            = "/mux_upload.v0.MuxUploadService/Restore"
-	MuxUploadService_CreatetUploadURL_FullMethodName   = "/mux_upload.v0.MuxUploadService/CreatetUploadURL"
+	MuxUploadService_Get_FullMethodName              = "/mux_upload.v0.MuxUploadService/Get"
+	MuxUploadService_GetWithDeleted_FullMethodName   = "/mux_upload.v0.MuxUploadService/GetWithDeleted"
+	MuxUploadService_List_FullMethodName             = "/mux_upload.v0.MuxUploadService/List"
+	MuxUploadService_ListDeleted_FullMethodName      = "/mux_upload.v0.MuxUploadService/ListDeleted"
+	MuxUploadService_Create_FullMethodName           = "/mux_upload.v0.MuxUploadService/Create"
+	MuxUploadService_Update_FullMethodName           = "/mux_upload.v0.MuxUploadService/Update"
+	MuxUploadService_Delete_FullMethodName           = "/mux_upload.v0.MuxUploadService/Delete"
+	MuxUploadService_DeletePermanent_FullMethodName  = "/mux_upload.v0.MuxUploadService/DeletePermanent"
+	MuxUploadService_Restore_FullMethodName          = "/mux_upload.v0.MuxUploadService/Restore"
+	MuxUploadService_CreatetUploadURL_FullMethodName = "/mux_upload.v0.MuxUploadService/CreatetUploadURL"
 )
 
 // MuxUploadServiceClient is the client API for MuxUploadService service.
@@ -56,10 +54,8 @@ const (
 type MuxUploadServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
-	GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
-	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
@@ -96,16 +92,6 @@ func (c *muxUploadServiceClient) GetWithDeleted(ctx context.Context, in *GetWith
 	return out, nil
 }
 
-func (c *muxUploadServiceClient) GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWithUnpublishedResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_GetWithUnpublished_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *muxUploadServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListResponse)
@@ -120,16 +106,6 @@ func (c *muxUploadServiceClient) ListDeleted(ctx context.Context, in *ListDelete
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListDeletedResponse)
 	err := c.cc.Invoke(ctx, MuxUploadService_ListDeleted_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *muxUploadServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListUnpublishedResponse)
-	err := c.cc.Invoke(ctx, MuxUploadService_ListUnpublished_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -202,10 +178,8 @@ func (c *muxUploadServiceClient) CreatetUploadURL(ctx context.Context, in *Creat
 type MuxUploadServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
-	GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
-	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
@@ -228,17 +202,11 @@ func (UnimplementedMuxUploadServiceServer) Get(context.Context, *GetRequest) (*G
 func (UnimplementedMuxUploadServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
 }
-func (UnimplementedMuxUploadServiceServer) GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWithUnpublished not implemented")
-}
 func (UnimplementedMuxUploadServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedMuxUploadServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
-}
-func (UnimplementedMuxUploadServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListUnpublished not implemented")
 }
 func (UnimplementedMuxUploadServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
@@ -315,24 +283,6 @@ func _MuxUploadService_GetWithDeleted_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MuxUploadService_GetWithUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWithUnpublishedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).GetWithUnpublished(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MuxUploadService_GetWithUnpublished_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).GetWithUnpublished(ctx, req.(*GetWithUnpublishedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MuxUploadService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
@@ -365,24 +315,6 @@ func _MuxUploadService_ListDeleted_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MuxUploadServiceServer).ListDeleted(ctx, req.(*ListDeletedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MuxUploadService_ListUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListUnpublishedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MuxUploadServiceServer).ListUnpublished(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MuxUploadService_ListUnpublished_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MuxUploadServiceServer).ListUnpublished(ctx, req.(*ListUnpublishedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -511,20 +443,12 @@ var MuxUploadService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MuxUploadService_GetWithDeleted_Handler,
 		},
 		{
-			MethodName: "GetWithUnpublished",
-			Handler:    _MuxUploadService_GetWithUnpublished_Handler,
-		},
-		{
 			MethodName: "List",
 			Handler:    _MuxUploadService_List_Handler,
 		},
 		{
 			MethodName: "ListDeleted",
 			Handler:    _MuxUploadService_ListDeleted_Handler,
-		},
-		{
-			MethodName: "ListUnpublished",
-			Handler:    _MuxUploadService_ListUnpublished_Handler,
 		},
 		{
 			MethodName: "Create",
