@@ -179,6 +179,36 @@ message UpdateResponse{
     google.protobuf.FieldMask updated = 9;
 }
 
+message AddImageRequest{
+    string public_id = 1;
+    string url = 2;
+    string secure_url = 3;
+    string media_service_id = 4;
+}
+
+message AddImageResponse{
+    string media_service_id = 1;
+}
+
+message UpdateImageRequest {
+    optional string public_id = 1;
+    optional string url = 2;
+    optional string secure_url = 3;
+    string media_service_id = 4;
+    optional bool is_primary = 5;
+    optional int32 order = 6;
+}
+
+message UpdateImageResponse {
+    optional string public_id = 1;
+    optional string url = 2;
+    optional string secure_url = 3;
+    string media_service_id = 4;
+    optional bool is_primary = 5;
+    optional int32 order = 6;
+    google.protobuf.FieldMask updated = 7;
+}
+
 message DeleteRequest{
     string id = 1;
 }
@@ -216,6 +246,8 @@ service CourseService{
     rpc Publish(PublishRequest) returns (PublishResponse) {}
     rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc AddImage(AddImageRequest) returns (AddImageResponse) {}
+    rpc UpdateImage(UpdateImageRequest) returns (UpdateImageResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}
