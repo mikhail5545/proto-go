@@ -46,6 +46,8 @@ const (
 	TrainingSessionService_Publish_FullMethodName            = "/training_session.v0.TrainingSessionService/Publish"
 	TrainingSessionService_Unpublish_FullMethodName          = "/training_session.v0.TrainingSessionService/Unpublish"
 	TrainingSessionService_Update_FullMethodName             = "/training_session.v0.TrainingSessionService/Update"
+	TrainingSessionService_AddImage_FullMethodName           = "/training_session.v0.TrainingSessionService/AddImage"
+	TrainingSessionService_DeleteImage_FullMethodName        = "/training_session.v0.TrainingSessionService/DeleteImage"
 	TrainingSessionService_Delete_FullMethodName             = "/training_session.v0.TrainingSessionService/Delete"
 	TrainingSessionService_DeletePermanent_FullMethodName    = "/training_session.v0.TrainingSessionService/DeletePermanent"
 	TrainingSessionService_Restore_FullMethodName            = "/training_session.v0.TrainingSessionService/Restore"
@@ -65,6 +67,8 @@ type TrainingSessionServiceClient interface {
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
+	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -178,6 +182,26 @@ func (c *trainingSessionServiceClient) Update(ctx context.Context, in *UpdateReq
 	return out, nil
 }
 
+func (c *trainingSessionServiceClient) AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddImageResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_AddImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingSessionServiceClient) DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteImageResponse)
+	err := c.cc.Invoke(ctx, TrainingSessionService_DeleteImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *trainingSessionServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -222,6 +246,8 @@ type TrainingSessionServiceServer interface {
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
+	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -264,6 +290,12 @@ func (UnimplementedTrainingSessionServiceServer) Unpublish(context.Context, *Unp
 }
 func (UnimplementedTrainingSessionServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddImage not implemented")
+}
+func (UnimplementedTrainingSessionServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
 }
 func (UnimplementedTrainingSessionServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -476,6 +508,42 @@ func _TrainingSessionService_Update_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TrainingSessionService_AddImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).AddImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_AddImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).AddImage(ctx, req.(*AddImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingSessionService_DeleteImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingSessionServiceServer).DeleteImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingSessionService_DeleteImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingSessionServiceServer).DeleteImage(ctx, req.(*DeleteImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TrainingSessionService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -576,6 +644,14 @@ var TrainingSessionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _TrainingSessionService_Update_Handler,
+		},
+		{
+			MethodName: "AddImage",
+			Handler:    _TrainingSessionService_AddImage_Handler,
+		},
+		{
+			MethodName: "DeleteImage",
+			Handler:    _TrainingSessionService_DeleteImage_Handler,
 		},
 		{
 			MethodName: "Delete",

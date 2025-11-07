@@ -27,11 +27,10 @@ import "google/protobuf/field_mask.proto";
 option go_package = "github.com/mikhail5545/proto-go/proto/course/v0;coursepb";
 
 message Image{
-    string public_url = 1;
-    string secure_url = 2;
-    string cloudinary_id = 3;
-    bool is_primary = 4;
-    int32 order = 5;
+    string public_id = 1;
+    string url = 2;
+    string secure_url = 3;
+    string media_service_id = 4;
 }
 
 message Course {
@@ -47,7 +46,8 @@ message Course {
     int32 access_duration = 10;
     bool in_stock = 11;
     repeated Image images = 12;
-    repeated course_part.v0.CoursePart course_parts = 13;
+    int32 uploaded_image_amount = 13;
+    repeated course_part.v0.CoursePart course_parts = 14;
 }
 
 message CourseDetails{
@@ -184,29 +184,22 @@ message AddImageRequest{
     string url = 2;
     string secure_url = 3;
     string media_service_id = 4;
+    string owner_id = 5;
 }
 
 message AddImageResponse{
     string media_service_id = 1;
+    string owner_id = 2;
 }
 
-message UpdateImageRequest {
-    optional string public_id = 1;
-    optional string url = 2;
-    optional string secure_url = 3;
-    string media_service_id = 4;
-    optional bool is_primary = 5;
-    optional int32 order = 6;
+message DeleteImageRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
 }
 
-message UpdateImageResponse {
-    optional string public_id = 1;
-    optional string url = 2;
-    optional string secure_url = 3;
-    string media_service_id = 4;
-    optional bool is_primary = 5;
-    optional int32 order = 6;
-    google.protobuf.FieldMask updated = 7;
+message DeleteImageResponse{
+    string owner_id = 1;
+    string media_service_id = 2;
 }
 
 message DeleteRequest{
@@ -247,7 +240,7 @@ service CourseService{
     rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc AddImage(AddImageRequest) returns (AddImageResponse) {}
-    rpc UpdateImage(UpdateImageRequest) returns (UpdateImageResponse) {}
+    rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}

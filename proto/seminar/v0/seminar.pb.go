@@ -41,14 +41,13 @@ const (
 )
 
 type Image struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublicUrl     string                 `protobuf:"bytes,1,opt,name=public_url,json=publicUrl,proto3" json:"public_url,omitempty"`
-	SecureUrl     string                 `protobuf:"bytes,2,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
-	CloudinaryId  string                 `protobuf:"bytes,3,opt,name=cloudinary_id,json=cloudinaryId,proto3" json:"cloudinary_id,omitempty"`
-	IsPrimary     bool                   `protobuf:"varint,4,opt,name=is_primary,json=isPrimary,proto3" json:"is_primary,omitempty"`
-	Order         int32                  `protobuf:"varint,5,opt,name=order,proto3" json:"order,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Image) Reset() {
@@ -81,9 +80,16 @@ func (*Image) Descriptor() ([]byte, []int) {
 	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Image) GetPublicUrl() string {
+func (x *Image) GetPublicId() string {
 	if x != nil {
-		return x.PublicUrl
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *Image) GetUrl() string {
+	if x != nil {
+		return x.Url
 	}
 	return ""
 }
@@ -95,25 +101,11 @@ func (x *Image) GetSecureUrl() string {
 	return ""
 }
 
-func (x *Image) GetCloudinaryId() string {
+func (x *Image) GetMediaServiceId() string {
 	if x != nil {
-		return x.CloudinaryId
+		return x.MediaServiceId
 	}
 	return ""
-}
-
-func (x *Image) GetIsPrimary() bool {
-	if x != nil {
-		return x.IsPrimary
-	}
-	return false
-}
-
-func (x *Image) GetOrder() int32 {
-	if x != nil {
-		return x.Order
-	}
-	return 0
 }
 
 type Seminar struct {
@@ -137,6 +129,7 @@ type Seminar struct {
 	Place                   string                 `protobuf:"bytes,18,opt,name=place,proto3" json:"place,omitempty"`
 	LatePaymentDate         *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=late_payment_date,json=latePaymentDate,proto3" json:"late_payment_date,omitempty"`
 	InStock                 bool                   `protobuf:"varint,20,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
+	UploadedImageAmount     int32                  `protobuf:"varint,21,opt,name=uploaded_image_amount,json=uploadedImageAmount,proto3" json:"uploaded_image_amount,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -302,6 +295,13 @@ func (x *Seminar) GetInStock() bool {
 		return x.InStock
 	}
 	return false
+}
+
+func (x *Seminar) GetUploadedImageAmount() int32 {
+	if x != nil {
+		return x.UploadedImageAmount
+	}
+	return 0
 }
 
 type SeminarDetails struct {
@@ -1692,6 +1692,238 @@ func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
 	return nil
 }
 
+type AddImageRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,5,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageRequest) Reset() {
+	*x = AddImageRequest{}
+	mi := &file_seminar_v0_seminar_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageRequest) ProtoMessage() {}
+
+func (x *AddImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seminar_v0_seminar_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageRequest.ProtoReflect.Descriptor instead.
+func (*AddImageRequest) Descriptor() ([]byte, []int) {
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *AddImageRequest) GetPublicId() string {
+	if x != nil {
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetSecureUrl() string {
+	if x != nil {
+		return x.SecureUrl
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type AddImageResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageResponse) Reset() {
+	*x = AddImageResponse{}
+	mi := &file_seminar_v0_seminar_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageResponse) ProtoMessage() {}
+
+func (x *AddImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seminar_v0_seminar_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageResponse.ProtoReflect.Descriptor instead.
+func (*AddImageResponse) Descriptor() ([]byte, []int) {
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AddImageResponse) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type DeleteImageRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageRequest) Reset() {
+	*x = DeleteImageRequest{}
+	mi := &file_seminar_v0_seminar_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageRequest) ProtoMessage() {}
+
+func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_seminar_v0_seminar_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageRequest.ProtoReflect.Descriptor instead.
+func (*DeleteImageRequest) Descriptor() ([]byte, []int) {
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *DeleteImageRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeleteImageRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+type DeleteImageResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageResponse) Reset() {
+	*x = DeleteImageResponse{}
+	mi := &file_seminar_v0_seminar_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageResponse) ProtoMessage() {}
+
+func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_seminar_v0_seminar_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageResponse.ProtoReflect.Descriptor instead.
+func (*DeleteImageResponse) Descriptor() ([]byte, []int) {
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteImageResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeleteImageResponse) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1701,7 +1933,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[23]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1713,7 +1945,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[23]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1726,7 +1958,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{23}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1745,7 +1977,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[24]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1757,7 +1989,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[24]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1770,7 +2002,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{24}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1789,7 +2021,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[25]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1801,7 +2033,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[25]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1814,7 +2046,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{25}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1833,7 +2065,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[26]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1845,7 +2077,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[26]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1858,7 +2090,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{26}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -1877,7 +2109,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[27]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1889,7 +2121,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[27]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1902,7 +2134,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{27}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -1921,7 +2153,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_seminar_v0_seminar_proto_msgTypes[28]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1933,7 +2165,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_seminar_v0_seminar_proto_msgTypes[28]
+	mi := &file_seminar_v0_seminar_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1946,7 +2178,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{28}
+	return file_seminar_v0_seminar_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -1961,16 +2193,13 @@ var File_seminar_v0_seminar_proto protoreflect.FileDescriptor
 const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\n" +
 	"\x18seminar/v0/seminar.proto\x12\n" +
-	"seminar.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x9f\x01\n" +
-	"\x05Image\x12\x1d\n" +
+	"seminar.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x7f\n" +
+	"\x05Image\x12\x1b\n" +
+	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
 	"\n" +
-	"public_url\x18\x01 \x01(\tR\tpublicUrl\x12\x1d\n" +
-	"\n" +
-	"secure_url\x18\x02 \x01(\tR\tsecureUrl\x12#\n" +
-	"\rcloudinary_id\x18\x03 \x01(\tR\fcloudinaryId\x12\x1d\n" +
-	"\n" +
-	"is_primary\x18\x04 \x01(\bR\tisPrimary\x12\x14\n" +
-	"\x05order\x18\x05 \x01(\x05R\x05order\"\xef\x06\n" +
+	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\"\xa3\a\n" +
 	"\aSeminar\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1995,7 +2224,8 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"endingDate\x12\x14\n" +
 	"\x05place\x18\x12 \x01(\tR\x05place\x12F\n" +
 	"\x11late_payment_date\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\x0flatePaymentDate\x12\x19\n" +
-	"\bin_stock\x18\x14 \x01(\bR\ainStockB\r\n" +
+	"\bin_stock\x18\x14 \x01(\bR\ainStock\x122\n" +
+	"\x15uploaded_image_amount\x18\x15 \x01(\x05R\x13uploadedImageAmountB\r\n" +
 	"\v_deleted_at\"\xf4\x03\n" +
 	"\x0eSeminarDetails\x12-\n" +
 	"\aseminar\x18\x01 \x01(\v2\x13.seminar.v0.SeminarR\aseminar\x12+\n" +
@@ -2139,7 +2369,23 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x05_dateB\x0e\n" +
 	"\f_ending_dateB\b\n" +
 	"\x06_placeB\x14\n" +
-	"\x12_late_payment_date\"\x1f\n" +
+	"\x12_late_payment_date\"\xa4\x01\n" +
+	"\x0fAddImageRequest\x12\x1b\n" +
+	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
+	"\n" +
+	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x19\n" +
+	"\bowner_id\x18\x05 \x01(\tR\aownerId\"W\n" +
+	"\x10AddImageResponse\x12(\n" +
+	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\"Y\n" +
+	"\x12DeleteImageRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"Z\n" +
+	"\x13DeleteImageResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -2151,7 +2397,7 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xf8\a\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\x93\t\n" +
 	"\x0eSeminarService\x128\n" +
 	"\x03Get\x12\x16.seminar.v0.GetRequest\x1a\x17.seminar.v0.GetResponse\"\x00\x12Y\n" +
 	"\x0eGetWithDeleted\x12!.seminar.v0.GetWithDeletedRequest\x1a\".seminar.v0.GetWithDeletedResponse\"\x00\x12e\n" +
@@ -2162,7 +2408,9 @@ const file_seminar_v0_seminar_proto_rawDesc = "" +
 	"\x06Create\x12\x19.seminar.v0.CreateRequest\x1a\x1a.seminar.v0.CreateResponse\"\x00\x12D\n" +
 	"\aPublish\x12\x1a.seminar.v0.PublishRequest\x1a\x1b.seminar.v0.PublishResponse\"\x00\x12J\n" +
 	"\tUnpublish\x12\x1c.seminar.v0.UnpublishRequest\x1a\x1d.seminar.v0.UnpublishResponse\"\x00\x12A\n" +
-	"\x06Update\x12\x19.seminar.v0.UpdateRequest\x1a\x1a.seminar.v0.UpdateResponse\"\x00\x12A\n" +
+	"\x06Update\x12\x19.seminar.v0.UpdateRequest\x1a\x1a.seminar.v0.UpdateResponse\"\x00\x12G\n" +
+	"\bAddImage\x12\x1b.seminar.v0.AddImageRequest\x1a\x1c.seminar.v0.AddImageResponse\"\x00\x12P\n" +
+	"\vDeleteImage\x12\x1e.seminar.v0.DeleteImageRequest\x1a\x1f.seminar.v0.DeleteImageResponse\"\x00\x12A\n" +
 	"\x06Delete\x12\x19.seminar.v0.DeleteRequest\x1a\x1a.seminar.v0.DeleteResponse\"\x00\x12\\\n" +
 	"\x0fDeletePermanent\x12\".seminar.v0.DeletePermanentRequest\x1a#.seminar.v0.DeletePermanentResponse\"\x00\x12D\n" +
 	"\aRestore\x12\x1a.seminar.v0.RestoreRequest\x1a\x1b.seminar.v0.RestoreResponse\"\x00B<Z:github.com/mikhail5545/proto-go/proto/seminar/v0;seminarpbb\x06proto3"
@@ -2179,7 +2427,7 @@ func file_seminar_v0_seminar_proto_rawDescGZIP() []byte {
 	return file_seminar_v0_seminar_proto_rawDescData
 }
 
-var file_seminar_v0_seminar_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_seminar_v0_seminar_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_seminar_v0_seminar_proto_goTypes = []any{
 	(*Image)(nil),                      // 0: seminar.v0.Image
 	(*Seminar)(nil),                    // 1: seminar.v0.Seminar
@@ -2204,23 +2452,27 @@ var file_seminar_v0_seminar_proto_goTypes = []any{
 	(*UnpublishResponse)(nil),          // 20: seminar.v0.UnpublishResponse
 	(*UpdateRequest)(nil),              // 21: seminar.v0.UpdateRequest
 	(*UpdateResponse)(nil),             // 22: seminar.v0.UpdateResponse
-	(*DeleteRequest)(nil),              // 23: seminar.v0.DeleteRequest
-	(*DeleteResponse)(nil),             // 24: seminar.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),     // 25: seminar.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),    // 26: seminar.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),             // 27: seminar.v0.RestoreRequest
-	(*RestoreResponse)(nil),            // 28: seminar.v0.RestoreResponse
-	(*timestamppb.Timestamp)(nil),      // 29: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),      // 30: google.protobuf.FieldMask
+	(*AddImageRequest)(nil),            // 23: seminar.v0.AddImageRequest
+	(*AddImageResponse)(nil),           // 24: seminar.v0.AddImageResponse
+	(*DeleteImageRequest)(nil),         // 25: seminar.v0.DeleteImageRequest
+	(*DeleteImageResponse)(nil),        // 26: seminar.v0.DeleteImageResponse
+	(*DeleteRequest)(nil),              // 27: seminar.v0.DeleteRequest
+	(*DeleteResponse)(nil),             // 28: seminar.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),     // 29: seminar.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),    // 30: seminar.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),             // 31: seminar.v0.RestoreRequest
+	(*RestoreResponse)(nil),            // 32: seminar.v0.RestoreResponse
+	(*timestamppb.Timestamp)(nil),      // 33: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),      // 34: google.protobuf.FieldMask
 }
 var file_seminar_v0_seminar_proto_depIdxs = []int32{
-	29, // 0: seminar.v0.Seminar.created_at:type_name -> google.protobuf.Timestamp
-	29, // 1: seminar.v0.Seminar.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 2: seminar.v0.Seminar.deleted_at:type_name -> google.protobuf.Timestamp
+	33, // 0: seminar.v0.Seminar.created_at:type_name -> google.protobuf.Timestamp
+	33, // 1: seminar.v0.Seminar.updated_at:type_name -> google.protobuf.Timestamp
+	33, // 2: seminar.v0.Seminar.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: seminar.v0.Seminar.images:type_name -> seminar.v0.Image
-	29, // 4: seminar.v0.Seminar.date:type_name -> google.protobuf.Timestamp
-	29, // 5: seminar.v0.Seminar.ending_date:type_name -> google.protobuf.Timestamp
-	29, // 6: seminar.v0.Seminar.late_payment_date:type_name -> google.protobuf.Timestamp
+	33, // 4: seminar.v0.Seminar.date:type_name -> google.protobuf.Timestamp
+	33, // 5: seminar.v0.Seminar.ending_date:type_name -> google.protobuf.Timestamp
+	33, // 6: seminar.v0.Seminar.late_payment_date:type_name -> google.protobuf.Timestamp
 	1,  // 7: seminar.v0.SeminarDetails.seminar:type_name -> seminar.v0.Seminar
 	2,  // 8: seminar.v0.GetResponse.seminar_details:type_name -> seminar.v0.SeminarDetails
 	2,  // 9: seminar.v0.GetWithDeletedResponse.seminar_details:type_name -> seminar.v0.SeminarDetails
@@ -2228,17 +2480,17 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	2,  // 11: seminar.v0.ListResponse.seminar_details:type_name -> seminar.v0.SeminarDetails
 	2,  // 12: seminar.v0.ListDeletedResponse.seminar_details:type_name -> seminar.v0.SeminarDetails
 	2,  // 13: seminar.v0.ListUnpublishedResponse.seminar_details:type_name -> seminar.v0.SeminarDetails
-	29, // 14: seminar.v0.CreateRequest.date:type_name -> google.protobuf.Timestamp
-	29, // 15: seminar.v0.CreateRequest.ending_date:type_name -> google.protobuf.Timestamp
-	29, // 16: seminar.v0.CreateRequest.late_payment_date:type_name -> google.protobuf.Timestamp
-	29, // 17: seminar.v0.UpdateRequest.date:type_name -> google.protobuf.Timestamp
-	29, // 18: seminar.v0.UpdateRequest.ending_date:type_name -> google.protobuf.Timestamp
-	29, // 19: seminar.v0.UpdateRequest.late_payment_date:type_name -> google.protobuf.Timestamp
-	30, // 20: seminar.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	29, // 21: seminar.v0.UpdateResponse.date:type_name -> google.protobuf.Timestamp
-	29, // 22: seminar.v0.UpdateResponse.ending_date:type_name -> google.protobuf.Timestamp
-	29, // 23: seminar.v0.UpdateResponse.late_payment_date:type_name -> google.protobuf.Timestamp
-	30, // 24: seminar.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	33, // 14: seminar.v0.CreateRequest.date:type_name -> google.protobuf.Timestamp
+	33, // 15: seminar.v0.CreateRequest.ending_date:type_name -> google.protobuf.Timestamp
+	33, // 16: seminar.v0.CreateRequest.late_payment_date:type_name -> google.protobuf.Timestamp
+	33, // 17: seminar.v0.UpdateRequest.date:type_name -> google.protobuf.Timestamp
+	33, // 18: seminar.v0.UpdateRequest.ending_date:type_name -> google.protobuf.Timestamp
+	33, // 19: seminar.v0.UpdateRequest.late_payment_date:type_name -> google.protobuf.Timestamp
+	34, // 20: seminar.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	33, // 21: seminar.v0.UpdateResponse.date:type_name -> google.protobuf.Timestamp
+	33, // 22: seminar.v0.UpdateResponse.ending_date:type_name -> google.protobuf.Timestamp
+	33, // 23: seminar.v0.UpdateResponse.late_payment_date:type_name -> google.protobuf.Timestamp
+	34, // 24: seminar.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	3,  // 25: seminar.v0.SeminarService.Get:input_type -> seminar.v0.GetRequest
 	5,  // 26: seminar.v0.SeminarService.GetWithDeleted:input_type -> seminar.v0.GetWithDeletedRequest
 	7,  // 27: seminar.v0.SeminarService.GetWithUnpublished:input_type -> seminar.v0.GetWithUnpublishedRequest
@@ -2249,24 +2501,28 @@ var file_seminar_v0_seminar_proto_depIdxs = []int32{
 	17, // 32: seminar.v0.SeminarService.Publish:input_type -> seminar.v0.PublishRequest
 	19, // 33: seminar.v0.SeminarService.Unpublish:input_type -> seminar.v0.UnpublishRequest
 	21, // 34: seminar.v0.SeminarService.Update:input_type -> seminar.v0.UpdateRequest
-	23, // 35: seminar.v0.SeminarService.Delete:input_type -> seminar.v0.DeleteRequest
-	25, // 36: seminar.v0.SeminarService.DeletePermanent:input_type -> seminar.v0.DeletePermanentRequest
-	27, // 37: seminar.v0.SeminarService.Restore:input_type -> seminar.v0.RestoreRequest
-	4,  // 38: seminar.v0.SeminarService.Get:output_type -> seminar.v0.GetResponse
-	6,  // 39: seminar.v0.SeminarService.GetWithDeleted:output_type -> seminar.v0.GetWithDeletedResponse
-	8,  // 40: seminar.v0.SeminarService.GetWithUnpublished:output_type -> seminar.v0.GetWithUnpublishedResponse
-	10, // 41: seminar.v0.SeminarService.List:output_type -> seminar.v0.ListResponse
-	12, // 42: seminar.v0.SeminarService.ListDeleted:output_type -> seminar.v0.ListDeletedResponse
-	14, // 43: seminar.v0.SeminarService.ListUnpublished:output_type -> seminar.v0.ListUnpublishedResponse
-	16, // 44: seminar.v0.SeminarService.Create:output_type -> seminar.v0.CreateResponse
-	18, // 45: seminar.v0.SeminarService.Publish:output_type -> seminar.v0.PublishResponse
-	20, // 46: seminar.v0.SeminarService.Unpublish:output_type -> seminar.v0.UnpublishResponse
-	22, // 47: seminar.v0.SeminarService.Update:output_type -> seminar.v0.UpdateResponse
-	24, // 48: seminar.v0.SeminarService.Delete:output_type -> seminar.v0.DeleteResponse
-	26, // 49: seminar.v0.SeminarService.DeletePermanent:output_type -> seminar.v0.DeletePermanentResponse
-	28, // 50: seminar.v0.SeminarService.Restore:output_type -> seminar.v0.RestoreResponse
-	38, // [38:51] is the sub-list for method output_type
-	25, // [25:38] is the sub-list for method input_type
+	23, // 35: seminar.v0.SeminarService.AddImage:input_type -> seminar.v0.AddImageRequest
+	25, // 36: seminar.v0.SeminarService.DeleteImage:input_type -> seminar.v0.DeleteImageRequest
+	27, // 37: seminar.v0.SeminarService.Delete:input_type -> seminar.v0.DeleteRequest
+	29, // 38: seminar.v0.SeminarService.DeletePermanent:input_type -> seminar.v0.DeletePermanentRequest
+	31, // 39: seminar.v0.SeminarService.Restore:input_type -> seminar.v0.RestoreRequest
+	4,  // 40: seminar.v0.SeminarService.Get:output_type -> seminar.v0.GetResponse
+	6,  // 41: seminar.v0.SeminarService.GetWithDeleted:output_type -> seminar.v0.GetWithDeletedResponse
+	8,  // 42: seminar.v0.SeminarService.GetWithUnpublished:output_type -> seminar.v0.GetWithUnpublishedResponse
+	10, // 43: seminar.v0.SeminarService.List:output_type -> seminar.v0.ListResponse
+	12, // 44: seminar.v0.SeminarService.ListDeleted:output_type -> seminar.v0.ListDeletedResponse
+	14, // 45: seminar.v0.SeminarService.ListUnpublished:output_type -> seminar.v0.ListUnpublishedResponse
+	16, // 46: seminar.v0.SeminarService.Create:output_type -> seminar.v0.CreateResponse
+	18, // 47: seminar.v0.SeminarService.Publish:output_type -> seminar.v0.PublishResponse
+	20, // 48: seminar.v0.SeminarService.Unpublish:output_type -> seminar.v0.UnpublishResponse
+	22, // 49: seminar.v0.SeminarService.Update:output_type -> seminar.v0.UpdateResponse
+	24, // 50: seminar.v0.SeminarService.AddImage:output_type -> seminar.v0.AddImageResponse
+	26, // 51: seminar.v0.SeminarService.DeleteImage:output_type -> seminar.v0.DeleteImageResponse
+	28, // 52: seminar.v0.SeminarService.Delete:output_type -> seminar.v0.DeleteResponse
+	30, // 53: seminar.v0.SeminarService.DeletePermanent:output_type -> seminar.v0.DeletePermanentResponse
+	32, // 54: seminar.v0.SeminarService.Restore:output_type -> seminar.v0.RestoreResponse
+	40, // [40:55] is the sub-list for method output_type
+	25, // [25:40] is the sub-list for method input_type
 	25, // [25:25] is the sub-list for extension type_name
 	25, // [25:25] is the sub-list for extension extendee
 	0,  // [0:25] is the sub-list for field type_name
@@ -2286,7 +2542,7 @@ func file_seminar_v0_seminar_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_seminar_v0_seminar_proto_rawDesc), len(file_seminar_v0_seminar_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   29,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

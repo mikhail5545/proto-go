@@ -49,7 +49,7 @@ const (
 	CourseService_Unpublish_FullMethodName             = "/course.v0.CourseService/Unpublish"
 	CourseService_Update_FullMethodName                = "/course.v0.CourseService/Update"
 	CourseService_AddImage_FullMethodName              = "/course.v0.CourseService/AddImage"
-	CourseService_UpdateImage_FullMethodName           = "/course.v0.CourseService/UpdateImage"
+	CourseService_DeleteImage_FullMethodName           = "/course.v0.CourseService/DeleteImage"
 	CourseService_Delete_FullMethodName                = "/course.v0.CourseService/Delete"
 	CourseService_DeletePermanent_FullMethodName       = "/course.v0.CourseService/DeletePermanent"
 	CourseService_Restore_FullMethodName               = "/course.v0.CourseService/Restore"
@@ -72,7 +72,7 @@ type CourseServiceClient interface {
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
-	UpdateImage(ctx context.Context, in *UpdateImageRequest, opts ...grpc.CallOption) (*UpdateImageResponse, error)
+	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -216,10 +216,10 @@ func (c *courseServiceClient) AddImage(ctx context.Context, in *AddImageRequest,
 	return out, nil
 }
 
-func (c *courseServiceClient) UpdateImage(ctx context.Context, in *UpdateImageRequest, opts ...grpc.CallOption) (*UpdateImageResponse, error) {
+func (c *courseServiceClient) DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateImageResponse)
-	err := c.cc.Invoke(ctx, CourseService_UpdateImage_FullMethodName, in, out, cOpts...)
+	out := new(DeleteImageResponse)
+	err := c.cc.Invoke(ctx, CourseService_DeleteImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -273,7 +273,7 @@ type CourseServiceServer interface {
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
-	UpdateImage(context.Context, *UpdateImageRequest) (*UpdateImageResponse, error)
+	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -326,8 +326,8 @@ func (UnimplementedCourseServiceServer) Update(context.Context, *UpdateRequest) 
 func (UnimplementedCourseServiceServer) AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddImage not implemented")
 }
-func (UnimplementedCourseServiceServer) UpdateImage(context.Context, *UpdateImageRequest) (*UpdateImageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateImage not implemented")
+func (UnimplementedCourseServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
 }
 func (UnimplementedCourseServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -593,20 +593,20 @@ func _CourseService_AddImage_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CourseService_UpdateImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateImageRequest)
+func _CourseService_DeleteImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CourseServiceServer).UpdateImage(ctx, in)
+		return srv.(CourseServiceServer).DeleteImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CourseService_UpdateImage_FullMethodName,
+		FullMethod: CourseService_DeleteImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CourseServiceServer).UpdateImage(ctx, req.(*UpdateImageRequest))
+		return srv.(CourseServiceServer).DeleteImage(ctx, req.(*DeleteImageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -725,8 +725,8 @@ var CourseService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CourseService_AddImage_Handler,
 		},
 		{
-			MethodName: "UpdateImage",
-			Handler:    _CourseService_UpdateImage_Handler,
+			MethodName: "DeleteImage",
+			Handler:    _CourseService_DeleteImage_Handler,
 		},
 		{
 			MethodName: "Delete",

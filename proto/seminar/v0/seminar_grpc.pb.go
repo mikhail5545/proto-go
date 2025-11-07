@@ -46,6 +46,8 @@ const (
 	SeminarService_Publish_FullMethodName            = "/seminar.v0.SeminarService/Publish"
 	SeminarService_Unpublish_FullMethodName          = "/seminar.v0.SeminarService/Unpublish"
 	SeminarService_Update_FullMethodName             = "/seminar.v0.SeminarService/Update"
+	SeminarService_AddImage_FullMethodName           = "/seminar.v0.SeminarService/AddImage"
+	SeminarService_DeleteImage_FullMethodName        = "/seminar.v0.SeminarService/DeleteImage"
 	SeminarService_Delete_FullMethodName             = "/seminar.v0.SeminarService/Delete"
 	SeminarService_DeletePermanent_FullMethodName    = "/seminar.v0.SeminarService/DeletePermanent"
 	SeminarService_Restore_FullMethodName            = "/seminar.v0.SeminarService/Restore"
@@ -65,6 +67,8 @@ type SeminarServiceClient interface {
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
+	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -178,6 +182,26 @@ func (c *seminarServiceClient) Update(ctx context.Context, in *UpdateRequest, op
 	return out, nil
 }
 
+func (c *seminarServiceClient) AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddImageResponse)
+	err := c.cc.Invoke(ctx, SeminarService_AddImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seminarServiceClient) DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteImageResponse)
+	err := c.cc.Invoke(ctx, SeminarService_DeleteImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *seminarServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -222,6 +246,8 @@ type SeminarServiceServer interface {
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
+	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -264,6 +290,12 @@ func (UnimplementedSeminarServiceServer) Unpublish(context.Context, *UnpublishRe
 }
 func (UnimplementedSeminarServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedSeminarServiceServer) AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddImage not implemented")
+}
+func (UnimplementedSeminarServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
 }
 func (UnimplementedSeminarServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -475,6 +507,42 @@ func _SeminarService_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SeminarService_AddImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServiceServer).AddImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SeminarService_AddImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServiceServer).AddImage(ctx, req.(*AddImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SeminarService_DeleteImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServiceServer).DeleteImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SeminarService_DeleteImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServiceServer).DeleteImage(ctx, req.(*DeleteImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SeminarService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -575,6 +643,14 @@ var SeminarService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _SeminarService_Update_Handler,
+		},
+		{
+			MethodName: "AddImage",
+			Handler:    _SeminarService_AddImage_Handler,
+		},
+		{
+			MethodName: "DeleteImage",
+			Handler:    _SeminarService_DeleteImage_Handler,
 		},
 		{
 			MethodName: "Delete",

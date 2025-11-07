@@ -41,14 +41,13 @@ const (
 )
 
 type Image struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublicUrl     string                 `protobuf:"bytes,1,opt,name=public_url,json=publicUrl,proto3" json:"public_url,omitempty"`
-	SecureUrl     string                 `protobuf:"bytes,2,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
-	CloudinaryId  string                 `protobuf:"bytes,3,opt,name=cloudinary_id,json=cloudinaryId,proto3" json:"cloudinary_id,omitempty"`
-	IsPrimary     bool                   `protobuf:"varint,4,opt,name=is_primary,json=isPrimary,proto3" json:"is_primary,omitempty"`
-	Order         int32                  `protobuf:"varint,5,opt,name=order,proto3" json:"order,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Image) Reset() {
@@ -81,9 +80,16 @@ func (*Image) Descriptor() ([]byte, []int) {
 	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Image) GetPublicUrl() string {
+func (x *Image) GetPublicId() string {
 	if x != nil {
-		return x.PublicUrl
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *Image) GetUrl() string {
+	if x != nil {
+		return x.Url
 	}
 	return ""
 }
@@ -95,43 +101,30 @@ func (x *Image) GetSecureUrl() string {
 	return ""
 }
 
-func (x *Image) GetCloudinaryId() string {
+func (x *Image) GetMediaServiceId() string {
 	if x != nil {
-		return x.CloudinaryId
+		return x.MediaServiceId
 	}
 	return ""
 }
 
-func (x *Image) GetIsPrimary() bool {
-	if x != nil {
-		return x.IsPrimary
-	}
-	return false
-}
-
-func (x *Image) GetOrder() int32 {
-	if x != nil {
-		return x.Order
-	}
-	return 0
-}
-
 type PhysicalGood struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	Name             string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
-	Tags             []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
-	ShortDescription string                 `protobuf:"bytes,7,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	LongDescription  string                 `protobuf:"bytes,8,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
-	Amount           int32                  `protobuf:"varint,9,opt,name=amount,proto3" json:"amount,omitempty"`
-	InStock          bool                   `protobuf:"varint,10,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
-	Images           []*Image               `protobuf:"bytes,11,rep,name=images,proto3" json:"images,omitempty"`
-	ShippingRequired bool                   `protobuf:"varint,12,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedAt           *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt           *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt           *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	Name                string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Tags                []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	ShortDescription    string                 `protobuf:"bytes,7,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
+	LongDescription     string                 `protobuf:"bytes,8,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
+	Amount              int32                  `protobuf:"varint,9,opt,name=amount,proto3" json:"amount,omitempty"`
+	InStock             bool                   `protobuf:"varint,10,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
+	Images              []*Image               `protobuf:"bytes,11,rep,name=images,proto3" json:"images,omitempty"`
+	ShippingRequired    bool                   `protobuf:"varint,12,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
+	UploadedImageAmount int32                  `protobuf:"varint,13,opt,name=uploaded_image_amount,json=uploadedImageAmount,proto3" json:"uploaded_image_amount,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *PhysicalGood) Reset() {
@@ -246,6 +239,13 @@ func (x *PhysicalGood) GetShippingRequired() bool {
 		return x.ShippingRequired
 	}
 	return false
+}
+
+func (x *PhysicalGood) GetUploadedImageAmount() int32 {
+	if x != nil {
+		return x.UploadedImageAmount
+	}
+	return 0
 }
 
 type PhysicalGoodDetails struct {
@@ -1404,6 +1404,238 @@ func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
 	return nil
 }
 
+type AddImageRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,5,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageRequest) Reset() {
+	*x = AddImageRequest{}
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageRequest) ProtoMessage() {}
+
+func (x *AddImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageRequest.ProtoReflect.Descriptor instead.
+func (*AddImageRequest) Descriptor() ([]byte, []int) {
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *AddImageRequest) GetPublicId() string {
+	if x != nil {
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetSecureUrl() string {
+	if x != nil {
+		return x.SecureUrl
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type AddImageResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageResponse) Reset() {
+	*x = AddImageResponse{}
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageResponse) ProtoMessage() {}
+
+func (x *AddImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageResponse.ProtoReflect.Descriptor instead.
+func (*AddImageResponse) Descriptor() ([]byte, []int) {
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AddImageResponse) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type DeleteImageRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageRequest) Reset() {
+	*x = DeleteImageRequest{}
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageRequest) ProtoMessage() {}
+
+func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageRequest.ProtoReflect.Descriptor instead.
+func (*DeleteImageRequest) Descriptor() ([]byte, []int) {
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *DeleteImageRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeleteImageRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+type DeleteImageResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageResponse) Reset() {
+	*x = DeleteImageResponse{}
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageResponse) ProtoMessage() {}
+
+func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageResponse.ProtoReflect.Descriptor instead.
+func (*DeleteImageResponse) Descriptor() ([]byte, []int) {
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteImageResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeleteImageResponse) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1413,7 +1645,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[23]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1425,7 +1657,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[23]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1438,7 +1670,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{23}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1457,7 +1689,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[24]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1469,7 +1701,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[24]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1482,7 +1714,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{24}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1501,7 +1733,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[25]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1513,7 +1745,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[25]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1526,7 +1758,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{25}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1545,7 +1777,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[26]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1557,7 +1789,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[26]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1570,7 +1802,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{26}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -1589,7 +1821,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[27]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1601,7 +1833,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[27]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1614,7 +1846,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{27}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -1633,7 +1865,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[28]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1645,7 +1877,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_physical_good_v0_physical_good_proto_msgTypes[28]
+	mi := &file_physical_good_v0_physical_good_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1658,7 +1890,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{28}
+	return file_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -1672,16 +1904,13 @@ var File_physical_good_v0_physical_good_proto protoreflect.FileDescriptor
 
 const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\n" +
-	"$physical_good/v0/physical_good.proto\x12\x10physical_good.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x9f\x01\n" +
-	"\x05Image\x12\x1d\n" +
+	"$physical_good/v0/physical_good.proto\x12\x10physical_good.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x7f\n" +
+	"\x05Image\x12\x1b\n" +
+	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
 	"\n" +
-	"public_url\x18\x01 \x01(\tR\tpublicUrl\x12\x1d\n" +
-	"\n" +
-	"secure_url\x18\x02 \x01(\tR\tsecureUrl\x12#\n" +
-	"\rcloudinary_id\x18\x03 \x01(\tR\fcloudinaryId\x12\x1d\n" +
-	"\n" +
-	"is_primary\x18\x04 \x01(\bR\tisPrimary\x12\x14\n" +
-	"\x05order\x18\x05 \x01(\x05R\x05order\"\xf4\x03\n" +
+	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\"\xa8\x04\n" +
 	"\fPhysicalGood\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1698,7 +1927,8 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\bin_stock\x18\n" +
 	" \x01(\bR\ainStock\x12/\n" +
 	"\x06images\x18\v \x03(\v2\x17.physical_good.v0.ImageR\x06images\x12+\n" +
-	"\x11shipping_required\x18\f \x01(\bR\x10shippingRequiredB\r\n" +
+	"\x11shipping_required\x18\f \x01(\bR\x10shippingRequired\x122\n" +
+	"\x15uploaded_image_amount\x18\r \x01(\x05R\x13uploadedImageAmountB\r\n" +
 	"\v_deleted_at\"\x8f\x01\n" +
 	"\x13PhysicalGoodDetails\x12C\n" +
 	"\rphysical_good\x18\x01 \x01(\v2\x1e.physical_good.v0.PhysicalGoodR\fphysicalGood\x12\x14\n" +
@@ -1786,7 +2016,23 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x06_priceB\t\n" +
 	"\a_amountB\x14\n" +
 	"\x12_shipping_requiredB\a\n" +
-	"\x05_name\"\x1f\n" +
+	"\x05_name\"\xa4\x01\n" +
+	"\x0fAddImageRequest\x12\x1b\n" +
+	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
+	"\n" +
+	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x19\n" +
+	"\bowner_id\x18\x05 \x01(\tR\aownerId\"W\n" +
+	"\x10AddImageResponse\x12(\n" +
+	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\"Y\n" +
+	"\x12DeleteImageRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"Z\n" +
+	"\x13DeleteImageResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -1798,7 +2044,8 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\x99\t\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xcc\n" +
+	"\n" +
 	"\x13PhysicalGoodService\x12D\n" +
 	"\x03Get\x12\x1c.physical_good.v0.GetRequest\x1a\x1d.physical_good.v0.GetResponse\"\x00\x12e\n" +
 	"\x0eGetWithDeleted\x12'.physical_good.v0.GetWithDeletedRequest\x1a(.physical_good.v0.GetWithDeletedResponse\"\x00\x12q\n" +
@@ -1809,7 +2056,9 @@ const file_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\x06Create\x12\x1f.physical_good.v0.CreateRequest\x1a .physical_good.v0.CreateResponse\"\x00\x12P\n" +
 	"\aPublish\x12 .physical_good.v0.PublishRequest\x1a!.physical_good.v0.PublishResponse\"\x00\x12V\n" +
 	"\tUnpublish\x12\".physical_good.v0.UnpublishRequest\x1a#.physical_good.v0.UnpublishResponse\"\x00\x12M\n" +
-	"\x06Update\x12\x1f.physical_good.v0.UpdateRequest\x1a .physical_good.v0.UpdateResponse\"\x00\x12M\n" +
+	"\x06Update\x12\x1f.physical_good.v0.UpdateRequest\x1a .physical_good.v0.UpdateResponse\"\x00\x12S\n" +
+	"\bAddImage\x12!.physical_good.v0.AddImageRequest\x1a\".physical_good.v0.AddImageResponse\"\x00\x12\\\n" +
+	"\vDeleteImage\x12$.physical_good.v0.DeleteImageRequest\x1a%.physical_good.v0.DeleteImageResponse\"\x00\x12M\n" +
 	"\x06Delete\x12\x1f.physical_good.v0.DeleteRequest\x1a .physical_good.v0.DeleteResponse\"\x00\x12h\n" +
 	"\x0fDeletePermanent\x12(.physical_good.v0.DeletePermanentRequest\x1a).physical_good.v0.DeletePermanentResponse\"\x00\x12P\n" +
 	"\aRestore\x12 .physical_good.v0.RestoreRequest\x1a!.physical_good.v0.RestoreResponse\"\x00BGZEgithub.com/mikhail5545/proto-go/proto/physical_good/v0;physicalgoodpbb\x06proto3"
@@ -1826,7 +2075,7 @@ func file_physical_good_v0_physical_good_proto_rawDescGZIP() []byte {
 	return file_physical_good_v0_physical_good_proto_rawDescData
 }
 
-var file_physical_good_v0_physical_good_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_physical_good_v0_physical_good_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_physical_good_v0_physical_good_proto_goTypes = []any{
 	(*Image)(nil),                      // 0: physical_good.v0.Image
 	(*PhysicalGood)(nil),               // 1: physical_good.v0.PhysicalGood
@@ -1851,19 +2100,23 @@ var file_physical_good_v0_physical_good_proto_goTypes = []any{
 	(*UnpublishResponse)(nil),          // 20: physical_good.v0.UnpublishResponse
 	(*UpdateRequest)(nil),              // 21: physical_good.v0.UpdateRequest
 	(*UpdateResponse)(nil),             // 22: physical_good.v0.UpdateResponse
-	(*DeleteRequest)(nil),              // 23: physical_good.v0.DeleteRequest
-	(*DeleteResponse)(nil),             // 24: physical_good.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),     // 25: physical_good.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),    // 26: physical_good.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),             // 27: physical_good.v0.RestoreRequest
-	(*RestoreResponse)(nil),            // 28: physical_good.v0.RestoreResponse
-	(*timestamppb.Timestamp)(nil),      // 29: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),      // 30: google.protobuf.FieldMask
+	(*AddImageRequest)(nil),            // 23: physical_good.v0.AddImageRequest
+	(*AddImageResponse)(nil),           // 24: physical_good.v0.AddImageResponse
+	(*DeleteImageRequest)(nil),         // 25: physical_good.v0.DeleteImageRequest
+	(*DeleteImageResponse)(nil),        // 26: physical_good.v0.DeleteImageResponse
+	(*DeleteRequest)(nil),              // 27: physical_good.v0.DeleteRequest
+	(*DeleteResponse)(nil),             // 28: physical_good.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),     // 29: physical_good.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),    // 30: physical_good.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),             // 31: physical_good.v0.RestoreRequest
+	(*RestoreResponse)(nil),            // 32: physical_good.v0.RestoreResponse
+	(*timestamppb.Timestamp)(nil),      // 33: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),      // 34: google.protobuf.FieldMask
 }
 var file_physical_good_v0_physical_good_proto_depIdxs = []int32{
-	29, // 0: physical_good.v0.PhysicalGood.created_at:type_name -> google.protobuf.Timestamp
-	29, // 1: physical_good.v0.PhysicalGood.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 2: physical_good.v0.PhysicalGood.deleted_at:type_name -> google.protobuf.Timestamp
+	33, // 0: physical_good.v0.PhysicalGood.created_at:type_name -> google.protobuf.Timestamp
+	33, // 1: physical_good.v0.PhysicalGood.updated_at:type_name -> google.protobuf.Timestamp
+	33, // 2: physical_good.v0.PhysicalGood.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: physical_good.v0.PhysicalGood.images:type_name -> physical_good.v0.Image
 	1,  // 4: physical_good.v0.PhysicalGoodDetails.physical_good:type_name -> physical_good.v0.PhysicalGood
 	2,  // 5: physical_good.v0.GetResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
@@ -1872,8 +2125,8 @@ var file_physical_good_v0_physical_good_proto_depIdxs = []int32{
 	2,  // 8: physical_good.v0.ListResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
 	2,  // 9: physical_good.v0.ListDeletedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
 	2,  // 10: physical_good.v0.ListUnpublishedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
-	30, // 11: physical_good.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	30, // 12: physical_good.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	34, // 11: physical_good.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	34, // 12: physical_good.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	3,  // 13: physical_good.v0.PhysicalGoodService.Get:input_type -> physical_good.v0.GetRequest
 	5,  // 14: physical_good.v0.PhysicalGoodService.GetWithDeleted:input_type -> physical_good.v0.GetWithDeletedRequest
 	7,  // 15: physical_good.v0.PhysicalGoodService.GetWithUnpublished:input_type -> physical_good.v0.GetWithUnpublishedRequest
@@ -1884,24 +2137,28 @@ var file_physical_good_v0_physical_good_proto_depIdxs = []int32{
 	17, // 20: physical_good.v0.PhysicalGoodService.Publish:input_type -> physical_good.v0.PublishRequest
 	19, // 21: physical_good.v0.PhysicalGoodService.Unpublish:input_type -> physical_good.v0.UnpublishRequest
 	21, // 22: physical_good.v0.PhysicalGoodService.Update:input_type -> physical_good.v0.UpdateRequest
-	23, // 23: physical_good.v0.PhysicalGoodService.Delete:input_type -> physical_good.v0.DeleteRequest
-	25, // 24: physical_good.v0.PhysicalGoodService.DeletePermanent:input_type -> physical_good.v0.DeletePermanentRequest
-	27, // 25: physical_good.v0.PhysicalGoodService.Restore:input_type -> physical_good.v0.RestoreRequest
-	4,  // 26: physical_good.v0.PhysicalGoodService.Get:output_type -> physical_good.v0.GetResponse
-	6,  // 27: physical_good.v0.PhysicalGoodService.GetWithDeleted:output_type -> physical_good.v0.GetWithDeletedResponse
-	8,  // 28: physical_good.v0.PhysicalGoodService.GetWithUnpublished:output_type -> physical_good.v0.GetWithUnpublishedResponse
-	10, // 29: physical_good.v0.PhysicalGoodService.List:output_type -> physical_good.v0.ListResponse
-	12, // 30: physical_good.v0.PhysicalGoodService.ListDeleted:output_type -> physical_good.v0.ListDeletedResponse
-	14, // 31: physical_good.v0.PhysicalGoodService.ListUnpublished:output_type -> physical_good.v0.ListUnpublishedResponse
-	16, // 32: physical_good.v0.PhysicalGoodService.Create:output_type -> physical_good.v0.CreateResponse
-	18, // 33: physical_good.v0.PhysicalGoodService.Publish:output_type -> physical_good.v0.PublishResponse
-	20, // 34: physical_good.v0.PhysicalGoodService.Unpublish:output_type -> physical_good.v0.UnpublishResponse
-	22, // 35: physical_good.v0.PhysicalGoodService.Update:output_type -> physical_good.v0.UpdateResponse
-	24, // 36: physical_good.v0.PhysicalGoodService.Delete:output_type -> physical_good.v0.DeleteResponse
-	26, // 37: physical_good.v0.PhysicalGoodService.DeletePermanent:output_type -> physical_good.v0.DeletePermanentResponse
-	28, // 38: physical_good.v0.PhysicalGoodService.Restore:output_type -> physical_good.v0.RestoreResponse
-	26, // [26:39] is the sub-list for method output_type
-	13, // [13:26] is the sub-list for method input_type
+	23, // 23: physical_good.v0.PhysicalGoodService.AddImage:input_type -> physical_good.v0.AddImageRequest
+	25, // 24: physical_good.v0.PhysicalGoodService.DeleteImage:input_type -> physical_good.v0.DeleteImageRequest
+	27, // 25: physical_good.v0.PhysicalGoodService.Delete:input_type -> physical_good.v0.DeleteRequest
+	29, // 26: physical_good.v0.PhysicalGoodService.DeletePermanent:input_type -> physical_good.v0.DeletePermanentRequest
+	31, // 27: physical_good.v0.PhysicalGoodService.Restore:input_type -> physical_good.v0.RestoreRequest
+	4,  // 28: physical_good.v0.PhysicalGoodService.Get:output_type -> physical_good.v0.GetResponse
+	6,  // 29: physical_good.v0.PhysicalGoodService.GetWithDeleted:output_type -> physical_good.v0.GetWithDeletedResponse
+	8,  // 30: physical_good.v0.PhysicalGoodService.GetWithUnpublished:output_type -> physical_good.v0.GetWithUnpublishedResponse
+	10, // 31: physical_good.v0.PhysicalGoodService.List:output_type -> physical_good.v0.ListResponse
+	12, // 32: physical_good.v0.PhysicalGoodService.ListDeleted:output_type -> physical_good.v0.ListDeletedResponse
+	14, // 33: physical_good.v0.PhysicalGoodService.ListUnpublished:output_type -> physical_good.v0.ListUnpublishedResponse
+	16, // 34: physical_good.v0.PhysicalGoodService.Create:output_type -> physical_good.v0.CreateResponse
+	18, // 35: physical_good.v0.PhysicalGoodService.Publish:output_type -> physical_good.v0.PublishResponse
+	20, // 36: physical_good.v0.PhysicalGoodService.Unpublish:output_type -> physical_good.v0.UnpublishResponse
+	22, // 37: physical_good.v0.PhysicalGoodService.Update:output_type -> physical_good.v0.UpdateResponse
+	24, // 38: physical_good.v0.PhysicalGoodService.AddImage:output_type -> physical_good.v0.AddImageResponse
+	26, // 39: physical_good.v0.PhysicalGoodService.DeleteImage:output_type -> physical_good.v0.DeleteImageResponse
+	28, // 40: physical_good.v0.PhysicalGoodService.Delete:output_type -> physical_good.v0.DeleteResponse
+	30, // 41: physical_good.v0.PhysicalGoodService.DeletePermanent:output_type -> physical_good.v0.DeletePermanentResponse
+	32, // 42: physical_good.v0.PhysicalGoodService.Restore:output_type -> physical_good.v0.RestoreResponse
+	28, // [28:43] is the sub-list for method output_type
+	13, // [13:28] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
@@ -1921,7 +2178,7 @@ func file_physical_good_v0_physical_good_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_physical_good_v0_physical_good_proto_rawDesc), len(file_physical_good_v0_physical_good_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   29,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

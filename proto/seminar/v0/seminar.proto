@@ -25,11 +25,10 @@ import "google/protobuf/field_mask.proto";
 option go_package = "github.com/mikhail5545/proto-go/proto/seminar/v0;seminarpb";
 
 message Image{
-    string public_url = 1;
-    string secure_url = 2;
-    string cloudinary_id = 3;
-    bool is_primary = 4;
-    int32 order = 5;
+    string public_id = 1;
+    string url = 2;
+    string secure_url = 3;
+    string media_service_id = 4;
 }
 
 message Seminar{
@@ -52,6 +51,7 @@ message Seminar{
     string place = 18;
     google.protobuf.Timestamp late_payment_date = 19;
     bool in_stock = 20;
+    int32 uploaded_image_amount = 21;
 }
 
 message SeminarDetails{
@@ -196,6 +196,29 @@ message UpdateResponse{
     google.protobuf.FieldMask updated = 15;
 }
 
+message AddImageRequest{
+    string public_id = 1;
+    string url = 2;
+    string secure_url = 3;
+    string media_service_id = 4;
+    string owner_id = 5;
+}
+
+message AddImageResponse{
+    string media_service_id = 1;
+    string owner_id = 2;
+}
+
+message DeleteImageRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+}
+
+message DeleteImageResponse{
+    string owner_id = 1;
+    string media_service_id = 2;
+}
+
 message DeleteRequest{
     string id = 1;
 }
@@ -231,6 +254,8 @@ service SeminarService {
     rpc Publish(PublishRequest) returns (PublishResponse) {}
     rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc AddImage(AddImageRequest) returns (AddImageResponse) {}
+    rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}

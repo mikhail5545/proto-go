@@ -46,6 +46,8 @@ const (
 	PhysicalGoodService_Publish_FullMethodName            = "/physical_good.v0.PhysicalGoodService/Publish"
 	PhysicalGoodService_Unpublish_FullMethodName          = "/physical_good.v0.PhysicalGoodService/Unpublish"
 	PhysicalGoodService_Update_FullMethodName             = "/physical_good.v0.PhysicalGoodService/Update"
+	PhysicalGoodService_AddImage_FullMethodName           = "/physical_good.v0.PhysicalGoodService/AddImage"
+	PhysicalGoodService_DeleteImage_FullMethodName        = "/physical_good.v0.PhysicalGoodService/DeleteImage"
 	PhysicalGoodService_Delete_FullMethodName             = "/physical_good.v0.PhysicalGoodService/Delete"
 	PhysicalGoodService_DeletePermanent_FullMethodName    = "/physical_good.v0.PhysicalGoodService/DeletePermanent"
 	PhysicalGoodService_Restore_FullMethodName            = "/physical_good.v0.PhysicalGoodService/Restore"
@@ -65,6 +67,8 @@ type PhysicalGoodServiceClient interface {
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
+	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -178,6 +182,26 @@ func (c *physicalGoodServiceClient) Update(ctx context.Context, in *UpdateReques
 	return out, nil
 }
 
+func (c *physicalGoodServiceClient) AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddImageResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_AddImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *physicalGoodServiceClient) DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteImageResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_DeleteImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *physicalGoodServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -222,6 +246,8 @@ type PhysicalGoodServiceServer interface {
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
+	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -264,6 +290,12 @@ func (UnimplementedPhysicalGoodServiceServer) Unpublish(context.Context, *Unpubl
 }
 func (UnimplementedPhysicalGoodServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedPhysicalGoodServiceServer) AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddImage not implemented")
+}
+func (UnimplementedPhysicalGoodServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
 }
 func (UnimplementedPhysicalGoodServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -475,6 +507,42 @@ func _PhysicalGoodService_Update_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PhysicalGoodService_AddImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhysicalGoodServiceServer).AddImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PhysicalGoodService_AddImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhysicalGoodServiceServer).AddImage(ctx, req.(*AddImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhysicalGoodService_DeleteImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhysicalGoodServiceServer).DeleteImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PhysicalGoodService_DeleteImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhysicalGoodServiceServer).DeleteImage(ctx, req.(*DeleteImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PhysicalGoodService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -575,6 +643,14 @@ var PhysicalGoodService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _PhysicalGoodService_Update_Handler,
+		},
+		{
+			MethodName: "AddImage",
+			Handler:    _PhysicalGoodService_AddImage_Handler,
+		},
+		{
+			MethodName: "DeleteImage",
+			Handler:    _PhysicalGoodService_DeleteImage_Handler,
 		},
 		{
 			MethodName: "Delete",
