@@ -48,6 +48,8 @@ const (
 	PhysicalGoodService_Update_FullMethodName             = "/physical_good.v0.PhysicalGoodService/Update"
 	PhysicalGoodService_AddImage_FullMethodName           = "/physical_good.v0.PhysicalGoodService/AddImage"
 	PhysicalGoodService_DeleteImage_FullMethodName        = "/physical_good.v0.PhysicalGoodService/DeleteImage"
+	PhysicalGoodService_AddImageBatch_FullMethodName      = "/physical_good.v0.PhysicalGoodService/AddImageBatch"
+	PhysicalGoodService_DeleteImageBatch_FullMethodName   = "/physical_good.v0.PhysicalGoodService/DeleteImageBatch"
 	PhysicalGoodService_Delete_FullMethodName             = "/physical_good.v0.PhysicalGoodService/Delete"
 	PhysicalGoodService_DeletePermanent_FullMethodName    = "/physical_good.v0.PhysicalGoodService/DeletePermanent"
 	PhysicalGoodService_Restore_FullMethodName            = "/physical_good.v0.PhysicalGoodService/Restore"
@@ -69,6 +71,8 @@ type PhysicalGoodServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
 	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
+	AddImageBatch(ctx context.Context, in *AddImageBatchRequest, opts ...grpc.CallOption) (*AddImageBatchResponse, error)
+	DeleteImageBatch(ctx context.Context, in *DeleteImageBatchRequest, opts ...grpc.CallOption) (*DeleteImageBatchResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -202,6 +206,26 @@ func (c *physicalGoodServiceClient) DeleteImage(ctx context.Context, in *DeleteI
 	return out, nil
 }
 
+func (c *physicalGoodServiceClient) AddImageBatch(ctx context.Context, in *AddImageBatchRequest, opts ...grpc.CallOption) (*AddImageBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddImageBatchResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_AddImageBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *physicalGoodServiceClient) DeleteImageBatch(ctx context.Context, in *DeleteImageBatchRequest, opts ...grpc.CallOption) (*DeleteImageBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteImageBatchResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_DeleteImageBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *physicalGoodServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -248,6 +272,8 @@ type PhysicalGoodServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
 	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
+	AddImageBatch(context.Context, *AddImageBatchRequest) (*AddImageBatchResponse, error)
+	DeleteImageBatch(context.Context, *DeleteImageBatchRequest) (*DeleteImageBatchResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -296,6 +322,12 @@ func (UnimplementedPhysicalGoodServiceServer) AddImage(context.Context, *AddImag
 }
 func (UnimplementedPhysicalGoodServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
+}
+func (UnimplementedPhysicalGoodServiceServer) AddImageBatch(context.Context, *AddImageBatchRequest) (*AddImageBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddImageBatch not implemented")
+}
+func (UnimplementedPhysicalGoodServiceServer) DeleteImageBatch(context.Context, *DeleteImageBatchRequest) (*DeleteImageBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImageBatch not implemented")
 }
 func (UnimplementedPhysicalGoodServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -543,6 +575,42 @@ func _PhysicalGoodService_DeleteImage_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PhysicalGoodService_AddImageBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddImageBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhysicalGoodServiceServer).AddImageBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PhysicalGoodService_AddImageBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhysicalGoodServiceServer).AddImageBatch(ctx, req.(*AddImageBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PhysicalGoodService_DeleteImageBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhysicalGoodServiceServer).DeleteImageBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PhysicalGoodService_DeleteImageBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhysicalGoodServiceServer).DeleteImageBatch(ctx, req.(*DeleteImageBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PhysicalGoodService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -651,6 +719,14 @@ var PhysicalGoodService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteImage",
 			Handler:    _PhysicalGoodService_DeleteImage_Handler,
+		},
+		{
+			MethodName: "AddImageBatch",
+			Handler:    _PhysicalGoodService_AddImageBatch_Handler,
+		},
+		{
+			MethodName: "DeleteImageBatch",
+			Handler:    _PhysicalGoodService_DeleteImageBatch_Handler,
 		},
 		{
 			MethodName: "Delete",

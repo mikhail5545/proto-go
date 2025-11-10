@@ -183,6 +183,27 @@ message DeleteImageResponse{
     string media_service_id = 2;
 }
 
+message AddImageBatchRequest{
+    string url = 1;
+    string secure_url = 2;
+    string public_id = 3;
+    string media_service_id = 4;
+    repeated string owner_ids = 5;
+}
+
+message AddImageBatchResponse{
+    int32 owners_affected = 1;
+}
+
+message DeleteImageBatchRequest{
+    string media_service_id = 1;
+    repeated string owner_ids = 2;
+}
+
+message DeleteImageBatchResponse{
+    int32 owners_affected = 1;
+}
+
 message DeleteRequest{
     string id = 1;
 }
@@ -220,6 +241,8 @@ service PhysicalGoodService{
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc AddImage(AddImageRequest) returns (AddImageResponse) {}
     rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {}
+    rpc AddImageBatch(AddImageBatchRequest) returns (AddImageBatchResponse) {}
+    rpc DeleteImageBatch(DeleteImageBatchRequest) returns (DeleteImageBatchResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}

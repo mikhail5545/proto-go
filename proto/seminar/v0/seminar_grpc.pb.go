@@ -48,6 +48,8 @@ const (
 	SeminarService_Update_FullMethodName             = "/seminar.v0.SeminarService/Update"
 	SeminarService_AddImage_FullMethodName           = "/seminar.v0.SeminarService/AddImage"
 	SeminarService_DeleteImage_FullMethodName        = "/seminar.v0.SeminarService/DeleteImage"
+	SeminarService_AddImageBatch_FullMethodName      = "/seminar.v0.SeminarService/AddImageBatch"
+	SeminarService_DeleteImageBatch_FullMethodName   = "/seminar.v0.SeminarService/DeleteImageBatch"
 	SeminarService_Delete_FullMethodName             = "/seminar.v0.SeminarService/Delete"
 	SeminarService_DeletePermanent_FullMethodName    = "/seminar.v0.SeminarService/DeletePermanent"
 	SeminarService_Restore_FullMethodName            = "/seminar.v0.SeminarService/Restore"
@@ -69,6 +71,8 @@ type SeminarServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	AddImage(ctx context.Context, in *AddImageRequest, opts ...grpc.CallOption) (*AddImageResponse, error)
 	DeleteImage(ctx context.Context, in *DeleteImageRequest, opts ...grpc.CallOption) (*DeleteImageResponse, error)
+	AddImageBatch(ctx context.Context, in *AddImageBatchRequest, opts ...grpc.CallOption) (*AddImageBatchResponse, error)
+	DeleteImageBatch(ctx context.Context, in *DeleteImageBatchRequest, opts ...grpc.CallOption) (*DeleteImageBatchResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -202,6 +206,26 @@ func (c *seminarServiceClient) DeleteImage(ctx context.Context, in *DeleteImageR
 	return out, nil
 }
 
+func (c *seminarServiceClient) AddImageBatch(ctx context.Context, in *AddImageBatchRequest, opts ...grpc.CallOption) (*AddImageBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddImageBatchResponse)
+	err := c.cc.Invoke(ctx, SeminarService_AddImageBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *seminarServiceClient) DeleteImageBatch(ctx context.Context, in *DeleteImageBatchRequest, opts ...grpc.CallOption) (*DeleteImageBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteImageBatchResponse)
+	err := c.cc.Invoke(ctx, SeminarService_DeleteImageBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *seminarServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -248,6 +272,8 @@ type SeminarServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	AddImage(context.Context, *AddImageRequest) (*AddImageResponse, error)
 	DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error)
+	AddImageBatch(context.Context, *AddImageBatchRequest) (*AddImageBatchResponse, error)
+	DeleteImageBatch(context.Context, *DeleteImageBatchRequest) (*DeleteImageBatchResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -296,6 +322,12 @@ func (UnimplementedSeminarServiceServer) AddImage(context.Context, *AddImageRequ
 }
 func (UnimplementedSeminarServiceServer) DeleteImage(context.Context, *DeleteImageRequest) (*DeleteImageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteImage not implemented")
+}
+func (UnimplementedSeminarServiceServer) AddImageBatch(context.Context, *AddImageBatchRequest) (*AddImageBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddImageBatch not implemented")
+}
+func (UnimplementedSeminarServiceServer) DeleteImageBatch(context.Context, *DeleteImageBatchRequest) (*DeleteImageBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteImageBatch not implemented")
 }
 func (UnimplementedSeminarServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -543,6 +575,42 @@ func _SeminarService_DeleteImage_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SeminarService_AddImageBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddImageBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServiceServer).AddImageBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SeminarService_AddImageBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServiceServer).AddImageBatch(ctx, req.(*AddImageBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SeminarService_DeleteImageBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteImageBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SeminarServiceServer).DeleteImageBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SeminarService_DeleteImageBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SeminarServiceServer).DeleteImageBatch(ctx, req.(*DeleteImageBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SeminarService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -651,6 +719,14 @@ var SeminarService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteImage",
 			Handler:    _SeminarService_DeleteImage_Handler,
+		},
+		{
+			MethodName: "AddImageBatch",
+			Handler:    _SeminarService_AddImageBatch_Handler,
+		},
+		{
+			MethodName: "DeleteImageBatch",
+			Handler:    _SeminarService_DeleteImageBatch_Handler,
 		},
 		{
 			MethodName: "Delete",

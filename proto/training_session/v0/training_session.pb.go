@@ -1636,6 +1636,222 @@ func (x *DeleteImageResponse) GetMediaServiceId() string {
 	return ""
 }
 
+type AddImageBatchRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Url            string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,2,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	PublicId       string                 `protobuf:"bytes,3,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerIds       []string               `protobuf:"bytes,5,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageBatchRequest) Reset() {
+	*x = AddImageBatchRequest{}
+	mi := &file_training_session_v0_training_session_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageBatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageBatchRequest) ProtoMessage() {}
+
+func (x *AddImageBatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_session_v0_training_session_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageBatchRequest.ProtoReflect.Descriptor instead.
+func (*AddImageBatchRequest) Descriptor() ([]byte, []int) {
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *AddImageBatchRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetSecureUrl() string {
+	if x != nil {
+		return x.SecureUrl
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetPublicId() string {
+	if x != nil {
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetOwnerIds() []string {
+	if x != nil {
+		return x.OwnerIds
+	}
+	return nil
+}
+
+type AddImageBatchResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnersAffected int32                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageBatchResponse) Reset() {
+	*x = AddImageBatchResponse{}
+	mi := &file_training_session_v0_training_session_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageBatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageBatchResponse) ProtoMessage() {}
+
+func (x *AddImageBatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_training_session_v0_training_session_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageBatchResponse.ProtoReflect.Descriptor instead.
+func (*AddImageBatchResponse) Descriptor() ([]byte, []int) {
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *AddImageBatchResponse) GetOwnersAffected() int32 {
+	if x != nil {
+		return x.OwnersAffected
+	}
+	return 0
+}
+
+type DeleteImageBatchRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerIds       []string               `protobuf:"bytes,2,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageBatchRequest) Reset() {
+	*x = DeleteImageBatchRequest{}
+	mi := &file_training_session_v0_training_session_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageBatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageBatchRequest) ProtoMessage() {}
+
+func (x *DeleteImageBatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_session_v0_training_session_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageBatchRequest.ProtoReflect.Descriptor instead.
+func (*DeleteImageBatchRequest) Descriptor() ([]byte, []int) {
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *DeleteImageBatchRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *DeleteImageBatchRequest) GetOwnerIds() []string {
+	if x != nil {
+		return x.OwnerIds
+	}
+	return nil
+}
+
+type DeleteImageBatchResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnersAffected int32                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageBatchResponse) Reset() {
+	*x = DeleteImageBatchResponse{}
+	mi := &file_training_session_v0_training_session_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageBatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageBatchResponse) ProtoMessage() {}
+
+func (x *DeleteImageBatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_training_session_v0_training_session_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageBatchResponse.ProtoReflect.Descriptor instead.
+func (*DeleteImageBatchResponse) Descriptor() ([]byte, []int) {
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *DeleteImageBatchResponse) GetOwnersAffected() int32 {
+	if x != nil {
+		return x.OwnersAffected
+	}
+	return 0
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1645,7 +1861,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[27]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1657,7 +1873,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[27]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1670,7 +1886,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{27}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1689,7 +1905,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[28]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1701,7 +1917,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[28]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1714,7 +1930,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{28}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1733,7 +1949,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[29]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1745,7 +1961,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[29]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1758,7 +1974,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{29}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1777,7 +1993,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[30]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1789,7 +2005,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[30]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1802,7 +2018,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{30}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -1821,7 +2037,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[31]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1833,7 +2049,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[31]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1846,7 +2062,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{31}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -1865,7 +2081,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_training_session_v0_training_session_proto_msgTypes[32]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1877,7 +2093,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_training_session_v0_training_session_proto_msgTypes[32]
+	mi := &file_training_session_v0_training_session_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1890,7 +2106,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{32}
+	return file_training_session_v0_training_session_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -2032,7 +2248,21 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"Z\n" +
 	"\x13DeleteImageResponse\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
-	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\x1f\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\xab\x01\n" +
+	"\x14AddImageBatchRequest\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\x12\x1d\n" +
+	"\n" +
+	"secure_url\x18\x02 \x01(\tR\tsecureUrl\x12\x1b\n" +
+	"\tpublic_id\x18\x03 \x01(\tR\bpublicId\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x1b\n" +
+	"\towner_ids\x18\x05 \x03(\tR\bownerIds\"@\n" +
+	"\x15AddImageBatchResponse\x12'\n" +
+	"\x0fowners_affected\x18\x01 \x01(\x05R\x0eownersAffected\"`\n" +
+	"\x17DeleteImageBatchRequest\x12(\n" +
+	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x1b\n" +
+	"\towner_ids\x18\x02 \x03(\tR\bownerIds\"C\n" +
+	"\x18DeleteImageBatchResponse\x12'\n" +
+	"\x0fowners_affected\x18\x01 \x01(\x05R\x0eownersAffected\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -2044,7 +2274,7 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xa9\v\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\x86\r\n" +
 	"\x16TrainingSessionService\x12J\n" +
 	"\x03Get\x12\x1f.training_session.v0.GetRequest\x1a .training_session.v0.GetResponse\"\x00\x12k\n" +
 	"\x0eGetWithDeleted\x12*.training_session.v0.GetWithDeletedRequest\x1a+.training_session.v0.GetWithDeletedResponse\"\x00\x12w\n" +
@@ -2057,7 +2287,9 @@ const file_training_session_v0_training_session_proto_rawDesc = "" +
 	"\tUnpublish\x12%.training_session.v0.UnpublishRequest\x1a&.training_session.v0.UnpublishResponse\"\x00\x12S\n" +
 	"\x06Update\x12\".training_session.v0.UpdateRequest\x1a#.training_session.v0.UpdateResponse\"\x00\x12Y\n" +
 	"\bAddImage\x12$.training_session.v0.AddImageRequest\x1a%.training_session.v0.AddImageResponse\"\x00\x12b\n" +
-	"\vDeleteImage\x12'.training_session.v0.DeleteImageRequest\x1a(.training_session.v0.DeleteImageResponse\"\x00\x12S\n" +
+	"\vDeleteImage\x12'.training_session.v0.DeleteImageRequest\x1a(.training_session.v0.DeleteImageResponse\"\x00\x12h\n" +
+	"\rAddImageBatch\x12).training_session.v0.AddImageBatchRequest\x1a*.training_session.v0.AddImageBatchResponse\"\x00\x12q\n" +
+	"\x10DeleteImageBatch\x12,.training_session.v0.DeleteImageBatchRequest\x1a-.training_session.v0.DeleteImageBatchResponse\"\x00\x12S\n" +
 	"\x06Delete\x12\".training_session.v0.DeleteRequest\x1a#.training_session.v0.DeleteResponse\"\x00\x12n\n" +
 	"\x0fDeletePermanent\x12+.training_session.v0.DeletePermanentRequest\x1a,.training_session.v0.DeletePermanentResponse\"\x00\x12V\n" +
 	"\aRestore\x12#.training_session.v0.RestoreRequest\x1a$.training_session.v0.RestoreResponse\"\x00BNZLgithub.com/mikhail5545/proto-go/proto/training_session/v0;trainingsesssionpbb\x06proto3"
@@ -2074,7 +2306,7 @@ func file_training_session_v0_training_session_proto_rawDescGZIP() []byte {
 	return file_training_session_v0_training_session_proto_rawDescData
 }
 
-var file_training_session_v0_training_session_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_training_session_v0_training_session_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_training_session_v0_training_session_proto_goTypes = []any{
 	(*Image)(nil),                      // 0: training_session.v0.Image
 	(*TrainingSession)(nil),            // 1: training_session.v0.TrainingSession
@@ -2103,19 +2335,23 @@ var file_training_session_v0_training_session_proto_goTypes = []any{
 	(*AddImageResponse)(nil),           // 24: training_session.v0.AddImageResponse
 	(*DeleteImageRequest)(nil),         // 25: training_session.v0.DeleteImageRequest
 	(*DeleteImageResponse)(nil),        // 26: training_session.v0.DeleteImageResponse
-	(*DeleteRequest)(nil),              // 27: training_session.v0.DeleteRequest
-	(*DeleteResponse)(nil),             // 28: training_session.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),     // 29: training_session.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),    // 30: training_session.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),             // 31: training_session.v0.RestoreRequest
-	(*RestoreResponse)(nil),            // 32: training_session.v0.RestoreResponse
-	(*timestamppb.Timestamp)(nil),      // 33: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),      // 34: google.protobuf.FieldMask
+	(*AddImageBatchRequest)(nil),       // 27: training_session.v0.AddImageBatchRequest
+	(*AddImageBatchResponse)(nil),      // 28: training_session.v0.AddImageBatchResponse
+	(*DeleteImageBatchRequest)(nil),    // 29: training_session.v0.DeleteImageBatchRequest
+	(*DeleteImageBatchResponse)(nil),   // 30: training_session.v0.DeleteImageBatchResponse
+	(*DeleteRequest)(nil),              // 31: training_session.v0.DeleteRequest
+	(*DeleteResponse)(nil),             // 32: training_session.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),     // 33: training_session.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),    // 34: training_session.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),             // 35: training_session.v0.RestoreRequest
+	(*RestoreResponse)(nil),            // 36: training_session.v0.RestoreResponse
+	(*timestamppb.Timestamp)(nil),      // 37: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),      // 38: google.protobuf.FieldMask
 }
 var file_training_session_v0_training_session_proto_depIdxs = []int32{
-	33, // 0: training_session.v0.TrainingSession.created_at:type_name -> google.protobuf.Timestamp
-	33, // 1: training_session.v0.TrainingSession.updated_at:type_name -> google.protobuf.Timestamp
-	33, // 2: training_session.v0.TrainingSession.deleted_at:type_name -> google.protobuf.Timestamp
+	37, // 0: training_session.v0.TrainingSession.created_at:type_name -> google.protobuf.Timestamp
+	37, // 1: training_session.v0.TrainingSession.updated_at:type_name -> google.protobuf.Timestamp
+	37, // 2: training_session.v0.TrainingSession.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: training_session.v0.TrainingSession.images:type_name -> training_session.v0.Image
 	1,  // 4: training_session.v0.TrainingSessionDetails.training_session:type_name -> training_session.v0.TrainingSession
 	2,  // 5: training_session.v0.GetResponse.training_session_details:type_name -> training_session.v0.TrainingSessionDetails
@@ -2124,8 +2360,8 @@ var file_training_session_v0_training_session_proto_depIdxs = []int32{
 	2,  // 8: training_session.v0.ListResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
 	2,  // 9: training_session.v0.ListDeletedResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
 	2,  // 10: training_session.v0.ListUnpublishedResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
-	34, // 11: training_session.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	34, // 12: training_session.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	38, // 11: training_session.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	38, // 12: training_session.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	3,  // 13: training_session.v0.TrainingSessionService.Get:input_type -> training_session.v0.GetRequest
 	5,  // 14: training_session.v0.TrainingSessionService.GetWithDeleted:input_type -> training_session.v0.GetWithDeletedRequest
 	7,  // 15: training_session.v0.TrainingSessionService.GetWithUnpublished:input_type -> training_session.v0.GetWithUnpublishedRequest
@@ -2138,26 +2374,30 @@ var file_training_session_v0_training_session_proto_depIdxs = []int32{
 	21, // 22: training_session.v0.TrainingSessionService.Update:input_type -> training_session.v0.UpdateRequest
 	23, // 23: training_session.v0.TrainingSessionService.AddImage:input_type -> training_session.v0.AddImageRequest
 	25, // 24: training_session.v0.TrainingSessionService.DeleteImage:input_type -> training_session.v0.DeleteImageRequest
-	27, // 25: training_session.v0.TrainingSessionService.Delete:input_type -> training_session.v0.DeleteRequest
-	29, // 26: training_session.v0.TrainingSessionService.DeletePermanent:input_type -> training_session.v0.DeletePermanentRequest
-	31, // 27: training_session.v0.TrainingSessionService.Restore:input_type -> training_session.v0.RestoreRequest
-	4,  // 28: training_session.v0.TrainingSessionService.Get:output_type -> training_session.v0.GetResponse
-	6,  // 29: training_session.v0.TrainingSessionService.GetWithDeleted:output_type -> training_session.v0.GetWithDeletedResponse
-	8,  // 30: training_session.v0.TrainingSessionService.GetWithUnpublished:output_type -> training_session.v0.GetWithUnpublishedResponse
-	10, // 31: training_session.v0.TrainingSessionService.List:output_type -> training_session.v0.ListResponse
-	12, // 32: training_session.v0.TrainingSessionService.ListDeleted:output_type -> training_session.v0.ListDeletedResponse
-	14, // 33: training_session.v0.TrainingSessionService.ListUnpublished:output_type -> training_session.v0.ListUnpublishedResponse
-	16, // 34: training_session.v0.TrainingSessionService.Create:output_type -> training_session.v0.CreateResponse
-	18, // 35: training_session.v0.TrainingSessionService.Publish:output_type -> training_session.v0.PublishResponse
-	20, // 36: training_session.v0.TrainingSessionService.Unpublish:output_type -> training_session.v0.UnpublishResponse
-	22, // 37: training_session.v0.TrainingSessionService.Update:output_type -> training_session.v0.UpdateResponse
-	24, // 38: training_session.v0.TrainingSessionService.AddImage:output_type -> training_session.v0.AddImageResponse
-	26, // 39: training_session.v0.TrainingSessionService.DeleteImage:output_type -> training_session.v0.DeleteImageResponse
-	28, // 40: training_session.v0.TrainingSessionService.Delete:output_type -> training_session.v0.DeleteResponse
-	30, // 41: training_session.v0.TrainingSessionService.DeletePermanent:output_type -> training_session.v0.DeletePermanentResponse
-	32, // 42: training_session.v0.TrainingSessionService.Restore:output_type -> training_session.v0.RestoreResponse
-	28, // [28:43] is the sub-list for method output_type
-	13, // [13:28] is the sub-list for method input_type
+	27, // 25: training_session.v0.TrainingSessionService.AddImageBatch:input_type -> training_session.v0.AddImageBatchRequest
+	29, // 26: training_session.v0.TrainingSessionService.DeleteImageBatch:input_type -> training_session.v0.DeleteImageBatchRequest
+	31, // 27: training_session.v0.TrainingSessionService.Delete:input_type -> training_session.v0.DeleteRequest
+	33, // 28: training_session.v0.TrainingSessionService.DeletePermanent:input_type -> training_session.v0.DeletePermanentRequest
+	35, // 29: training_session.v0.TrainingSessionService.Restore:input_type -> training_session.v0.RestoreRequest
+	4,  // 30: training_session.v0.TrainingSessionService.Get:output_type -> training_session.v0.GetResponse
+	6,  // 31: training_session.v0.TrainingSessionService.GetWithDeleted:output_type -> training_session.v0.GetWithDeletedResponse
+	8,  // 32: training_session.v0.TrainingSessionService.GetWithUnpublished:output_type -> training_session.v0.GetWithUnpublishedResponse
+	10, // 33: training_session.v0.TrainingSessionService.List:output_type -> training_session.v0.ListResponse
+	12, // 34: training_session.v0.TrainingSessionService.ListDeleted:output_type -> training_session.v0.ListDeletedResponse
+	14, // 35: training_session.v0.TrainingSessionService.ListUnpublished:output_type -> training_session.v0.ListUnpublishedResponse
+	16, // 36: training_session.v0.TrainingSessionService.Create:output_type -> training_session.v0.CreateResponse
+	18, // 37: training_session.v0.TrainingSessionService.Publish:output_type -> training_session.v0.PublishResponse
+	20, // 38: training_session.v0.TrainingSessionService.Unpublish:output_type -> training_session.v0.UnpublishResponse
+	22, // 39: training_session.v0.TrainingSessionService.Update:output_type -> training_session.v0.UpdateResponse
+	24, // 40: training_session.v0.TrainingSessionService.AddImage:output_type -> training_session.v0.AddImageResponse
+	26, // 41: training_session.v0.TrainingSessionService.DeleteImage:output_type -> training_session.v0.DeleteImageResponse
+	28, // 42: training_session.v0.TrainingSessionService.AddImageBatch:output_type -> training_session.v0.AddImageBatchResponse
+	30, // 43: training_session.v0.TrainingSessionService.DeleteImageBatch:output_type -> training_session.v0.DeleteImageBatchResponse
+	32, // 44: training_session.v0.TrainingSessionService.Delete:output_type -> training_session.v0.DeleteResponse
+	34, // 45: training_session.v0.TrainingSessionService.DeletePermanent:output_type -> training_session.v0.DeletePermanentResponse
+	36, // 46: training_session.v0.TrainingSessionService.Restore:output_type -> training_session.v0.RestoreResponse
+	30, // [30:47] is the sub-list for method output_type
+	13, // [13:30] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
 	13, // [13:13] is the sub-list for extension extendee
 	0,  // [0:13] is the sub-list for field type_name
@@ -2177,7 +2417,7 @@ func file_training_session_v0_training_session_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_training_session_v0_training_session_proto_rawDesc), len(file_training_session_v0_training_session_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

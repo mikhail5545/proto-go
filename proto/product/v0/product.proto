@@ -43,6 +43,22 @@ message GetResponse{
     Product product = 1;
 }
 
+message GetWidhtDeletedRequest{
+    string id = 1;
+}
+
+message GetWithDeletedResponse{
+    Product product = 1;
+}
+
+message GetWithUnpublishedRequest{
+    string id = 1;
+}
+
+message GetWithUnpublishedResponse{
+    Product product = 1;
+}
+
 message GetByDetailsIDRequest{
     string details_id = 1;
 }

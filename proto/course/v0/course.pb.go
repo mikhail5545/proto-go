@@ -1821,6 +1821,222 @@ func (x *DeleteImageResponse) GetMediaServiceId() string {
 	return ""
 }
 
+type AddImageBatchRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Url            string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,2,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	PublicId       string                 `protobuf:"bytes,3,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerIds       []string               `protobuf:"bytes,5,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageBatchRequest) Reset() {
+	*x = AddImageBatchRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageBatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageBatchRequest) ProtoMessage() {}
+
+func (x *AddImageBatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageBatchRequest.ProtoReflect.Descriptor instead.
+func (*AddImageBatchRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *AddImageBatchRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetSecureUrl() string {
+	if x != nil {
+		return x.SecureUrl
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetPublicId() string {
+	if x != nil {
+		return x.PublicId
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AddImageBatchRequest) GetOwnerIds() []string {
+	if x != nil {
+		return x.OwnerIds
+	}
+	return nil
+}
+
+type AddImageBatchResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnersAffected int32                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AddImageBatchResponse) Reset() {
+	*x = AddImageBatchResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddImageBatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddImageBatchResponse) ProtoMessage() {}
+
+func (x *AddImageBatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddImageBatchResponse.ProtoReflect.Descriptor instead.
+func (*AddImageBatchResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *AddImageBatchResponse) GetOwnersAffected() int32 {
+	if x != nil {
+		return x.OwnersAffected
+	}
+	return 0
+}
+
+type DeleteImageBatchRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerIds       []string               `protobuf:"bytes,2,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageBatchRequest) Reset() {
+	*x = DeleteImageBatchRequest{}
+	mi := &file_course_v0_course_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageBatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageBatchRequest) ProtoMessage() {}
+
+func (x *DeleteImageBatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageBatchRequest.ProtoReflect.Descriptor instead.
+func (*DeleteImageBatchRequest) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *DeleteImageBatchRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *DeleteImageBatchRequest) GetOwnerIds() []string {
+	if x != nil {
+		return x.OwnerIds
+	}
+	return nil
+}
+
+type DeleteImageBatchResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnersAffected int32                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DeleteImageBatchResponse) Reset() {
+	*x = DeleteImageBatchResponse{}
+	mi := &file_course_v0_course_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteImageBatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteImageBatchResponse) ProtoMessage() {}
+
+func (x *DeleteImageBatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_course_v0_course_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteImageBatchResponse.ProtoReflect.Descriptor instead.
+func (*DeleteImageBatchResponse) Descriptor() ([]byte, []int) {
+	return file_course_v0_course_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *DeleteImageBatchResponse) GetOwnersAffected() int32 {
+	if x != nil {
+		return x.OwnersAffected
+	}
+	return 0
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1830,7 +2046,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[31]
+	mi := &file_course_v0_course_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1842,7 +2058,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[31]
+	mi := &file_course_v0_course_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1855,7 +2071,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{31}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1874,7 +2090,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[32]
+	mi := &file_course_v0_course_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1886,7 +2102,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[32]
+	mi := &file_course_v0_course_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1899,7 +2115,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{32}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1918,7 +2134,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[33]
+	mi := &file_course_v0_course_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1930,7 +2146,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[33]
+	mi := &file_course_v0_course_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1943,7 +2159,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{33}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1962,7 +2178,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[34]
+	mi := &file_course_v0_course_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1974,7 +2190,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[34]
+	mi := &file_course_v0_course_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1987,7 +2203,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{34}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -2006,7 +2222,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_course_v0_course_proto_msgTypes[35]
+	mi := &file_course_v0_course_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2018,7 +2234,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[35]
+	mi := &file_course_v0_course_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2031,7 +2247,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{35}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -2050,7 +2266,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_course_v0_course_proto_msgTypes[36]
+	mi := &file_course_v0_course_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2062,7 +2278,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_course_v0_course_proto_msgTypes[36]
+	mi := &file_course_v0_course_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2075,7 +2291,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_course_v0_course_proto_rawDescGZIP(), []int{36}
+	return file_course_v0_course_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -2226,7 +2442,21 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"Z\n" +
 	"\x13DeleteImageResponse\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
-	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\x1f\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"\xab\x01\n" +
+	"\x14AddImageBatchRequest\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\x12\x1d\n" +
+	"\n" +
+	"secure_url\x18\x02 \x01(\tR\tsecureUrl\x12\x1b\n" +
+	"\tpublic_id\x18\x03 \x01(\tR\bpublicId\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x1b\n" +
+	"\towner_ids\x18\x05 \x03(\tR\bownerIds\"@\n" +
+	"\x15AddImageBatchResponse\x12'\n" +
+	"\x0fowners_affected\x18\x01 \x01(\x05R\x0eownersAffected\"`\n" +
+	"\x17DeleteImageBatchRequest\x12(\n" +
+	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x1b\n" +
+	"\towner_ids\x18\x02 \x03(\tR\bownerIds\"C\n" +
+	"\x18DeleteImageBatchResponse\x12'\n" +
+	"\x0fowners_affected\x18\x01 \x01(\x05R\x0eownersAffected\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
@@ -2238,8 +2468,7 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xaf\n" +
-	"\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xe4\v\n" +
 	"\rCourseService\x126\n" +
 	"\x03Get\x12\x15.course.v0.GetRequest\x1a\x16.course.v0.GetResponse\"\x00\x12W\n" +
 	"\x0eGetWithDeleted\x12 .course.v0.GetWithDeletedRequest\x1a!.course.v0.GetWithDeletedResponse\"\x00\x12c\n" +
@@ -2255,7 +2484,9 @@ const file_course_v0_course_proto_rawDesc = "" +
 	"\tUnpublish\x12\x1b.course.v0.UnpublishRequest\x1a\x1c.course.v0.UnpublishResponse\"\x00\x12?\n" +
 	"\x06Update\x12\x18.course.v0.UpdateRequest\x1a\x19.course.v0.UpdateResponse\"\x00\x12E\n" +
 	"\bAddImage\x12\x1a.course.v0.AddImageRequest\x1a\x1b.course.v0.AddImageResponse\"\x00\x12N\n" +
-	"\vDeleteImage\x12\x1d.course.v0.DeleteImageRequest\x1a\x1e.course.v0.DeleteImageResponse\"\x00\x12?\n" +
+	"\vDeleteImage\x12\x1d.course.v0.DeleteImageRequest\x1a\x1e.course.v0.DeleteImageResponse\"\x00\x12T\n" +
+	"\rAddImageBatch\x12\x1f.course.v0.AddImageBatchRequest\x1a .course.v0.AddImageBatchResponse\"\x00\x12]\n" +
+	"\x10DeleteImageBatch\x12\".course.v0.DeleteImageBatchRequest\x1a#.course.v0.DeleteImageBatchResponse\"\x00\x12?\n" +
 	"\x06Delete\x12\x18.course.v0.DeleteRequest\x1a\x19.course.v0.DeleteResponse\"\x00\x12Z\n" +
 	"\x0fDeletePermanent\x12!.course.v0.DeletePermanentRequest\x1a\".course.v0.DeletePermanentResponse\"\x00\x12B\n" +
 	"\aRestore\x12\x19.course.v0.RestoreRequest\x1a\x1a.course.v0.RestoreResponse\"\x00B:Z8github.com/mikhail5545/proto-go/proto/course/v0;coursepbb\x06proto3"
@@ -2272,7 +2503,7 @@ func file_course_v0_course_proto_rawDescGZIP() []byte {
 	return file_course_v0_course_proto_rawDescData
 }
 
-var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_course_v0_course_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_course_v0_course_proto_goTypes = []any{
 	(*Image)(nil),                         // 0: course.v0.Image
 	(*Course)(nil),                        // 1: course.v0.Course
@@ -2305,22 +2536,26 @@ var file_course_v0_course_proto_goTypes = []any{
 	(*AddImageResponse)(nil),              // 28: course.v0.AddImageResponse
 	(*DeleteImageRequest)(nil),            // 29: course.v0.DeleteImageRequest
 	(*DeleteImageResponse)(nil),           // 30: course.v0.DeleteImageResponse
-	(*DeleteRequest)(nil),                 // 31: course.v0.DeleteRequest
-	(*DeleteResponse)(nil),                // 32: course.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),        // 33: course.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),       // 34: course.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),                // 35: course.v0.RestoreRequest
-	(*RestoreResponse)(nil),               // 36: course.v0.RestoreResponse
-	(*timestamppb.Timestamp)(nil),         // 37: google.protobuf.Timestamp
-	(*v0.CoursePart)(nil),                 // 38: course_part.v0.CoursePart
-	(*fieldmaskpb.FieldMask)(nil),         // 39: google.protobuf.FieldMask
+	(*AddImageBatchRequest)(nil),          // 31: course.v0.AddImageBatchRequest
+	(*AddImageBatchResponse)(nil),         // 32: course.v0.AddImageBatchResponse
+	(*DeleteImageBatchRequest)(nil),       // 33: course.v0.DeleteImageBatchRequest
+	(*DeleteImageBatchResponse)(nil),      // 34: course.v0.DeleteImageBatchResponse
+	(*DeleteRequest)(nil),                 // 35: course.v0.DeleteRequest
+	(*DeleteResponse)(nil),                // 36: course.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),        // 37: course.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),       // 38: course.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),                // 39: course.v0.RestoreRequest
+	(*RestoreResponse)(nil),               // 40: course.v0.RestoreResponse
+	(*timestamppb.Timestamp)(nil),         // 41: google.protobuf.Timestamp
+	(*v0.CoursePart)(nil),                 // 42: course_part.v0.CoursePart
+	(*fieldmaskpb.FieldMask)(nil),         // 43: google.protobuf.FieldMask
 }
 var file_course_v0_course_proto_depIdxs = []int32{
-	37, // 0: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
-	37, // 1: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
-	37, // 2: course.v0.Course.deleted_at:type_name -> google.protobuf.Timestamp
+	41, // 0: course.v0.Course.created_at:type_name -> google.protobuf.Timestamp
+	41, // 1: course.v0.Course.updated_at:type_name -> google.protobuf.Timestamp
+	41, // 2: course.v0.Course.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: course.v0.Course.images:type_name -> course.v0.Image
-	38, // 4: course.v0.Course.course_parts:type_name -> course_part.v0.CoursePart
+	42, // 4: course.v0.Course.course_parts:type_name -> course_part.v0.CoursePart
 	1,  // 5: course.v0.CourseDetails.course:type_name -> course.v0.Course
 	2,  // 6: course.v0.GetResponse.course_details:type_name -> course.v0.CourseDetails
 	2,  // 7: course.v0.GetWithDeletedResponse.course_details:type_name -> course.v0.CourseDetails
@@ -2330,8 +2565,8 @@ var file_course_v0_course_proto_depIdxs = []int32{
 	2,  // 11: course.v0.ListResponse.course_details:type_name -> course.v0.CourseDetails
 	2,  // 12: course.v0.ListDeletedResponse.course_details:type_name -> course.v0.CourseDetails
 	2,  // 13: course.v0.ListUnpublishedResponse.course_details:type_name -> course.v0.CourseDetails
-	39, // 14: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	39, // 15: course.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	43, // 14: course.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	43, // 15: course.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
 	3,  // 16: course.v0.CourseService.Get:input_type -> course.v0.GetRequest
 	5,  // 17: course.v0.CourseService.GetWithDeleted:input_type -> course.v0.GetWithDeletedRequest
 	7,  // 18: course.v0.CourseService.GetWithUnpublished:input_type -> course.v0.GetWithUnpublishedRequest
@@ -2346,28 +2581,32 @@ var file_course_v0_course_proto_depIdxs = []int32{
 	25, // 27: course.v0.CourseService.Update:input_type -> course.v0.UpdateRequest
 	27, // 28: course.v0.CourseService.AddImage:input_type -> course.v0.AddImageRequest
 	29, // 29: course.v0.CourseService.DeleteImage:input_type -> course.v0.DeleteImageRequest
-	31, // 30: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
-	33, // 31: course.v0.CourseService.DeletePermanent:input_type -> course.v0.DeletePermanentRequest
-	35, // 32: course.v0.CourseService.Restore:input_type -> course.v0.RestoreRequest
-	4,  // 33: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
-	6,  // 34: course.v0.CourseService.GetWithDeleted:output_type -> course.v0.GetWithDeletedResponse
-	8,  // 35: course.v0.CourseService.GetWithUnpublished:output_type -> course.v0.GetWithUnpublishedResponse
-	10, // 36: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
-	12, // 37: course.v0.CourseService.GetReducedWithDeleted:output_type -> course.v0.GetReducedWithDeletedResponse
-	14, // 38: course.v0.CourseService.List:output_type -> course.v0.ListResponse
-	16, // 39: course.v0.CourseService.ListDeleted:output_type -> course.v0.ListDeletedResponse
-	18, // 40: course.v0.CourseService.ListUnpublished:output_type -> course.v0.ListUnpublishedResponse
-	20, // 41: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
-	22, // 42: course.v0.CourseService.Publish:output_type -> course.v0.PublishResponse
-	24, // 43: course.v0.CourseService.Unpublish:output_type -> course.v0.UnpublishResponse
-	26, // 44: course.v0.CourseService.Update:output_type -> course.v0.UpdateResponse
-	28, // 45: course.v0.CourseService.AddImage:output_type -> course.v0.AddImageResponse
-	30, // 46: course.v0.CourseService.DeleteImage:output_type -> course.v0.DeleteImageResponse
-	32, // 47: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
-	34, // 48: course.v0.CourseService.DeletePermanent:output_type -> course.v0.DeletePermanentResponse
-	36, // 49: course.v0.CourseService.Restore:output_type -> course.v0.RestoreResponse
-	33, // [33:50] is the sub-list for method output_type
-	16, // [16:33] is the sub-list for method input_type
+	31, // 30: course.v0.CourseService.AddImageBatch:input_type -> course.v0.AddImageBatchRequest
+	33, // 31: course.v0.CourseService.DeleteImageBatch:input_type -> course.v0.DeleteImageBatchRequest
+	35, // 32: course.v0.CourseService.Delete:input_type -> course.v0.DeleteRequest
+	37, // 33: course.v0.CourseService.DeletePermanent:input_type -> course.v0.DeletePermanentRequest
+	39, // 34: course.v0.CourseService.Restore:input_type -> course.v0.RestoreRequest
+	4,  // 35: course.v0.CourseService.Get:output_type -> course.v0.GetResponse
+	6,  // 36: course.v0.CourseService.GetWithDeleted:output_type -> course.v0.GetWithDeletedResponse
+	8,  // 37: course.v0.CourseService.GetWithUnpublished:output_type -> course.v0.GetWithUnpublishedResponse
+	10, // 38: course.v0.CourseService.GetReduced:output_type -> course.v0.GetReducedResponse
+	12, // 39: course.v0.CourseService.GetReducedWithDeleted:output_type -> course.v0.GetReducedWithDeletedResponse
+	14, // 40: course.v0.CourseService.List:output_type -> course.v0.ListResponse
+	16, // 41: course.v0.CourseService.ListDeleted:output_type -> course.v0.ListDeletedResponse
+	18, // 42: course.v0.CourseService.ListUnpublished:output_type -> course.v0.ListUnpublishedResponse
+	20, // 43: course.v0.CourseService.Create:output_type -> course.v0.CreateResponse
+	22, // 44: course.v0.CourseService.Publish:output_type -> course.v0.PublishResponse
+	24, // 45: course.v0.CourseService.Unpublish:output_type -> course.v0.UnpublishResponse
+	26, // 46: course.v0.CourseService.Update:output_type -> course.v0.UpdateResponse
+	28, // 47: course.v0.CourseService.AddImage:output_type -> course.v0.AddImageResponse
+	30, // 48: course.v0.CourseService.DeleteImage:output_type -> course.v0.DeleteImageResponse
+	32, // 49: course.v0.CourseService.AddImageBatch:output_type -> course.v0.AddImageBatchResponse
+	34, // 50: course.v0.CourseService.DeleteImageBatch:output_type -> course.v0.DeleteImageBatchResponse
+	36, // 51: course.v0.CourseService.Delete:output_type -> course.v0.DeleteResponse
+	38, // 52: course.v0.CourseService.DeletePermanent:output_type -> course.v0.DeletePermanentResponse
+	40, // 53: course.v0.CourseService.Restore:output_type -> course.v0.RestoreResponse
+	35, // [35:54] is the sub-list for method output_type
+	16, // [16:35] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
 	16, // [16:16] is the sub-list for extension extendee
 	0,  // [0:16] is the sub-list for field type_name
@@ -2387,7 +2626,7 @@ func file_course_v0_course_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_course_v0_course_proto_rawDesc), len(file_course_v0_course_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
