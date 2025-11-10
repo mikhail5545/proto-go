@@ -1,0 +1,232 @@
+// github.com/mikhail5545/proto-go
+// shared proto module for vitainmove project microservices
+// Copyright (C) 2025  Mikhail Kulik
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package seminar.v1;
+
+import "product_service/image/v0/image.proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+
+option go_package = "github.com/mikhail5545/proto-go/proto/product_service/seminar/v1;seminarpb";
+
+message Seminar{
+    string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    string name = 5;
+    string short_description = 6;
+    string long_description = 7;
+    repeated string tags = 8;
+    repeated image.v0.Image images = 9;
+    string reservation_product_id = 10;
+    string early_product_id = 11;
+    string late_product_id = 12;
+    string early_surcharge_product_id = 13;
+    string late_surcharge_product_id = 14;
+    google.protobuf.Timestamp date = 16;
+    google.protobuf.Timestamp ending_date = 17;
+    string place = 18;
+    google.protobuf.Timestamp late_payment_date = 19;
+    bool in_stock = 20;
+    int32 uploaded_image_amount = 21;
+}
+
+message SeminarDetails{
+    Seminar seminar = 1;
+    float reservation_price = 2;
+    float early_price = 3;
+    float late_price = 4;
+    float early_surcharge_price = 5;
+    float late_surcharge_price = 6;
+    float current_price = 7;
+    string current_price_product_id = 8;
+    float current_surcharge_price = 9;
+    string current_surcharge_price_product_id = 10;
+}
+
+message GetRequest{
+    string id = 1;
+}
+
+message GetResponse{
+    SeminarDetails seminar_details = 1;
+}
+
+message GetWithDeletedRequest{
+    string id = 1;
+}
+
+message GetWithDeletedResponse{
+    SeminarDetails seminar_details = 1;
+}
+
+message GetWithUnpublishedRequest{
+    string id = 1;
+}
+
+message GetWithUnpublishedResponse{
+    SeminarDetails seminar_details = 1;
+}
+
+message ListRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListResponse{
+    repeated SeminarDetails seminar_details = 1;
+    int64 total = 2;
+}
+
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListDeletedResponse{
+    repeated SeminarDetails seminar_details = 1;
+    int64 total = 2;
+}
+
+message ListUnpublishedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListUnpublishedResponse{
+    repeated SeminarDetails seminar_details = 1;
+    int64 total = 2;
+}
+
+message CreateRequest{
+    string name = 1;
+    string short_description = 2;
+    float reservation_price = 3;
+    float early_price = 4;
+    float late_price = 5;
+    float early_surcharge_price = 6;
+    float late_surcharge_price = 7;
+    google.protobuf.Timestamp date = 8;
+    google.protobuf.Timestamp ending_date = 9;
+    string place = 10;
+    google.protobuf.Timestamp late_payment_date = 11;
+}
+
+message CreateResponse{
+    string id = 1;
+    string reservation_product_id = 2;
+    string early_product_id = 3;
+    string late_product_id = 4;
+    string early_surcharge_product_id = 5;
+    string late_surcharge_product_id = 6;
+}
+
+message PublishRequest{
+    string id = 1;
+}
+
+message PublishResponse{
+    string id = 1;
+}
+
+message UnpublishRequest{
+    string id = 1;
+}
+
+message UnpublishResponse{
+    string id = 1;
+}
+
+message UpdateRequest{
+    string id = 1;
+    optional string name = 2;
+    optional string short_description = 3;
+    optional string long_description = 4;
+    optional float reservation_price = 5;
+    optional float early_price = 6;
+    optional float late_price = 7;
+    optional float early_surcharge_price = 8;
+    optional float late_surcharge_price = 9;
+    optional google.protobuf.Timestamp date = 10;
+    optional google.protobuf.Timestamp ending_date = 11;
+    optional string place = 12;
+    repeated string tags = 13;
+    optional google.protobuf.Timestamp late_payment_date = 14;
+    google.protobuf.FieldMask update_mask = 15;
+}
+
+message UpdateResponse{
+    string id = 1;
+    optional string name = 2;
+    optional string short_description = 3;
+    optional string long_description = 4;
+    optional float reservation_price = 5;
+    optional float early_price = 6;
+    optional float late_price = 7;
+    optional float early_surcharge_price = 8;
+    optional float late_surcharge_price = 9;
+    optional google.protobuf.Timestamp date = 10;
+    optional google.protobuf.Timestamp ending_date = 11;
+    optional string place = 12;
+    repeated string tags = 13;
+    optional google.protobuf.Timestamp late_payment_date = 14;
+    google.protobuf.FieldMask updated = 15;
+}
+
+message DeleteRequest{
+    string id = 1;
+}
+
+message DeleteResponse{
+    string id = 1;
+}
+
+message DeletePermanentRequest{
+    string id = 1;
+}
+
+message DeletePermanentResponse{
+    string id = 1;
+}
+
+message RestoreRequest{
+    string id = 1;
+}
+
+message RestoreResponse{
+    string id = 1;
+}
+
+service SeminarService {
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    rpc GetWithUnpublished(GetWithUnpublishedRequest) returns (GetWithUnpublishedResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    rpc ListUnpublished(ListUnpublishedRequest) returns (ListUnpublishedResponse) {}
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Publish(PublishRequest) returns (PublishResponse) {}
+    rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+}
