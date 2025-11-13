@@ -36,16 +36,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VideoService_AddVideo_FullMethodName    = "/video.v0.VideoService/AddVideo"
-	VideoService_RemoveVideo_FullMethodName = "/video.v0.VideoService/RemoveVideo"
+	VideoService_Add_FullMethodName    = "/video.v0.VideoService/Add"
+	VideoService_Remove_FullMethodName = "/video.v0.VideoService/Remove"
 )
 
 // VideoServiceClient is the client API for VideoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VideoServiceClient interface {
-	AddVideo(ctx context.Context, in *AddVideoRequest, opts ...grpc.CallOption) (*AddVideoResponse, error)
-	RemoveVideo(ctx context.Context, in *RemoveVideoRequest, opts ...grpc.CallOption) (*RemoveVideoResponse, error)
+	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
+	Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error)
 }
 
 type videoServiceClient struct {
@@ -56,20 +56,20 @@ func NewVideoServiceClient(cc grpc.ClientConnInterface) VideoServiceClient {
 	return &videoServiceClient{cc}
 }
 
-func (c *videoServiceClient) AddVideo(ctx context.Context, in *AddVideoRequest, opts ...grpc.CallOption) (*AddVideoResponse, error) {
+func (c *videoServiceClient) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddVideoResponse)
-	err := c.cc.Invoke(ctx, VideoService_AddVideo_FullMethodName, in, out, cOpts...)
+	out := new(AddResponse)
+	err := c.cc.Invoke(ctx, VideoService_Add_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *videoServiceClient) RemoveVideo(ctx context.Context, in *RemoveVideoRequest, opts ...grpc.CallOption) (*RemoveVideoResponse, error) {
+func (c *videoServiceClient) Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RemoveVideoResponse)
-	err := c.cc.Invoke(ctx, VideoService_RemoveVideo_FullMethodName, in, out, cOpts...)
+	out := new(RemoveResponse)
+	err := c.cc.Invoke(ctx, VideoService_Remove_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,8 +80,8 @@ func (c *videoServiceClient) RemoveVideo(ctx context.Context, in *RemoveVideoReq
 // All implementations must embed UnimplementedVideoServiceServer
 // for forward compatibility.
 type VideoServiceServer interface {
-	AddVideo(context.Context, *AddVideoRequest) (*AddVideoResponse, error)
-	RemoveVideo(context.Context, *RemoveVideoRequest) (*RemoveVideoResponse, error)
+	Add(context.Context, *AddRequest) (*AddResponse, error)
+	Remove(context.Context, *RemoveRequest) (*RemoveResponse, error)
 	mustEmbedUnimplementedVideoServiceServer()
 }
 
@@ -92,11 +92,11 @@ type VideoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedVideoServiceServer struct{}
 
-func (UnimplementedVideoServiceServer) AddVideo(context.Context, *AddVideoRequest) (*AddVideoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddVideo not implemented")
+func (UnimplementedVideoServiceServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedVideoServiceServer) RemoveVideo(context.Context, *RemoveVideoRequest) (*RemoveVideoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveVideo not implemented")
+func (UnimplementedVideoServiceServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
 }
 func (UnimplementedVideoServiceServer) mustEmbedUnimplementedVideoServiceServer() {}
 func (UnimplementedVideoServiceServer) testEmbeddedByValue()                      {}
@@ -119,38 +119,38 @@ func RegisterVideoServiceServer(s grpc.ServiceRegistrar, srv VideoServiceServer)
 	s.RegisterService(&VideoService_ServiceDesc, srv)
 }
 
-func _VideoService_AddVideo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddVideoRequest)
+func _VideoService_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).AddVideo(ctx, in)
+		return srv.(VideoServiceServer).Add(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_AddVideo_FullMethodName,
+		FullMethod: VideoService_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).AddVideo(ctx, req.(*AddVideoRequest))
+		return srv.(VideoServiceServer).Add(ctx, req.(*AddRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VideoService_RemoveVideo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveVideoRequest)
+func _VideoService_Remove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).RemoveVideo(ctx, in)
+		return srv.(VideoServiceServer).Remove(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_RemoveVideo_FullMethodName,
+		FullMethod: VideoService_Remove_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).RemoveVideo(ctx, req.(*RemoveVideoRequest))
+		return srv.(VideoServiceServer).Remove(ctx, req.(*RemoveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -163,12 +163,12 @@ var VideoService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*VideoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddVideo",
-			Handler:    _VideoService_AddVideo_Handler,
+			MethodName: "Add",
+			Handler:    _VideoService_Add_Handler,
 		},
 		{
-			MethodName: "RemoveVideo",
-			Handler:    _VideoService_RemoveVideo_Handler,
+			MethodName: "Remove",
+			Handler:    _VideoService_Remove_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

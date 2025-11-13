@@ -46,27 +46,29 @@ message Video{
     optional string owner_type = 20;
 }
 
-message AddVideoRequest{
+message AddRequest{
+    string owner_id = 1;
+    string owner_type = 2;
+    string media_service_id = 3;
+}
+
+message AddResponse{
     string owner_id = 1;
     string owner_type = 2;
 }
 
-message AddVideoResponse{
+message RemoveRequest{
     string owner_id = 1;
     string owner_type = 2;
+    string media_service_id = 3;
 }
 
-message RemoveVideoRequest{
-    string owner_id = 1;
-    string media_service_id = 2;
-}
-
-message RemoveVideoResponse{
+message RemoveResponse{
     string owner_id = 1;
     string media_service_id = 2;
 }
 
 service VideoService{
-    rpc AddVideo(AddVideoRequest) returns (AddVideoResponse) {}
-    rpc RemoveVideo(RemoveVideoRequest) returns (RemoveVideoResponse) {}
+    rpc Add(AddRequest) returns (AddResponse) {}
+    rpc Remove(RemoveRequest) returns (RemoveResponse) {}
 }

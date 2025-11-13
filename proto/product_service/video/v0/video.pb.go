@@ -235,133 +235,30 @@ func (x *Video) GetOwnerType() string {
 	return ""
 }
 
-type AddVideoRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddVideoRequest) Reset() {
-	*x = AddVideoRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddVideoRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddVideoRequest) ProtoMessage() {}
-
-func (x *AddVideoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddVideoRequest.ProtoReflect.Descriptor instead.
-func (*AddVideoRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *AddVideoRequest) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *AddVideoRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-type AddVideoResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddVideoResponse) Reset() {
-	*x = AddVideoResponse{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddVideoResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddVideoResponse) ProtoMessage() {}
-
-func (x *AddVideoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddVideoResponse.ProtoReflect.Descriptor instead.
-func (*AddVideoResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *AddVideoResponse) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *AddVideoResponse) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-type RemoveVideoRequest struct {
+type AddRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,3,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *RemoveVideoRequest) Reset() {
-	*x = RemoveVideoRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+func (x *AddRequest) Reset() {
+	*x = AddRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RemoveVideoRequest) String() string {
+func (x *AddRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveVideoRequest) ProtoMessage() {}
+func (*AddRequest) ProtoMessage() {}
 
-func (x *RemoveVideoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+func (x *AddRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -372,26 +269,145 @@ func (x *RemoveVideoRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RemoveVideoRequest.ProtoReflect.Descriptor instead.
-func (*RemoveVideoRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use AddRequest.ProtoReflect.Descriptor instead.
+func (*AddRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RemoveVideoRequest) GetOwnerId() string {
+func (x *AddRequest) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
 	}
 	return ""
 }
 
-func (x *RemoveVideoRequest) GetMediaServiceId() string {
+func (x *AddRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+func (x *AddRequest) GetMediaServiceId() string {
 	if x != nil {
 		return x.MediaServiceId
 	}
 	return ""
 }
 
-type RemoveVideoResponse struct {
+type AddResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddResponse) Reset() {
+	*x = AddResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddResponse) ProtoMessage() {}
+
+func (x *AddResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddResponse.ProtoReflect.Descriptor instead.
+func (*AddResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AddResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AddResponse) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type RemoveRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,3,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RemoveRequest) Reset() {
+	*x = RemoveRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveRequest) ProtoMessage() {}
+
+func (x *RemoveRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveRequest.ProtoReflect.Descriptor instead.
+func (*RemoveRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *RemoveRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *RemoveRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+func (x *RemoveRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+type RemoveResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
@@ -399,20 +415,20 @@ type RemoveVideoResponse struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *RemoveVideoResponse) Reset() {
-	*x = RemoveVideoResponse{}
+func (x *RemoveResponse) Reset() {
+	*x = RemoveResponse{}
 	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RemoveVideoResponse) String() string {
+func (x *RemoveResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveVideoResponse) ProtoMessage() {}
+func (*RemoveResponse) ProtoMessage() {}
 
-func (x *RemoveVideoResponse) ProtoReflect() protoreflect.Message {
+func (x *RemoveResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -424,19 +440,19 @@ func (x *RemoveVideoResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RemoveVideoResponse.ProtoReflect.Descriptor instead.
-func (*RemoveVideoResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RemoveResponse.ProtoReflect.Descriptor instead.
+func (*RemoveResponse) Descriptor() ([]byte, []int) {
 	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RemoveVideoResponse) GetOwnerId() string {
+func (x *RemoveResponse) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
 	}
 	return ""
 }
 
-func (x *RemoveVideoResponse) GetMediaServiceId() string {
+func (x *RemoveResponse) GetMediaServiceId() string {
 	if x != nil {
 		return x.MediaServiceId
 	}
@@ -492,24 +508,28 @@ const file_product_service_video_v0_video_proto_rawDesc = "" +
 	"\f_ingest_typeB\x0e\n" +
 	"\f_passthroughB\v\n" +
 	"\t_owner_idB\r\n" +
-	"\v_owner_type\"K\n" +
-	"\x0fAddVideoRequest\x12\x19\n" +
+	"\v_owner_type\"p\n" +
+	"\n" +
+	"AddRequest\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"L\n" +
-	"\x10AddVideoResponse\x12\x19\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\x12(\n" +
+	"\x10media_service_id\x18\x03 \x01(\tR\x0emediaServiceId\"G\n" +
+	"\vAddResponse\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"Y\n" +
-	"\x12RemoveVideoRequest\x12\x19\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\"s\n" +
+	"\rRemoveRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\x12(\n" +
+	"\x10media_service_id\x18\x03 \x01(\tR\x0emediaServiceId\"U\n" +
+	"\x0eRemoveResponse\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
-	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"Z\n" +
-	"\x13RemoveVideoResponse\x12\x19\n" +
-	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
-	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId2\xa1\x01\n" +
-	"\fVideoService\x12C\n" +
-	"\bAddVideo\x12\x19.video.v0.AddVideoRequest\x1a\x1a.video.v0.AddVideoResponse\"\x00\x12L\n" +
-	"\vRemoveVideo\x12\x1c.video.v0.RemoveVideoRequest\x1a\x1d.video.v0.RemoveVideoResponse\"\x00BHZFgithub.com/mikhail5545/proto-go/proto/product_service/video/v0;videopbb\x06proto3"
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId2\x83\x01\n" +
+	"\fVideoService\x124\n" +
+	"\x03Add\x12\x14.video.v0.AddRequest\x1a\x15.video.v0.AddResponse\"\x00\x12=\n" +
+	"\x06Remove\x12\x17.video.v0.RemoveRequest\x1a\x18.video.v0.RemoveResponse\"\x00BHZFgithub.com/mikhail5545/proto-go/proto/product_service/video/v0;videopbb\x06proto3"
 
 var (
 	file_product_service_video_v0_video_proto_rawDescOnce sync.Once
@@ -526,10 +546,10 @@ func file_product_service_video_v0_video_proto_rawDescGZIP() []byte {
 var file_product_service_video_v0_video_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_product_service_video_v0_video_proto_goTypes = []any{
 	(*Video)(nil),                 // 0: video.v0.Video
-	(*AddVideoRequest)(nil),       // 1: video.v0.AddVideoRequest
-	(*AddVideoResponse)(nil),      // 2: video.v0.AddVideoResponse
-	(*RemoveVideoRequest)(nil),    // 3: video.v0.RemoveVideoRequest
-	(*RemoveVideoResponse)(nil),   // 4: video.v0.RemoveVideoResponse
+	(*AddRequest)(nil),            // 1: video.v0.AddRequest
+	(*AddResponse)(nil),           // 2: video.v0.AddResponse
+	(*RemoveRequest)(nil),         // 3: video.v0.RemoveRequest
+	(*RemoveResponse)(nil),        // 4: video.v0.RemoveResponse
 	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
 }
 var file_product_service_video_v0_video_proto_depIdxs = []int32{
@@ -537,10 +557,10 @@ var file_product_service_video_v0_video_proto_depIdxs = []int32{
 	5, // 1: video.v0.Video.updated_at:type_name -> google.protobuf.Timestamp
 	5, // 2: video.v0.Video.deleted_at:type_name -> google.protobuf.Timestamp
 	5, // 3: video.v0.Video.asset_created_at:type_name -> google.protobuf.Timestamp
-	1, // 4: video.v0.VideoService.AddVideo:input_type -> video.v0.AddVideoRequest
-	3, // 5: video.v0.VideoService.RemoveVideo:input_type -> video.v0.RemoveVideoRequest
-	2, // 6: video.v0.VideoService.AddVideo:output_type -> video.v0.AddVideoResponse
-	4, // 7: video.v0.VideoService.RemoveVideo:output_type -> video.v0.RemoveVideoResponse
+	1, // 4: video.v0.VideoService.Add:input_type -> video.v0.AddRequest
+	3, // 5: video.v0.VideoService.Remove:input_type -> video.v0.RemoveRequest
+	2, // 6: video.v0.VideoService.Add:output_type -> video.v0.AddResponse
+	4, // 7: video.v0.VideoService.Remove:output_type -> video.v0.RemoveResponse
 	6, // [6:8] is the sub-list for method output_type
 	4, // [4:6] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
