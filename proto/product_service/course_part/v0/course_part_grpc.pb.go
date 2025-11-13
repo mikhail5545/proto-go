@@ -50,7 +50,6 @@ const (
 	CoursePartService_Publish_FullMethodName                   = "/course_part.v0.CoursePartService/Publish"
 	CoursePartService_Unpublish_FullMethodName                 = "/course_part.v0.CoursePartService/Unpublish"
 	CoursePartService_Update_FullMethodName                    = "/course_part.v0.CoursePartService/Update"
-	CoursePartService_AddVideo_FullMethodName                  = "/course_part.v0.CoursePartService/AddVideo"
 	CoursePartService_Delete_FullMethodName                    = "/course_part.v0.CoursePartService/Delete"
 	CoursePartService_DeletePermanent_FullMethodName           = "/course_part.v0.CoursePartService/DeletePermanent"
 	CoursePartService_Restore_FullMethodName                   = "/course_part.v0.CoursePartService/Restore"
@@ -74,7 +73,6 @@ type CoursePartServiceClient interface {
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	AddVideo(ctx context.Context, in *AddVideoRequest, opts ...grpc.CallOption) (*AddVideoResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -228,16 +226,6 @@ func (c *coursePartServiceClient) Update(ctx context.Context, in *UpdateRequest,
 	return out, nil
 }
 
-func (c *coursePartServiceClient) AddVideo(ctx context.Context, in *AddVideoRequest, opts ...grpc.CallOption) (*AddVideoResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddVideoResponse)
-	err := c.cc.Invoke(ctx, CoursePartService_AddVideo_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *coursePartServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -286,7 +274,6 @@ type CoursePartServiceServer interface {
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	AddVideo(context.Context, *AddVideoRequest) (*AddVideoResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -341,9 +328,6 @@ func (UnimplementedCoursePartServiceServer) Unpublish(context.Context, *Unpublis
 }
 func (UnimplementedCoursePartServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (UnimplementedCoursePartServiceServer) AddVideo(context.Context, *AddVideoRequest) (*AddVideoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddVideo not implemented")
 }
 func (UnimplementedCoursePartServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -627,24 +611,6 @@ func _CoursePartService_Update_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CoursePartService_AddVideo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddVideoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CoursePartServiceServer).AddVideo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CoursePartService_AddVideo_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoursePartServiceServer).AddVideo(ctx, req.(*AddVideoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CoursePartService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -761,10 +727,6 @@ var CoursePartService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _CoursePartService_Update_Handler,
-		},
-		{
-			MethodName: "AddVideo",
-			Handler:    _CoursePartService_AddVideo_Handler,
 		},
 		{
 			MethodName: "Delete",

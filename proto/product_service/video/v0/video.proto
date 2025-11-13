@@ -1,0 +1,72 @@
+// github.com/mikhail5545/proto-go
+// shared proto module for vitainmove project microservices
+// Copyright (C) 2025  Mikhail Kulik
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package video.v0;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/mikhail5545/proto-go/proto/product_service/video/v0;videopb";
+
+message Video{
+    string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    optional string mux_upload_id = 5;
+    optional string mux_asset_id = 6;
+    optional string mux_playback_id = 7;
+    string state = 8;
+    optional string status = 9;
+    optional float duration = 10;
+    optional string aspect_ratio = 11;
+    optional int32 height = 12;
+    optional int32 width = 13;
+    optional google.protobuf.Timestamp asset_created_at = 14;
+    optional string max_resolution_tier = 15;
+    optional string max_stored_frame_rate = 16;
+    optional string ingest_type = 17;
+    optional string passthrough = 18;
+    optional string owner_id = 19;
+    optional string owner_type = 20;
+}
+
+message AddVideoRequest{
+    string owner_id = 1;
+    string owner_type = 2;
+}
+
+message AddVideoResponse{
+    string owner_id = 1;
+    string owner_type = 2;
+}
+
+message RemoveVideoRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+}
+
+message RemoveVideoResponse{
+    string owner_id = 1;
+    string media_service_id = 2;
+}
+
+service VideoService{
+    rpc AddVideo(AddVideoRequest) returns (AddVideoResponse) {}
+    rpc RemoveVideo(RemoveVideoRequest) returns (RemoveVideoResponse) {}
+}

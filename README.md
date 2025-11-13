@@ -45,7 +45,8 @@ To compile files for `product_service` directory:
     proto/product_service/seminar/v1/*.proto \
     proto/product_service/training_session/v0/*.proto \
     proto/product_service/training_session/v1/*.proto \
-    proto/product_service/image/v0/*.proto
+    proto/product_service/image/v0/*.proto \
+    proto/product_service/video/v0/*.proto
 ```
 
 To compile files for `media_service` directory:
@@ -54,7 +55,7 @@ To compile files for `media_service` directory:
     protoc  --proto_path=proto \
     --go_out=. --go_opt=module=github.com/mikhail5545/proto-go \
     --go-grpc_out=. --go-grpc_opt=module=github.com/mikhail5545/proto-go \
-    proto/media_service/mux_upload/v0/*.proto
+    proto/media_service/mux/asset/v0/*.proto
 ```
 
 To compile files for `user_service` directory:

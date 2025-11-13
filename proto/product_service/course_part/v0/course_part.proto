@@ -19,7 +19,7 @@ syntax = "proto3";
 
 package course_part.v0;
 
-import "media_service/mux_upload/v0/mux_upload.proto";
+import "media_service/mux/asset/v0/asset.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 
@@ -35,10 +35,10 @@ message CoursePart{
     string short_description = 7;
     string long_description = 8;
     bool published = 9;
-    optional mux_upload.v0.MuxUpload mux_video = 10;
+    optional asset.v0.Asset video = 10;
     int32 number = 11;
     string course_id = 12;
-    optional string mux_video_id = 13;
+    optional string video_id = 13;
 }
 
 message GetRequest{
@@ -183,15 +183,6 @@ message UpdateResponse{
     google.protobuf.FieldMask updated = 8;
 }
 
-message AddVideoRequest{
-    string id = 1;
-    string mux_video_id = 2;
-}
-
-message AddVideoResponse{
-    string mux_video_id = 1;
-}
-
 message DeleteRequest{
     string id = 1;
 }
@@ -231,7 +222,6 @@ service CoursePartService{
     rpc Publish(PublishRequest) returns (PublishResponse) {}
     rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
-    rpc AddVideo(AddVideoRequest) returns (AddVideoResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}

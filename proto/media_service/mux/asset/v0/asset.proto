@@ -1,0 +1,130 @@
+// github.com/mikhail5545/proto-go
+// shared proto module for vitainmove project microservices
+// Copyright (C) 2025  Mikhail Kulik
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package asset.v0;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/mikhail5545/proto-go/proto/media_service/mux/asset/v0;assetpb";
+
+message Asset{
+    string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+    optional google.protobuf.Timestamp deleted_at = 4;
+    optional string mux_upload_id = 5;
+    optional string mux_asset_id = 6;
+    optional string mux_playback_id = 7;
+    string state = 8;
+    optional string status = 9;
+    optional float duration = 10;
+    optional string aspect_ratio = 11;
+    optional int32 height = 12;
+    optional int32 width = 13;
+    optional google.protobuf.Timestamp asset_created_at = 14;
+    optional string max_resolution_tier = 15;
+    optional string max_stored_frame_rate = 16;
+    optional string ingest_type = 17;
+    optional string passthrough = 18;
+    optional string owner_id = 19;
+    optional string owner_type = 20;
+}
+
+message GetRequest{
+    string id = 1;
+}
+
+message GetResponse{
+    Asset asset = 1;
+}
+
+message GetWithDeletedRequest{
+    string id = 1;
+}
+
+message GetWithDeletedResponse{
+    Asset asset = 1;
+}
+
+message ListRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListResponse{
+    repeated Asset assets = 1;
+    int64 total = 2;
+}
+
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListDeletedResponse{
+    repeated Asset assets = 1;
+    int64 total = 2;
+}
+
+message DeleteRequest{
+    string id = 1;
+}
+
+message DeleteResponse{
+    string id = 1;
+}
+
+message DeletePermanentRequest{
+    string id = 1;
+}
+
+message DeletePermanentResponse{
+    string id = 1;
+}
+
+message RestoreRequest{
+    string id = 1;
+}
+
+message RestoreResponse{
+    string id = 1;
+}
+
+message CreateUploadUrlRequest{
+    string owner_id = 1;
+    string owner_type = 2;
+}
+
+message CreateUploadUrlResponse{
+    string id = 1;
+    optional string owner_id = 2;
+    optional string owner_type = 3;
+    optional string state = 4;
+}
+
+service AssetService{
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    rpc List(ListRequest) returns (ListDeletedResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+    rpc CreateUploadUrl(CreateUploadUrlRequest) returns (CreateUploadUrlResponse) {}
+}
