@@ -36,8 +36,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VideoService_Add_FullMethodName    = "/video.v0.VideoService/Add"
-	VideoService_Remove_FullMethodName = "/video.v0.VideoService/Remove"
+	VideoService_Add_FullMethodName      = "/video.v0.VideoService/Add"
+	VideoService_Remove_FullMethodName   = "/video.v0.VideoService/Remove"
+	VideoService_GetOwner_FullMethodName = "/video.v0.VideoService/GetOwner"
 )
 
 // VideoServiceClient is the client API for VideoService service.
@@ -46,6 +47,7 @@ const (
 type VideoServiceClient interface {
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
 	Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error)
+	GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*GetOwnerResponse, error)
 }
 
 type videoServiceClient struct {
@@ -76,12 +78,23 @@ func (c *videoServiceClient) Remove(ctx context.Context, in *RemoveRequest, opts
 	return out, nil
 }
 
+func (c *videoServiceClient) GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*GetOwnerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOwnerResponse)
+	err := c.cc.Invoke(ctx, VideoService_GetOwner_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VideoServiceServer is the server API for VideoService service.
 // All implementations must embed UnimplementedVideoServiceServer
 // for forward compatibility.
 type VideoServiceServer interface {
 	Add(context.Context, *AddRequest) (*AddResponse, error)
 	Remove(context.Context, *RemoveRequest) (*RemoveResponse, error)
+	GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error)
 	mustEmbedUnimplementedVideoServiceServer()
 }
 
@@ -97,6 +110,9 @@ func (UnimplementedVideoServiceServer) Add(context.Context, *AddRequest) (*AddRe
 }
 func (UnimplementedVideoServiceServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
+}
+func (UnimplementedVideoServiceServer) GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwner not implemented")
 }
 func (UnimplementedVideoServiceServer) mustEmbedUnimplementedVideoServiceServer() {}
 func (UnimplementedVideoServiceServer) testEmbeddedByValue()                      {}
@@ -155,6 +171,24 @@ func _VideoService_Remove_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VideoService_GetOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VideoServiceServer).GetOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VideoService_GetOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VideoServiceServer).GetOwner(ctx, req.(*GetOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VideoService_ServiceDesc is the grpc.ServiceDesc for VideoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -169,6 +203,10 @@ var VideoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Remove",
 			Handler:    _VideoService_Remove_Handler,
+		},
+		{
+			MethodName: "GetOwner",
+			Handler:    _VideoService_GetOwner_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -46,6 +46,12 @@ message Video{
     optional string owner_type = 20;
 }
 
+// Owner represents minimal necessary information about video owner.
+message Owner{
+    string id = 1;
+    optional string video_id = 2;
+}
+
 message AddRequest{
     string owner_id = 1;
     string owner_type = 2;
@@ -68,7 +74,17 @@ message RemoveResponse{
     string media_service_id = 2;
 }
 
+message GetOwnerRequest {
+    string owner_id = 1;
+    string owner_type = 2;
+}
+
+message GetOwnerResponse{
+    Owner owner = 1;
+}
+
 service VideoService{
     rpc Add(AddRequest) returns (AddResponse) {}
     rpc Remove(RemoveRequest) returns (RemoveResponse) {}
+    rpc GetOwner(GetOwnerRequest) returns (GetOwnerResponse) {}
 }
