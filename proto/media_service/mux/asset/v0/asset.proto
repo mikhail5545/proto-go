@@ -82,6 +82,16 @@ message ListDeletedResponse{
     int64 total = 2;
 }
 
+message ListUnownedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+message ListUnownedResponse{
+    repeated Asset assets = 1;
+    int64 total = 2;
+}
+
 message DeleteRequest{
     string id = 1;
 }
@@ -123,6 +133,7 @@ service AssetService{
     rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
     rpc List(ListRequest) returns (ListDeletedResponse) {}
     rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    rpc ListUnowned(ListUnownedRequest) returns (ListUnownedResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}

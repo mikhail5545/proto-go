@@ -36,9 +36,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VideoService_Add_FullMethodName      = "/video.v0.VideoService/Add"
-	VideoService_Remove_FullMethodName   = "/video.v0.VideoService/Remove"
-	VideoService_GetOwner_FullMethodName = "/video.v0.VideoService/GetOwner"
+	VideoService_Add_FullMethodName         = "/video.v0.VideoService/Add"
+	VideoService_AddBatch_FullMethodName    = "/video.v0.VideoService/AddBatch"
+	VideoService_Remove_FullMethodName      = "/video.v0.VideoService/Remove"
+	VideoService_RemoveBatch_FullMethodName = "/video.v0.VideoService/RemoveBatch"
+	VideoService_GetOwner_FullMethodName    = "/video.v0.VideoService/GetOwner"
 )
 
 // VideoServiceClient is the client API for VideoService service.
@@ -46,7 +48,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VideoServiceClient interface {
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
+	AddBatch(ctx context.Context, in *AddBatchRequest, opts ...grpc.CallOption) (*AddBatchResponse, error)
 	Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error)
+	RemoveBatch(ctx context.Context, in *RemoveBatchRequest, opts ...grpc.CallOption) (*RemoveBatchResponse, error)
 	GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*GetOwnerResponse, error)
 }
 
@@ -68,10 +72,30 @@ func (c *videoServiceClient) Add(ctx context.Context, in *AddRequest, opts ...gr
 	return out, nil
 }
 
+func (c *videoServiceClient) AddBatch(ctx context.Context, in *AddBatchRequest, opts ...grpc.CallOption) (*AddBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddBatchResponse)
+	err := c.cc.Invoke(ctx, VideoService_AddBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *videoServiceClient) Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RemoveResponse)
 	err := c.cc.Invoke(ctx, VideoService_Remove_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *videoServiceClient) RemoveBatch(ctx context.Context, in *RemoveBatchRequest, opts ...grpc.CallOption) (*RemoveBatchResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveBatchResponse)
+	err := c.cc.Invoke(ctx, VideoService_RemoveBatch_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,7 +117,9 @@ func (c *videoServiceClient) GetOwner(ctx context.Context, in *GetOwnerRequest, 
 // for forward compatibility.
 type VideoServiceServer interface {
 	Add(context.Context, *AddRequest) (*AddResponse, error)
+	AddBatch(context.Context, *AddBatchRequest) (*AddBatchResponse, error)
 	Remove(context.Context, *RemoveRequest) (*RemoveResponse, error)
+	RemoveBatch(context.Context, *RemoveBatchRequest) (*RemoveBatchResponse, error)
 	GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error)
 	mustEmbedUnimplementedVideoServiceServer()
 }
@@ -108,8 +134,14 @@ type UnimplementedVideoServiceServer struct{}
 func (UnimplementedVideoServiceServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
+func (UnimplementedVideoServiceServer) AddBatch(context.Context, *AddBatchRequest) (*AddBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddBatch not implemented")
+}
 func (UnimplementedVideoServiceServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
+}
+func (UnimplementedVideoServiceServer) RemoveBatch(context.Context, *RemoveBatchRequest) (*RemoveBatchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveBatch not implemented")
 }
 func (UnimplementedVideoServiceServer) GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwner not implemented")
@@ -153,6 +185,24 @@ func _VideoService_Add_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VideoService_AddBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VideoServiceServer).AddBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VideoService_AddBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VideoServiceServer).AddBatch(ctx, req.(*AddBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _VideoService_Remove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveRequest)
 	if err := dec(in); err != nil {
@@ -167,6 +217,24 @@ func _VideoService_Remove_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(VideoServiceServer).Remove(ctx, req.(*RemoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VideoService_RemoveBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VideoServiceServer).RemoveBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VideoService_RemoveBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VideoServiceServer).RemoveBatch(ctx, req.(*RemoveBatchRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -201,8 +269,16 @@ var VideoService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _VideoService_Add_Handler,
 		},
 		{
+			MethodName: "AddBatch",
+			Handler:    _VideoService_AddBatch_Handler,
+		},
+		{
 			MethodName: "Remove",
 			Handler:    _VideoService_Remove_Handler,
+		},
+		{
+			MethodName: "RemoveBatch",
+			Handler:    _VideoService_RemoveBatch_Handler,
 		},
 		{
 			MethodName: "GetOwner",

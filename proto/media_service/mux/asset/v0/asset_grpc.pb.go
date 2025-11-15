@@ -40,6 +40,7 @@ const (
 	AssetService_GetWithDeleted_FullMethodName  = "/asset.v0.AssetService/GetWithDeleted"
 	AssetService_List_FullMethodName            = "/asset.v0.AssetService/List"
 	AssetService_ListDeleted_FullMethodName     = "/asset.v0.AssetService/ListDeleted"
+	AssetService_ListUnowned_FullMethodName     = "/asset.v0.AssetService/ListUnowned"
 	AssetService_Delete_FullMethodName          = "/asset.v0.AssetService/Delete"
 	AssetService_DeletePermanent_FullMethodName = "/asset.v0.AssetService/DeletePermanent"
 	AssetService_Restore_FullMethodName         = "/asset.v0.AssetService/Restore"
@@ -54,6 +55,7 @@ type AssetServiceClient interface {
 	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	ListUnowned(ctx context.Context, in *ListUnownedRequest, opts ...grpc.CallOption) (*ListUnownedResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
@@ -108,6 +110,16 @@ func (c *assetServiceClient) ListDeleted(ctx context.Context, in *ListDeletedReq
 	return out, nil
 }
 
+func (c *assetServiceClient) ListUnowned(ctx context.Context, in *ListUnownedRequest, opts ...grpc.CallOption) (*ListUnownedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListUnownedResponse)
+	err := c.cc.Invoke(ctx, AssetService_ListUnowned_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *assetServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
@@ -156,6 +168,7 @@ type AssetServiceServer interface {
 	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
 	List(context.Context, *ListRequest) (*ListDeletedResponse, error)
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
+	ListUnowned(context.Context, *ListUnownedRequest) (*ListUnownedResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
@@ -181,6 +194,9 @@ func (UnimplementedAssetServiceServer) List(context.Context, *ListRequest) (*Lis
 }
 func (UnimplementedAssetServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
+}
+func (UnimplementedAssetServiceServer) ListUnowned(context.Context, *ListUnownedRequest) (*ListUnownedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUnowned not implemented")
 }
 func (UnimplementedAssetServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -287,6 +303,24 @@ func _AssetService_ListDeleted_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AssetService_ListUnowned_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUnownedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServiceServer).ListUnowned(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AssetService_ListUnowned_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServiceServer).ListUnowned(ctx, req.(*ListUnownedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AssetService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -381,6 +415,10 @@ var AssetService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDeleted",
 			Handler:    _AssetService_ListDeleted_Handler,
+		},
+		{
+			MethodName: "ListUnowned",
+			Handler:    _AssetService_ListUnowned_Handler,
 		},
 		{
 			MethodName: "Delete",

@@ -63,6 +63,16 @@ message AddResponse{
     string owner_type = 2;
 }
 
+message AddBatchRequest {
+    string media_service_id = 1;
+    string owner_type = 2;
+    repeated string owner_ids = 3;
+}
+
+message AddBatchResponse{
+    int64 owners_affected = 1;
+}
+
 message RemoveRequest{
     string owner_id = 1;
     string owner_type = 2;
@@ -72,6 +82,16 @@ message RemoveRequest{
 message RemoveResponse{
     string owner_id = 1;
     string media_service_id = 2;
+}
+
+message RemoveBatchRequest {
+    string media_service_id = 1;
+    string owner_type = 2;
+    repeated string owner_ids = 3;
+}
+
+message RemoveBatchResponse{
+    int64 owners_affected = 1;
 }
 
 message GetOwnerRequest {
@@ -85,6 +105,8 @@ message GetOwnerResponse{
 
 service VideoService{
     rpc Add(AddRequest) returns (AddResponse) {}
+    rpc AddBatch(AddBatchRequest) returns (AddBatchResponse) {}
     rpc Remove(RemoveRequest) returns (RemoveResponse) {}
+    rpc RemoveBatch(RemoveBatchRequest) returns (RemoveBatchResponse) {}
     rpc GetOwner(GetOwnerRequest) returns (GetOwnerResponse) {}
 }
