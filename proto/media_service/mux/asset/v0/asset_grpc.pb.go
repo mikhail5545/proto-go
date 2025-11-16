@@ -36,30 +36,54 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AssetService_Get_FullMethodName             = "/asset.v0.AssetService/Get"
-	AssetService_GetWithDeleted_FullMethodName  = "/asset.v0.AssetService/GetWithDeleted"
-	AssetService_List_FullMethodName            = "/asset.v0.AssetService/List"
-	AssetService_ListDeleted_FullMethodName     = "/asset.v0.AssetService/ListDeleted"
-	AssetService_ListUnowned_FullMethodName     = "/asset.v0.AssetService/ListUnowned"
-	AssetService_Delete_FullMethodName          = "/asset.v0.AssetService/Delete"
-	AssetService_DeletePermanent_FullMethodName = "/asset.v0.AssetService/DeletePermanent"
-	AssetService_Restore_FullMethodName         = "/asset.v0.AssetService/Restore"
-	AssetService_CreateUploadUrl_FullMethodName = "/asset.v0.AssetService/CreateUploadUrl"
+	AssetService_Get_FullMethodName                    = "/muxasset.v0.AssetService/Get"
+	AssetService_GetWithDeleted_FullMethodName         = "/muxasset.v0.AssetService/GetWithDeleted"
+	AssetService_List_FullMethodName                   = "/muxasset.v0.AssetService/List"
+	AssetService_ListDeleted_FullMethodName            = "/muxasset.v0.AssetService/ListDeleted"
+	AssetService_ListUnowned_FullMethodName            = "/muxasset.v0.AssetService/ListUnowned"
+	AssetService_Delete_FullMethodName                 = "/muxasset.v0.AssetService/Delete"
+	AssetService_DeletePermanent_FullMethodName        = "/muxasset.v0.AssetService/DeletePermanent"
+	AssetService_Restore_FullMethodName                = "/muxasset.v0.AssetService/Restore"
+	AssetService_CreateUploadUrl_FullMethodName        = "/muxasset.v0.AssetService/CreateUploadUrl"
+	AssetService_CreateUnownedUploadUrl_FullMethodName = "/muxasset.v0.AssetService/CreateUnownedUploadUrl"
+	AssetService_Associate_FullMethodName              = "/muxasset.v0.AssetService/Associate"
+	AssetService_Deassociate_FullMethodName            = "/muxasset.v0.AssetService/Deassociate"
+	AssetService_UpdateOwners_FullMethodName           = "/muxasset.v0.AssetService/UpdateOwners"
 )
 
 // AssetServiceClient is the client API for AssetService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// AssetService defines the gRPC service for managing MUX assets.
 type AssetServiceClient interface {
+	// Get retrieves a single published and not soft-deleted asset record along with its metadata.
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	// GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
 	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
+	// List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
+	// Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	// ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	// ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
 	ListUnowned(ctx context.Context, in *ListUnownedRequest, opts ...grpc.CallOption) (*ListUnownedResponse, error)
+	// Delete performs a soft delete of an asset.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	// DeletePermanent performs a complete delete of an asset, also deleting it from MUX if possible.
 	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
+	// Restore performs a restore of a soft-deleted asset record.
 	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
+	// CreateUploadUrl creates a signed upload URL for direct upload to MUX associated with an owner.
 	CreateUploadUrl(ctx context.Context, in *CreateUploadUrlRequest, opts ...grpc.CallOption) (*CreateUploadUrlResponse, error)
+	// CreateUnownedUploadUrl creates a signed upload URL for a new asset without an initial owner.
+	CreateUnownedUploadUrl(ctx context.Context, in *CreateUnownedUploadURLRequest, opts ...grpc.CallOption) (*CreateUnownedUploadURLResponse, error)
+	// Associate links an existing asset to an owner.
+	Associate(ctx context.Context, in *AssociateRequest, opts ...grpc.CallOption) (*AssociateResponse, error)
+	// Deassociate removes the link between an asset and an owner.
+	Deassociate(ctx context.Context, in *DeassociateRequest, opts ...grpc.CallOption) (*DeassociateResponse, error)
+	// UpdateOwners updates the list of owners associated with an asset.
+	UpdateOwners(ctx context.Context, in *UpdateOwnersRequest, opts ...grpc.CallOption) (*UpdateOwnersResponse, error)
 }
 
 type assetServiceClient struct {
@@ -160,19 +184,79 @@ func (c *assetServiceClient) CreateUploadUrl(ctx context.Context, in *CreateUplo
 	return out, nil
 }
 
+func (c *assetServiceClient) CreateUnownedUploadUrl(ctx context.Context, in *CreateUnownedUploadURLRequest, opts ...grpc.CallOption) (*CreateUnownedUploadURLResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateUnownedUploadURLResponse)
+	err := c.cc.Invoke(ctx, AssetService_CreateUnownedUploadUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetServiceClient) Associate(ctx context.Context, in *AssociateRequest, opts ...grpc.CallOption) (*AssociateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AssociateResponse)
+	err := c.cc.Invoke(ctx, AssetService_Associate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetServiceClient) Deassociate(ctx context.Context, in *DeassociateRequest, opts ...grpc.CallOption) (*DeassociateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeassociateResponse)
+	err := c.cc.Invoke(ctx, AssetService_Deassociate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *assetServiceClient) UpdateOwners(ctx context.Context, in *UpdateOwnersRequest, opts ...grpc.CallOption) (*UpdateOwnersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateOwnersResponse)
+	err := c.cc.Invoke(ctx, AssetService_UpdateOwners_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AssetServiceServer is the server API for AssetService service.
 // All implementations must embed UnimplementedAssetServiceServer
 // for forward compatibility.
+//
+// AssetService defines the gRPC service for managing MUX assets.
 type AssetServiceServer interface {
+	// Get retrieves a single published and not soft-deleted asset record along with its metadata.
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	// GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
 	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
+	// List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
+	// Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
 	List(context.Context, *ListRequest) (*ListDeletedResponse, error)
+	// ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
+	// ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
 	ListUnowned(context.Context, *ListUnownedRequest) (*ListUnownedResponse, error)
+	// Delete performs a soft delete of an asset.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	// DeletePermanent performs a complete delete of an asset, also deleting it from MUX if possible.
 	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
+	// Restore performs a restore of a soft-deleted asset record.
 	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
+	// CreateUploadUrl creates a signed upload URL for direct upload to MUX associated with an owner.
 	CreateUploadUrl(context.Context, *CreateUploadUrlRequest) (*CreateUploadUrlResponse, error)
+	// CreateUnownedUploadUrl creates a signed upload URL for a new asset without an initial owner.
+	CreateUnownedUploadUrl(context.Context, *CreateUnownedUploadURLRequest) (*CreateUnownedUploadURLResponse, error)
+	// Associate links an existing asset to an owner.
+	Associate(context.Context, *AssociateRequest) (*AssociateResponse, error)
+	// Deassociate removes the link between an asset and an owner.
+	Deassociate(context.Context, *DeassociateRequest) (*DeassociateResponse, error)
+	// UpdateOwners updates the list of owners associated with an asset.
+	UpdateOwners(context.Context, *UpdateOwnersRequest) (*UpdateOwnersResponse, error)
 	mustEmbedUnimplementedAssetServiceServer()
 }
 
@@ -209,6 +293,18 @@ func (UnimplementedAssetServiceServer) Restore(context.Context, *RestoreRequest)
 }
 func (UnimplementedAssetServiceServer) CreateUploadUrl(context.Context, *CreateUploadUrlRequest) (*CreateUploadUrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUploadUrl not implemented")
+}
+func (UnimplementedAssetServiceServer) CreateUnownedUploadUrl(context.Context, *CreateUnownedUploadURLRequest) (*CreateUnownedUploadURLResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUnownedUploadUrl not implemented")
+}
+func (UnimplementedAssetServiceServer) Associate(context.Context, *AssociateRequest) (*AssociateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Associate not implemented")
+}
+func (UnimplementedAssetServiceServer) Deassociate(context.Context, *DeassociateRequest) (*DeassociateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Deassociate not implemented")
+}
+func (UnimplementedAssetServiceServer) UpdateOwners(context.Context, *UpdateOwnersRequest) (*UpdateOwnersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOwners not implemented")
 }
 func (UnimplementedAssetServiceServer) mustEmbedUnimplementedAssetServiceServer() {}
 func (UnimplementedAssetServiceServer) testEmbeddedByValue()                      {}
@@ -393,11 +489,83 @@ func _AssetService_CreateUploadUrl_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AssetService_CreateUnownedUploadUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUnownedUploadURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServiceServer).CreateUnownedUploadUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AssetService_CreateUnownedUploadUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServiceServer).CreateUnownedUploadUrl(ctx, req.(*CreateUnownedUploadURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AssetService_Associate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssociateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServiceServer).Associate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AssetService_Associate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServiceServer).Associate(ctx, req.(*AssociateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AssetService_Deassociate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeassociateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServiceServer).Deassociate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AssetService_Deassociate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServiceServer).Deassociate(ctx, req.(*DeassociateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AssetService_UpdateOwners_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOwnersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssetServiceServer).UpdateOwners(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AssetService_UpdateOwners_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssetServiceServer).UpdateOwners(ctx, req.(*UpdateOwnersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AssetService_ServiceDesc is the grpc.ServiceDesc for AssetService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AssetService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asset.v0.AssetService",
+	ServiceName: "muxasset.v0.AssetService",
 	HandlerType: (*AssetServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -435,6 +603,22 @@ var AssetService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateUploadUrl",
 			Handler:    _AssetService_CreateUploadUrl_Handler,
+		},
+		{
+			MethodName: "CreateUnownedUploadUrl",
+			Handler:    _AssetService_CreateUnownedUploadUrl_Handler,
+		},
+		{
+			MethodName: "Associate",
+			Handler:    _AssetService_Associate_Handler,
+		},
+		{
+			MethodName: "Deassociate",
+			Handler:    _AssetService_Deassociate_Handler,
+		},
+		{
+			MethodName: "UpdateOwners",
+			Handler:    _AssetService_UpdateOwners_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

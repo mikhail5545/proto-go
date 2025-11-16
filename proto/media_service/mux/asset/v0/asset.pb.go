@@ -39,30 +39,51 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Asset represents a MUX asset record, including its state, metadata, and associations.
 type Asset struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	MuxUploadId        *string                `protobuf:"bytes,5,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
-	MuxAssetId         *string                `protobuf:"bytes,6,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
-	MuxPlaybackId      *string                `protobuf:"bytes,7,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
-	State              string                 `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty"`
-	Status             *string                `protobuf:"bytes,9,opt,name=status,proto3,oneof" json:"status,omitempty"`
-	Duration           *float32               `protobuf:"fixed32,10,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
-	AspectRatio        *string                `protobuf:"bytes,11,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
-	Height             *int32                 `protobuf:"varint,12,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	Width              *int32                 `protobuf:"varint,13,opt,name=width,proto3,oneof" json:"width,omitempty"`
-	AssetCreatedAt     *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=asset_created_at,json=assetCreatedAt,proto3,oneof" json:"asset_created_at,omitempty"`
-	MaxResolutionTier  *string                `protobuf:"bytes,15,opt,name=max_resolution_tier,json=maxResolutionTier,proto3,oneof" json:"max_resolution_tier,omitempty"`
-	MaxStoredFrameRate *string                `protobuf:"bytes,16,opt,name=max_stored_frame_rate,json=maxStoredFrameRate,proto3,oneof" json:"max_stored_frame_rate,omitempty"`
-	IngestType         *string                `protobuf:"bytes,17,opt,name=ingest_type,json=ingestType,proto3,oneof" json:"ingest_type,omitempty"`
-	Passthrough        *string                `protobuf:"bytes,18,opt,name=passthrough,proto3,oneof" json:"passthrough,omitempty"`
-	OwnerId            *string                `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`
-	OwnerType          *string                `protobuf:"bytes,20,opt,name=owner_type,json=ownerType,proto3,oneof" json:"owner_type,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Unique identifier for the asset (UUID).
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Timestamp when the asset record was created in the database.
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// Timestamp when the asset record was last updated in the database.
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// Optional timestamp indicating when the asset was soft-deleted. If null, the asset is not deleted.
+	DeletedAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	// Optional MUX upload ID associated with this asset.
+	MuxUploadId *string `protobuf:"bytes,5,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
+	// Optional MUX asset ID associated with this asset.
+	MuxAssetId *string `protobuf:"bytes,6,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
+	// Optional MUX playback ID for this asset.
+	MuxPlaybackId *string `protobuf:"bytes,7,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
+	// Current state of the asset (e.g., "preparing", "ready", "errored").
+	State string `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty"`
+	// Optional status message providing more details about the asset state.
+	Status *string `protobuf:"bytes,9,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	// Optional duration of the video asset in seconds.
+	Duration *float32 `protobuf:"fixed32,10,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
+	// Optional aspect ratio of the video (e.g., "16:9", "4:3").
+	AspectRatio *string `protobuf:"bytes,11,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
+	// Optional height of the video in pixels.
+	Height *int32 `protobuf:"varint,12,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	// Optional width of the video in pixels.
+	Width *int32 `protobuf:"varint,13,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	// Optional timestamp indicating when the asset was created in MUX.
+	AssetCreatedAt *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=asset_created_at,json=assetCreatedAt,proto3,oneof" json:"asset_created_at,omitempty"`
+	// Optional maximum resolution tier of the asset.
+	MaxResolutionTier *string `protobuf:"bytes,15,opt,name=max_resolution_tier,json=maxResolutionTier,proto3,oneof" json:"max_resolution_tier,omitempty"`
+	// Optional maximum frame rate at which the asset is stored.
+	MaxStoredFrameRate *string `protobuf:"bytes,16,opt,name=max_stored_frame_rate,json=maxStoredFrameRate,proto3,oneof" json:"max_stored_frame_rate,omitempty"`
+	// Optional type of ingestion used for this asset.
+	IngestType *string `protobuf:"bytes,17,opt,name=ingest_type,json=ingestType,proto3,oneof" json:"ingest_type,omitempty"`
+	// Optional passthrough value provided during upload.
+	Passthrough *string `protobuf:"bytes,18,opt,name=passthrough,proto3,oneof" json:"passthrough,omitempty"`
+	// Optional identifier of the owner associated with this asset.
+	OwnerId *string `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`
+	// Optional type of the owner associated with this asset (e.g., "course_part").
+	OwnerType     *string `protobuf:"bytes,20,opt,name=owner_type,json=ownerType,proto3,oneof" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Asset) Reset() {
@@ -235,16 +256,128 @@ func (x *Asset) GetOwnerType() string {
 	return ""
 }
 
+// Owner represents an entity that owns an asset.
+type Owner struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Unique identifier of the owner (UUID).
+	OwnerId string `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	// Type of the owner (e.g., "course_part", "lesson").
+	OwnerType     string `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Owner) Reset() {
+	*x = Owner{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Owner) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Owner) ProtoMessage() {}
+
+func (x *Owner) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Owner.ProtoReflect.Descriptor instead.
+func (*Owner) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Owner) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *Owner) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+// AssetResponse contains an asset and its associated owners.
+type AssetResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The asset details.
+	Asset *Asset `protobuf:"bytes,1,opt,name=asset,proto3" json:"asset,omitempty"`
+	// List of owners associated with the asset.
+	Owners        []*Owner `protobuf:"bytes,2,rep,name=owners,proto3" json:"owners,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssetResponse) Reset() {
+	*x = AssetResponse{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssetResponse) ProtoMessage() {}
+
+func (x *AssetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssetResponse.ProtoReflect.Descriptor instead.
+func (*AssetResponse) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AssetResponse) GetAsset() *Asset {
+	if x != nil {
+		return x.Asset
+	}
+	return nil
+}
+
+func (x *AssetResponse) GetOwners() []*Owner {
+	if x != nil {
+		return x.Owners
+	}
+	return nil
+}
+
+// Request message for retrieving a specific asset by ID.
 type GetRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to retrieve.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetRequest) Reset() {
 	*x = GetRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[1]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -256,7 +389,7 @@ func (x *GetRequest) String() string {
 func (*GetRequest) ProtoMessage() {}
 
 func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[1]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,7 +402,7 @@ func (x *GetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
 func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{1}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetRequest) GetId() string {
@@ -279,16 +412,18 @@ func (x *GetRequest) GetId() string {
 	return ""
 }
 
+// Response message for retrieving a specific asset.
 type GetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Asset         *Asset                 `protobuf:"bytes,1,opt,name=asset,proto3" json:"asset,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The retrieved asset and its owners.
+	Response      *AssetResponse `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[2]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +435,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[2]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,26 +448,28 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{2}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetResponse) GetAsset() *Asset {
+func (x *GetResponse) GetResponse() *AssetResponse {
 	if x != nil {
-		return x.Asset
+		return x.Response
 	}
 	return nil
 }
 
+// Request message for retrieving a specific asset by ID, including soft-deleted ones.
 type GetWithDeletedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to retrieve.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetWithDeletedRequest) Reset() {
 	*x = GetWithDeletedRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[3]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -344,7 +481,7 @@ func (x *GetWithDeletedRequest) String() string {
 func (*GetWithDeletedRequest) ProtoMessage() {}
 
 func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[3]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,7 +494,7 @@ func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedRequest.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{3}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetWithDeletedRequest) GetId() string {
@@ -367,16 +504,18 @@ func (x *GetWithDeletedRequest) GetId() string {
 	return ""
 }
 
+// Response message for retrieving a specific asset, including soft-deleted ones.
 type GetWithDeletedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Asset         *Asset                 `protobuf:"bytes,1,opt,name=asset,proto3" json:"asset,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The retrieved asset and its owners.
+	Response      *AssetResponse `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetWithDeletedResponse) Reset() {
 	*x = GetWithDeletedResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[4]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -388,7 +527,7 @@ func (x *GetWithDeletedResponse) String() string {
 func (*GetWithDeletedResponse) ProtoMessage() {}
 
 func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[4]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -401,27 +540,30 @@ func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedResponse.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{4}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetWithDeletedResponse) GetAsset() *Asset {
+func (x *GetWithDeletedResponse) GetResponse() *AssetResponse {
 	if x != nil {
-		return x.Asset
+		return x.Response
 	}
 	return nil
 }
 
+// Request message for listing assets with pagination.
 type ListRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Maximum number of assets to return in the list.
+	Limit int32 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	// Number of assets to skip before starting to return results.
+	Offset        int32 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[5]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -433,7 +575,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[5]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -446,7 +588,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{5}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListRequest) GetLimit() int32 {
@@ -463,17 +605,20 @@ func (x *ListRequest) GetOffset() int32 {
 	return 0
 }
 
+// Response message for listing assets.
 type ListResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Assets        []*Asset               `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// List of assets and their owners.
+	Responses []*AssetResponse `protobuf:"bytes,1,rep,name=responses,proto3" json:"responses,omitempty"`
+	// Total number of assets matching the query.
+	Total         int64 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[6]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -485,7 +630,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[6]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -498,12 +643,12 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{6}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ListResponse) GetAssets() []*Asset {
+func (x *ListResponse) GetResponses() []*AssetResponse {
 	if x != nil {
-		return x.Assets
+		return x.Responses
 	}
 	return nil
 }
@@ -515,17 +660,20 @@ func (x *ListResponse) GetTotal() int64 {
 	return 0
 }
 
+// Request message for listing soft-deleted assets with pagination.
 type ListDeletedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Maximum number of assets to return in the list.
+	Limit int32 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	// Number of assets to skip before starting to return results.
+	Offset        int32 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListDeletedRequest) Reset() {
 	*x = ListDeletedRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[7]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -537,7 +685,7 @@ func (x *ListDeletedRequest) String() string {
 func (*ListDeletedRequest) ProtoMessage() {}
 
 func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[7]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -550,7 +698,7 @@ func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedRequest.ProtoReflect.Descriptor instead.
 func (*ListDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{7}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListDeletedRequest) GetLimit() int32 {
@@ -567,17 +715,20 @@ func (x *ListDeletedRequest) GetOffset() int32 {
 	return 0
 }
 
+// Response message for listing soft-deleted assets.
 type ListDeletedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Assets        []*Asset               `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// List of soft-deleted assets and their owners.
+	Responses []*AssetResponse `protobuf:"bytes,1,rep,name=responses,proto3" json:"responses,omitempty"`
+	// Total number of soft-deleted assets.
+	Total         int64 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListDeletedResponse) Reset() {
 	*x = ListDeletedResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[8]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -589,7 +740,7 @@ func (x *ListDeletedResponse) String() string {
 func (*ListDeletedResponse) ProtoMessage() {}
 
 func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[8]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -602,12 +753,12 @@ func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedResponse.ProtoReflect.Descriptor instead.
 func (*ListDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{8}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *ListDeletedResponse) GetAssets() []*Asset {
+func (x *ListDeletedResponse) GetResponses() []*AssetResponse {
 	if x != nil {
-		return x.Assets
+		return x.Responses
 	}
 	return nil
 }
@@ -619,17 +770,20 @@ func (x *ListDeletedResponse) GetTotal() int64 {
 	return 0
 }
 
+// Request message for listing unowned assets with pagination.
 type ListUnownedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Maximum number of assets to return in the list.
+	Limit int32 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	// Number of assets to skip before starting to return results.
+	Offset        int32 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListUnownedRequest) Reset() {
 	*x = ListUnownedRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[9]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -641,7 +795,7 @@ func (x *ListUnownedRequest) String() string {
 func (*ListUnownedRequest) ProtoMessage() {}
 
 func (x *ListUnownedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[9]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -654,7 +808,7 @@ func (x *ListUnownedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnownedRequest.ProtoReflect.Descriptor instead.
 func (*ListUnownedRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{9}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListUnownedRequest) GetLimit() int32 {
@@ -671,17 +825,20 @@ func (x *ListUnownedRequest) GetOffset() int32 {
 	return 0
 }
 
+// Response message for listing unowned assets.
 type ListUnownedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Assets        []*Asset               `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// List of unowned assets and their owners (should be empty owners list).
+	Responses []*AssetResponse `protobuf:"bytes,1,rep,name=responses,proto3" json:"responses,omitempty"`
+	// Total number of unowned assets.
+	Total         int64 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListUnownedResponse) Reset() {
 	*x = ListUnownedResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[10]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -693,7 +850,7 @@ func (x *ListUnownedResponse) String() string {
 func (*ListUnownedResponse) ProtoMessage() {}
 
 func (x *ListUnownedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[10]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -706,12 +863,12 @@ func (x *ListUnownedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnownedResponse.ProtoReflect.Descriptor instead.
 func (*ListUnownedResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{10}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *ListUnownedResponse) GetAssets() []*Asset {
+func (x *ListUnownedResponse) GetResponses() []*AssetResponse {
 	if x != nil {
-		return x.Assets
+		return x.Responses
 	}
 	return nil
 }
@@ -723,16 +880,18 @@ func (x *ListUnownedResponse) GetTotal() int64 {
 	return 0
 }
 
+// Request message for soft-deleting an asset.
 type DeleteRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to delete.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[11]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -744,7 +903,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[11]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -757,7 +916,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{11}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -767,16 +926,18 @@ func (x *DeleteRequest) GetId() string {
 	return ""
 }
 
+// Response message for soft-deleting an asset.
 type DeleteResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the deleted asset.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[12]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -788,7 +949,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[12]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -801,7 +962,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{12}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -811,16 +972,18 @@ func (x *DeleteResponse) GetId() string {
 	return ""
 }
 
+// Request message for permanently deleting an asset.
 type DeletePermanentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to delete permanently.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[13]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -832,7 +995,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[13]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -845,7 +1008,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{13}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -855,16 +1018,18 @@ func (x *DeletePermanentRequest) GetId() string {
 	return ""
 }
 
+// Response message for permanently deleting an asset.
 type DeletePermanentResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the permanently deleted asset.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[14]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -876,7 +1041,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[14]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -889,7 +1054,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{14}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -899,16 +1064,18 @@ func (x *DeletePermanentResponse) GetId() string {
 	return ""
 }
 
+// Request message for restoring a soft-deleted asset.
 type RestoreRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to restore.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[15]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -920,7 +1087,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[15]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -933,7 +1100,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{15}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -943,16 +1110,18 @@ func (x *RestoreRequest) GetId() string {
 	return ""
 }
 
+// Response message for restoring a soft-deleted asset.
 type RestoreResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the restored asset.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[16]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -964,7 +1133,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[16]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,7 +1146,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{16}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -987,17 +1156,24 @@ func (x *RestoreResponse) GetId() string {
 	return ""
 }
 
+// Request message for creating a MUX upload URL associated with an owner.
 type CreateUploadUrlRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the owner to associate with the new asset.
+	OwnerId string `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	// The type of the owner (e.g., "course_part").
+	OwnerType string `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	// Title for the new asset.
+	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	// The UUID of the user who is creating the upload.
+	CreatorId     string `protobuf:"bytes,4,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateUploadUrlRequest) Reset() {
 	*x = CreateUploadUrlRequest{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[17]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1009,7 +1185,7 @@ func (x *CreateUploadUrlRequest) String() string {
 func (*CreateUploadUrlRequest) ProtoMessage() {}
 
 func (x *CreateUploadUrlRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[17]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1022,7 +1198,7 @@ func (x *CreateUploadUrlRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUploadUrlRequest.ProtoReflect.Descriptor instead.
 func (*CreateUploadUrlRequest) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{17}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *CreateUploadUrlRequest) GetOwnerId() string {
@@ -1039,19 +1215,40 @@ func (x *CreateUploadUrlRequest) GetOwnerType() string {
 	return ""
 }
 
+func (x *CreateUploadUrlRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateUploadUrlRequest) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
+}
+
+// Response message for creating a MUX upload URL associated with an owner.
 type CreateUploadUrlResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	OwnerId       *string                `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`
-	OwnerType     *string                `protobuf:"bytes,3,opt,name=owner_type,json=ownerType,proto3,oneof" json:"owner_type,omitempty"`
-	State         *string                `protobuf:"bytes,4,opt,name=state,proto3,oneof" json:"state,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the newly created asset placeholder.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The signed URL where the video file can be uploaded directly to MUX.
+	Url string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	// Optional: The UUID of the owner associated with the new asset.
+	OwnerId *string `protobuf:"bytes,3,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`
+	// Optional: The type of the owner associated with the new asset.
+	OwnerType *string `protobuf:"bytes,4,opt,name=owner_type,json=ownerType,proto3,oneof" json:"owner_type,omitempty"`
+	// Optional: The initial state of the asset (e.g., "preparing").
+	State         *string `protobuf:"bytes,5,opt,name=state,proto3,oneof" json:"state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateUploadUrlResponse) Reset() {
 	*x = CreateUploadUrlResponse{}
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[18]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1063,7 +1260,7 @@ func (x *CreateUploadUrlResponse) String() string {
 func (*CreateUploadUrlResponse) ProtoMessage() {}
 
 func (x *CreateUploadUrlResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[18]
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1076,12 +1273,19 @@ func (x *CreateUploadUrlResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUploadUrlResponse.ProtoReflect.Descriptor instead.
 func (*CreateUploadUrlResponse) Descriptor() ([]byte, []int) {
-	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{18}
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CreateUploadUrlResponse) GetId() string {
 	if x != nil {
 		return x.Id
+	}
+	return ""
+}
+
+func (x *CreateUploadUrlResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
 	}
 	return ""
 }
@@ -1107,11 +1311,442 @@ func (x *CreateUploadUrlResponse) GetState() string {
 	return ""
 }
 
+// Request message for creating a MUX upload URL without an initial owner.
+type CreateUnownedUploadURLRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Title for the new asset.
+	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	// The UUID of the user who is creating the upload.
+	CreatorId     string `protobuf:"bytes,2,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateUnownedUploadURLRequest) Reset() {
+	*x = CreateUnownedUploadURLRequest{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateUnownedUploadURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateUnownedUploadURLRequest) ProtoMessage() {}
+
+func (x *CreateUnownedUploadURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateUnownedUploadURLRequest.ProtoReflect.Descriptor instead.
+func (*CreateUnownedUploadURLRequest) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CreateUnownedUploadURLRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateUnownedUploadURLRequest) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
+}
+
+// Response message for creating a MUX upload URL without an initial owner.
+type CreateUnownedUploadURLResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the newly created unowned asset placeholder.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The signed URL where the video file can be uploaded directly to MUX.
+	Url           string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateUnownedUploadURLResponse) Reset() {
+	*x = CreateUnownedUploadURLResponse{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateUnownedUploadURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateUnownedUploadURLResponse) ProtoMessage() {}
+
+func (x *CreateUnownedUploadURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateUnownedUploadURLResponse.ProtoReflect.Descriptor instead.
+func (*CreateUnownedUploadURLResponse) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *CreateUnownedUploadURLResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *CreateUnownedUploadURLResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+// Request message for associating an existing asset with an owner.
+type AssociateRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to associate.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The UUID of the owner to associate the asset with.
+	OwnerId string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	// The type of the owner (e.g., "course_part").
+	OwnerType     string `protobuf:"bytes,3,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssociateRequest) Reset() {
+	*x = AssociateRequest{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssociateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssociateRequest) ProtoMessage() {}
+
+func (x *AssociateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssociateRequest.ProtoReflect.Descriptor instead.
+func (*AssociateRequest) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *AssociateRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+// Response message for associating an asset with an owner.
+type AssociateResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the associated asset.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssociateResponse) Reset() {
+	*x = AssociateResponse{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssociateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssociateResponse) ProtoMessage() {}
+
+func (x *AssociateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssociateResponse.ProtoReflect.Descriptor instead.
+func (*AssociateResponse) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AssociateResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// Request message for deassociating an asset from an owner.
+type DeassociateRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset to deassociate.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The UUID of the owner to deassociate the asset from.
+	OwnerId string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	// The type of the owner (e.g., "course_part").
+	OwnerType     string `protobuf:"bytes,3,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeassociateRequest) Reset() {
+	*x = DeassociateRequest{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeassociateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeassociateRequest) ProtoMessage() {}
+
+func (x *DeassociateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeassociateRequest.ProtoReflect.Descriptor instead.
+func (*DeassociateRequest) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *DeassociateRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *DeassociateRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeassociateRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+// Response message for deassociating an asset from an owner.
+type DeassociateResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the deassociated asset.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeassociateResponse) Reset() {
+	*x = DeassociateResponse{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeassociateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeassociateResponse) ProtoMessage() {}
+
+func (x *DeassociateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeassociateResponse.ProtoReflect.Descriptor instead.
+func (*DeassociateResponse) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeassociateResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// Request message for updating the list of owners for an asset.
+type UpdateOwnersRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset whose owners are to be updated.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The new list of owners for the asset.
+	Owners        []*Owner `protobuf:"bytes,2,rep,name=owners,proto3" json:"owners,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateOwnersRequest) Reset() {
+	*x = UpdateOwnersRequest{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOwnersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOwnersRequest) ProtoMessage() {}
+
+func (x *UpdateOwnersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOwnersRequest.ProtoReflect.Descriptor instead.
+func (*UpdateOwnersRequest) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *UpdateOwnersRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateOwnersRequest) GetOwners() []*Owner {
+	if x != nil {
+		return x.Owners
+	}
+	return nil
+}
+
+// Response message for updating the list of owners for an asset.
+type UpdateOwnersResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The UUID of the asset whose owners were updated.
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateOwnersResponse) Reset() {
+	*x = UpdateOwnersResponse{}
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOwnersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOwnersResponse) ProtoMessage() {}
+
+func (x *UpdateOwnersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_service_mux_asset_v0_asset_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOwnersResponse.ProtoReflect.Descriptor instead.
+func (*UpdateOwnersResponse) Descriptor() ([]byte, []int) {
+	return file_media_service_mux_asset_v0_asset_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *UpdateOwnersResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 var File_media_service_mux_asset_v0_asset_proto protoreflect.FileDescriptor
 
 const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\n" +
-	"&media_service/mux/asset/v0/asset.proto\x12\basset.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\b\n" +
+	"&media_service/mux/asset/v0/asset.proto\x12\vmuxasset.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\b\n" +
 	"\x05Asset\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -1156,33 +1791,40 @@ const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\f_ingest_typeB\x0e\n" +
 	"\f_passthroughB\v\n" +
 	"\t_owner_idB\r\n" +
-	"\v_owner_type\"\x1c\n" +
+	"\v_owner_type\"A\n" +
+	"\x05Owner\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\"e\n" +
+	"\rAssetResponse\x12(\n" +
+	"\x05asset\x18\x01 \x01(\v2\x12.muxasset.v0.AssetR\x05asset\x12*\n" +
+	"\x06owners\x18\x02 \x03(\v2\x12.muxasset.v0.OwnerR\x06owners\"\x1c\n" +
 	"\n" +
 	"GetRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"4\n" +
-	"\vGetResponse\x12%\n" +
-	"\x05asset\x18\x01 \x01(\v2\x0f.asset.v0.AssetR\x05asset\"'\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"E\n" +
+	"\vGetResponse\x126\n" +
+	"\bresponse\x18\x01 \x01(\v2\x1a.muxasset.v0.AssetResponseR\bresponse\"'\n" +
 	"\x15GetWithDeletedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"?\n" +
-	"\x16GetWithDeletedResponse\x12%\n" +
-	"\x05asset\x18\x01 \x01(\v2\x0f.asset.v0.AssetR\x05asset\";\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"P\n" +
+	"\x16GetWithDeletedResponse\x126\n" +
+	"\bresponse\x18\x01 \x01(\v2\x1a.muxasset.v0.AssetResponseR\bresponse\";\n" +
 	"\vListRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"M\n" +
-	"\fListResponse\x12'\n" +
-	"\x06assets\x18\x01 \x03(\v2\x0f.asset.v0.AssetR\x06assets\x12\x14\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
+	"\fListResponse\x128\n" +
+	"\tresponses\x18\x01 \x03(\v2\x1a.muxasset.v0.AssetResponseR\tresponses\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\"B\n" +
 	"\x12ListDeletedRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"T\n" +
-	"\x13ListDeletedResponse\x12'\n" +
-	"\x06assets\x18\x01 \x03(\v2\x0f.asset.v0.AssetR\x06assets\x12\x14\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"e\n" +
+	"\x13ListDeletedResponse\x128\n" +
+	"\tresponses\x18\x01 \x03(\v2\x1a.muxasset.v0.AssetResponseR\tresponses\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\"B\n" +
 	"\x12ListUnownedRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"T\n" +
-	"\x13ListUnownedResponse\x12'\n" +
-	"\x06assets\x18\x01 \x03(\v2\x0f.asset.v0.AssetR\x06assets\x12\x14\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"e\n" +
+	"\x13ListUnownedResponse\x128\n" +
+	"\tresponses\x18\x01 \x03(\v2\x1a.muxasset.v0.AssetResponseR\tresponses\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
@@ -1195,30 +1837,64 @@ const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"R\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x87\x01\n" +
 	"\x16CreateUploadUrlRequest\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"\xae\x01\n" +
-	"\x17CreateUploadUrlResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
-	"\bowner_id\x18\x02 \x01(\tH\x00R\aownerId\x88\x01\x01\x12\"\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x03 \x01(\tH\x01R\townerType\x88\x01\x01\x12\x19\n" +
-	"\x05state\x18\x04 \x01(\tH\x02R\x05state\x88\x01\x01B\v\n" +
+	"creator_id\x18\x04 \x01(\tR\tcreatorId\"\xc0\x01\n" +
+	"\x17CreateUploadUrlResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1e\n" +
+	"\bowner_id\x18\x03 \x01(\tH\x00R\aownerId\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"owner_type\x18\x04 \x01(\tH\x01R\townerType\x88\x01\x01\x12\x19\n" +
+	"\x05state\x18\x05 \x01(\tH\x02R\x05state\x88\x01\x01B\v\n" +
 	"\t_owner_idB\r\n" +
 	"\v_owner_typeB\b\n" +
-	"\x06_state2\xac\x05\n" +
-	"\fAssetService\x124\n" +
-	"\x03Get\x12\x14.asset.v0.GetRequest\x1a\x15.asset.v0.GetResponse\"\x00\x12U\n" +
-	"\x0eGetWithDeleted\x12\x1f.asset.v0.GetWithDeletedRequest\x1a .asset.v0.GetWithDeletedResponse\"\x00\x12>\n" +
-	"\x04List\x12\x15.asset.v0.ListRequest\x1a\x1d.asset.v0.ListDeletedResponse\"\x00\x12L\n" +
-	"\vListDeleted\x12\x1c.asset.v0.ListDeletedRequest\x1a\x1d.asset.v0.ListDeletedResponse\"\x00\x12L\n" +
-	"\vListUnowned\x12\x1c.asset.v0.ListUnownedRequest\x1a\x1d.asset.v0.ListUnownedResponse\"\x00\x12=\n" +
-	"\x06Delete\x12\x17.asset.v0.DeleteRequest\x1a\x18.asset.v0.DeleteResponse\"\x00\x12X\n" +
-	"\x0fDeletePermanent\x12 .asset.v0.DeletePermanentRequest\x1a!.asset.v0.DeletePermanentResponse\"\x00\x12@\n" +
-	"\aRestore\x12\x18.asset.v0.RestoreRequest\x1a\x19.asset.v0.RestoreResponse\"\x00\x12X\n" +
-	"\x0fCreateUploadUrl\x12 .asset.v0.CreateUploadUrlRequest\x1a!.asset.v0.CreateUploadUrlResponse\"\x00BJZHgithub.com/mikhail5545/proto-go/proto/media_service/mux/asset/v0;assetpbb\x06proto3"
+	"\x06_state\"T\n" +
+	"\x1dCreateUnownedUploadURLRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"creator_id\x18\x02 \x01(\tR\tcreatorId\"B\n" +
+	"\x1eCreateUnownedUploadURLResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\"\\\n" +
+	"\x10AssociateRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x03 \x01(\tR\townerType\"#\n" +
+	"\x11AssociateResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"^\n" +
+	"\x12DeassociateRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x03 \x01(\tR\townerType\"%\n" +
+	"\x13DeassociateResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"Q\n" +
+	"\x13UpdateOwnersRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12*\n" +
+	"\x06owners\x18\x02 \x03(\v2\x12.muxasset.v0.OwnerR\x06owners\"&\n" +
+	"\x14UpdateOwnersResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xd0\b\n" +
+	"\fAssetService\x12:\n" +
+	"\x03Get\x12\x17.muxasset.v0.GetRequest\x1a\x18.muxasset.v0.GetResponse\"\x00\x12[\n" +
+	"\x0eGetWithDeleted\x12\".muxasset.v0.GetWithDeletedRequest\x1a#.muxasset.v0.GetWithDeletedResponse\"\x00\x12D\n" +
+	"\x04List\x12\x18.muxasset.v0.ListRequest\x1a .muxasset.v0.ListDeletedResponse\"\x00\x12R\n" +
+	"\vListDeleted\x12\x1f.muxasset.v0.ListDeletedRequest\x1a .muxasset.v0.ListDeletedResponse\"\x00\x12R\n" +
+	"\vListUnowned\x12\x1f.muxasset.v0.ListUnownedRequest\x1a .muxasset.v0.ListUnownedResponse\"\x00\x12C\n" +
+	"\x06Delete\x12\x1a.muxasset.v0.DeleteRequest\x1a\x1b.muxasset.v0.DeleteResponse\"\x00\x12^\n" +
+	"\x0fDeletePermanent\x12#.muxasset.v0.DeletePermanentRequest\x1a$.muxasset.v0.DeletePermanentResponse\"\x00\x12F\n" +
+	"\aRestore\x12\x1b.muxasset.v0.RestoreRequest\x1a\x1c.muxasset.v0.RestoreResponse\"\x00\x12^\n" +
+	"\x0fCreateUploadUrl\x12#.muxasset.v0.CreateUploadUrlRequest\x1a$.muxasset.v0.CreateUploadUrlResponse\"\x00\x12s\n" +
+	"\x16CreateUnownedUploadUrl\x12*.muxasset.v0.CreateUnownedUploadURLRequest\x1a+.muxasset.v0.CreateUnownedUploadURLResponse\"\x00\x12L\n" +
+	"\tAssociate\x12\x1d.muxasset.v0.AssociateRequest\x1a\x1e.muxasset.v0.AssociateResponse\"\x00\x12R\n" +
+	"\vDeassociate\x12\x1f.muxasset.v0.DeassociateRequest\x1a .muxasset.v0.DeassociateResponse\"\x00\x12U\n" +
+	"\fUpdateOwners\x12 .muxasset.v0.UpdateOwnersRequest\x1a!.muxasset.v0.UpdateOwnersResponse\"\x00BJZHgithub.com/mikhail5545/proto-go/proto/media_service/mux/asset/v0;assetpbb\x06proto3"
 
 var (
 	file_media_service_mux_asset_v0_asset_proto_rawDescOnce sync.Once
@@ -1232,62 +1908,83 @@ func file_media_service_mux_asset_v0_asset_proto_rawDescGZIP() []byte {
 	return file_media_service_mux_asset_v0_asset_proto_rawDescData
 }
 
-var file_media_service_mux_asset_v0_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_media_service_mux_asset_v0_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_media_service_mux_asset_v0_asset_proto_goTypes = []any{
-	(*Asset)(nil),                   // 0: asset.v0.Asset
-	(*GetRequest)(nil),              // 1: asset.v0.GetRequest
-	(*GetResponse)(nil),             // 2: asset.v0.GetResponse
-	(*GetWithDeletedRequest)(nil),   // 3: asset.v0.GetWithDeletedRequest
-	(*GetWithDeletedResponse)(nil),  // 4: asset.v0.GetWithDeletedResponse
-	(*ListRequest)(nil),             // 5: asset.v0.ListRequest
-	(*ListResponse)(nil),            // 6: asset.v0.ListResponse
-	(*ListDeletedRequest)(nil),      // 7: asset.v0.ListDeletedRequest
-	(*ListDeletedResponse)(nil),     // 8: asset.v0.ListDeletedResponse
-	(*ListUnownedRequest)(nil),      // 9: asset.v0.ListUnownedRequest
-	(*ListUnownedResponse)(nil),     // 10: asset.v0.ListUnownedResponse
-	(*DeleteRequest)(nil),           // 11: asset.v0.DeleteRequest
-	(*DeleteResponse)(nil),          // 12: asset.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),  // 13: asset.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil), // 14: asset.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),          // 15: asset.v0.RestoreRequest
-	(*RestoreResponse)(nil),         // 16: asset.v0.RestoreResponse
-	(*CreateUploadUrlRequest)(nil),  // 17: asset.v0.CreateUploadUrlRequest
-	(*CreateUploadUrlResponse)(nil), // 18: asset.v0.CreateUploadUrlResponse
-	(*timestamppb.Timestamp)(nil),   // 19: google.protobuf.Timestamp
+	(*Asset)(nil),                          // 0: muxasset.v0.Asset
+	(*Owner)(nil),                          // 1: muxasset.v0.Owner
+	(*AssetResponse)(nil),                  // 2: muxasset.v0.AssetResponse
+	(*GetRequest)(nil),                     // 3: muxasset.v0.GetRequest
+	(*GetResponse)(nil),                    // 4: muxasset.v0.GetResponse
+	(*GetWithDeletedRequest)(nil),          // 5: muxasset.v0.GetWithDeletedRequest
+	(*GetWithDeletedResponse)(nil),         // 6: muxasset.v0.GetWithDeletedResponse
+	(*ListRequest)(nil),                    // 7: muxasset.v0.ListRequest
+	(*ListResponse)(nil),                   // 8: muxasset.v0.ListResponse
+	(*ListDeletedRequest)(nil),             // 9: muxasset.v0.ListDeletedRequest
+	(*ListDeletedResponse)(nil),            // 10: muxasset.v0.ListDeletedResponse
+	(*ListUnownedRequest)(nil),             // 11: muxasset.v0.ListUnownedRequest
+	(*ListUnownedResponse)(nil),            // 12: muxasset.v0.ListUnownedResponse
+	(*DeleteRequest)(nil),                  // 13: muxasset.v0.DeleteRequest
+	(*DeleteResponse)(nil),                 // 14: muxasset.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),         // 15: muxasset.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),        // 16: muxasset.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),                 // 17: muxasset.v0.RestoreRequest
+	(*RestoreResponse)(nil),                // 18: muxasset.v0.RestoreResponse
+	(*CreateUploadUrlRequest)(nil),         // 19: muxasset.v0.CreateUploadUrlRequest
+	(*CreateUploadUrlResponse)(nil),        // 20: muxasset.v0.CreateUploadUrlResponse
+	(*CreateUnownedUploadURLRequest)(nil),  // 21: muxasset.v0.CreateUnownedUploadURLRequest
+	(*CreateUnownedUploadURLResponse)(nil), // 22: muxasset.v0.CreateUnownedUploadURLResponse
+	(*AssociateRequest)(nil),               // 23: muxasset.v0.AssociateRequest
+	(*AssociateResponse)(nil),              // 24: muxasset.v0.AssociateResponse
+	(*DeassociateRequest)(nil),             // 25: muxasset.v0.DeassociateRequest
+	(*DeassociateResponse)(nil),            // 26: muxasset.v0.DeassociateResponse
+	(*UpdateOwnersRequest)(nil),            // 27: muxasset.v0.UpdateOwnersRequest
+	(*UpdateOwnersResponse)(nil),           // 28: muxasset.v0.UpdateOwnersResponse
+	(*timestamppb.Timestamp)(nil),          // 29: google.protobuf.Timestamp
 }
 var file_media_service_mux_asset_v0_asset_proto_depIdxs = []int32{
-	19, // 0: asset.v0.Asset.created_at:type_name -> google.protobuf.Timestamp
-	19, // 1: asset.v0.Asset.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 2: asset.v0.Asset.deleted_at:type_name -> google.protobuf.Timestamp
-	19, // 3: asset.v0.Asset.asset_created_at:type_name -> google.protobuf.Timestamp
-	0,  // 4: asset.v0.GetResponse.asset:type_name -> asset.v0.Asset
-	0,  // 5: asset.v0.GetWithDeletedResponse.asset:type_name -> asset.v0.Asset
-	0,  // 6: asset.v0.ListResponse.assets:type_name -> asset.v0.Asset
-	0,  // 7: asset.v0.ListDeletedResponse.assets:type_name -> asset.v0.Asset
-	0,  // 8: asset.v0.ListUnownedResponse.assets:type_name -> asset.v0.Asset
-	1,  // 9: asset.v0.AssetService.Get:input_type -> asset.v0.GetRequest
-	3,  // 10: asset.v0.AssetService.GetWithDeleted:input_type -> asset.v0.GetWithDeletedRequest
-	5,  // 11: asset.v0.AssetService.List:input_type -> asset.v0.ListRequest
-	7,  // 12: asset.v0.AssetService.ListDeleted:input_type -> asset.v0.ListDeletedRequest
-	9,  // 13: asset.v0.AssetService.ListUnowned:input_type -> asset.v0.ListUnownedRequest
-	11, // 14: asset.v0.AssetService.Delete:input_type -> asset.v0.DeleteRequest
-	13, // 15: asset.v0.AssetService.DeletePermanent:input_type -> asset.v0.DeletePermanentRequest
-	15, // 16: asset.v0.AssetService.Restore:input_type -> asset.v0.RestoreRequest
-	17, // 17: asset.v0.AssetService.CreateUploadUrl:input_type -> asset.v0.CreateUploadUrlRequest
-	2,  // 18: asset.v0.AssetService.Get:output_type -> asset.v0.GetResponse
-	4,  // 19: asset.v0.AssetService.GetWithDeleted:output_type -> asset.v0.GetWithDeletedResponse
-	8,  // 20: asset.v0.AssetService.List:output_type -> asset.v0.ListDeletedResponse
-	8,  // 21: asset.v0.AssetService.ListDeleted:output_type -> asset.v0.ListDeletedResponse
-	10, // 22: asset.v0.AssetService.ListUnowned:output_type -> asset.v0.ListUnownedResponse
-	12, // 23: asset.v0.AssetService.Delete:output_type -> asset.v0.DeleteResponse
-	14, // 24: asset.v0.AssetService.DeletePermanent:output_type -> asset.v0.DeletePermanentResponse
-	16, // 25: asset.v0.AssetService.Restore:output_type -> asset.v0.RestoreResponse
-	18, // 26: asset.v0.AssetService.CreateUploadUrl:output_type -> asset.v0.CreateUploadUrlResponse
-	18, // [18:27] is the sub-list for method output_type
-	9,  // [9:18] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	29, // 0: muxasset.v0.Asset.created_at:type_name -> google.protobuf.Timestamp
+	29, // 1: muxasset.v0.Asset.updated_at:type_name -> google.protobuf.Timestamp
+	29, // 2: muxasset.v0.Asset.deleted_at:type_name -> google.protobuf.Timestamp
+	29, // 3: muxasset.v0.Asset.asset_created_at:type_name -> google.protobuf.Timestamp
+	0,  // 4: muxasset.v0.AssetResponse.asset:type_name -> muxasset.v0.Asset
+	1,  // 5: muxasset.v0.AssetResponse.owners:type_name -> muxasset.v0.Owner
+	2,  // 6: muxasset.v0.GetResponse.response:type_name -> muxasset.v0.AssetResponse
+	2,  // 7: muxasset.v0.GetWithDeletedResponse.response:type_name -> muxasset.v0.AssetResponse
+	2,  // 8: muxasset.v0.ListResponse.responses:type_name -> muxasset.v0.AssetResponse
+	2,  // 9: muxasset.v0.ListDeletedResponse.responses:type_name -> muxasset.v0.AssetResponse
+	2,  // 10: muxasset.v0.ListUnownedResponse.responses:type_name -> muxasset.v0.AssetResponse
+	1,  // 11: muxasset.v0.UpdateOwnersRequest.owners:type_name -> muxasset.v0.Owner
+	3,  // 12: muxasset.v0.AssetService.Get:input_type -> muxasset.v0.GetRequest
+	5,  // 13: muxasset.v0.AssetService.GetWithDeleted:input_type -> muxasset.v0.GetWithDeletedRequest
+	7,  // 14: muxasset.v0.AssetService.List:input_type -> muxasset.v0.ListRequest
+	9,  // 15: muxasset.v0.AssetService.ListDeleted:input_type -> muxasset.v0.ListDeletedRequest
+	11, // 16: muxasset.v0.AssetService.ListUnowned:input_type -> muxasset.v0.ListUnownedRequest
+	13, // 17: muxasset.v0.AssetService.Delete:input_type -> muxasset.v0.DeleteRequest
+	15, // 18: muxasset.v0.AssetService.DeletePermanent:input_type -> muxasset.v0.DeletePermanentRequest
+	17, // 19: muxasset.v0.AssetService.Restore:input_type -> muxasset.v0.RestoreRequest
+	19, // 20: muxasset.v0.AssetService.CreateUploadUrl:input_type -> muxasset.v0.CreateUploadUrlRequest
+	21, // 21: muxasset.v0.AssetService.CreateUnownedUploadUrl:input_type -> muxasset.v0.CreateUnownedUploadURLRequest
+	23, // 22: muxasset.v0.AssetService.Associate:input_type -> muxasset.v0.AssociateRequest
+	25, // 23: muxasset.v0.AssetService.Deassociate:input_type -> muxasset.v0.DeassociateRequest
+	27, // 24: muxasset.v0.AssetService.UpdateOwners:input_type -> muxasset.v0.UpdateOwnersRequest
+	4,  // 25: muxasset.v0.AssetService.Get:output_type -> muxasset.v0.GetResponse
+	6,  // 26: muxasset.v0.AssetService.GetWithDeleted:output_type -> muxasset.v0.GetWithDeletedResponse
+	10, // 27: muxasset.v0.AssetService.List:output_type -> muxasset.v0.ListDeletedResponse
+	10, // 28: muxasset.v0.AssetService.ListDeleted:output_type -> muxasset.v0.ListDeletedResponse
+	12, // 29: muxasset.v0.AssetService.ListUnowned:output_type -> muxasset.v0.ListUnownedResponse
+	14, // 30: muxasset.v0.AssetService.Delete:output_type -> muxasset.v0.DeleteResponse
+	16, // 31: muxasset.v0.AssetService.DeletePermanent:output_type -> muxasset.v0.DeletePermanentResponse
+	18, // 32: muxasset.v0.AssetService.Restore:output_type -> muxasset.v0.RestoreResponse
+	20, // 33: muxasset.v0.AssetService.CreateUploadUrl:output_type -> muxasset.v0.CreateUploadUrlResponse
+	22, // 34: muxasset.v0.AssetService.CreateUnownedUploadUrl:output_type -> muxasset.v0.CreateUnownedUploadURLResponse
+	24, // 35: muxasset.v0.AssetService.Associate:output_type -> muxasset.v0.AssociateResponse
+	26, // 36: muxasset.v0.AssetService.Deassociate:output_type -> muxasset.v0.DeassociateResponse
+	28, // 37: muxasset.v0.AssetService.UpdateOwners:output_type -> muxasset.v0.UpdateOwnersResponse
+	25, // [25:38] is the sub-list for method output_type
+	12, // [12:25] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_media_service_mux_asset_v0_asset_proto_init() }
@@ -1296,14 +1993,14 @@ func file_media_service_mux_asset_v0_asset_proto_init() {
 		return
 	}
 	file_media_service_mux_asset_v0_asset_proto_msgTypes[0].OneofWrappers = []any{}
-	file_media_service_mux_asset_v0_asset_proto_msgTypes[18].OneofWrappers = []any{}
+	file_media_service_mux_asset_v0_asset_proto_msgTypes[20].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_service_mux_asset_v0_asset_proto_rawDesc), len(file_media_service_mux_asset_v0_asset_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

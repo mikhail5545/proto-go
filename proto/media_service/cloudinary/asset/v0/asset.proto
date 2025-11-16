@@ -1,0 +1,325 @@
+// github.com/mikhail5545/proto-go
+// shared proto module for vitainmove project microservices
+// Copyright (C) 2025  Mikhail Kulik
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cldasset.v0;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/mikhail5545/proto-go/proto/media_service/cloudinary/asset/v0;assetpb";
+
+// Asset represents a Cloudinary asset record, including its state, metadata, and associations.
+message Asset {
+    // Unique identifier for the asset (UUID).
+    string id = 1;
+    // Timestamp when the asset record was created in the database.
+    google.protobuf.Timestamp created_at = 2;
+    // Timestamp when the asset record was last updated in the database.
+    google.protobuf.Timestamp updated_at = 3;
+    // Optional timestamp indicating when the asset was soft-deleted. If null, the asset is not deleted.
+    optional google.protobuf.Timestamp deleted_at = 4;
+    // Cloudinary asset ID associated with this asset.
+    string cloudinary_asset_id = 5;
+    // Insecure URL of the asset.
+    string url = 6;
+    // Secure (HTTPS) URL of the asset.
+    string secure_url = 7;
+    // Cloudinary public ID for this asset.
+    string cloudinary_public_id = 8;
+    // Type of resource (e.g., "image", "video", "raw").
+    string resource_type = 9;
+    // Format of the asset (e.g., "jpg", "png", "mp4").
+    string format = 10;
+    // Optional width of the asset in pixels.
+    optional int32 width = 11;
+    // Optional height of the asset in pixels.
+    optional int32 height = 12;
+    // List of tags associated with the asset.
+    repeated string tags = 13;
+    // Folder in Cloudinary where the asset is stored.
+    string asset_folder = 14;
+    // User-friendly display name for the asset.
+    string display_name = 15;
+}
+
+// Owner represents an entity that owns an asset.
+message Owner {
+    // Unique identifier of the owner (UUID).
+    string owner_id = 1;
+    // Type of the owner (e.g., "product", "course_part").
+    string owner_type = 2;
+}
+
+// AssetResponse represents response of the cloudinary service containing the combined information about asset and it's metadata.
+message AssetResponse {
+    // Asset itself
+    Asset asset = 1;
+    // Asset owners from the metadata
+    repeated Owner owners = 2;
+}
+
+// GetRequest represents the request to get a single not soft-deleted asset with it's metadata.
+message GetRequest {
+    // The UUID of an asset to retrieve
+    string id = 1;
+}
+
+// GetResponse represents the response of the cloudinary service containing the AssetResponse message.
+message GetResponse {
+    AssetResponse response = 1;
+}
+
+// GetWithDeletedRequest represents the request to get a single asset with it's metadata including soft-deleted ones.
+message GetWithDeletedRequest {
+    // The UUID of an asset to retrieve
+    string id = 1;
+}
+
+// GetWithDeletedResponse represents the response of the cloudinary service containing the AssetResponse message.
+message GetWithDeletedResponse {
+    AssetResponse response = 1;
+}
+
+// ListRequest represents the request to retrieve a paginated list of all not soft-deleted assets with their metadata.
+message ListRequest {
+    // limits the maximum length of the response
+    int32 limit = 1;
+    // sets the starting offset
+    int32 offset = 2;
+}
+
+// ListResponse represents the response of the cloudinary service containing a paginated list of the combined 
+// asset and metadata information for all not soft-deleted assets along with the total number of such records.
+message ListResponse {
+    repeated AssetResponse responses = 1;
+    int64 total = 2;
+}
+
+// ListUnownedRequest represents the request to retrieve a paginated list of all unowned assets with their metadata.
+message ListUnownedRequest {
+    // limits the maximum length of the response
+    int32 limit = 1;
+    // sets the starting offset
+    int32 offset = 2;
+}
+
+// ListUnownedResponse represents the response of the cloudinary service containing a paginated list of the combined 
+// asset and metadata information for all unowned assets along with the total number of such records.
+message ListUnownedResponse {
+    repeated AssetResponse responses = 1;
+    int64 total = 2;
+}
+
+// ListDeletedRequest represents the request to retrieve a paginated list of all unowned assets with their metadata.
+message ListDeletedRequest {
+    // limits the maximum length of the response
+    int32 limit = 1;
+    // sets the starting offset
+    int32 offset = 2;
+}
+
+// ListDeletedResponse represents the response of the cloudinary service containing a paginated list of the combined 
+// asset and metadata information for all unowned assets along with the total number of such records.
+message ListDeletedResponse {
+    repeated AssetResponse responses = 1;
+    int64 total = 2;
+}
+
+// CreateSignedUploadURLRequest contains parameters for creating a signed upload URL for Cloudinary.
+message CreateSignedUploadURLRequest {
+    // Unique identifier for the asset in Cloudinary.
+    string public_id = 1;
+    // Name of the file being uploaded.
+    string file = 2;
+    // Optional transformations to apply to the asset (e.g., "c_thumb,w_200").
+    optional string eager = 3;
+}
+
+// CreateSignedUploadURLResponse contains the parameters needed to construct a signed upload URL for Cloudinary.
+message CreateSignedUploadURLResponse {
+    // Generated signature for the upload URL.
+    string signature = 1;
+    // Cloudinary public ID for the asset.
+    string public_id = 2;
+    // Unix timestamp for the request.
+    string timestamp = 3;
+    // Cloudinary API key.
+    string api_key = 4;
+    // Optional transformations to apply to the asset (e.g., "c_thumb,w_200").
+    optional string eager = 5;
+}
+
+// UpdateOwnersRequest contains the new list of owners for an asset.
+message UpdateOwnersRequest {
+    // The UUID of the asset whose owners are to be updated.
+    string id = 1;
+    // The new list of owners for the asset.
+    repeated Owner owners = 2;
+}
+
+// UpdateOwnersResponse contains the ID of the asset whose owners were updated.
+message UpdateOwnersResponse {
+    // The UUID of the asset whose owners were updated.
+    string id = 1;
+}
+
+// AssociateRequest contains the details for associating an asset with an owner.
+message AssociateRequest {
+    // The UUID of the asset to associate.
+    string id = 1;
+    // The UUID of the owner to associate the asset with.
+    string owner_id = 2;
+    // The type of the owner (e.g., "product").
+    string owner_type = 3;
+}
+
+// AssociateResponse contains the ID of the associated asset.
+message AssociateResponse {
+    // The UUID of the associated asset.
+    string id = 1;
+}
+
+// DeassociateRequest contains the details for deassociating an asset from an owner.
+message DeassociateRequest {
+    // The UUID of the asset to deassociate.
+    string id = 1;
+    // The UUID of the owner to deassociate the asset from.
+    string owner_id = 2;
+    // The type of the owner (e.g., "product").
+    string owner_type = 3;
+}
+
+// DeassociateResponse contains the ID of the deassociated asset.
+message DeassociateResponse {
+    // The UUID of the deassociated asset.
+    string id = 1;
+}
+
+// SuccessfulUploadRequest contains the information for a successfully uploaded asset to Cloudinary.
+message SuccessfulUploadRequest {
+    // The asset ID from Cloudinary.
+    string cloudinary_asset_id = 1;
+    // The insecure URL of the asset.
+    string url = 2;
+    // The secure (HTTPS) URL of the asset.
+    string secure_url = 3;
+    // The public ID from Cloudinary.
+    string cloudinary_public_id = 4;
+    // The type of resource (e.g., "image", "video").
+    string resource_type = 5;
+    // The format of the asset (e.g., "jpg", "png").
+    string format = 6;
+    // The width of the asset in pixels.
+    optional int32 width = 7;
+    // The height of the asset in pixels.
+    optional int32 height = 8;
+    // The folder in Cloudinary where the asset is stored.
+    string asset_folder = 9;
+    // A user-friendly name for the asset.
+    string display_name = 10;
+    // A list of initial owners for the asset.
+    repeated Owner owners = 11;
+}
+
+// SuccessfulUploadResponse contains the response after processing a successful upload.
+message SuccessfulUploadResponse {
+    // The asset and its owners created from the upload.
+    AssetResponse response = 1;
+}
+
+// CleanupOrphanAssetsRequest contains the parameters for cleaning up orphaned assets in Cloudinary.
+message CleanupOrphanAssetsRequest {
+    // The Cloudinary folder to check for orphaned assets.
+    string folder = 1;
+    // The type of asset resource to clean up.
+    string asset_type = 2;
+}
+
+// CleanupOrphanAssetsResponse contains the result of the cleanup operation.
+message CleanupOrphanAssetsResponse {
+    // The number of orphaned assets that were cleaned up.
+    int64 count = 1;
+}
+
+// DeleteRequest contains the ID of the asset to soft-delete.
+message DeleteRequest {
+    // The UUID of the asset to delete.
+    string id = 1;
+}
+
+// DeleteResponse contains the ID of the soft-deleted asset.
+message DeleteResponse {
+    // The UUID of the deleted asset.
+    string id = 1;
+}
+
+// DeletePermanentRequest contains the ID of the asset to permanently delete.
+message DeletePermanentRequest {
+    // The UUID of the asset to delete permanently.
+    string id = 1;
+}
+
+// DeletePermanentResponse contains the ID of the permanently deleted asset.
+message DeletePermanentResponse {
+    // The UUID of the permanently deleted asset.
+    string id = 1;
+}
+
+// RestoreRequest contains the ID of the asset to restore.
+message RestoreRequest {
+    // The UUID of the asset to restore.
+    string id = 1;
+}
+
+// RestoreResponse contains the ID of the restored asset.
+message RestoreResponse {
+    // The UUID of the restored asset.
+    string id = 1;
+}
+
+// AssetService defines the gRPC service for managing Cloudinary assets.
+service AssetService {
+    // Get retrieves a single not soft-deleted asset record along with its metadata.
+    rpc Get(GetRequest) returns (GetResponse) {}
+    // GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    // List retrieves a paginated list of all not soft-deleted asset records along with their metadata.
+    rpc List(ListRequest) returns (ListResponse) {}
+    // ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
+    rpc ListUnowned(ListUnownedRequest) returns (ListUnownedResponse) {}
+    // ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    // CreateSignedUploadURL creates a signature for a direct frontend upload. Direct upload url should be constructed using this params, this function only creates signature for signed upload.
+    rpc CreateSignedUploadURL(CreateSignedUploadURLRequest) returns (CreateSignedUploadURLResponse) {}
+    // UpdateOwners processes asset ownership relations changes. It recieves an updated list of asset owners, updates local DB metadata for asset (about it's owners), processes the diff between old and new owners and notifies external services about this ownership changes via gRPC connection.
+    rpc UpdateOwners(UpdateOwnersRequest) returns (UpdateOwnersResponse) {}
+    // Associate links an existing asset to an owner. It also updates asset medatada.
+    rpc Associate(AssociateRequest) returns (AssociateResponse) {}
+    // Deassociate removes the link between an asset and an owner. It also deletes owner from asset metadata.
+    rpc Deassociate(DeassociateRequest) returns (DeassociateResponse) {}
+    // SuccessfulUpload creates a new asset with provided information and creates owner relations for it. It saves asset metadata about owner relations in the local noSQL db and notifies external services about ownership changes via gRPC connection. This method should be called after successful cloudinary image upload.
+    rpc SuccessfulUpload(SuccessfulUploadRequest) returns (SuccessfulUploadResponse) {}
+    // CleanupOrphanAssets finds and deletes assets that exist in Cloudinary but not in the local database.
+    rpc CleanupOrphanAssets(CleanupOrphanAssetsRequest) returns (CleanupOrphanAssetsResponse) {}
+    // Delete performs a soft-delete of an asset. It does not delete Cloudinary asset. If assset has owners, it will be deassociated from them first.
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    // DeletePermanent performs a complete delete of an asset. It also deletes Cloudinary asset. By this time, asset shouldn't have any owners. They should be deleted when asset is being soft-deleted. This action is irreversable.
+    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    // Restore performs a restore of an asset.
+    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+}

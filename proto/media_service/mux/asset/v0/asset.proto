@@ -17,125 +17,295 @@
 
 syntax = "proto3";
 
-package asset.v0;
+package muxasset.v0;
 
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/media_service/mux/asset/v0;assetpb";
 
-message Asset{
+// Asset represents a MUX asset record, including its state, metadata, and associations.
+message Asset {
+    // Unique identifier for the asset (UUID).
     string id = 1;
+    // Timestamp when the asset record was created in the database.
     google.protobuf.Timestamp created_at = 2;
+    // Timestamp when the asset record was last updated in the database.
     google.protobuf.Timestamp updated_at = 3;
+    // Optional timestamp indicating when the asset was soft-deleted. If null, the asset is not deleted.
     optional google.protobuf.Timestamp deleted_at = 4;
+    // Optional MUX upload ID associated with this asset.
     optional string mux_upload_id = 5;
+    // Optional MUX asset ID associated with this asset.
     optional string mux_asset_id = 6;
+    // Optional MUX playback ID for this asset.
     optional string mux_playback_id = 7;
+    // Current state of the asset (e.g., "preparing", "ready", "errored").
     string state = 8;
+    // Optional status message providing more details about the asset state.
     optional string status = 9;
+    // Optional duration of the video asset in seconds.
     optional float duration = 10;
+    // Optional aspect ratio of the video (e.g., "16:9", "4:3").
     optional string aspect_ratio = 11;
+    // Optional height of the video in pixels.
     optional int32 height = 12;
+    // Optional width of the video in pixels.
     optional int32 width = 13;
+    // Optional timestamp indicating when the asset was created in MUX.
     optional google.protobuf.Timestamp asset_created_at = 14;
+    // Optional maximum resolution tier of the asset.
     optional string max_resolution_tier = 15;
+    // Optional maximum frame rate at which the asset is stored.
     optional string max_stored_frame_rate = 16;
+    // Optional type of ingestion used for this asset.
     optional string ingest_type = 17;
+    // Optional passthrough value provided during upload.
     optional string passthrough = 18;
+    // Optional identifier of the owner associated with this asset.
     optional string owner_id = 19;
+    // Optional type of the owner associated with this asset (e.g., "course_part").
     optional string owner_type = 20;
 }
 
-message GetRequest{
-    string id = 1;
-}
-
-message GetResponse{
-    Asset asset = 1;
-}
-
-message GetWithDeletedRequest{
-    string id = 1;
-}
-
-message GetWithDeletedResponse{
-    Asset asset = 1;
-}
-
-message ListRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-}
-
-message ListResponse{
-    repeated Asset assets = 1;
-    int64 total = 2;
-}
-
-message ListDeletedRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-}
-
-message ListDeletedResponse{
-    repeated Asset assets = 1;
-    int64 total = 2;
-}
-
-message ListUnownedRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-}
-
-message ListUnownedResponse{
-    repeated Asset assets = 1;
-    int64 total = 2;
-}
-
-message DeleteRequest{
-    string id = 1;
-}
-
-message DeleteResponse{
-    string id = 1;
-}
-
-message DeletePermanentRequest{
-    string id = 1;
-}
-
-message DeletePermanentResponse{
-    string id = 1;
-}
-
-message RestoreRequest{
-    string id = 1;
-}
-
-message RestoreResponse{
-    string id = 1;
-}
-
-message CreateUploadUrlRequest{
+// Owner represents an entity that owns an asset.
+message Owner {
+    // Unique identifier of the owner (UUID).
     string owner_id = 1;
+    // Type of the owner (e.g., "course_part", "lesson").
     string owner_type = 2;
 }
 
-message CreateUploadUrlResponse{
-    string id = 1;
-    optional string owner_id = 2;
-    optional string owner_type = 3;
-    optional string state = 4;
+// AssetResponse contains an asset and its associated owners.
+message AssetResponse {
+    // The asset details.
+    Asset asset = 1;
+    // List of owners associated with the asset.
+    repeated Owner owners = 2;
 }
 
-service AssetService{
+// Request message for retrieving a specific asset by ID.
+message GetRequest {
+    // The UUID of the asset to retrieve.
+    string id = 1;
+}
+
+// Response message for retrieving a specific asset.
+message GetResponse {
+    // The retrieved asset and its owners.
+    AssetResponse response = 1;
+}
+
+// Request message for retrieving a specific asset by ID, including soft-deleted ones.
+message GetWithDeletedRequest {
+    // The UUID of the asset to retrieve.
+    string id = 1;
+}
+
+// Response message for retrieving a specific asset, including soft-deleted ones.
+message GetWithDeletedResponse {
+    // The retrieved asset and its owners.
+    AssetResponse response = 1;
+}
+
+// Request message for listing assets with pagination.
+message ListRequest {
+    // Maximum number of assets to return in the list.
+    int32 limit = 1;
+    // Number of assets to skip before starting to return results.
+    int32 offset = 2;
+}
+
+// Response message for listing assets.
+message ListResponse {
+    // List of assets and their owners.
+    repeated AssetResponse responses = 1;
+    // Total number of assets matching the query.
+    int64 total = 2;
+}
+
+// Request message for listing soft-deleted assets with pagination.
+message ListDeletedRequest {
+    // Maximum number of assets to return in the list.
+    int32 limit = 1;
+    // Number of assets to skip before starting to return results.
+    int32 offset = 2;
+}
+
+// Response message for listing soft-deleted assets.
+message ListDeletedResponse {
+    // List of soft-deleted assets and their owners.
+    repeated AssetResponse responses = 1;
+    // Total number of soft-deleted assets.
+    int64 total = 2;
+}
+
+// Request message for listing unowned assets with pagination.
+message ListUnownedRequest {
+    // Maximum number of assets to return in the list.
+    int32 limit = 1;
+    // Number of assets to skip before starting to return results.
+    int32 offset = 2;
+}
+
+// Response message for listing unowned assets.
+message ListUnownedResponse {
+    // List of unowned assets and their owners (should be empty owners list).
+    repeated AssetResponse responses = 1;
+    // Total number of unowned assets.
+    int64 total = 2;
+}
+
+// Request message for soft-deleting an asset.
+message DeleteRequest {
+    // The UUID of the asset to delete.
+    string id = 1;
+}
+
+// Response message for soft-deleting an asset.
+message DeleteResponse {
+    // The UUID of the deleted asset.
+    string id = 1;
+}
+
+// Request message for permanently deleting an asset.
+message DeletePermanentRequest {
+    // The UUID of the asset to delete permanently.
+    string id = 1;
+}
+
+// Response message for permanently deleting an asset.
+message DeletePermanentResponse {
+    // The UUID of the permanently deleted asset.
+    string id = 1;
+}
+
+// Request message for restoring a soft-deleted asset.
+message RestoreRequest {
+    // The UUID of the asset to restore.
+    string id = 1;
+}
+
+// Response message for restoring a soft-deleted asset.
+message RestoreResponse {
+    // The UUID of the restored asset.
+    string id = 1;
+}
+
+// Request message for creating a MUX upload URL associated with an owner.
+message CreateUploadUrlRequest {
+    // The UUID of the owner to associate with the new asset.
+    string owner_id = 1;
+    // The type of the owner (e.g., "course_part").
+    string owner_type = 2;
+    // Title for the new asset.
+    string title = 3;
+    // The UUID of the user who is creating the upload.
+    string creator_id = 4;
+}
+
+// Response message for creating a MUX upload URL associated with an owner.
+message CreateUploadUrlResponse {
+    // The UUID of the newly created asset placeholder.
+    string id = 1;
+    // The signed URL where the video file can be uploaded directly to MUX.
+    string url = 2;
+    // Optional: The UUID of the owner associated with the new asset.
+    optional string owner_id = 3;
+    // Optional: The type of the owner associated with the new asset.
+    optional string owner_type = 4;
+    // Optional: The initial state of the asset (e.g., "preparing").
+    optional string state = 5;
+}
+
+// Request message for creating a MUX upload URL without an initial owner.
+message CreateUnownedUploadURLRequest {
+    // Title for the new asset.
+    string title = 1;
+    // The UUID of the user who is creating the upload.
+    string creator_id = 2;
+}
+
+// Response message for creating a MUX upload URL without an initial owner.
+message CreateUnownedUploadURLResponse {
+    // The UUID of the newly created unowned asset placeholder.
+    string id = 1;
+    // The signed URL where the video file can be uploaded directly to MUX.
+    string url = 2;
+}
+
+// Request message for associating an existing asset with an owner.
+message AssociateRequest {
+    // The UUID of the asset to associate.
+    string id = 1;
+    // The UUID of the owner to associate the asset with.
+    string owner_id = 2;
+    // The type of the owner (e.g., "course_part").
+    string owner_type = 3;
+}
+
+// Response message for associating an asset with an owner.
+message AssociateResponse {
+    // The UUID of the associated asset.
+    string id = 1;
+}
+
+// Request message for deassociating an asset from an owner.
+message DeassociateRequest {
+    // The UUID of the asset to deassociate.
+    string id = 1;
+    // The UUID of the owner to deassociate the asset from.
+    string owner_id = 2;
+    // The type of the owner (e.g., "course_part").
+    string owner_type = 3;
+}
+
+// Response message for deassociating an asset from an owner.
+message DeassociateResponse {
+    // The UUID of the deassociated asset.
+    string id = 1;
+}
+
+// Request message for updating the list of owners for an asset.
+message UpdateOwnersRequest {
+    // The UUID of the asset whose owners are to be updated.
+    string id = 1;
+    // The new list of owners for the asset.
+    repeated Owner owners = 2;
+}
+
+// Response message for updating the list of owners for an asset.
+message UpdateOwnersResponse {
+    // The UUID of the asset whose owners were updated.
+    string id = 1;
+}
+
+// AssetService defines the gRPC service for managing MUX assets.
+service AssetService {
+    // Get retrieves a single published and not soft-deleted asset record along with its metadata.
     rpc Get(GetRequest) returns (GetResponse) {}
+    // GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
     rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    // List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
+    // Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
     rpc List(ListRequest) returns (ListDeletedResponse) {}
+    // ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
     rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
+    // ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
     rpc ListUnowned(ListUnownedRequest) returns (ListUnownedResponse) {}
+    // Delete performs a soft delete of an asset.
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    // DeletePermanent performs a complete delete of an asset, also deleting it from MUX if possible.
     rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
+    // Restore performs a restore of a soft-deleted asset record.
     rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+    // CreateUploadUrl creates a signed upload URL for direct upload to MUX associated with an owner.
     rpc CreateUploadUrl(CreateUploadUrlRequest) returns (CreateUploadUrlResponse) {}
+    // CreateUnownedUploadUrl creates a signed upload URL for a new asset without an initial owner.
+    rpc CreateUnownedUploadUrl(CreateUnownedUploadURLRequest) returns (CreateUnownedUploadURLResponse) {}
+    // Associate links an existing asset to an owner.
+    rpc Associate(AssociateRequest) returns (AssociateResponse) {}
+    // Deassociate removes the link between an asset and an owner.
+    rpc Deassociate(DeassociateRequest) returns (DeassociateResponse) {}
+    // UpdateOwners updates the list of owners associated with an asset.
+    rpc UpdateOwners(UpdateOwnersRequest) returns (UpdateOwnersResponse) {}
 }
