@@ -379,7 +379,7 @@ type MuxTrack struct {
 	Name *string `protobuf:"bytes,11,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	// Indicates the track provides Subtitles for the Deaf or Hard-Of-Hearing. This parameter is set tracks where
 	// `type` is "text" and `text_type` is subtitles.
-	ClosedCaptions *string `protobuf:"bytes,12,opt,name=closed_captions,json=closedCaptions,proto3,oneof" json:"closed_captions,omitempty"`
+	ClosedCaptions *bool `protobuf:"varint,12,opt,name=closed_captions,json=closedCaptions,proto3,oneof" json:"closed_captions,omitempty"`
 	// Arbitrary user-supplied metadata set for the track either when creating the asset or track. This parameter
 	// is only set for "text" type tracks. Max 255 characters.
 	Passthrough *string `protobuf:"bytes,13,opt,name=passthrough,proto3,oneof" json:"passthrough,omitempty"`
@@ -503,11 +503,11 @@ func (x *MuxTrack) GetName() string {
 	return ""
 }
 
-func (x *MuxTrack) GetClosedCaptions() string {
+func (x *MuxTrack) GetClosedCaptions() bool {
 	if x != nil && x.ClosedCaptions != nil {
 		return *x.ClosedCaptions
 	}
-	return ""
+	return false
 }
 
 func (x *MuxTrack) GetPassthrough() string {
@@ -2105,7 +2105,7 @@ const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\rlanguage_code\x18\n" +
 	" \x01(\tH\aR\flanguageCode\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\v \x01(\tH\bR\x04name\x88\x01\x01\x12,\n" +
-	"\x0fclosed_captions\x18\f \x01(\tH\tR\x0eclosedCaptions\x88\x01\x01\x12%\n" +
+	"\x0fclosed_captions\x18\f \x01(\bH\tR\x0eclosedCaptions\x88\x01\x01\x12%\n" +
 	"\vpassthrough\x18\r \x01(\tH\n" +
 	"R\vpassthrough\x88\x01\x01\x12\x1b\n" +
 	"\x06status\x18\x0e \x01(\tH\vR\x06status\x88\x01\x01\x12\x1d\n" +

@@ -130,7 +130,7 @@ message MuxTrack{
     optional string name = 11;
     // Indicates the track provides Subtitles for the Deaf or Hard-Of-Hearing. This parameter is set tracks where
 	// `type` is "text" and `text_type` is subtitles.
-    optional string closed_captions = 12;
+    optional bool closed_captions = 12;
     // Arbitrary user-supplied metadata set for the track either when creating the asset or track. This parameter
 	// is only set for "text" type tracks. Max 255 characters.
     optional string passthrough = 13;
