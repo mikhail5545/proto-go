@@ -81,6 +81,8 @@ message AssetResponse {
     Asset asset = 1;
     // List of owners associated with the asset.
     repeated Owner owners = 2;
+    string title = 3;
+    string creator_id = 4;
 }
 
 // Request message for retrieving a specific asset by ID.

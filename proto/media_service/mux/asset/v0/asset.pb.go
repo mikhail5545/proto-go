@@ -318,6 +318,8 @@ type AssetResponse struct {
 	Asset *Asset `protobuf:"bytes,1,opt,name=asset,proto3" json:"asset,omitempty"`
 	// List of owners associated with the asset.
 	Owners        []*Owner `protobuf:"bytes,2,rep,name=owners,proto3" json:"owners,omitempty"`
+	Title         string   `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	CreatorId     string   `protobuf:"bytes,4,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -364,6 +366,20 @@ func (x *AssetResponse) GetOwners() []*Owner {
 		return x.Owners
 	}
 	return nil
+}
+
+func (x *AssetResponse) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AssetResponse) GetCreatorId() string {
+	if x != nil {
+		return x.CreatorId
+	}
+	return ""
 }
 
 // Request message for retrieving a specific asset by ID.
@@ -1795,10 +1811,13 @@ const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\x05Owner\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"e\n" +
+	"owner_type\x18\x02 \x01(\tR\townerType\"\x9a\x01\n" +
 	"\rAssetResponse\x12(\n" +
 	"\x05asset\x18\x01 \x01(\v2\x12.muxasset.v0.AssetR\x05asset\x12*\n" +
-	"\x06owners\x18\x02 \x03(\v2\x12.muxasset.v0.OwnerR\x06owners\"\x1c\n" +
+	"\x06owners\x18\x02 \x03(\v2\x12.muxasset.v0.OwnerR\x06owners\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"creator_id\x18\x04 \x01(\tR\tcreatorId\"\x1c\n" +
 	"\n" +
 	"GetRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"E\n" +
