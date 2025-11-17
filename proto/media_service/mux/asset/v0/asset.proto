@@ -367,8 +367,7 @@ service AssetService {
     // GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
     rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
     // List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
-    // Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
-    rpc List(ListRequest) returns (ListDeletedResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
     // ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
     rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
     // ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.

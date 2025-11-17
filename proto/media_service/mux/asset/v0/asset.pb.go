@@ -2220,11 +2220,11 @@ const file_media_service_mux_asset_v0_asset_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12*\n" +
 	"\x06owners\x18\x02 \x03(\v2\x12.muxasset.v0.OwnerR\x06owners\"&\n" +
 	"\x14UpdateOwnersResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xd0\b\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xc9\b\n" +
 	"\fAssetService\x12:\n" +
 	"\x03Get\x12\x17.muxasset.v0.GetRequest\x1a\x18.muxasset.v0.GetResponse\"\x00\x12[\n" +
-	"\x0eGetWithDeleted\x12\".muxasset.v0.GetWithDeletedRequest\x1a#.muxasset.v0.GetWithDeletedResponse\"\x00\x12D\n" +
-	"\x04List\x12\x18.muxasset.v0.ListRequest\x1a .muxasset.v0.ListDeletedResponse\"\x00\x12R\n" +
+	"\x0eGetWithDeleted\x12\".muxasset.v0.GetWithDeletedRequest\x1a#.muxasset.v0.GetWithDeletedResponse\"\x00\x12=\n" +
+	"\x04List\x12\x18.muxasset.v0.ListRequest\x1a\x19.muxasset.v0.ListResponse\"\x00\x12R\n" +
 	"\vListDeleted\x12\x1f.muxasset.v0.ListDeletedRequest\x1a .muxasset.v0.ListDeletedResponse\"\x00\x12R\n" +
 	"\vListUnowned\x12\x1f.muxasset.v0.ListUnownedRequest\x1a .muxasset.v0.ListUnownedResponse\"\x00\x12C\n" +
 	"\x06Delete\x12\x1a.muxasset.v0.DeleteRequest\x1a\x1b.muxasset.v0.DeleteResponse\"\x00\x12^\n" +
@@ -2315,7 +2315,7 @@ var file_media_service_mux_asset_v0_asset_proto_depIdxs = []int32{
 	30, // 27: muxasset.v0.AssetService.UpdateOwners:input_type -> muxasset.v0.UpdateOwnersRequest
 	7,  // 28: muxasset.v0.AssetService.Get:output_type -> muxasset.v0.GetResponse
 	9,  // 29: muxasset.v0.AssetService.GetWithDeleted:output_type -> muxasset.v0.GetWithDeletedResponse
-	13, // 30: muxasset.v0.AssetService.List:output_type -> muxasset.v0.ListDeletedResponse
+	11, // 30: muxasset.v0.AssetService.List:output_type -> muxasset.v0.ListResponse
 	13, // 31: muxasset.v0.AssetService.ListDeleted:output_type -> muxasset.v0.ListDeletedResponse
 	15, // 32: muxasset.v0.AssetService.ListUnowned:output_type -> muxasset.v0.ListUnownedResponse
 	17, // 33: muxasset.v0.AssetService.Delete:output_type -> muxasset.v0.DeleteResponse

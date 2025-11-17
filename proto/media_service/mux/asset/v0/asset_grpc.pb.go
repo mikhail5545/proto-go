@@ -62,8 +62,7 @@ type AssetServiceClient interface {
 	// GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
 	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
 	// List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
-	// Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
-	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	// ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
 	// ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
@@ -114,9 +113,9 @@ func (c *assetServiceClient) GetWithDeleted(ctx context.Context, in *GetWithDele
 	return out, nil
 }
 
-func (c *assetServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
+func (c *assetServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListDeletedResponse)
+	out := new(ListResponse)
 	err := c.cc.Invoke(ctx, AssetService_List_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -235,8 +234,7 @@ type AssetServiceServer interface {
 	// GetWithDeleted retrieves a single asset record along with its metadata, including soft-deleted ones.
 	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
 	// List retrieves a paginated list of all published and not soft-deleted asset records along with their metadata.
-	// Note: The return type in the original service definition seems incorrect (ListDeletedResponse instead of ListResponse).
-	List(context.Context, *ListRequest) (*ListDeletedResponse, error)
+	List(context.Context, *ListRequest) (*ListResponse, error)
 	// ListDeleted retrieves a paginated list of all soft-deleted asset records along with their metadata.
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
 	// ListUnowned retrieves a paginated list of all unowned asset records along with their metadata.
@@ -273,7 +271,7 @@ func (UnimplementedAssetServiceServer) Get(context.Context, *GetRequest) (*GetRe
 func (UnimplementedAssetServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
 }
-func (UnimplementedAssetServiceServer) List(context.Context, *ListRequest) (*ListDeletedResponse, error) {
+func (UnimplementedAssetServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedAssetServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
