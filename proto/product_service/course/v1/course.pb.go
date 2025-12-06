@@ -24,12 +24,11 @@
 package coursepb
 
 import (
-	v01 "github.com/mikhail5545/proto-go/proto/product_service/course_part/v0"
-	v0 "github.com/mikhail5545/proto-go/proto/product_service/image/v0"
+	v0 "github.com/mikhail5545/proto-go/proto/product_service/product/v0"
+	v01 "github.com/mikhail5545/proto-go/proto/product_service/variant/v0"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -42,980 +41,19 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Course struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt           *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt           *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt           *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	Name                string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
-	ShortDescription    string                 `protobuf:"bytes,6,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	LongDescription     string                 `protobuf:"bytes,7,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
-	Topic               string                 `protobuf:"bytes,8,opt,name=topic,proto3" json:"topic,omitempty"`
-	Tags                []string               `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags,omitempty"`
-	AccessDuration      int32                  `protobuf:"varint,10,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
-	InStock             bool                   `protobuf:"varint,11,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
-	Images              []*v0.Image            `protobuf:"bytes,12,rep,name=images,proto3" json:"images,omitempty"`
-	UploadedImageAmount int32                  `protobuf:"varint,13,opt,name=uploaded_image_amount,json=uploadedImageAmount,proto3" json:"uploaded_image_amount,omitempty"`
-	CourseParts         []*v01.CoursePart      `protobuf:"bytes,14,rep,name=course_parts,json=courseParts,proto3" json:"course_parts,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
-}
-
-func (x *Course) Reset() {
-	*x = Course{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Course) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Course) ProtoMessage() {}
-
-func (x *Course) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Course.ProtoReflect.Descriptor instead.
-func (*Course) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Course) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Course) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *Course) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *Course) GetDeletedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.DeletedAt
-	}
-	return nil
-}
-
-func (x *Course) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *Course) GetShortDescription() string {
-	if x != nil {
-		return x.ShortDescription
-	}
-	return ""
-}
-
-func (x *Course) GetLongDescription() string {
-	if x != nil {
-		return x.LongDescription
-	}
-	return ""
-}
-
-func (x *Course) GetTopic() string {
-	if x != nil {
-		return x.Topic
-	}
-	return ""
-}
-
-func (x *Course) GetTags() []string {
-	if x != nil {
-		return x.Tags
-	}
-	return nil
-}
-
-func (x *Course) GetAccessDuration() int32 {
-	if x != nil {
-		return x.AccessDuration
-	}
-	return 0
-}
-
-func (x *Course) GetInStock() bool {
-	if x != nil {
-		return x.InStock
-	}
-	return false
-}
-
-func (x *Course) GetImages() []*v0.Image {
-	if x != nil {
-		return x.Images
-	}
-	return nil
-}
-
-func (x *Course) GetUploadedImageAmount() int32 {
-	if x != nil {
-		return x.UploadedImageAmount
-	}
-	return 0
-}
-
-func (x *Course) GetCourseParts() []*v01.CoursePart {
-	if x != nil {
-		return x.CourseParts
-	}
-	return nil
-}
-
-type CourseDetails struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Course        *Course                `protobuf:"bytes,1,opt,name=course,proto3" json:"course,omitempty"`
-	Price         float32                `protobuf:"fixed32,2,opt,name=price,proto3" json:"price,omitempty"`
-	ProductId     string                 `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CourseDetails) Reset() {
-	*x = CourseDetails{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CourseDetails) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CourseDetails) ProtoMessage() {}
-
-func (x *CourseDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CourseDetails.ProtoReflect.Descriptor instead.
-func (*CourseDetails) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *CourseDetails) GetCourse() *Course {
-	if x != nil {
-		return x.Course
-	}
-	return nil
-}
-
-func (x *CourseDetails) GetPrice() float32 {
-	if x != nil {
-		return x.Price
-	}
-	return 0
-}
-
-func (x *CourseDetails) GetProductId() string {
-	if x != nil {
-		return x.ProductId
-	}
-	return ""
-}
-
-type GetRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetRequest) Reset() {
-	*x = GetRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRequest) ProtoMessage() {}
-
-func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
-func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails *CourseDetails         `protobuf:"bytes,1,opt,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetResponse) Reset() {
-	*x = GetResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetResponse) ProtoMessage() {}
-
-func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
-func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetResponse) GetCourseDetails() *CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-type GetWithDeletedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetWithDeletedRequest) Reset() {
-	*x = GetWithDeletedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetWithDeletedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetWithDeletedRequest) ProtoMessage() {}
-
-func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetWithDeletedRequest.ProtoReflect.Descriptor instead.
-func (*GetWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetWithDeletedRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetWithDeletedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails *CourseDetails         `protobuf:"bytes,1,opt,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetWithDeletedResponse) Reset() {
-	*x = GetWithDeletedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetWithDeletedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetWithDeletedResponse) ProtoMessage() {}
-
-func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetWithDeletedResponse.ProtoReflect.Descriptor instead.
-func (*GetWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *GetWithDeletedResponse) GetCourseDetails() *CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-type GetWithUnpublishedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetWithUnpublishedRequest) Reset() {
-	*x = GetWithUnpublishedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetWithUnpublishedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetWithUnpublishedRequest) ProtoMessage() {}
-
-func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetWithUnpublishedRequest.ProtoReflect.Descriptor instead.
-func (*GetWithUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetWithUnpublishedRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetWithUnpublishedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails *CourseDetails         `protobuf:"bytes,1,opt,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetWithUnpublishedResponse) Reset() {
-	*x = GetWithUnpublishedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetWithUnpublishedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetWithUnpublishedResponse) ProtoMessage() {}
-
-func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetWithUnpublishedResponse.ProtoReflect.Descriptor instead.
-func (*GetWithUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetWithUnpublishedResponse) GetCourseDetails() *CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-type GetReducedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetReducedRequest) Reset() {
-	*x = GetReducedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetReducedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetReducedRequest) ProtoMessage() {}
-
-func (x *GetReducedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetReducedRequest.ProtoReflect.Descriptor instead.
-func (*GetReducedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *GetReducedRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetReducedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails *CourseDetails         `protobuf:"bytes,1,opt,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetReducedResponse) Reset() {
-	*x = GetReducedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetReducedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetReducedResponse) ProtoMessage() {}
-
-func (x *GetReducedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetReducedResponse.ProtoReflect.Descriptor instead.
-func (*GetReducedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *GetReducedResponse) GetCourseDetails() *CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-type GetReducedWithDeletedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetReducedWithDeletedRequest) Reset() {
-	*x = GetReducedWithDeletedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetReducedWithDeletedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetReducedWithDeletedRequest) ProtoMessage() {}
-
-func (x *GetReducedWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetReducedWithDeletedRequest.ProtoReflect.Descriptor instead.
-func (*GetReducedWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetReducedWithDeletedRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type GetReducedWithDeletedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails *CourseDetails         `protobuf:"bytes,1,opt,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetReducedWithDeletedResponse) Reset() {
-	*x = GetReducedWithDeletedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetReducedWithDeletedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetReducedWithDeletedResponse) ProtoMessage() {}
-
-func (x *GetReducedWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetReducedWithDeletedResponse.ProtoReflect.Descriptor instead.
-func (*GetReducedWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *GetReducedWithDeletedResponse) GetCourseDetails() *CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-type ListRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListRequest) Reset() {
-	*x = ListRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListRequest) ProtoMessage() {}
-
-func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
-func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *ListRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *ListRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-type ListResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails []*CourseDetails       `protobuf:"bytes,1,rep,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListResponse) Reset() {
-	*x = ListResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListResponse) ProtoMessage() {}
-
-func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
-func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *ListResponse) GetCourseDetails() []*CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-func (x *ListResponse) GetTotal() int64 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
-
-type ListDeletedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListDeletedRequest) Reset() {
-	*x = ListDeletedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListDeletedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListDeletedRequest) ProtoMessage() {}
-
-func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListDeletedRequest.ProtoReflect.Descriptor instead.
-func (*ListDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *ListDeletedRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *ListDeletedRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-type ListDeletedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails []*CourseDetails       `protobuf:"bytes,1,rep,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListDeletedResponse) Reset() {
-	*x = ListDeletedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListDeletedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListDeletedResponse) ProtoMessage() {}
-
-func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListDeletedResponse.ProtoReflect.Descriptor instead.
-func (*ListDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *ListDeletedResponse) GetCourseDetails() []*CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-func (x *ListDeletedResponse) GetTotal() int64 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
-
-type ListUnpublishedRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUnpublishedRequest) Reset() {
-	*x = ListUnpublishedRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUnpublishedRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUnpublishedRequest) ProtoMessage() {}
-
-func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUnpublishedRequest.ProtoReflect.Descriptor instead.
-func (*ListUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *ListUnpublishedRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *ListUnpublishedRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-type ListUnpublishedResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseDetails []*CourseDetails       `protobuf:"bytes,1,rep,name=course_details,json=courseDetails,proto3" json:"course_details,omitempty"`
-	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListUnpublishedResponse) Reset() {
-	*x = ListUnpublishedResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListUnpublishedResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListUnpublishedResponse) ProtoMessage() {}
-
-func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListUnpublishedResponse.ProtoReflect.Descriptor instead.
-func (*ListUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *ListUnpublishedResponse) GetCourseDetails() []*CourseDetails {
-	if x != nil {
-		return x.CourseDetails
-	}
-	return nil
-}
-
-func (x *ListUnpublishedResponse) GetTotal() int64 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
-
 type CreateRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Name             string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	ShortDescription string                 `protobuf:"bytes,2,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	Topic            string                 `protobuf:"bytes,3,opt,name=topic,proto3" json:"topic,omitempty"`
-	Price            float32                `protobuf:"fixed32,4,opt,name=price,proto3" json:"price,omitempty"`
-	AccessDuration   int32                  `protobuf:"varint,5,opt,name=access_duration,json=accessDuration,proto3" json:"access_duration,omitempty"`
+	Title            string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Subtitle         *string                `protobuf:"bytes,2,opt,name=subtitle,proto3,oneof" json:"subtitle,omitempty"`
+	ShortDescription string                 `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
+	Tags             []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[18]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1027,7 +65,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[18]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1040,12 +78,19 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{18}
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateRequest) GetName() string {
+func (x *CreateRequest) GetTitle() string {
 	if x != nil {
-		return x.Name
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateRequest) GetSubtitle() string {
+	if x != nil && x.Subtitle != nil {
+		return *x.Subtitle
 	}
 	return ""
 }
@@ -1057,38 +102,23 @@ func (x *CreateRequest) GetShortDescription() string {
 	return ""
 }
 
-func (x *CreateRequest) GetTopic() string {
+func (x *CreateRequest) GetTags() []string {
 	if x != nil {
-		return x.Topic
+		return x.Tags
 	}
-	return ""
-}
-
-func (x *CreateRequest) GetPrice() float32 {
-	if x != nil {
-		return x.Price
-	}
-	return 0
-}
-
-func (x *CreateRequest) GetAccessDuration() int32 {
-	if x != nil {
-		return x.AccessDuration
-	}
-	return 0
+	return nil
 }
 
 type CreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ProductId     string                 `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Product       *v0.Product            `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[19]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1100,7 +130,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[19]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1113,217 +143,33 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{19}
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateResponse) GetId() string {
+func (x *CreateResponse) GetProduct() *v0.Product {
 	if x != nil {
-		return x.Id
+		return x.Product
 	}
-	return ""
-}
-
-func (x *CreateResponse) GetProductId() string {
-	if x != nil {
-		return x.ProductId
-	}
-	return ""
-}
-
-type PublishRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PublishRequest) Reset() {
-	*x = PublishRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PublishRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PublishRequest) ProtoMessage() {}
-
-func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
-func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *PublishRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type PublishResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PublishResponse) Reset() {
-	*x = PublishResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PublishResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PublishResponse) ProtoMessage() {}
-
-func (x *PublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PublishResponse.ProtoReflect.Descriptor instead.
-func (*PublishResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *PublishResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type UnpublishRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UnpublishRequest) Reset() {
-	*x = UnpublishRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UnpublishRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UnpublishRequest) ProtoMessage() {}
-
-func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UnpublishRequest.ProtoReflect.Descriptor instead.
-func (*UnpublishRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *UnpublishRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type UnpublishResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UnpublishResponse) Reset() {
-	*x = UnpublishResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UnpublishResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UnpublishResponse) ProtoMessage() {}
-
-func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UnpublishResponse.ProtoReflect.Descriptor instead.
-func (*UnpublishResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *UnpublishResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
+	return nil
 }
 
 type UpdateRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name             *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	ShortDescription *string                `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
-	LongDescription  *string                `protobuf:"bytes,4,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
-	Topic            *string                `protobuf:"bytes,5,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
-	AccessDuration   *int32                 `protobuf:"varint,6,opt,name=access_duration,json=accessDuration,proto3,oneof" json:"access_duration,omitempty"`
-	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
-	Price            *float32               `protobuf:"fixed32,8,opt,name=price,proto3,oneof" json:"price,omitempty"`
-	UpdateMask       *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	Title            *string                `protobuf:"bytes,2,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Subtitle         *string                `protobuf:"bytes,3,opt,name=subtitle,proto3,oneof" json:"subtitle,omitempty"`
+	Description      *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,5,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	Tags             []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	Metadata         *string                `protobuf:"bytes,7,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
+	Updates          *fieldmaskpb.FieldMask `protobuf:"bytes,8,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[24]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1335,7 +181,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[24]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1348,7 +194,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{24}
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -1358,9 +204,23 @@ func (x *UpdateRequest) GetId() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
+func (x *UpdateRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetSubtitle() string {
+	if x != nil && x.Subtitle != nil {
+		return *x.Subtitle
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -1372,27 +232,6 @@ func (x *UpdateRequest) GetShortDescription() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetLongDescription() string {
-	if x != nil && x.LongDescription != nil {
-		return *x.LongDescription
-	}
-	return ""
-}
-
-func (x *UpdateRequest) GetTopic() string {
-	if x != nil && x.Topic != nil {
-		return *x.Topic
-	}
-	return ""
-}
-
-func (x *UpdateRequest) GetAccessDuration() int32 {
-	if x != nil && x.AccessDuration != nil {
-		return *x.AccessDuration
-	}
-	return 0
-}
-
 func (x *UpdateRequest) GetTags() []string {
 	if x != nil {
 		return x.Tags
@@ -1400,16 +239,16 @@ func (x *UpdateRequest) GetTags() []string {
 	return nil
 }
 
-func (x *UpdateRequest) GetPrice() float32 {
-	if x != nil && x.Price != nil {
-		return *x.Price
+func (x *UpdateRequest) GetMetadata() string {
+	if x != nil && x.Metadata != nil {
+		return *x.Metadata
 	}
-	return 0
+	return ""
 }
 
-func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+func (x *UpdateRequest) GetUpdates() *fieldmaskpb.FieldMask {
 	if x != nil {
-		return x.UpdateMask
+		return x.Updates
 	}
 	return nil
 }
@@ -1417,21 +256,20 @@ func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 type UpdateResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name             *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	ShortDescription *string                `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
-	LongDescription  *string                `protobuf:"bytes,4,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
-	Topic            *string                `protobuf:"bytes,5,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
-	AccessDuration   *int32                 `protobuf:"varint,6,opt,name=access_duration,json=accessDuration,proto3,oneof" json:"access_duration,omitempty"`
-	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
-	Price            *float32               `protobuf:"fixed32,8,opt,name=price,proto3,oneof" json:"price,omitempty"`
-	Updated          *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=updated,proto3" json:"updated,omitempty"`
+	Title            *string                `protobuf:"bytes,2,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Subtitle         *string                `protobuf:"bytes,3,opt,name=subtitle,proto3,oneof" json:"subtitle,omitempty"`
+	Description      *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,5,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	Tags             []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	Metadata         *string                `protobuf:"bytes,7,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
+	Updates          *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[25]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1443,7 +281,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[25]
+	mi := &file_product_service_course_v1_course_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1456,7 +294,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{25}
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UpdateResponse) GetId() string {
@@ -1466,9 +304,23 @@ func (x *UpdateResponse) GetId() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
+func (x *UpdateResponse) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetSubtitle() string {
+	if x != nil && x.Subtitle != nil {
+		return *x.Subtitle
+	}
+	return ""
+}
+
+func (x *UpdateResponse) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -1480,27 +332,6 @@ func (x *UpdateResponse) GetShortDescription() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetLongDescription() string {
-	if x != nil && x.LongDescription != nil {
-		return *x.LongDescription
-	}
-	return ""
-}
-
-func (x *UpdateResponse) GetTopic() string {
-	if x != nil && x.Topic != nil {
-		return *x.Topic
-	}
-	return ""
-}
-
-func (x *UpdateResponse) GetAccessDuration() int32 {
-	if x != nil && x.AccessDuration != nil {
-		return *x.AccessDuration
-	}
-	return 0
-}
-
 func (x *UpdateResponse) GetTags() []string {
 	if x != nil {
 		return x.Tags
@@ -1508,42 +339,48 @@ func (x *UpdateResponse) GetTags() []string {
 	return nil
 }
 
-func (x *UpdateResponse) GetPrice() float32 {
-	if x != nil && x.Price != nil {
-		return *x.Price
+func (x *UpdateResponse) GetMetadata() string {
+	if x != nil && x.Metadata != nil {
+		return *x.Metadata
 	}
-	return 0
+	return ""
 }
 
-func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
+func (x *UpdateResponse) GetUpdates() *fieldmaskpb.FieldMask {
 	if x != nil {
-		return x.Updated
+		return x.Updates
 	}
 	return nil
 }
 
-type DeleteRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type CreateVariantRequest struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	ProductId          string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title              string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	DownloadLimit      *int32                 `protobuf:"varint,3,opt,name=download_limit,json=downloadLimit,proto3,oneof" json:"download_limit,omitempty"`
+	Option1            *string                `protobuf:"bytes,4,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2            *string                `protobuf:"bytes,5,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3            *string                `protobuf:"bytes,6,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	AccessDurationDays *int32                 `protobuf:"varint,7,opt,name=access_duration_days,json=accessDurationDays,proto3,oneof" json:"access_duration_days,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
-func (x *DeleteRequest) Reset() {
-	*x = DeleteRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[26]
+func (x *CreateVariantRequest) Reset() {
+	*x = CreateVariantRequest{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteRequest) String() string {
+func (x *CreateVariantRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteRequest) ProtoMessage() {}
+func (*CreateVariantRequest) ProtoMessage() {}
 
-func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[26]
+func (x *CreateVariantRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1554,40 +391,418 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
-func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{26}
+// Deprecated: Use CreateVariantRequest.ProtoReflect.Descriptor instead.
+func (*CreateVariantRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *DeleteRequest) GetId() string {
+func (x *CreateVariantRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetDownloadLimit() int32 {
+	if x != nil && x.DownloadLimit != nil {
+		return *x.DownloadLimit
+	}
+	return 0
+}
+
+func (x *CreateVariantRequest) GetOption1() string {
+	if x != nil && x.Option1 != nil {
+		return *x.Option1
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetOption2() string {
+	if x != nil && x.Option2 != nil {
+		return *x.Option2
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetOption3() string {
+	if x != nil && x.Option3 != nil {
+		return *x.Option3
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetAccessDurationDays() int32 {
+	if x != nil && x.AccessDurationDays != nil {
+		return *x.AccessDurationDays
+	}
+	return 0
+}
+
+type CreateVariantResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Variant       *v01.Variant           `protobuf:"bytes,1,opt,name=variant,proto3" json:"variant,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateVariantResponse) Reset() {
+	*x = CreateVariantResponse{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateVariantResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateVariantResponse) ProtoMessage() {}
+
+func (x *CreateVariantResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateVariantResponse.ProtoReflect.Descriptor instead.
+func (*CreateVariantResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateVariantResponse) GetVariant() *v01.Variant {
+	if x != nil {
+		return x.Variant
+	}
+	return nil
+}
+
+type UpdateVariantRequest struct {
+	state              protoimpl.MessageState      `protogen:"open.v1"`
+	VariantId          string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
+	ProductId          string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title              *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	InventoryPolicy    *v01.VariantInventoryPolicy `protobuf:"varint,4,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
+	AllowBackorder     *bool                       `protobuf:"varint,5,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
+	Option1            *string                     `protobuf:"bytes,6,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2            *string                     `protobuf:"bytes,7,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3            *string                     `protobuf:"bytes,8,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	DownloadLimit      *int32                      `protobuf:"varint,9,opt,name=download_limit,json=downloadLimit,proto3,oneof" json:"download_limit,omitempty"`
+	AccessDurationDays *int32                      `protobuf:"varint,10,opt,name=access_duration_days,json=accessDurationDays,proto3,oneof" json:"access_duration_days,omitempty"`
+	Updates            *fieldmaskpb.FieldMask      `protobuf:"bytes,11,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *UpdateVariantRequest) Reset() {
+	*x = UpdateVariantRequest{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateVariantRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateVariantRequest) ProtoMessage() {}
+
+func (x *UpdateVariantRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateVariantRequest.ProtoReflect.Descriptor instead.
+func (*UpdateVariantRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateVariantRequest) GetVariantId() string {
+	if x != nil {
+		return x.VariantId
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetInventoryPolicy() v01.VariantInventoryPolicy {
+	if x != nil && x.InventoryPolicy != nil {
+		return *x.InventoryPolicy
+	}
+	return v01.VariantInventoryPolicy(0)
+}
+
+func (x *UpdateVariantRequest) GetAllowBackorder() bool {
+	if x != nil && x.AllowBackorder != nil {
+		return *x.AllowBackorder
+	}
+	return false
+}
+
+func (x *UpdateVariantRequest) GetOption1() string {
+	if x != nil && x.Option1 != nil {
+		return *x.Option1
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetOption2() string {
+	if x != nil && x.Option2 != nil {
+		return *x.Option2
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetOption3() string {
+	if x != nil && x.Option3 != nil {
+		return *x.Option3
+	}
+	return ""
+}
+
+func (x *UpdateVariantRequest) GetDownloadLimit() int32 {
+	if x != nil && x.DownloadLimit != nil {
+		return *x.DownloadLimit
+	}
+	return 0
+}
+
+func (x *UpdateVariantRequest) GetAccessDurationDays() int32 {
+	if x != nil && x.AccessDurationDays != nil {
+		return *x.AccessDurationDays
+	}
+	return 0
+}
+
+func (x *UpdateVariantRequest) GetUpdates() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.Updates
+	}
+	return nil
+}
+
+type UpdateVariantResponse struct {
+	state              protoimpl.MessageState      `protogen:"open.v1"`
+	VariantId          string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
+	ProductId          string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title              *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	InventoryPolicy    *v01.VariantInventoryPolicy `protobuf:"varint,4,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
+	AllowBackorder     *bool                       `protobuf:"varint,5,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
+	Option1            *string                     `protobuf:"bytes,6,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2            *string                     `protobuf:"bytes,7,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3            *string                     `protobuf:"bytes,8,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	DownloadLimit      *int32                      `protobuf:"varint,9,opt,name=download_limit,json=downloadLimit,proto3,oneof" json:"download_limit,omitempty"`
+	AccessDurationDays *int32                      `protobuf:"varint,10,opt,name=access_duration_days,json=accessDurationDays,proto3,oneof" json:"access_duration_days,omitempty"`
+	Updates            *fieldmaskpb.FieldMask      `protobuf:"bytes,11,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *UpdateVariantResponse) Reset() {
+	*x = UpdateVariantResponse{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateVariantResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateVariantResponse) ProtoMessage() {}
+
+func (x *UpdateVariantResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateVariantResponse.ProtoReflect.Descriptor instead.
+func (*UpdateVariantResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateVariantResponse) GetVariantId() string {
+	if x != nil {
+		return x.VariantId
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetInventoryPolicy() v01.VariantInventoryPolicy {
+	if x != nil && x.InventoryPolicy != nil {
+		return *x.InventoryPolicy
+	}
+	return v01.VariantInventoryPolicy(0)
+}
+
+func (x *UpdateVariantResponse) GetAllowBackorder() bool {
+	if x != nil && x.AllowBackorder != nil {
+		return *x.AllowBackorder
+	}
+	return false
+}
+
+func (x *UpdateVariantResponse) GetOption1() string {
+	if x != nil && x.Option1 != nil {
+		return *x.Option1
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetOption2() string {
+	if x != nil && x.Option2 != nil {
+		return *x.Option2
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetOption3() string {
+	if x != nil && x.Option3 != nil {
+		return *x.Option3
+	}
+	return ""
+}
+
+func (x *UpdateVariantResponse) GetDownloadLimit() int32 {
+	if x != nil && x.DownloadLimit != nil {
+		return *x.DownloadLimit
+	}
+	return 0
+}
+
+func (x *UpdateVariantResponse) GetAccessDurationDays() int32 {
+	if x != nil && x.AccessDurationDays != nil {
+		return *x.AccessDurationDays
+	}
+	return 0
+}
+
+func (x *UpdateVariantResponse) GetUpdates() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.Updates
+	}
+	return nil
+}
+
+type UndraftRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UndraftRequest) Reset() {
+	*x = UndraftRequest{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UndraftRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UndraftRequest) ProtoMessage() {}
+
+func (x *UndraftRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UndraftRequest.ProtoReflect.Descriptor instead.
+func (*UndraftRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UndraftRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type DeleteResponse struct {
+type UndraftResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteResponse) Reset() {
-	*x = DeleteResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[27]
+func (x *UndraftResponse) Reset() {
+	*x = UndraftResponse{}
+	mi := &file_product_service_course_v1_course_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteResponse) String() string {
+func (x *UndraftResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteResponse) ProtoMessage() {}
+func (*UndraftResponse) ProtoMessage() {}
 
-func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[27]
+func (x *UndraftResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_course_v1_course_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1598,188 +813,12 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{27}
+// Deprecated: Use UndraftResponse.ProtoReflect.Descriptor instead.
+func (*UndraftResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DeleteResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeletePermanentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePermanentRequest) Reset() {
-	*x = DeletePermanentRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[28]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePermanentRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePermanentRequest) ProtoMessage() {}
-
-func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[28]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
-func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{28}
-}
-
-func (x *DeletePermanentRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeletePermanentResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePermanentResponse) Reset() {
-	*x = DeletePermanentResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[29]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePermanentResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePermanentResponse) ProtoMessage() {}
-
-func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[29]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
-func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{29}
-}
-
-func (x *DeletePermanentResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type RestoreRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RestoreRequest) Reset() {
-	*x = RestoreRequest{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[30]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RestoreRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RestoreRequest) ProtoMessage() {}
-
-func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[30]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
-func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{30}
-}
-
-func (x *RestoreRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type RestoreResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RestoreResponse) Reset() {
-	*x = RestoreResponse{}
-	mi := &file_product_service_course_v1_course_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RestoreResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RestoreResponse) ProtoMessage() {}
-
-func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_course_v1_course_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
-func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_course_v1_course_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *RestoreResponse) GetId() string {
+func (x *UndraftResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
@@ -1790,151 +829,132 @@ var File_product_service_course_v1_course_proto protoreflect.FileDescriptor
 
 const file_product_service_course_v1_course_proto_rawDesc = "" +
 	"\n" +
-	"&product_service/course/v1/course.proto\x12\tcourse.v1\x1a0product_service/course_part/v0/course_part.proto\x1a$product_service/image/v0/image.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\xd3\x04\n" +
-	"\x06Course\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
-	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
-	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
-	"\n" +
-	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12\x12\n" +
-	"\x04name\x18\x05 \x01(\tR\x04name\x12+\n" +
-	"\x11short_description\x18\x06 \x01(\tR\x10shortDescription\x12)\n" +
-	"\x10long_description\x18\a \x01(\tR\x0flongDescription\x12\x14\n" +
-	"\x05topic\x18\b \x01(\tR\x05topic\x12\x12\n" +
-	"\x04tags\x18\t \x03(\tR\x04tags\x12'\n" +
-	"\x0faccess_duration\x18\n" +
-	" \x01(\x05R\x0eaccessDuration\x12\x19\n" +
-	"\bin_stock\x18\v \x01(\bR\ainStock\x12'\n" +
-	"\x06images\x18\f \x03(\v2\x0f.image.v0.ImageR\x06images\x122\n" +
-	"\x15uploaded_image_amount\x18\r \x01(\x05R\x13uploadedImageAmount\x12=\n" +
-	"\fcourse_parts\x18\x0e \x03(\v2\x1a.course_part.v0.CoursePartR\vcoursePartsB\r\n" +
-	"\v_deleted_at\"o\n" +
-	"\rCourseDetails\x12)\n" +
-	"\x06course\x18\x01 \x01(\v2\x11.course.v1.CourseR\x06course\x12\x14\n" +
-	"\x05price\x18\x02 \x01(\x02R\x05price\x12\x1d\n" +
-	"\n" +
-	"product_id\x18\x03 \x01(\tR\tproductId\"\x1c\n" +
-	"\n" +
-	"GetRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"N\n" +
-	"\vGetResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x01(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\"'\n" +
-	"\x15GetWithDeletedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"Y\n" +
-	"\x16GetWithDeletedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x01(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\"+\n" +
-	"\x19GetWithUnpublishedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"]\n" +
-	"\x1aGetWithUnpublishedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x01(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\"#\n" +
-	"\x11GetReducedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
-	"\x12GetReducedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x01(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\".\n" +
-	"\x1cGetReducedWithDeletedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"`\n" +
-	"\x1dGetReducedWithDeletedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x01(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\";\n" +
-	"\vListRequest\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"e\n" +
-	"\fListResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x03(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"B\n" +
-	"\x12ListDeletedRequest\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"l\n" +
-	"\x13ListDeletedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x03(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"F\n" +
-	"\x16ListUnpublishedRequest\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"p\n" +
-	"\x17ListUnpublishedResponse\x12?\n" +
-	"\x0ecourse_details\x18\x01 \x03(\v2\x18.course.v1.CourseDetailsR\rcourseDetails\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"\xa5\x01\n" +
-	"\rCreateRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12+\n" +
-	"\x11short_description\x18\x02 \x01(\tR\x10shortDescription\x12\x14\n" +
-	"\x05topic\x18\x03 \x01(\tR\x05topic\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x02R\x05price\x12'\n" +
-	"\x0faccess_duration\x18\x05 \x01(\x05R\x0eaccessDuration\"?\n" +
-	"\x0eCreateResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
-	"\n" +
-	"product_id\x18\x02 \x01(\tR\tproductId\" \n" +
-	"\x0ePublishRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
-	"\x0fPublishResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\"\n" +
-	"\x10UnpublishRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"#\n" +
-	"\x11UnpublishResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xab\x03\n" +
+	"&product_service/course/v1/course.proto\x12\tcourse.v1\x1a(product_service/product/v0/product.proto\x1a(product_service/variant/v0/variant.proto\x1a google/protobuf/field_mask.proto\"\x94\x01\n" +
+	"\rCreateRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1f\n" +
+	"\bsubtitle\x18\x02 \x01(\tH\x00R\bsubtitle\x88\x01\x01\x12+\n" +
+	"\x11short_description\x18\x03 \x01(\tR\x10shortDescription\x12\x12\n" +
+	"\x04tags\x18\x04 \x03(\tR\x04tagsB\v\n" +
+	"\t_subtitle\"?\n" +
+	"\x0eCreateResponse\x12-\n" +
+	"\aproduct\x18\x01 \x01(\v2\x13.product.v0.ProductR\aproduct\"\xfa\x02\n" +
 	"\rUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x120\n" +
-	"\x11short_description\x18\x03 \x01(\tH\x01R\x10shortDescription\x88\x01\x01\x12.\n" +
-	"\x10long_description\x18\x04 \x01(\tH\x02R\x0flongDescription\x88\x01\x01\x12\x19\n" +
-	"\x05topic\x18\x05 \x01(\tH\x03R\x05topic\x88\x01\x01\x12,\n" +
-	"\x0faccess_duration\x18\x06 \x01(\x05H\x04R\x0eaccessDuration\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x12\x19\n" +
-	"\x05price\x18\b \x01(\x02H\x05R\x05price\x88\x01\x01\x12;\n" +
-	"\vupdate_mask\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMaskB\a\n" +
-	"\x05_nameB\x14\n" +
-	"\x12_short_descriptionB\x13\n" +
-	"\x11_long_descriptionB\b\n" +
-	"\x06_topicB\x12\n" +
-	"\x10_access_durationB\b\n" +
-	"\x06_price\"\xa5\x03\n" +
-	"\x0eUpdateResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x120\n" +
-	"\x11short_description\x18\x03 \x01(\tH\x01R\x10shortDescription\x88\x01\x01\x12.\n" +
-	"\x10long_description\x18\x04 \x01(\tH\x02R\x0flongDescription\x88\x01\x01\x12\x19\n" +
-	"\x05topic\x18\x05 \x01(\tH\x03R\x05topic\x88\x01\x01\x12,\n" +
-	"\x0faccess_duration\x18\x06 \x01(\x05H\x04R\x0eaccessDuration\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x12\x19\n" +
-	"\x05price\x18\b \x01(\x02H\x05R\x05price\x88\x01\x01\x124\n" +
-	"\aupdated\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\a\n" +
-	"\x05_nameB\x14\n" +
-	"\x12_short_descriptionB\x13\n" +
-	"\x11_long_descriptionB\b\n" +
-	"\x06_topicB\x12\n" +
-	"\x10_access_durationB\b\n" +
-	"\x06_price\"\x1f\n" +
-	"\rDeleteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
-	"\x0eDeleteResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
-	"\x16DeletePermanentRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\")\n" +
-	"\x17DeletePermanentResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
-	"\x0eRestoreRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
-	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\x98\t\n" +
-	"\rCourseService\x126\n" +
-	"\x03Get\x12\x15.course.v1.GetRequest\x1a\x16.course.v1.GetResponse\"\x00\x12W\n" +
-	"\x0eGetWithDeleted\x12 .course.v1.GetWithDeletedRequest\x1a!.course.v1.GetWithDeletedResponse\"\x00\x12c\n" +
-	"\x12GetWithUnpublished\x12$.course.v1.GetWithUnpublishedRequest\x1a%.course.v1.GetWithUnpublishedResponse\"\x00\x12K\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x1f\n" +
+	"\bsubtitle\x18\x03 \x01(\tH\x01R\bsubtitle\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x02R\vdescription\x88\x01\x01\x120\n" +
+	"\x11short_description\x18\x05 \x01(\tH\x03R\x10shortDescription\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x1f\n" +
+	"\bmetadata\x18\a \x01(\tH\x04R\bmetadata\x88\x01\x01\x129\n" +
+	"\aupdates\x18\b \x01(\v2\x1a.google.protobuf.FieldMaskH\x05R\aupdates\x88\x01\x01B\b\n" +
+	"\x06_titleB\v\n" +
+	"\t_subtitleB\x0e\n" +
+	"\f_descriptionB\x14\n" +
+	"\x12_short_descriptionB\v\n" +
+	"\t_metadataB\n" +
 	"\n" +
-	"GetReduced\x12\x1c.course.v1.GetReducedRequest\x1a\x1d.course.v1.GetReducedResponse\"\x00\x12l\n" +
-	"\x15GetReducedWithDeleted\x12'.course.v1.GetReducedWithDeletedRequest\x1a(.course.v1.GetReducedWithDeletedResponse\"\x00\x129\n" +
-	"\x04List\x12\x16.course.v1.ListRequest\x1a\x17.course.v1.ListResponse\"\x00\x12N\n" +
-	"\vListDeleted\x12\x1d.course.v1.ListDeletedRequest\x1a\x1e.course.v1.ListDeletedResponse\"\x00\x12Z\n" +
-	"\x0fListUnpublished\x12!.course.v1.ListUnpublishedRequest\x1a\".course.v1.ListUnpublishedResponse\"\x00\x12?\n" +
-	"\x06Create\x12\x18.course.v1.CreateRequest\x1a\x19.course.v1.CreateResponse\"\x00\x12B\n" +
-	"\aPublish\x12\x19.course.v1.PublishRequest\x1a\x1a.course.v1.PublishResponse\"\x00\x12H\n" +
-	"\tUnpublish\x12\x1b.course.v1.UnpublishRequest\x1a\x1c.course.v1.UnpublishResponse\"\x00\x12?\n" +
-	"\x06Update\x12\x18.course.v1.UpdateRequest\x1a\x19.course.v1.UpdateResponse\"\x00\x12?\n" +
-	"\x06Delete\x12\x18.course.v1.DeleteRequest\x1a\x19.course.v1.DeleteResponse\"\x00\x12Z\n" +
-	"\x0fDeletePermanent\x12!.course.v1.DeletePermanentRequest\x1a\".course.v1.DeletePermanentResponse\"\x00\x12B\n" +
-	"\aRestore\x12\x19.course.v1.RestoreRequest\x1a\x1a.course.v1.RestoreResponse\"\x00BJZHgithub.com/mikhail5545/proto-go/proto/product_service/course/v1;coursepbb\x06proto3"
+	"\b_updates\"\xfb\x02\n" +
+	"\x0eUpdateResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x1f\n" +
+	"\bsubtitle\x18\x03 \x01(\tH\x01R\bsubtitle\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x02R\vdescription\x88\x01\x01\x120\n" +
+	"\x11short_description\x18\x05 \x01(\tH\x03R\x10shortDescription\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\x06 \x03(\tR\x04tags\x12\x1f\n" +
+	"\bmetadata\x18\a \x01(\tH\x04R\bmetadata\x88\x01\x01\x129\n" +
+	"\aupdates\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskH\x05R\aupdates\x88\x01\x01B\b\n" +
+	"\x06_titleB\v\n" +
+	"\t_subtitleB\x0e\n" +
+	"\f_descriptionB\x14\n" +
+	"\x12_short_descriptionB\v\n" +
+	"\t_metadataB\n" +
+	"\n" +
+	"\b_updates\"\xdb\x02\n" +
+	"\x14CreateVariantRequest\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\tR\tproductId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12*\n" +
+	"\x0edownload_limit\x18\x03 \x01(\x05H\x00R\rdownloadLimit\x88\x01\x01\x12\x1d\n" +
+	"\aoption1\x18\x04 \x01(\tH\x01R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\x05 \x01(\tH\x02R\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\x06 \x01(\tH\x03R\aoption3\x88\x01\x01\x125\n" +
+	"\x14access_duration_days\x18\a \x01(\x05H\x04R\x12accessDurationDays\x88\x01\x01B\x11\n" +
+	"\x0f_download_limitB\n" +
+	"\n" +
+	"\b_option1B\n" +
+	"\n" +
+	"\b_option2B\n" +
+	"\n" +
+	"\b_option3B\x17\n" +
+	"\x15_access_duration_days\"F\n" +
+	"\x15CreateVariantResponse\x12-\n" +
+	"\avariant\x18\x01 \x01(\v2\x13.variant.v0.VariantR\avariant\"\xfb\x04\n" +
+	"\x14UpdateVariantRequest\x12\x1d\n" +
+	"\n" +
+	"variant_id\x18\x01 \x01(\tR\tvariantId\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x02 \x01(\tR\tproductId\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12R\n" +
+	"\x10inventory_policy\x18\x04 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x01R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
+	"\x0fallow_backorder\x18\x05 \x01(\bH\x02R\x0eallowBackorder\x88\x01\x01\x12\x1d\n" +
+	"\aoption1\x18\x06 \x01(\tH\x03R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\a \x01(\tH\x04R\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\b \x01(\tH\x05R\aoption3\x88\x01\x01\x12*\n" +
+	"\x0edownload_limit\x18\t \x01(\x05H\x06R\rdownloadLimit\x88\x01\x01\x125\n" +
+	"\x14access_duration_days\x18\n" +
+	" \x01(\x05H\aR\x12accessDurationDays\x88\x01\x01\x129\n" +
+	"\aupdates\x18\v \x01(\v2\x1a.google.protobuf.FieldMaskH\bR\aupdates\x88\x01\x01B\b\n" +
+	"\x06_titleB\x13\n" +
+	"\x11_inventory_policyB\x12\n" +
+	"\x10_allow_backorderB\n" +
+	"\n" +
+	"\b_option1B\n" +
+	"\n" +
+	"\b_option2B\n" +
+	"\n" +
+	"\b_option3B\x11\n" +
+	"\x0f_download_limitB\x17\n" +
+	"\x15_access_duration_daysB\n" +
+	"\n" +
+	"\b_updates\"\xfc\x04\n" +
+	"\x15UpdateVariantResponse\x12\x1d\n" +
+	"\n" +
+	"variant_id\x18\x01 \x01(\tR\tvariantId\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x02 \x01(\tR\tproductId\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12R\n" +
+	"\x10inventory_policy\x18\x04 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x01R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
+	"\x0fallow_backorder\x18\x05 \x01(\bH\x02R\x0eallowBackorder\x88\x01\x01\x12\x1d\n" +
+	"\aoption1\x18\x06 \x01(\tH\x03R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\a \x01(\tH\x04R\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\b \x01(\tH\x05R\aoption3\x88\x01\x01\x12*\n" +
+	"\x0edownload_limit\x18\t \x01(\x05H\x06R\rdownloadLimit\x88\x01\x01\x125\n" +
+	"\x14access_duration_days\x18\n" +
+	" \x01(\x05H\aR\x12accessDurationDays\x88\x01\x01\x129\n" +
+	"\aupdates\x18\v \x01(\v2\x1a.google.protobuf.FieldMaskH\bR\aupdates\x88\x01\x01B\b\n" +
+	"\x06_titleB\x13\n" +
+	"\x11_inventory_policyB\x12\n" +
+	"\x10_allow_backorderB\n" +
+	"\n" +
+	"\b_option1B\n" +
+	"\n" +
+	"\b_option2B\n" +
+	"\n" +
+	"\b_option3B\x11\n" +
+	"\x0f_download_limitB\x17\n" +
+	"\x15_access_duration_daysB\n" +
+	"\n" +
+	"\b_updates\" \n" +
+	"\x0eUndraftRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
+	"\x0fUndraftResponse\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id2\x81\x03\n" +
+	"\rCourseService\x12?\n" +
+	"\x06Create\x12\x18.course.v1.CreateRequest\x1a\x19.course.v1.CreateResponse\"\x00\x12?\n" +
+	"\x06Update\x12\x18.course.v1.UpdateRequest\x1a\x19.course.v1.UpdateResponse\"\x00\x12T\n" +
+	"\rCreateVariant\x12\x1f.course.v1.CreateVariantRequest\x1a .course.v1.CreateVariantResponse\"\x00\x12T\n" +
+	"\rUpdateVariant\x12\x1f.course.v1.UpdateVariantRequest\x1a .course.v1.UpdateVariantResponse\"\x00\x12B\n" +
+	"\aUndraft\x12\x19.course.v1.UndraftRequest\x1a\x1a.course.v1.UndraftResponse\"\x00BJZHgithub.com/mikhail5545/proto-go/proto/product_service/course/v1;coursepbb\x06proto3"
 
 var (
 	file_product_service_course_v1_course_proto_rawDescOnce sync.Once
@@ -1948,97 +968,47 @@ func file_product_service_course_v1_course_proto_rawDescGZIP() []byte {
 	return file_product_service_course_v1_course_proto_rawDescData
 }
 
-var file_product_service_course_v1_course_proto_msgTypes = make([]protoimpl.MessageInfo, 32)
+var file_product_service_course_v1_course_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_product_service_course_v1_course_proto_goTypes = []any{
-	(*Course)(nil),                        // 0: course.v1.Course
-	(*CourseDetails)(nil),                 // 1: course.v1.CourseDetails
-	(*GetRequest)(nil),                    // 2: course.v1.GetRequest
-	(*GetResponse)(nil),                   // 3: course.v1.GetResponse
-	(*GetWithDeletedRequest)(nil),         // 4: course.v1.GetWithDeletedRequest
-	(*GetWithDeletedResponse)(nil),        // 5: course.v1.GetWithDeletedResponse
-	(*GetWithUnpublishedRequest)(nil),     // 6: course.v1.GetWithUnpublishedRequest
-	(*GetWithUnpublishedResponse)(nil),    // 7: course.v1.GetWithUnpublishedResponse
-	(*GetReducedRequest)(nil),             // 8: course.v1.GetReducedRequest
-	(*GetReducedResponse)(nil),            // 9: course.v1.GetReducedResponse
-	(*GetReducedWithDeletedRequest)(nil),  // 10: course.v1.GetReducedWithDeletedRequest
-	(*GetReducedWithDeletedResponse)(nil), // 11: course.v1.GetReducedWithDeletedResponse
-	(*ListRequest)(nil),                   // 12: course.v1.ListRequest
-	(*ListResponse)(nil),                  // 13: course.v1.ListResponse
-	(*ListDeletedRequest)(nil),            // 14: course.v1.ListDeletedRequest
-	(*ListDeletedResponse)(nil),           // 15: course.v1.ListDeletedResponse
-	(*ListUnpublishedRequest)(nil),        // 16: course.v1.ListUnpublishedRequest
-	(*ListUnpublishedResponse)(nil),       // 17: course.v1.ListUnpublishedResponse
-	(*CreateRequest)(nil),                 // 18: course.v1.CreateRequest
-	(*CreateResponse)(nil),                // 19: course.v1.CreateResponse
-	(*PublishRequest)(nil),                // 20: course.v1.PublishRequest
-	(*PublishResponse)(nil),               // 21: course.v1.PublishResponse
-	(*UnpublishRequest)(nil),              // 22: course.v1.UnpublishRequest
-	(*UnpublishResponse)(nil),             // 23: course.v1.UnpublishResponse
-	(*UpdateRequest)(nil),                 // 24: course.v1.UpdateRequest
-	(*UpdateResponse)(nil),                // 25: course.v1.UpdateResponse
-	(*DeleteRequest)(nil),                 // 26: course.v1.DeleteRequest
-	(*DeleteResponse)(nil),                // 27: course.v1.DeleteResponse
-	(*DeletePermanentRequest)(nil),        // 28: course.v1.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),       // 29: course.v1.DeletePermanentResponse
-	(*RestoreRequest)(nil),                // 30: course.v1.RestoreRequest
-	(*RestoreResponse)(nil),               // 31: course.v1.RestoreResponse
-	(*timestamppb.Timestamp)(nil),         // 32: google.protobuf.Timestamp
-	(*v0.Image)(nil),                      // 33: image.v0.Image
-	(*v01.CoursePart)(nil),                // 34: course_part.v0.CoursePart
-	(*fieldmaskpb.FieldMask)(nil),         // 35: google.protobuf.FieldMask
+	(*CreateRequest)(nil),           // 0: course.v1.CreateRequest
+	(*CreateResponse)(nil),          // 1: course.v1.CreateResponse
+	(*UpdateRequest)(nil),           // 2: course.v1.UpdateRequest
+	(*UpdateResponse)(nil),          // 3: course.v1.UpdateResponse
+	(*CreateVariantRequest)(nil),    // 4: course.v1.CreateVariantRequest
+	(*CreateVariantResponse)(nil),   // 5: course.v1.CreateVariantResponse
+	(*UpdateVariantRequest)(nil),    // 6: course.v1.UpdateVariantRequest
+	(*UpdateVariantResponse)(nil),   // 7: course.v1.UpdateVariantResponse
+	(*UndraftRequest)(nil),          // 8: course.v1.UndraftRequest
+	(*UndraftResponse)(nil),         // 9: course.v1.UndraftResponse
+	(*v0.Product)(nil),              // 10: product.v0.Product
+	(*fieldmaskpb.FieldMask)(nil),   // 11: google.protobuf.FieldMask
+	(*v01.Variant)(nil),             // 12: variant.v0.Variant
+	(v01.VariantInventoryPolicy)(0), // 13: variant.v0.VariantInventoryPolicy
 }
 var file_product_service_course_v1_course_proto_depIdxs = []int32{
-	32, // 0: course.v1.Course.created_at:type_name -> google.protobuf.Timestamp
-	32, // 1: course.v1.Course.updated_at:type_name -> google.protobuf.Timestamp
-	32, // 2: course.v1.Course.deleted_at:type_name -> google.protobuf.Timestamp
-	33, // 3: course.v1.Course.images:type_name -> image.v0.Image
-	34, // 4: course.v1.Course.course_parts:type_name -> course_part.v0.CoursePart
-	0,  // 5: course.v1.CourseDetails.course:type_name -> course.v1.Course
-	1,  // 6: course.v1.GetResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 7: course.v1.GetWithDeletedResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 8: course.v1.GetWithUnpublishedResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 9: course.v1.GetReducedResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 10: course.v1.GetReducedWithDeletedResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 11: course.v1.ListResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 12: course.v1.ListDeletedResponse.course_details:type_name -> course.v1.CourseDetails
-	1,  // 13: course.v1.ListUnpublishedResponse.course_details:type_name -> course.v1.CourseDetails
-	35, // 14: course.v1.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	35, // 15: course.v1.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
-	2,  // 16: course.v1.CourseService.Get:input_type -> course.v1.GetRequest
-	4,  // 17: course.v1.CourseService.GetWithDeleted:input_type -> course.v1.GetWithDeletedRequest
-	6,  // 18: course.v1.CourseService.GetWithUnpublished:input_type -> course.v1.GetWithUnpublishedRequest
-	8,  // 19: course.v1.CourseService.GetReduced:input_type -> course.v1.GetReducedRequest
-	10, // 20: course.v1.CourseService.GetReducedWithDeleted:input_type -> course.v1.GetReducedWithDeletedRequest
-	12, // 21: course.v1.CourseService.List:input_type -> course.v1.ListRequest
-	14, // 22: course.v1.CourseService.ListDeleted:input_type -> course.v1.ListDeletedRequest
-	16, // 23: course.v1.CourseService.ListUnpublished:input_type -> course.v1.ListUnpublishedRequest
-	18, // 24: course.v1.CourseService.Create:input_type -> course.v1.CreateRequest
-	20, // 25: course.v1.CourseService.Publish:input_type -> course.v1.PublishRequest
-	22, // 26: course.v1.CourseService.Unpublish:input_type -> course.v1.UnpublishRequest
-	24, // 27: course.v1.CourseService.Update:input_type -> course.v1.UpdateRequest
-	26, // 28: course.v1.CourseService.Delete:input_type -> course.v1.DeleteRequest
-	28, // 29: course.v1.CourseService.DeletePermanent:input_type -> course.v1.DeletePermanentRequest
-	30, // 30: course.v1.CourseService.Restore:input_type -> course.v1.RestoreRequest
-	3,  // 31: course.v1.CourseService.Get:output_type -> course.v1.GetResponse
-	5,  // 32: course.v1.CourseService.GetWithDeleted:output_type -> course.v1.GetWithDeletedResponse
-	7,  // 33: course.v1.CourseService.GetWithUnpublished:output_type -> course.v1.GetWithUnpublishedResponse
-	9,  // 34: course.v1.CourseService.GetReduced:output_type -> course.v1.GetReducedResponse
-	11, // 35: course.v1.CourseService.GetReducedWithDeleted:output_type -> course.v1.GetReducedWithDeletedResponse
-	13, // 36: course.v1.CourseService.List:output_type -> course.v1.ListResponse
-	15, // 37: course.v1.CourseService.ListDeleted:output_type -> course.v1.ListDeletedResponse
-	17, // 38: course.v1.CourseService.ListUnpublished:output_type -> course.v1.ListUnpublishedResponse
-	19, // 39: course.v1.CourseService.Create:output_type -> course.v1.CreateResponse
-	21, // 40: course.v1.CourseService.Publish:output_type -> course.v1.PublishResponse
-	23, // 41: course.v1.CourseService.Unpublish:output_type -> course.v1.UnpublishResponse
-	25, // 42: course.v1.CourseService.Update:output_type -> course.v1.UpdateResponse
-	27, // 43: course.v1.CourseService.Delete:output_type -> course.v1.DeleteResponse
-	29, // 44: course.v1.CourseService.DeletePermanent:output_type -> course.v1.DeletePermanentResponse
-	31, // 45: course.v1.CourseService.Restore:output_type -> course.v1.RestoreResponse
-	31, // [31:46] is the sub-list for method output_type
-	16, // [16:31] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	10, // 0: course.v1.CreateResponse.product:type_name -> product.v0.Product
+	11, // 1: course.v1.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
+	11, // 2: course.v1.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
+	12, // 3: course.v1.CreateVariantResponse.variant:type_name -> variant.v0.Variant
+	13, // 4: course.v1.UpdateVariantRequest.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
+	11, // 5: course.v1.UpdateVariantRequest.updates:type_name -> google.protobuf.FieldMask
+	13, // 6: course.v1.UpdateVariantResponse.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
+	11, // 7: course.v1.UpdateVariantResponse.updates:type_name -> google.protobuf.FieldMask
+	0,  // 8: course.v1.CourseService.Create:input_type -> course.v1.CreateRequest
+	2,  // 9: course.v1.CourseService.Update:input_type -> course.v1.UpdateRequest
+	4,  // 10: course.v1.CourseService.CreateVariant:input_type -> course.v1.CreateVariantRequest
+	6,  // 11: course.v1.CourseService.UpdateVariant:input_type -> course.v1.UpdateVariantRequest
+	8,  // 12: course.v1.CourseService.Undraft:input_type -> course.v1.UndraftRequest
+	1,  // 13: course.v1.CourseService.Create:output_type -> course.v1.CreateResponse
+	3,  // 14: course.v1.CourseService.Update:output_type -> course.v1.UpdateResponse
+	5,  // 15: course.v1.CourseService.CreateVariant:output_type -> course.v1.CreateVariantResponse
+	7,  // 16: course.v1.CourseService.UpdateVariant:output_type -> course.v1.UpdateVariantResponse
+	9,  // 17: course.v1.CourseService.Undraft:output_type -> course.v1.UndraftResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_product_service_course_v1_course_proto_init() }
@@ -2047,15 +1017,18 @@ func file_product_service_course_v1_course_proto_init() {
 		return
 	}
 	file_product_service_course_v1_course_proto_msgTypes[0].OneofWrappers = []any{}
-	file_product_service_course_v1_course_proto_msgTypes[24].OneofWrappers = []any{}
-	file_product_service_course_v1_course_proto_msgTypes[25].OneofWrappers = []any{}
+	file_product_service_course_v1_course_proto_msgTypes[2].OneofWrappers = []any{}
+	file_product_service_course_v1_course_proto_msgTypes[3].OneofWrappers = []any{}
+	file_product_service_course_v1_course_proto_msgTypes[4].OneofWrappers = []any{}
+	file_product_service_course_v1_course_proto_msgTypes[6].OneofWrappers = []any{}
+	file_product_service_course_v1_course_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_course_v1_course_proto_rawDesc), len(file_product_service_course_v1_course_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   32,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

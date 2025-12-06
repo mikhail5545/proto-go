@@ -39,30 +39,73 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type VideoStatus int32
+
+const (
+	VideoStatus_STATUS_PREPARING  VideoStatus = 0
+	VideoStatus_STATUS_READY      VideoStatus = 1
+	VideoStatus_STATUS_ERRORED    VideoStatus = 2
+	VideoStatus_STATUS_SUPERSEDED VideoStatus = 3
+)
+
+// Enum value maps for VideoStatus.
+var (
+	VideoStatus_name = map[int32]string{
+		0: "STATUS_PREPARING",
+		1: "STATUS_READY",
+		2: "STATUS_ERRORED",
+		3: "STATUS_SUPERSEDED",
+	}
+	VideoStatus_value = map[string]int32{
+		"STATUS_PREPARING":  0,
+		"STATUS_READY":      1,
+		"STATUS_ERRORED":    2,
+		"STATUS_SUPERSEDED": 3,
+	}
+)
+
+func (x VideoStatus) Enum() *VideoStatus {
+	p := new(VideoStatus)
+	*p = x
+	return p
+}
+
+func (x VideoStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (VideoStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_product_service_video_v0_video_proto_enumTypes[0].Descriptor()
+}
+
+func (VideoStatus) Type() protoreflect.EnumType {
+	return &file_product_service_video_v0_video_proto_enumTypes[0]
+}
+
+func (x VideoStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use VideoStatus.Descriptor instead.
+func (VideoStatus) EnumDescriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{0}
+}
+
 type Video struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt          *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	MuxUploadId        *string                `protobuf:"bytes,5,opt,name=mux_upload_id,json=muxUploadId,proto3,oneof" json:"mux_upload_id,omitempty"`
-	MuxAssetId         *string                `protobuf:"bytes,6,opt,name=mux_asset_id,json=muxAssetId,proto3,oneof" json:"mux_asset_id,omitempty"`
-	MuxPlaybackId      *string                `protobuf:"bytes,7,opt,name=mux_playback_id,json=muxPlaybackId,proto3,oneof" json:"mux_playback_id,omitempty"`
-	State              string                 `protobuf:"bytes,8,opt,name=state,proto3" json:"state,omitempty"`
-	Status             *string                `protobuf:"bytes,9,opt,name=status,proto3,oneof" json:"status,omitempty"`
-	Duration           *float32               `protobuf:"fixed32,10,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
-	AspectRatio        *string                `protobuf:"bytes,11,opt,name=aspect_ratio,json=aspectRatio,proto3,oneof" json:"aspect_ratio,omitempty"`
-	Height             *int32                 `protobuf:"varint,12,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	Width              *int32                 `protobuf:"varint,13,opt,name=width,proto3,oneof" json:"width,omitempty"`
-	AssetCreatedAt     *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=asset_created_at,json=assetCreatedAt,proto3,oneof" json:"asset_created_at,omitempty"`
-	MaxResolutionTier  *string                `protobuf:"bytes,15,opt,name=max_resolution_tier,json=maxResolutionTier,proto3,oneof" json:"max_resolution_tier,omitempty"`
-	MaxStoredFrameRate *string                `protobuf:"bytes,16,opt,name=max_stored_frame_rate,json=maxStoredFrameRate,proto3,oneof" json:"max_stored_frame_rate,omitempty"`
-	IngestType         *string                `protobuf:"bytes,17,opt,name=ingest_type,json=ingestType,proto3,oneof" json:"ingest_type,omitempty"`
-	Passthrough        *string                `protobuf:"bytes,18,opt,name=passthrough,proto3,oneof" json:"passthrough,omitempty"`
-	OwnerId            *string                `protobuf:"bytes,19,opt,name=owner_id,json=ownerId,proto3,oneof" json:"owner_id,omitempty"`
-	OwnerType          *string                `protobuf:"bytes,20,opt,name=owner_type,json=ownerType,proto3,oneof" json:"owner_type,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	MediaServiceId   string                 `protobuf:"bytes,5,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	PublicPlaybackId string                 `protobuf:"bytes,6,opt,name=public_playback_id,json=publicPlaybackId,proto3" json:"public_playback_id,omitempty"`
+	SignedPlaybackId string                 `protobuf:"bytes,7,opt,name=signed_playback_id,json=signedPlaybackId,proto3" json:"signed_playback_id,omitempty"`
+	DurationSeconds  float32                `protobuf:"fixed32,8,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	AspectRatio      string                 `protobuf:"bytes,9,opt,name=aspect_ratio,json=aspectRatio,proto3" json:"aspect_ratio,omitempty"`
+	ThumbnailUrl     *string                `protobuf:"bytes,10,opt,name=thumbnail_url,json=thumbnailUrl,proto3,oneof" json:"thumbnail_url,omitempty"`
+	Status           VideoStatus            `protobuf:"varint,11,opt,name=status,proto3,enum=video.v0.VideoStatus" json:"status,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Video) Reset() {
@@ -123,183 +166,77 @@ func (x *Video) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Video) GetMuxUploadId() string {
-	if x != nil && x.MuxUploadId != nil {
-		return *x.MuxUploadId
-	}
-	return ""
-}
-
-func (x *Video) GetMuxAssetId() string {
-	if x != nil && x.MuxAssetId != nil {
-		return *x.MuxAssetId
-	}
-	return ""
-}
-
-func (x *Video) GetMuxPlaybackId() string {
-	if x != nil && x.MuxPlaybackId != nil {
-		return *x.MuxPlaybackId
-	}
-	return ""
-}
-
-func (x *Video) GetState() string {
+func (x *Video) GetMediaServiceId() string {
 	if x != nil {
-		return x.State
+		return x.MediaServiceId
 	}
 	return ""
 }
 
-func (x *Video) GetStatus() string {
-	if x != nil && x.Status != nil {
-		return *x.Status
+func (x *Video) GetPublicPlaybackId() string {
+	if x != nil {
+		return x.PublicPlaybackId
 	}
 	return ""
 }
 
-func (x *Video) GetDuration() float32 {
-	if x != nil && x.Duration != nil {
-		return *x.Duration
+func (x *Video) GetSignedPlaybackId() string {
+	if x != nil {
+		return x.SignedPlaybackId
+	}
+	return ""
+}
+
+func (x *Video) GetDurationSeconds() float32 {
+	if x != nil {
+		return x.DurationSeconds
 	}
 	return 0
 }
 
 func (x *Video) GetAspectRatio() string {
-	if x != nil && x.AspectRatio != nil {
-		return *x.AspectRatio
-	}
-	return ""
-}
-
-func (x *Video) GetHeight() int32 {
-	if x != nil && x.Height != nil {
-		return *x.Height
-	}
-	return 0
-}
-
-func (x *Video) GetWidth() int32 {
-	if x != nil && x.Width != nil {
-		return *x.Width
-	}
-	return 0
-}
-
-func (x *Video) GetAssetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.AssetCreatedAt
-	}
-	return nil
-}
-
-func (x *Video) GetMaxResolutionTier() string {
-	if x != nil && x.MaxResolutionTier != nil {
-		return *x.MaxResolutionTier
+		return x.AspectRatio
 	}
 	return ""
 }
 
-func (x *Video) GetMaxStoredFrameRate() string {
-	if x != nil && x.MaxStoredFrameRate != nil {
-		return *x.MaxStoredFrameRate
+func (x *Video) GetThumbnailUrl() string {
+	if x != nil && x.ThumbnailUrl != nil {
+		return *x.ThumbnailUrl
 	}
 	return ""
 }
 
-func (x *Video) GetIngestType() string {
-	if x != nil && x.IngestType != nil {
-		return *x.IngestType
-	}
-	return ""
-}
-
-func (x *Video) GetPassthrough() string {
-	if x != nil && x.Passthrough != nil {
-		return *x.Passthrough
-	}
-	return ""
-}
-
-func (x *Video) GetOwnerId() string {
-	if x != nil && x.OwnerId != nil {
-		return *x.OwnerId
-	}
-	return ""
-}
-
-func (x *Video) GetOwnerType() string {
-	if x != nil && x.OwnerType != nil {
-		return *x.OwnerType
-	}
-	return ""
-}
-
-// Owner represents minimal necessary information about video owner.
-type Owner struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	VideoId       *string                `protobuf:"bytes,2,opt,name=video_id,json=videoId,proto3,oneof" json:"video_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Owner) Reset() {
-	*x = Owner{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Owner) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Owner) ProtoMessage() {}
-
-func (x *Owner) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
+func (x *Video) GetStatus() VideoStatus {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Status
 	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Owner.ProtoReflect.Descriptor instead.
-func (*Owner) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Owner) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Owner) GetVideoId() string {
-	if x != nil && x.VideoId != nil {
-		return *x.VideoId
-	}
-	return ""
+	return VideoStatus_STATUS_PREPARING
 }
 
 type AddRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	MediaServiceId string                 `protobuf:"bytes,3,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId          string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId   string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	PublicPlaybackId string                 `protobuf:"bytes,3,opt,name=public_playback_id,json=publicPlaybackId,proto3" json:"public_playback_id,omitempty"`
+	SignedPlaybackId string                 `protobuf:"bytes,4,opt,name=signed_playback_id,json=signedPlaybackId,proto3" json:"signed_playback_id,omitempty"`
+	DurationSeconds  float32                `protobuf:"fixed32,5,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	AspectRatio      string                 `protobuf:"bytes,6,opt,name=aspect_ratio,json=aspectRatio,proto3" json:"aspect_ratio,omitempty"`
+	ThumbnailUrl     string                 `protobuf:"bytes,7,opt,name=thumbnail_url,json=thumbnailUrl,proto3" json:"thumbnail_url,omitempty"`
+	Status           VideoStatus            `protobuf:"varint,8,opt,name=status,proto3,enum=video.v0.VideoStatus" json:"status,omitempty"`
+	IsPrimary        bool                   `protobuf:"varint,9,opt,name=is_primary,json=isPrimary,proto3" json:"is_primary,omitempty"`
+	IsRequired       bool                   `protobuf:"varint,10,opt,name=is_required,json=isRequired,proto3" json:"is_required,omitempty"`
+	IsExtra          bool                   `protobuf:"varint,11,opt,name=is_extra,json=isExtra,proto3" json:"is_extra,omitempty"`
+	Title            string                 `protobuf:"bytes,12,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType        string                 `protobuf:"bytes,13,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *AddRequest) Reset() {
 	*x = AddRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
+	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -311,7 +248,7 @@ func (x *AddRequest) String() string {
 func (*AddRequest) ProtoMessage() {}
 
 func (x *AddRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
+	mi := &file_product_service_video_v0_video_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -324,19 +261,12 @@ func (x *AddRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRequest.ProtoReflect.Descriptor instead.
 func (*AddRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{2}
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AddRequest) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *AddRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
 	}
 	return ""
 }
@@ -348,17 +278,93 @@ func (x *AddRequest) GetMediaServiceId() string {
 	return ""
 }
 
+func (x *AddRequest) GetPublicPlaybackId() string {
+	if x != nil {
+		return x.PublicPlaybackId
+	}
+	return ""
+}
+
+func (x *AddRequest) GetSignedPlaybackId() string {
+	if x != nil {
+		return x.SignedPlaybackId
+	}
+	return ""
+}
+
+func (x *AddRequest) GetDurationSeconds() float32 {
+	if x != nil {
+		return x.DurationSeconds
+	}
+	return 0
+}
+
+func (x *AddRequest) GetAspectRatio() string {
+	if x != nil {
+		return x.AspectRatio
+	}
+	return ""
+}
+
+func (x *AddRequest) GetThumbnailUrl() string {
+	if x != nil {
+		return x.ThumbnailUrl
+	}
+	return ""
+}
+
+func (x *AddRequest) GetStatus() VideoStatus {
+	if x != nil {
+		return x.Status
+	}
+	return VideoStatus_STATUS_PREPARING
+}
+
+func (x *AddRequest) GetIsPrimary() bool {
+	if x != nil {
+		return x.IsPrimary
+	}
+	return false
+}
+
+func (x *AddRequest) GetIsRequired() bool {
+	if x != nil {
+		return x.IsRequired
+	}
+	return false
+}
+
+func (x *AddRequest) GetIsExtra() bool {
+	if x != nil {
+		return x.IsExtra
+	}
+	return false
+}
+
+func (x *AddRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *AddRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
 type AddResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AddResponse) Reset() {
 	*x = AddResponse{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -370,7 +376,7 @@ func (x *AddResponse) String() string {
 func (*AddResponse) ProtoMessage() {}
 
 func (x *AddResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
+	mi := &file_product_service_video_v0_video_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,7 +389,7 @@ func (x *AddResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddResponse.ProtoReflect.Descriptor instead.
 func (*AddResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{3}
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AddResponse) GetOwnerId() string {
@@ -393,200 +399,34 @@ func (x *AddResponse) GetOwnerId() string {
 	return ""
 }
 
-func (x *AddResponse) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-type AddBatchRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	OwnerIds       []string               `protobuf:"bytes,3,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *AddBatchRequest) Reset() {
-	*x = AddBatchRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddBatchRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddBatchRequest) ProtoMessage() {}
-
-func (x *AddBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddBatchRequest.ProtoReflect.Descriptor instead.
-func (*AddBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *AddBatchRequest) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetOwnerIds() []string {
-	if x != nil {
-		return x.OwnerIds
-	}
-	return nil
-}
-
-type AddBatchResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnersAffected int64                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *AddBatchResponse) Reset() {
-	*x = AddBatchResponse{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddBatchResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddBatchResponse) ProtoMessage() {}
-
-func (x *AddBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddBatchResponse.ProtoReflect.Descriptor instead.
-func (*AddBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *AddBatchResponse) GetOwnersAffected() int64 {
-	if x != nil {
-		return x.OwnersAffected
-	}
-	return 0
-}
-
-type RemoveRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	MediaServiceId string                 `protobuf:"bytes,3,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *RemoveRequest) Reset() {
-	*x = RemoveRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RemoveRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RemoveRequest) ProtoMessage() {}
-
-func (x *RemoveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RemoveRequest.ProtoReflect.Descriptor instead.
-func (*RemoveRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *RemoveRequest) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-func (x *RemoveRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-func (x *RemoveRequest) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
-type RemoveResponse struct {
+type AssociateRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	IsPrimary      bool                   `protobuf:"varint,3,opt,name=is_primary,json=isPrimary,proto3" json:"is_primary,omitempty"`
+	IsRequired     bool                   `protobuf:"varint,4,opt,name=is_required,json=isRequired,proto3" json:"is_required,omitempty"`
+	IsExtra        bool                   `protobuf:"varint,5,opt,name=is_extra,json=isExtra,proto3" json:"is_extra,omitempty"`
+	Title          string                 `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,7,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *RemoveResponse) Reset() {
-	*x = RemoveResponse{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[7]
+func (x *AssociateRequest) Reset() {
+	*x = AssociateRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RemoveResponse) String() string {
+func (x *AssociateRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveResponse) ProtoMessage() {}
+func (*AssociateRequest) ProtoMessage() {}
 
-func (x *RemoveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[7]
+func (x *AssociateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -597,107 +437,82 @@ func (x *RemoveResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RemoveResponse.ProtoReflect.Descriptor instead.
-func (*RemoveResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use AssociateRequest.ProtoReflect.Descriptor instead.
+func (*AssociateRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *RemoveResponse) GetOwnerId() string {
+func (x *AssociateRequest) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
 	}
 	return ""
 }
 
-func (x *RemoveResponse) GetMediaServiceId() string {
+func (x *AssociateRequest) GetMediaServiceId() string {
 	if x != nil {
 		return x.MediaServiceId
 	}
 	return ""
 }
 
-type RemoveBatchRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	OwnerIds       []string               `protobuf:"bytes,3,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *RemoveBatchRequest) Reset() {
-	*x = RemoveBatchRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RemoveBatchRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RemoveBatchRequest) ProtoMessage() {}
-
-func (x *RemoveBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[8]
+func (x *AssociateRequest) GetIsPrimary() bool {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.IsPrimary
 	}
-	return mi.MessageOf(x)
+	return false
 }
 
-// Deprecated: Use RemoveBatchRequest.ProtoReflect.Descriptor instead.
-func (*RemoveBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *RemoveBatchRequest) GetMediaServiceId() string {
+func (x *AssociateRequest) GetIsRequired() bool {
 	if x != nil {
-		return x.MediaServiceId
+		return x.IsRequired
+	}
+	return false
+}
+
+func (x *AssociateRequest) GetIsExtra() bool {
+	if x != nil {
+		return x.IsExtra
+	}
+	return false
+}
+
+func (x *AssociateRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
 	}
 	return ""
 }
 
-func (x *RemoveBatchRequest) GetOwnerType() string {
+func (x *AssociateRequest) GetOwnerType() string {
 	if x != nil {
 		return x.OwnerType
 	}
 	return ""
 }
 
-func (x *RemoveBatchRequest) GetOwnerIds() []string {
-	if x != nil {
-		return x.OwnerIds
-	}
-	return nil
+type AssociateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-type RemoveBatchResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnersAffected int64                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *RemoveBatchResponse) Reset() {
-	*x = RemoveBatchResponse{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[9]
+func (x *AssociateResponse) Reset() {
+	*x = AssociateResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RemoveBatchResponse) String() string {
+func (x *AssociateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RemoveBatchResponse) ProtoMessage() {}
+func (*AssociateResponse) ProtoMessage() {}
 
-func (x *RemoveBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[9]
+func (x *AssociateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -708,91 +523,474 @@ func (x *RemoveBatchResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RemoveBatchResponse.ProtoReflect.Descriptor instead.
-func (*RemoveBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{9}
+// Deprecated: Use AssociateResponse.ProtoReflect.Descriptor instead.
+func (*AssociateResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RemoveBatchResponse) GetOwnersAffected() int64 {
+func (x *AssociateResponse) GetOwnerId() string {
 	if x != nil {
-		return x.OwnersAffected
+		return x.OwnerId
+	}
+	return ""
+}
+
+type ReplaceRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId          string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId   string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	PublicPlaybackId string                 `protobuf:"bytes,3,opt,name=public_playback_id,json=publicPlaybackId,proto3" json:"public_playback_id,omitempty"`
+	SignedPlaybackId string                 `protobuf:"bytes,4,opt,name=signed_playback_id,json=signedPlaybackId,proto3" json:"signed_playback_id,omitempty"`
+	DurationSeconds  float32                `protobuf:"fixed32,5,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	AspectRatio      string                 `protobuf:"bytes,6,opt,name=aspect_ratio,json=aspectRatio,proto3" json:"aspect_ratio,omitempty"`
+	ThumbnailUrl     string                 `protobuf:"bytes,7,opt,name=thumbnail_url,json=thumbnailUrl,proto3" json:"thumbnail_url,omitempty"`
+	Status           VideoStatus            `protobuf:"varint,8,opt,name=status,proto3,enum=video.v0.VideoStatus" json:"status,omitempty"`
+	Title            string                 `protobuf:"bytes,9,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType        string                 `protobuf:"bytes,10,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ReplaceRequest) Reset() {
+	*x = ReplaceRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReplaceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplaceRequest) ProtoMessage() {}
+
+func (x *ReplaceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplaceRequest.ProtoReflect.Descriptor instead.
+func (*ReplaceRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ReplaceRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetPublicPlaybackId() string {
+	if x != nil {
+		return x.PublicPlaybackId
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetSignedPlaybackId() string {
+	if x != nil {
+		return x.SignedPlaybackId
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetDurationSeconds() float32 {
+	if x != nil {
+		return x.DurationSeconds
 	}
 	return 0
 }
 
-type GetOwnerRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType     string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOwnerRequest) Reset() {
-	*x = GetOwnerRequest{}
-	mi := &file_product_service_video_v0_video_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOwnerRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOwnerRequest) ProtoMessage() {}
-
-func (x *GetOwnerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_video_v0_video_proto_msgTypes[10]
+func (x *ReplaceRequest) GetAspectRatio() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOwnerRequest.ProtoReflect.Descriptor instead.
-func (*GetOwnerRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetOwnerRequest) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
+		return x.AspectRatio
 	}
 	return ""
 }
 
-func (x *GetOwnerRequest) GetOwnerType() string {
+func (x *ReplaceRequest) GetThumbnailUrl() string {
+	if x != nil {
+		return x.ThumbnailUrl
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetStatus() VideoStatus {
+	if x != nil {
+		return x.Status
+	}
+	return VideoStatus_STATUS_PREPARING
+}
+
+func (x *ReplaceRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ReplaceRequest) GetOwnerType() string {
 	if x != nil {
 		return x.OwnerType
 	}
 	return ""
 }
 
-type GetOwnerResponse struct {
+type ReplaceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Owner         *Owner                 `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetOwnerResponse) Reset() {
-	*x = GetOwnerResponse{}
+func (x *ReplaceResponse) Reset() {
+	*x = ReplaceResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReplaceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplaceResponse) ProtoMessage() {}
+
+func (x *ReplaceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplaceResponse.ProtoReflect.Descriptor instead.
+func (*ReplaceResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ReplaceResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type ReplaceFromExistingRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	Title          string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,4,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ReplaceFromExistingRequest) Reset() {
+	*x = ReplaceFromExistingRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReplaceFromExistingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplaceFromExistingRequest) ProtoMessage() {}
+
+func (x *ReplaceFromExistingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplaceFromExistingRequest.ProtoReflect.Descriptor instead.
+func (*ReplaceFromExistingRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ReplaceFromExistingRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *ReplaceFromExistingRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *ReplaceFromExistingRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ReplaceFromExistingRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type ReplaceFromExistingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReplaceFromExistingResponse) Reset() {
+	*x = ReplaceFromExistingResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReplaceFromExistingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplaceFromExistingResponse) ProtoMessage() {}
+
+func (x *ReplaceFromExistingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplaceFromExistingResponse.ProtoReflect.Descriptor instead.
+func (*ReplaceFromExistingResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ReplaceFromExistingResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type PushRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId          string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId   string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	PublicPlaybackId string                 `protobuf:"bytes,3,opt,name=public_playback_id,json=publicPlaybackId,proto3" json:"public_playback_id,omitempty"`
+	SignedPlaybackId string                 `protobuf:"bytes,4,opt,name=signed_playback_id,json=signedPlaybackId,proto3" json:"signed_playback_id,omitempty"`
+	DurationSeconds  float32                `protobuf:"fixed32,5,opt,name=duration_seconds,json=durationSeconds,proto3" json:"duration_seconds,omitempty"`
+	AspectRatio      string                 `protobuf:"bytes,6,opt,name=aspect_ratio,json=aspectRatio,proto3" json:"aspect_ratio,omitempty"`
+	ThumbnailUrl     string                 `protobuf:"bytes,7,opt,name=thumbnail_url,json=thumbnailUrl,proto3" json:"thumbnail_url,omitempty"`
+	Status           VideoStatus            `protobuf:"varint,8,opt,name=status,proto3,enum=video.v0.VideoStatus" json:"status,omitempty"`
+	Title            string                 `protobuf:"bytes,9,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType        string                 `protobuf:"bytes,10,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *PushRequest) Reset() {
+	*x = PushRequest{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PushRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PushRequest) ProtoMessage() {}
+
+func (x *PushRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PushRequest.ProtoReflect.Descriptor instead.
+func (*PushRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *PushRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *PushRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *PushRequest) GetPublicPlaybackId() string {
+	if x != nil {
+		return x.PublicPlaybackId
+	}
+	return ""
+}
+
+func (x *PushRequest) GetSignedPlaybackId() string {
+	if x != nil {
+		return x.SignedPlaybackId
+	}
+	return ""
+}
+
+func (x *PushRequest) GetDurationSeconds() float32 {
+	if x != nil {
+		return x.DurationSeconds
+	}
+	return 0
+}
+
+func (x *PushRequest) GetAspectRatio() string {
+	if x != nil {
+		return x.AspectRatio
+	}
+	return ""
+}
+
+func (x *PushRequest) GetThumbnailUrl() string {
+	if x != nil {
+		return x.ThumbnailUrl
+	}
+	return ""
+}
+
+func (x *PushRequest) GetStatus() VideoStatus {
+	if x != nil {
+		return x.Status
+	}
+	return VideoStatus_STATUS_PREPARING
+}
+
+func (x *PushRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PushRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type PushResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PushResponse) Reset() {
+	*x = PushResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PushResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PushResponse) ProtoMessage() {}
+
+func (x *PushResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PushResponse.ProtoReflect.Descriptor instead.
+func (*PushResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PushResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type PushFromExistingRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	Title          string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,4,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *PushFromExistingRequest) Reset() {
+	*x = PushFromExistingRequest{}
 	mi := &file_product_service_video_v0_video_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetOwnerResponse) String() string {
+func (x *PushFromExistingRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetOwnerResponse) ProtoMessage() {}
+func (*PushFromExistingRequest) ProtoMessage() {}
 
-func (x *GetOwnerResponse) ProtoReflect() protoreflect.Message {
+func (x *PushFromExistingRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_service_video_v0_video_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -804,23 +1002,88 @@ func (x *GetOwnerResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetOwnerResponse.ProtoReflect.Descriptor instead.
-func (*GetOwnerResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PushFromExistingRequest.ProtoReflect.Descriptor instead.
+func (*PushFromExistingRequest) Descriptor() ([]byte, []int) {
 	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetOwnerResponse) GetOwner() *Owner {
+func (x *PushFromExistingRequest) GetOwnerId() string {
 	if x != nil {
-		return x.Owner
+		return x.OwnerId
 	}
-	return nil
+	return ""
+}
+
+func (x *PushFromExistingRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *PushFromExistingRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PushFromExistingRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type PushFromExistingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PushFromExistingResponse) Reset() {
+	*x = PushFromExistingResponse{}
+	mi := &file_product_service_video_v0_video_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PushFromExistingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PushFromExistingResponse) ProtoMessage() {}
+
+func (x *PushFromExistingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_video_v0_video_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PushFromExistingResponse.ProtoReflect.Descriptor instead.
+func (*PushFromExistingResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_video_v0_video_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PushFromExistingResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
 }
 
 var File_product_service_video_v0_video_proto protoreflect.FileDescriptor
 
 const file_product_service_video_v0_video_proto_rawDesc = "" +
 	"\n" +
-	"$product_service/video/v0/video.proto\x12\bvideo.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\b\n" +
+	"$product_service/video/v0/video.proto\x12\bvideo.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9b\x04\n" +
 	"\x05Video\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
@@ -828,92 +1091,109 @@ const file_product_service_video_v0_video_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
-	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12'\n" +
-	"\rmux_upload_id\x18\x05 \x01(\tH\x01R\vmuxUploadId\x88\x01\x01\x12%\n" +
-	"\fmux_asset_id\x18\x06 \x01(\tH\x02R\n" +
-	"muxAssetId\x88\x01\x01\x12+\n" +
-	"\x0fmux_playback_id\x18\a \x01(\tH\x03R\rmuxPlaybackId\x88\x01\x01\x12\x14\n" +
-	"\x05state\x18\b \x01(\tR\x05state\x12\x1b\n" +
-	"\x06status\x18\t \x01(\tH\x04R\x06status\x88\x01\x01\x12\x1f\n" +
-	"\bduration\x18\n" +
-	" \x01(\x02H\x05R\bduration\x88\x01\x01\x12&\n" +
-	"\faspect_ratio\x18\v \x01(\tH\x06R\vaspectRatio\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\f \x01(\x05H\aR\x06height\x88\x01\x01\x12\x19\n" +
-	"\x05width\x18\r \x01(\x05H\bR\x05width\x88\x01\x01\x12I\n" +
-	"\x10asset_created_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampH\tR\x0eassetCreatedAt\x88\x01\x01\x123\n" +
-	"\x13max_resolution_tier\x18\x0f \x01(\tH\n" +
-	"R\x11maxResolutionTier\x88\x01\x01\x126\n" +
-	"\x15max_stored_frame_rate\x18\x10 \x01(\tH\vR\x12maxStoredFrameRate\x88\x01\x01\x12$\n" +
-	"\vingest_type\x18\x11 \x01(\tH\fR\n" +
-	"ingestType\x88\x01\x01\x12%\n" +
-	"\vpassthrough\x18\x12 \x01(\tH\rR\vpassthrough\x88\x01\x01\x12\x1e\n" +
-	"\bowner_id\x18\x13 \x01(\tH\x0eR\aownerId\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"owner_type\x18\x14 \x01(\tH\x0fR\townerType\x88\x01\x01B\r\n" +
+	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12(\n" +
+	"\x10media_service_id\x18\x05 \x01(\tR\x0emediaServiceId\x12,\n" +
+	"\x12public_playback_id\x18\x06 \x01(\tR\x10publicPlaybackId\x12,\n" +
+	"\x12signed_playback_id\x18\a \x01(\tR\x10signedPlaybackId\x12)\n" +
+	"\x10duration_seconds\x18\b \x01(\x02R\x0fdurationSeconds\x12!\n" +
+	"\faspect_ratio\x18\t \x01(\tR\vaspectRatio\x12(\n" +
+	"\rthumbnail_url\x18\n" +
+	" \x01(\tH\x01R\fthumbnailUrl\x88\x01\x01\x12-\n" +
+	"\x06status\x18\v \x01(\x0e2\x15.video.v0.VideoStatusR\x06statusB\r\n" +
 	"\v_deleted_atB\x10\n" +
-	"\x0e_mux_upload_idB\x0f\n" +
-	"\r_mux_asset_idB\x12\n" +
-	"\x10_mux_playback_idB\t\n" +
-	"\a_statusB\v\n" +
-	"\t_durationB\x0f\n" +
-	"\r_aspect_ratioB\t\n" +
-	"\a_heightB\b\n" +
-	"\x06_widthB\x13\n" +
-	"\x11_asset_created_atB\x16\n" +
-	"\x14_max_resolution_tierB\x18\n" +
-	"\x16_max_stored_frame_rateB\x0e\n" +
-	"\f_ingest_typeB\x0e\n" +
-	"\f_passthroughB\v\n" +
-	"\t_owner_idB\r\n" +
-	"\v_owner_type\"D\n" +
-	"\x05Owner\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
-	"\bvideo_id\x18\x02 \x01(\tH\x00R\avideoId\x88\x01\x01B\v\n" +
-	"\t_video_id\"p\n" +
+	"\x0e_thumbnail_url\"\xdf\x03\n" +
 	"\n" +
 	"AddRequest\x12\x19\n" +
-	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
-	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\x12(\n" +
-	"\x10media_service_id\x18\x03 \x01(\tR\x0emediaServiceId\"G\n" +
-	"\vAddResponse\x12\x19\n" +
-	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
-	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"w\n" +
-	"\x0fAddBatchRequest\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
-	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\x12\x1b\n" +
-	"\towner_ids\x18\x03 \x03(\tR\bownerIds\";\n" +
-	"\x10AddBatchResponse\x12'\n" +
-	"\x0fowners_affected\x18\x01 \x01(\x03R\x0eownersAffected\"s\n" +
-	"\rRemoveRequest\x12\x19\n" +
-	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
-	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\x12(\n" +
-	"\x10media_service_id\x18\x03 \x01(\tR\x0emediaServiceId\"U\n" +
-	"\x0eRemoveResponse\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
-	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\"z\n" +
-	"\x12RemoveBatchRequest\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12,\n" +
+	"\x12public_playback_id\x18\x03 \x01(\tR\x10publicPlaybackId\x12,\n" +
+	"\x12signed_playback_id\x18\x04 \x01(\tR\x10signedPlaybackId\x12)\n" +
+	"\x10duration_seconds\x18\x05 \x01(\x02R\x0fdurationSeconds\x12!\n" +
+	"\faspect_ratio\x18\x06 \x01(\tR\vaspectRatio\x12#\n" +
+	"\rthumbnail_url\x18\a \x01(\tR\fthumbnailUrl\x12-\n" +
+	"\x06status\x18\b \x01(\x0e2\x15.video.v0.VideoStatusR\x06status\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\x12\x1b\n" +
-	"\towner_ids\x18\x03 \x03(\tR\bownerIds\">\n" +
-	"\x13RemoveBatchResponse\x12'\n" +
-	"\x0fowners_affected\x18\x01 \x01(\x03R\x0eownersAffected\"K\n" +
-	"\x0fGetOwnerRequest\x12\x19\n" +
-	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x1d\n" +
+	"is_primary\x18\t \x01(\bR\tisPrimary\x12\x1f\n" +
+	"\vis_required\x18\n" +
+	" \x01(\bR\n" +
+	"isRequired\x12\x19\n" +
+	"\bis_extra\x18\v \x01(\bR\aisExtra\x12\x14\n" +
+	"\x05title\x18\f \x01(\tR\x05title\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\"9\n" +
-	"\x10GetOwnerResponse\x12%\n" +
-	"\x05owner\x18\x01 \x01(\v2\x0f.video.v0.OwnerR\x05owner2\xdb\x02\n" +
+	"owner_type\x18\r \x01(\tR\townerType\"(\n" +
+	"\vAddResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\xe7\x01\n" +
+	"\x10AssociateRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
+	"\n" +
+	"is_primary\x18\x03 \x01(\bR\tisPrimary\x12\x1f\n" +
+	"\vis_required\x18\x04 \x01(\bR\n" +
+	"isRequired\x12\x19\n" +
+	"\bis_extra\x18\x05 \x01(\bR\aisExtra\x12\x14\n" +
+	"\x05title\x18\x06 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\a \x01(\tR\townerType\".\n" +
+	"\x11AssociateResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\x88\x03\n" +
+	"\x0eReplaceRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12,\n" +
+	"\x12public_playback_id\x18\x03 \x01(\tR\x10publicPlaybackId\x12,\n" +
+	"\x12signed_playback_id\x18\x04 \x01(\tR\x10signedPlaybackId\x12)\n" +
+	"\x10duration_seconds\x18\x05 \x01(\x02R\x0fdurationSeconds\x12!\n" +
+	"\faspect_ratio\x18\x06 \x01(\tR\vaspectRatio\x12#\n" +
+	"\rthumbnail_url\x18\a \x01(\tR\fthumbnailUrl\x12-\n" +
+	"\x06status\x18\b \x01(\x0e2\x15.video.v0.VideoStatusR\x06status\x12\x14\n" +
+	"\x05title\x18\t \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\n" +
+	" \x01(\tR\townerType\",\n" +
+	"\x0fReplaceResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\x96\x01\n" +
+	"\x1aReplaceFromExistingRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x04 \x01(\tR\townerType\"8\n" +
+	"\x1bReplaceFromExistingResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\x85\x03\n" +
+	"\vPushRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12,\n" +
+	"\x12public_playback_id\x18\x03 \x01(\tR\x10publicPlaybackId\x12,\n" +
+	"\x12signed_playback_id\x18\x04 \x01(\tR\x10signedPlaybackId\x12)\n" +
+	"\x10duration_seconds\x18\x05 \x01(\x02R\x0fdurationSeconds\x12!\n" +
+	"\faspect_ratio\x18\x06 \x01(\tR\vaspectRatio\x12#\n" +
+	"\rthumbnail_url\x18\a \x01(\tR\fthumbnailUrl\x12-\n" +
+	"\x06status\x18\b \x01(\x0e2\x15.video.v0.VideoStatusR\x06status\x12\x14\n" +
+	"\x05title\x18\t \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\n" +
+	" \x01(\tR\townerType\")\n" +
+	"\fPushResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\x93\x01\n" +
+	"\x17PushFromExistingRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x04 \x01(\tR\townerType\"5\n" +
+	"\x18PushFromExistingResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId*`\n" +
+	"\vVideoStatus\x12\x14\n" +
+	"\x10STATUS_PREPARING\x10\x00\x12\x10\n" +
+	"\fSTATUS_READY\x10\x01\x12\x12\n" +
+	"\x0eSTATUS_ERRORED\x10\x02\x12\x15\n" +
+	"\x11STATUS_SUPERSEDED\x10\x032\xca\x03\n" +
 	"\fVideoService\x124\n" +
-	"\x03Add\x12\x14.video.v0.AddRequest\x1a\x15.video.v0.AddResponse\"\x00\x12C\n" +
-	"\bAddBatch\x12\x19.video.v0.AddBatchRequest\x1a\x1a.video.v0.AddBatchResponse\"\x00\x12=\n" +
-	"\x06Remove\x12\x17.video.v0.RemoveRequest\x1a\x18.video.v0.RemoveResponse\"\x00\x12L\n" +
-	"\vRemoveBatch\x12\x1c.video.v0.RemoveBatchRequest\x1a\x1d.video.v0.RemoveBatchResponse\"\x00\x12C\n" +
-	"\bGetOwner\x12\x19.video.v0.GetOwnerRequest\x1a\x1a.video.v0.GetOwnerResponse\"\x00BHZFgithub.com/mikhail5545/proto-go/proto/product_service/video/v0;videopbb\x06proto3"
+	"\x03Add\x12\x14.video.v0.AddRequest\x1a\x15.video.v0.AddResponse\"\x00\x12F\n" +
+	"\tAssociate\x12\x1a.video.v0.AssociateRequest\x1a\x1b.video.v0.AssociateResponse\"\x00\x12@\n" +
+	"\aReplace\x12\x18.video.v0.ReplaceRequest\x1a\x19.video.v0.ReplaceResponse\"\x00\x12d\n" +
+	"\x13ReplaceFromExisting\x12$.video.v0.ReplaceFromExistingRequest\x1a%.video.v0.ReplaceFromExistingResponse\"\x00\x127\n" +
+	"\x04Push\x12\x15.video.v0.PushRequest\x1a\x16.video.v0.PushResponse\"\x00\x12[\n" +
+	"\x10PushFromExisting\x12!.video.v0.PushFromExistingRequest\x1a\".video.v0.PushFromExistingResponse\"\x00BHZFgithub.com/mikhail5545/proto-go/proto/product_service/video/v0;videopbb\x06proto3"
 
 var (
 	file_product_service_video_v0_video_proto_rawDescOnce sync.Once
@@ -927,43 +1207,50 @@ func file_product_service_video_v0_video_proto_rawDescGZIP() []byte {
 	return file_product_service_video_v0_video_proto_rawDescData
 }
 
-var file_product_service_video_v0_video_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_product_service_video_v0_video_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_product_service_video_v0_video_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_product_service_video_v0_video_proto_goTypes = []any{
-	(*Video)(nil),                 // 0: video.v0.Video
-	(*Owner)(nil),                 // 1: video.v0.Owner
-	(*AddRequest)(nil),            // 2: video.v0.AddRequest
-	(*AddResponse)(nil),           // 3: video.v0.AddResponse
-	(*AddBatchRequest)(nil),       // 4: video.v0.AddBatchRequest
-	(*AddBatchResponse)(nil),      // 5: video.v0.AddBatchResponse
-	(*RemoveRequest)(nil),         // 6: video.v0.RemoveRequest
-	(*RemoveResponse)(nil),        // 7: video.v0.RemoveResponse
-	(*RemoveBatchRequest)(nil),    // 8: video.v0.RemoveBatchRequest
-	(*RemoveBatchResponse)(nil),   // 9: video.v0.RemoveBatchResponse
-	(*GetOwnerRequest)(nil),       // 10: video.v0.GetOwnerRequest
-	(*GetOwnerResponse)(nil),      // 11: video.v0.GetOwnerResponse
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(VideoStatus)(0),                    // 0: video.v0.VideoStatus
+	(*Video)(nil),                       // 1: video.v0.Video
+	(*AddRequest)(nil),                  // 2: video.v0.AddRequest
+	(*AddResponse)(nil),                 // 3: video.v0.AddResponse
+	(*AssociateRequest)(nil),            // 4: video.v0.AssociateRequest
+	(*AssociateResponse)(nil),           // 5: video.v0.AssociateResponse
+	(*ReplaceRequest)(nil),              // 6: video.v0.ReplaceRequest
+	(*ReplaceResponse)(nil),             // 7: video.v0.ReplaceResponse
+	(*ReplaceFromExistingRequest)(nil),  // 8: video.v0.ReplaceFromExistingRequest
+	(*ReplaceFromExistingResponse)(nil), // 9: video.v0.ReplaceFromExistingResponse
+	(*PushRequest)(nil),                 // 10: video.v0.PushRequest
+	(*PushResponse)(nil),                // 11: video.v0.PushResponse
+	(*PushFromExistingRequest)(nil),     // 12: video.v0.PushFromExistingRequest
+	(*PushFromExistingResponse)(nil),    // 13: video.v0.PushFromExistingResponse
+	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
 }
 var file_product_service_video_v0_video_proto_depIdxs = []int32{
-	12, // 0: video.v0.Video.created_at:type_name -> google.protobuf.Timestamp
-	12, // 1: video.v0.Video.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 2: video.v0.Video.deleted_at:type_name -> google.protobuf.Timestamp
-	12, // 3: video.v0.Video.asset_created_at:type_name -> google.protobuf.Timestamp
-	1,  // 4: video.v0.GetOwnerResponse.owner:type_name -> video.v0.Owner
-	2,  // 5: video.v0.VideoService.Add:input_type -> video.v0.AddRequest
-	4,  // 6: video.v0.VideoService.AddBatch:input_type -> video.v0.AddBatchRequest
-	6,  // 7: video.v0.VideoService.Remove:input_type -> video.v0.RemoveRequest
-	8,  // 8: video.v0.VideoService.RemoveBatch:input_type -> video.v0.RemoveBatchRequest
-	10, // 9: video.v0.VideoService.GetOwner:input_type -> video.v0.GetOwnerRequest
-	3,  // 10: video.v0.VideoService.Add:output_type -> video.v0.AddResponse
-	5,  // 11: video.v0.VideoService.AddBatch:output_type -> video.v0.AddBatchResponse
-	7,  // 12: video.v0.VideoService.Remove:output_type -> video.v0.RemoveResponse
-	9,  // 13: video.v0.VideoService.RemoveBatch:output_type -> video.v0.RemoveBatchResponse
-	11, // 14: video.v0.VideoService.GetOwner:output_type -> video.v0.GetOwnerResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	14, // 0: video.v0.Video.created_at:type_name -> google.protobuf.Timestamp
+	14, // 1: video.v0.Video.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 2: video.v0.Video.deleted_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: video.v0.Video.status:type_name -> video.v0.VideoStatus
+	0,  // 4: video.v0.AddRequest.status:type_name -> video.v0.VideoStatus
+	0,  // 5: video.v0.ReplaceRequest.status:type_name -> video.v0.VideoStatus
+	0,  // 6: video.v0.PushRequest.status:type_name -> video.v0.VideoStatus
+	2,  // 7: video.v0.VideoService.Add:input_type -> video.v0.AddRequest
+	4,  // 8: video.v0.VideoService.Associate:input_type -> video.v0.AssociateRequest
+	6,  // 9: video.v0.VideoService.Replace:input_type -> video.v0.ReplaceRequest
+	8,  // 10: video.v0.VideoService.ReplaceFromExisting:input_type -> video.v0.ReplaceFromExistingRequest
+	10, // 11: video.v0.VideoService.Push:input_type -> video.v0.PushRequest
+	12, // 12: video.v0.VideoService.PushFromExisting:input_type -> video.v0.PushFromExistingRequest
+	3,  // 13: video.v0.VideoService.Add:output_type -> video.v0.AddResponse
+	5,  // 14: video.v0.VideoService.Associate:output_type -> video.v0.AssociateResponse
+	7,  // 15: video.v0.VideoService.Replace:output_type -> video.v0.ReplaceResponse
+	9,  // 16: video.v0.VideoService.ReplaceFromExisting:output_type -> video.v0.ReplaceFromExistingResponse
+	11, // 17: video.v0.VideoService.Push:output_type -> video.v0.PushResponse
+	13, // 18: video.v0.VideoService.PushFromExisting:output_type -> video.v0.PushFromExistingResponse
+	13, // [13:19] is the sub-list for method output_type
+	7,  // [7:13] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_product_service_video_v0_video_proto_init() }
@@ -972,19 +1259,19 @@ func file_product_service_video_v0_video_proto_init() {
 		return
 	}
 	file_product_service_video_v0_video_proto_msgTypes[0].OneofWrappers = []any{}
-	file_product_service_video_v0_video_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_video_v0_video_proto_rawDesc), len(file_product_service_video_v0_video_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   12,
+			NumEnums:      1,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_product_service_video_v0_video_proto_goTypes,
 		DependencyIndexes: file_product_service_video_v0_video_proto_depIdxs,
+		EnumInfos:         file_product_service_video_v0_video_proto_enumTypes,
 		MessageInfos:      file_product_service_video_v0_video_proto_msgTypes,
 	}.Build()
 	File_product_service_video_v0_video_proto = out.File

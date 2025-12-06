@@ -36,11 +36,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VideoService_Add_FullMethodName         = "/video.v0.VideoService/Add"
-	VideoService_AddBatch_FullMethodName    = "/video.v0.VideoService/AddBatch"
-	VideoService_Remove_FullMethodName      = "/video.v0.VideoService/Remove"
-	VideoService_RemoveBatch_FullMethodName = "/video.v0.VideoService/RemoveBatch"
-	VideoService_GetOwner_FullMethodName    = "/video.v0.VideoService/GetOwner"
+	VideoService_Add_FullMethodName                 = "/video.v0.VideoService/Add"
+	VideoService_Associate_FullMethodName           = "/video.v0.VideoService/Associate"
+	VideoService_Replace_FullMethodName             = "/video.v0.VideoService/Replace"
+	VideoService_ReplaceFromExisting_FullMethodName = "/video.v0.VideoService/ReplaceFromExisting"
+	VideoService_Push_FullMethodName                = "/video.v0.VideoService/Push"
+	VideoService_PushFromExisting_FullMethodName    = "/video.v0.VideoService/PushFromExisting"
 )
 
 // VideoServiceClient is the client API for VideoService service.
@@ -48,10 +49,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VideoServiceClient interface {
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
-	AddBatch(ctx context.Context, in *AddBatchRequest, opts ...grpc.CallOption) (*AddBatchResponse, error)
-	Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error)
-	RemoveBatch(ctx context.Context, in *RemoveBatchRequest, opts ...grpc.CallOption) (*RemoveBatchResponse, error)
-	GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*GetOwnerResponse, error)
+	Associate(ctx context.Context, in *AssociateRequest, opts ...grpc.CallOption) (*AssociateResponse, error)
+	Replace(ctx context.Context, in *ReplaceRequest, opts ...grpc.CallOption) (*ReplaceResponse, error)
+	ReplaceFromExisting(ctx context.Context, in *ReplaceFromExistingRequest, opts ...grpc.CallOption) (*ReplaceFromExistingResponse, error)
+	Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*PushResponse, error)
+	PushFromExisting(ctx context.Context, in *PushFromExistingRequest, opts ...grpc.CallOption) (*PushFromExistingResponse, error)
 }
 
 type videoServiceClient struct {
@@ -72,40 +74,50 @@ func (c *videoServiceClient) Add(ctx context.Context, in *AddRequest, opts ...gr
 	return out, nil
 }
 
-func (c *videoServiceClient) AddBatch(ctx context.Context, in *AddBatchRequest, opts ...grpc.CallOption) (*AddBatchResponse, error) {
+func (c *videoServiceClient) Associate(ctx context.Context, in *AssociateRequest, opts ...grpc.CallOption) (*AssociateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddBatchResponse)
-	err := c.cc.Invoke(ctx, VideoService_AddBatch_FullMethodName, in, out, cOpts...)
+	out := new(AssociateResponse)
+	err := c.cc.Invoke(ctx, VideoService_Associate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *videoServiceClient) Remove(ctx context.Context, in *RemoveRequest, opts ...grpc.CallOption) (*RemoveResponse, error) {
+func (c *videoServiceClient) Replace(ctx context.Context, in *ReplaceRequest, opts ...grpc.CallOption) (*ReplaceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RemoveResponse)
-	err := c.cc.Invoke(ctx, VideoService_Remove_FullMethodName, in, out, cOpts...)
+	out := new(ReplaceResponse)
+	err := c.cc.Invoke(ctx, VideoService_Replace_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *videoServiceClient) RemoveBatch(ctx context.Context, in *RemoveBatchRequest, opts ...grpc.CallOption) (*RemoveBatchResponse, error) {
+func (c *videoServiceClient) ReplaceFromExisting(ctx context.Context, in *ReplaceFromExistingRequest, opts ...grpc.CallOption) (*ReplaceFromExistingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RemoveBatchResponse)
-	err := c.cc.Invoke(ctx, VideoService_RemoveBatch_FullMethodName, in, out, cOpts...)
+	out := new(ReplaceFromExistingResponse)
+	err := c.cc.Invoke(ctx, VideoService_ReplaceFromExisting_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *videoServiceClient) GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*GetOwnerResponse, error) {
+func (c *videoServiceClient) Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*PushResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetOwnerResponse)
-	err := c.cc.Invoke(ctx, VideoService_GetOwner_FullMethodName, in, out, cOpts...)
+	out := new(PushResponse)
+	err := c.cc.Invoke(ctx, VideoService_Push_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *videoServiceClient) PushFromExisting(ctx context.Context, in *PushFromExistingRequest, opts ...grpc.CallOption) (*PushFromExistingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PushFromExistingResponse)
+	err := c.cc.Invoke(ctx, VideoService_PushFromExisting_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,10 +129,11 @@ func (c *videoServiceClient) GetOwner(ctx context.Context, in *GetOwnerRequest, 
 // for forward compatibility.
 type VideoServiceServer interface {
 	Add(context.Context, *AddRequest) (*AddResponse, error)
-	AddBatch(context.Context, *AddBatchRequest) (*AddBatchResponse, error)
-	Remove(context.Context, *RemoveRequest) (*RemoveResponse, error)
-	RemoveBatch(context.Context, *RemoveBatchRequest) (*RemoveBatchResponse, error)
-	GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error)
+	Associate(context.Context, *AssociateRequest) (*AssociateResponse, error)
+	Replace(context.Context, *ReplaceRequest) (*ReplaceResponse, error)
+	ReplaceFromExisting(context.Context, *ReplaceFromExistingRequest) (*ReplaceFromExistingResponse, error)
+	Push(context.Context, *PushRequest) (*PushResponse, error)
+	PushFromExisting(context.Context, *PushFromExistingRequest) (*PushFromExistingResponse, error)
 	mustEmbedUnimplementedVideoServiceServer()
 }
 
@@ -134,17 +147,20 @@ type UnimplementedVideoServiceServer struct{}
 func (UnimplementedVideoServiceServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedVideoServiceServer) AddBatch(context.Context, *AddBatchRequest) (*AddBatchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddBatch not implemented")
+func (UnimplementedVideoServiceServer) Associate(context.Context, *AssociateRequest) (*AssociateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Associate not implemented")
 }
-func (UnimplementedVideoServiceServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
+func (UnimplementedVideoServiceServer) Replace(context.Context, *ReplaceRequest) (*ReplaceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Replace not implemented")
 }
-func (UnimplementedVideoServiceServer) RemoveBatch(context.Context, *RemoveBatchRequest) (*RemoveBatchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveBatch not implemented")
+func (UnimplementedVideoServiceServer) ReplaceFromExisting(context.Context, *ReplaceFromExistingRequest) (*ReplaceFromExistingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReplaceFromExisting not implemented")
 }
-func (UnimplementedVideoServiceServer) GetOwner(context.Context, *GetOwnerRequest) (*GetOwnerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOwner not implemented")
+func (UnimplementedVideoServiceServer) Push(context.Context, *PushRequest) (*PushResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Push not implemented")
+}
+func (UnimplementedVideoServiceServer) PushFromExisting(context.Context, *PushFromExistingRequest) (*PushFromExistingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PushFromExisting not implemented")
 }
 func (UnimplementedVideoServiceServer) mustEmbedUnimplementedVideoServiceServer() {}
 func (UnimplementedVideoServiceServer) testEmbeddedByValue()                      {}
@@ -185,74 +201,92 @@ func _VideoService_Add_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VideoService_AddBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddBatchRequest)
+func _VideoService_Associate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssociateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).AddBatch(ctx, in)
+		return srv.(VideoServiceServer).Associate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_AddBatch_FullMethodName,
+		FullMethod: VideoService_Associate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).AddBatch(ctx, req.(*AddBatchRequest))
+		return srv.(VideoServiceServer).Associate(ctx, req.(*AssociateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VideoService_Remove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveRequest)
+func _VideoService_Replace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReplaceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).Remove(ctx, in)
+		return srv.(VideoServiceServer).Replace(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_Remove_FullMethodName,
+		FullMethod: VideoService_Replace_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).Remove(ctx, req.(*RemoveRequest))
+		return srv.(VideoServiceServer).Replace(ctx, req.(*ReplaceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VideoService_RemoveBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveBatchRequest)
+func _VideoService_ReplaceFromExisting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReplaceFromExistingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).RemoveBatch(ctx, in)
+		return srv.(VideoServiceServer).ReplaceFromExisting(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_RemoveBatch_FullMethodName,
+		FullMethod: VideoService_ReplaceFromExisting_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).RemoveBatch(ctx, req.(*RemoveBatchRequest))
+		return srv.(VideoServiceServer).ReplaceFromExisting(ctx, req.(*ReplaceFromExistingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _VideoService_GetOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOwnerRequest)
+func _VideoService_Push_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(VideoServiceServer).GetOwner(ctx, in)
+		return srv.(VideoServiceServer).Push(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: VideoService_GetOwner_FullMethodName,
+		FullMethod: VideoService_Push_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(VideoServiceServer).GetOwner(ctx, req.(*GetOwnerRequest))
+		return srv.(VideoServiceServer).Push(ctx, req.(*PushRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VideoService_PushFromExisting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushFromExistingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VideoServiceServer).PushFromExisting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VideoService_PushFromExisting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VideoServiceServer).PushFromExisting(ctx, req.(*PushFromExistingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -269,20 +303,24 @@ var VideoService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _VideoService_Add_Handler,
 		},
 		{
-			MethodName: "AddBatch",
-			Handler:    _VideoService_AddBatch_Handler,
+			MethodName: "Associate",
+			Handler:    _VideoService_Associate_Handler,
 		},
 		{
-			MethodName: "Remove",
-			Handler:    _VideoService_Remove_Handler,
+			MethodName: "Replace",
+			Handler:    _VideoService_Replace_Handler,
 		},
 		{
-			MethodName: "RemoveBatch",
-			Handler:    _VideoService_RemoveBatch_Handler,
+			MethodName: "ReplaceFromExisting",
+			Handler:    _VideoService_ReplaceFromExisting_Handler,
 		},
 		{
-			MethodName: "GetOwner",
-			Handler:    _VideoService_GetOwner_Handler,
+			MethodName: "Push",
+			Handler:    _VideoService_Push_Handler,
+		},
+		{
+			MethodName: "PushFromExisting",
+			Handler:    _VideoService_PushFromExisting_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

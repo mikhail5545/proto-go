@@ -36,11 +36,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductService_Get_FullMethodName               = "/product.v0.ProductService/Get"
-	ProductService_GetByDetailsID_FullMethodName    = "/product.v0.ProductService/GetByDetailsID"
-	ProductService_List_FullMethodName              = "/product.v0.ProductService/List"
-	ProductService_ListByDetailsType_FullMethodName = "/product.v0.ProductService/ListByDetailsType"
-	ProductService_ListDeleted_FullMethodName       = "/product.v0.ProductService/ListDeleted"
+	ProductService_Get_FullMethodName              = "/product.v0.ProductService/Get"
+	ProductService_GetWithDraft_FullMethodName     = "/product.v0.ProductService/GetWithDraft"
+	ProductService_GetWithDeleted_FullMethodName   = "/product.v0.ProductService/GetWithDeleted"
+	ProductService_List_FullMethodName             = "/product.v0.ProductService/List"
+	ProductService_ListDrafts_FullMethodName       = "/product.v0.ProductService/ListDrafts"
+	ProductService_ListDeleted_FullMethodName      = "/product.v0.ProductService/ListDeleted"
+	ProductService_AddCategory_FullMethodName      = "/product.v0.ProductService/AddCategory"
+	ProductService_RemoveCategory_FullMethodName   = "/product.v0.ProductService/RemoveCategory"
+	ProductService_AddCollection_FullMethodName    = "/product.v0.ProductService/AddCollection"
+	ProductService_RemoveCollection_FullMethodName = "/product.v0.ProductService/RemoveCollection"
+	ProductService_Archive_FullMethodName          = "/product.v0.ProductService/Archive"
+	ProductService_Unarchive_FullMethodName        = "/product.v0.ProductService/Unarchive"
 )
 
 // ProductServiceClient is the client API for ProductService service.
@@ -48,10 +55,17 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	GetByDetailsID(ctx context.Context, in *GetByDetailsIDRequest, opts ...grpc.CallOption) (*GetByDetailsIDResponse, error)
+	GetWithDraft(ctx context.Context, in *GetWithDratRequest, opts ...grpc.CallOption) (*GetWithDratResponse, error)
+	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	ListByDetailsType(ctx context.Context, in *ListByDetailsTypeRequest, opts ...grpc.CallOption) (*ListByDetailsTypeResponse, error)
+	ListDrafts(ctx context.Context, in *ListDraftsRequest, opts ...grpc.CallOption) (*ListDraftsResponse, error)
 	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
+	AddCategory(ctx context.Context, in *AddCategoryRequest, opts ...grpc.CallOption) (*AddCategoryResponse, error)
+	RemoveCategory(ctx context.Context, in *RemoveCategoryRequest, opts ...grpc.CallOption) (*RemoveCategoryResponse, error)
+	AddCollection(ctx context.Context, in *AddCollectionRequest, opts ...grpc.CallOption) (*AddCollectionResponse, error)
+	RemoveCollection(ctx context.Context, in *RemoveCollectionRequest, opts ...grpc.CallOption) (*RemoveCollectionResponse, error)
+	Archive(ctx context.Context, in *ArchiveRequest, opts ...grpc.CallOption) (*ArchiveResponse, error)
+	Unarchive(ctx context.Context, in *UnarchiveRequest, opts ...grpc.CallOption) (*UnarchiveResponse, error)
 }
 
 type productServiceClient struct {
@@ -72,10 +86,20 @@ func (c *productServiceClient) Get(ctx context.Context, in *GetRequest, opts ...
 	return out, nil
 }
 
-func (c *productServiceClient) GetByDetailsID(ctx context.Context, in *GetByDetailsIDRequest, opts ...grpc.CallOption) (*GetByDetailsIDResponse, error) {
+func (c *productServiceClient) GetWithDraft(ctx context.Context, in *GetWithDratRequest, opts ...grpc.CallOption) (*GetWithDratResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetByDetailsIDResponse)
-	err := c.cc.Invoke(ctx, ProductService_GetByDetailsID_FullMethodName, in, out, cOpts...)
+	out := new(GetWithDratResponse)
+	err := c.cc.Invoke(ctx, ProductService_GetWithDraft_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWithDeletedResponse)
+	err := c.cc.Invoke(ctx, ProductService_GetWithDeleted_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,10 +116,10 @@ func (c *productServiceClient) List(ctx context.Context, in *ListRequest, opts .
 	return out, nil
 }
 
-func (c *productServiceClient) ListByDetailsType(ctx context.Context, in *ListByDetailsTypeRequest, opts ...grpc.CallOption) (*ListByDetailsTypeResponse, error) {
+func (c *productServiceClient) ListDrafts(ctx context.Context, in *ListDraftsRequest, opts ...grpc.CallOption) (*ListDraftsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListByDetailsTypeResponse)
-	err := c.cc.Invoke(ctx, ProductService_ListByDetailsType_FullMethodName, in, out, cOpts...)
+	out := new(ListDraftsResponse)
+	err := c.cc.Invoke(ctx, ProductService_ListDrafts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,15 +136,82 @@ func (c *productServiceClient) ListDeleted(ctx context.Context, in *ListDeletedR
 	return out, nil
 }
 
+func (c *productServiceClient) AddCategory(ctx context.Context, in *AddCategoryRequest, opts ...grpc.CallOption) (*AddCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddCategoryResponse)
+	err := c.cc.Invoke(ctx, ProductService_AddCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) RemoveCategory(ctx context.Context, in *RemoveCategoryRequest, opts ...grpc.CallOption) (*RemoveCategoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveCategoryResponse)
+	err := c.cc.Invoke(ctx, ProductService_RemoveCategory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) AddCollection(ctx context.Context, in *AddCollectionRequest, opts ...grpc.CallOption) (*AddCollectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddCollectionResponse)
+	err := c.cc.Invoke(ctx, ProductService_AddCollection_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) RemoveCollection(ctx context.Context, in *RemoveCollectionRequest, opts ...grpc.CallOption) (*RemoveCollectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveCollectionResponse)
+	err := c.cc.Invoke(ctx, ProductService_RemoveCollection_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) Archive(ctx context.Context, in *ArchiveRequest, opts ...grpc.CallOption) (*ArchiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArchiveResponse)
+	err := c.cc.Invoke(ctx, ProductService_Archive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) Unarchive(ctx context.Context, in *UnarchiveRequest, opts ...grpc.CallOption) (*UnarchiveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnarchiveResponse)
+	err := c.cc.Invoke(ctx, ProductService_Unarchive_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductServiceServer is the server API for ProductService service.
 // All implementations must embed UnimplementedProductServiceServer
 // for forward compatibility.
 type ProductServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
-	GetByDetailsID(context.Context, *GetByDetailsIDRequest) (*GetByDetailsIDResponse, error)
+	GetWithDraft(context.Context, *GetWithDratRequest) (*GetWithDratResponse, error)
+	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
-	ListByDetailsType(context.Context, *ListByDetailsTypeRequest) (*ListByDetailsTypeResponse, error)
+	ListDrafts(context.Context, *ListDraftsRequest) (*ListDraftsResponse, error)
 	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
+	AddCategory(context.Context, *AddCategoryRequest) (*AddCategoryResponse, error)
+	RemoveCategory(context.Context, *RemoveCategoryRequest) (*RemoveCategoryResponse, error)
+	AddCollection(context.Context, *AddCollectionRequest) (*AddCollectionResponse, error)
+	RemoveCollection(context.Context, *RemoveCollectionRequest) (*RemoveCollectionResponse, error)
+	Archive(context.Context, *ArchiveRequest) (*ArchiveResponse, error)
+	Unarchive(context.Context, *UnarchiveRequest) (*UnarchiveResponse, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -134,17 +225,38 @@ type UnimplementedProductServiceServer struct{}
 func (UnimplementedProductServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedProductServiceServer) GetByDetailsID(context.Context, *GetByDetailsIDRequest) (*GetByDetailsIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByDetailsID not implemented")
+func (UnimplementedProductServiceServer) GetWithDraft(context.Context, *GetWithDratRequest) (*GetWithDratResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithDraft not implemented")
+}
+func (UnimplementedProductServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
 }
 func (UnimplementedProductServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedProductServiceServer) ListByDetailsType(context.Context, *ListByDetailsTypeRequest) (*ListByDetailsTypeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListByDetailsType not implemented")
+func (UnimplementedProductServiceServer) ListDrafts(context.Context, *ListDraftsRequest) (*ListDraftsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDrafts not implemented")
 }
 func (UnimplementedProductServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
+}
+func (UnimplementedProductServiceServer) AddCategory(context.Context, *AddCategoryRequest) (*AddCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCategory not implemented")
+}
+func (UnimplementedProductServiceServer) RemoveCategory(context.Context, *RemoveCategoryRequest) (*RemoveCategoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveCategory not implemented")
+}
+func (UnimplementedProductServiceServer) AddCollection(context.Context, *AddCollectionRequest) (*AddCollectionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCollection not implemented")
+}
+func (UnimplementedProductServiceServer) RemoveCollection(context.Context, *RemoveCollectionRequest) (*RemoveCollectionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveCollection not implemented")
+}
+func (UnimplementedProductServiceServer) Archive(context.Context, *ArchiveRequest) (*ArchiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Archive not implemented")
+}
+func (UnimplementedProductServiceServer) Unarchive(context.Context, *UnarchiveRequest) (*UnarchiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unarchive not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 func (UnimplementedProductServiceServer) testEmbeddedByValue()                        {}
@@ -185,20 +297,38 @@ func _ProductService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductService_GetByDetailsID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetByDetailsIDRequest)
+func _ProductService_GetWithDraft_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithDratRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductServiceServer).GetByDetailsID(ctx, in)
+		return srv.(ProductServiceServer).GetWithDraft(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductService_GetByDetailsID_FullMethodName,
+		FullMethod: ProductService_GetWithDraft_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServiceServer).GetByDetailsID(ctx, req.(*GetByDetailsIDRequest))
+		return srv.(ProductServiceServer).GetWithDraft(ctx, req.(*GetWithDratRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_GetWithDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWithDeletedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).GetWithDeleted(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_GetWithDeleted_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).GetWithDeleted(ctx, req.(*GetWithDeletedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -221,20 +351,20 @@ func _ProductService_List_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductService_ListByDetailsType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListByDetailsTypeRequest)
+func _ProductService_ListDrafts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDraftsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductServiceServer).ListByDetailsType(ctx, in)
+		return srv.(ProductServiceServer).ListDrafts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductService_ListByDetailsType_FullMethodName,
+		FullMethod: ProductService_ListDrafts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServiceServer).ListByDetailsType(ctx, req.(*ListByDetailsTypeRequest))
+		return srv.(ProductServiceServer).ListDrafts(ctx, req.(*ListDraftsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,6 +387,114 @@ func _ProductService_ListDeleted_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductService_AddCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).AddCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_AddCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).AddCategory(ctx, req.(*AddCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_RemoveCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveCategoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).RemoveCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_RemoveCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).RemoveCategory(ctx, req.(*RemoveCategoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_AddCollection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCollectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).AddCollection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_AddCollection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).AddCollection(ctx, req.(*AddCollectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_RemoveCollection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveCollectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).RemoveCollection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_RemoveCollection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).RemoveCollection(ctx, req.(*RemoveCollectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_Archive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArchiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).Archive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_Archive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).Archive(ctx, req.(*ArchiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_Unarchive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnarchiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).Unarchive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_Unarchive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).Unarchive(ctx, req.(*UnarchiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProductService_ServiceDesc is the grpc.ServiceDesc for ProductService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -269,20 +507,48 @@ var ProductService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProductService_Get_Handler,
 		},
 		{
-			MethodName: "GetByDetailsID",
-			Handler:    _ProductService_GetByDetailsID_Handler,
+			MethodName: "GetWithDraft",
+			Handler:    _ProductService_GetWithDraft_Handler,
+		},
+		{
+			MethodName: "GetWithDeleted",
+			Handler:    _ProductService_GetWithDeleted_Handler,
 		},
 		{
 			MethodName: "List",
 			Handler:    _ProductService_List_Handler,
 		},
 		{
-			MethodName: "ListByDetailsType",
-			Handler:    _ProductService_ListByDetailsType_Handler,
+			MethodName: "ListDrafts",
+			Handler:    _ProductService_ListDrafts_Handler,
 		},
 		{
 			MethodName: "ListDeleted",
 			Handler:    _ProductService_ListDeleted_Handler,
+		},
+		{
+			MethodName: "AddCategory",
+			Handler:    _ProductService_AddCategory_Handler,
+		},
+		{
+			MethodName: "RemoveCategory",
+			Handler:    _ProductService_RemoveCategory_Handler,
+		},
+		{
+			MethodName: "AddCollection",
+			Handler:    _ProductService_AddCollection_Handler,
+		},
+		{
+			MethodName: "RemoveCollection",
+			Handler:    _ProductService_RemoveCollection_Handler,
+		},
+		{
+			MethodName: "Archive",
+			Handler:    _ProductService_Archive_Handler,
+		},
+		{
+			MethodName: "Unarchive",
+			Handler:    _ProductService_Unarchive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

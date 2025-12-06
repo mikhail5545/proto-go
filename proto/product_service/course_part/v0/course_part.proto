@@ -19,102 +19,88 @@ syntax = "proto3";
 
 package course_part.v0;
 
-import "media_service/mux/asset/v0/asset.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/any.proto";
+
+import "product_service/video/v0/video.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/course_part/v0;coursepartpb";
+
+enum CoursePartStatus{
+    STATUS_ACTIVE = 0;
+    STATUS_DRAFT = 1;
+    STATUS_ARCHIVED = 2;
+}
 
 message CoursePart{
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
     optional google.protobuf.Timestamp deleted_at = 4;
-    repeated string tags = 5;
-    string name = 6;
-    string short_description = 7;
-    string long_description = 8;
-    bool published = 9;
-    optional asset.v0.Asset video = 10;
-    int32 number = 11;
-    string course_id = 12;
-    optional string video_id = 13;
+
+    string variant_id = 5;
+    string title = 6;
+    string slug = 7;
+    int32 position = 8;
+    string description = 9;
+    optional bool is_preview = 10;
+    CoursePartStatus status = 11;
+
+    repeated CoursePartVideo videos = 12;
+}
+
+enum CoursePartVideoStatus{
+    VIDEO_STATUS_ACTIVE = 0;
+    VIDEO_STATUS_ARCHIVED = 1;
+}
+
+message CoursePartVideo{
+    string course_part_id = 1;
+    string video_id = 2;
+    bool is_primary = 3;
+    bool is_required = 4;
+    bool is_extra = 5;
+    string title = 6;
+    CoursePartVideoStatus status = 7;
+    video.v0.Video video = 8;
 }
 
 message GetRequest{
-    string id = 1;
+    optional string id = 1;
+    optional string option = 2;
+    optional google.protobuf.Any value = 3;
 }
 
 message GetResponse{
     CoursePart course_part = 1;
 }
 
+message GetWithDraftRequest{
+    optional string id = 1;
+    optional string option = 2;
+    optional google.protobuf.Any value = 3;
+}
+
+message GetWithDraftResponse{
+    CoursePart course_part = 1;
+}
+
 message GetWithDeletedRequest{
-    string id = 1;
+    optional string id = 1;
+    optional string option = 2;
+    optional google.protobuf.Any value = 3;
 }
 
 message GetWithDeletedResponse{
     CoursePart course_part = 1;
 }
 
-message GetWithUnpublishedRequest{
-    string id = 1;
-}
-
-message GetWithUnpublishedResponse{
-    CoursePart course_part = 1;
-}
-
-message GetReducedRequest{
-    string id = 1;
-}
-
-message GetReducedResponse{
-    CoursePart course_part = 1;
-}
-
-message GetWithDeletedReducedRequest{
-    string id = 1;
-}
-
-message GetWithDeletedReducedResponse{
-    CoursePart course_part = 1;
-}
-
-message GetWithUnpublishedReducedRequest{
-    string id = 1;
-}
-
-message GetWithUnpublishedReducedResponse{
-    CoursePart course_part = 1;
-}
-
-message ListReducedRequest{
-    string course_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-}
-
-message ListReducedResponse{
-    repeated CoursePart course_parts = 1;
-    int64 total = 2;
-}
-
-message ListDeletedRequest{
-    string course_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-}
-
-message ListDeletedResponse{
-    repeated CoursePart course_parts = 1;
-    int64 total = 2;
-}
-
 message ListRequest{
-    string course_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
 }
 
 message ListResponse{
@@ -122,107 +108,99 @@ message ListResponse{
     int64 total = 2;
 }
 
-message ListUnpublishedRequest{
-    string course_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
+message ListDraftRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
 }
 
-message ListUnpublishedResponse{
+message ListDraftResponse{
+    repeated CoursePart course_parts = 1;
+    int64 total = 2;
+}
+
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+}
+
+message ListDeletedResponse{
     repeated CoursePart course_parts = 1;
     int64 total = 2;
 }
 
 message CreateRequest{
-    string course_id = 1;
-    string name = 2;
-    string short_description = 3;
-    int32 number = 4;
+    string variant_id = 1;
+    string title = 2;
+    int32 position = 3;
+    bool is_preview = 4;
 }
 
 message CreateResponse{
-    string id = 1;
-    string course_id = 2;
-}
-
-message PublishRequest{
-    string id = 1;
-}
-
-message PublishResponse{
-    string id = 1;
-}
-
-message UnpublishRequest{
-    string id = 1;
-}
-
-message UnpublishResponse{
-    string id = 1;
+    CoursePart course_part = 1;
 }
 
 message UpdateRequest{
     string id = 1;
-    string course_id = 2;
-    optional string name = 3;
-    optional string short_description = 4;
-    optional string long_description = 5;
-    optional int32 number = 6;
-    repeated string tags = 7;
-    google.protobuf.FieldMask update_mask = 8;
+    string variant_id = 2;
+    optional string title = 3;
+    optional int32 position = 4;
+    optional bool is_preview = 5;
+    optional string description = 6;
+    optional int64 duration_minutes = 7;
+
+    optional google.protobuf.FieldMask updates = 8;
 }
 
 message UpdateResponse{
     string id = 1;
-    string course_id = 2;
-    optional string name = 3;
-    optional string short_description = 4;
-    optional string long_description = 5;
-    optional int32 number = 6;
-    repeated string tags = 7;
-    google.protobuf.FieldMask updated = 8;
+    string variant_id = 2;
+    optional string title = 3;
+    optional int32 position = 4;
+    optional bool is_preview = 5;
+    optional string description = 6;
+    optional int64 duration_minutes = 7;
+
+    optional google.protobuf.FieldMask updates = 8;
 }
 
-message DeleteRequest{
+message UndraftRequest{
     string id = 1;
 }
 
-message DeleteResponse{
+message UndraftResponse{
     string id = 1;
 }
 
-message DeletePermanentRequest{
+message ArchiveRequest{
     string id = 1;
 }
 
-message DeletePermanentResponse{
+message ArchiveResponse{
     string id = 1;
 }
 
-message RestoreRequest{
+message UnarchiveRequest{
     string id = 1;
 }
 
-message RestoreResponse{
+message UnarchiveResponse{
     string id = 1;
 }
 
 service CoursePartService{
     rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDraft(GetWithDraftRequest) returns (GetWithDraftResponse) {}
     rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
-    rpc GetWithUnpublished(GetWithUnpublishedRequest) returns (GetWithUnpublishedResponse) {}
-    rpc GetReduced(GetReducedRequest) returns (GetReducedResponse) {}
-    rpc GetWithDeletedReduced(GetWithDeletedReducedRequest) returns (GetWithDeletedReducedResponse) {}
-    rpc GetWithUnpublishedReduced(GetWithUnpublishedReducedRequest) returns (GetWithUnpublishedReducedResponse) {}
     rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListDrafts(ListDraftRequest) returns (ListDraftResponse) {}
     rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {}
-    rpc ListUnpublished(ListUnpublishedRequest) returns (ListUnpublishedResponse) {}
-    rpc ListReduced(ListReducedRequest) returns (ListReducedResponse) {}
     rpc Create(CreateRequest) returns (CreateResponse) {}
-    rpc Publish(PublishRequest) returns (PublishResponse) {}
-    rpc Unpublish(UnpublishRequest) returns (UnpublishResponse) {}
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
-    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
-    rpc DeletePermanent(DeletePermanentRequest) returns (DeletePermanentResponse) {}
-    rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+    rpc Undraft(UndraftRequest) returns (UndraftResponse) {}
+    rpc Archive(ArchiveRequest) returns (ArchiveResponse) {}
+    rpc Unarchive(UnarchiveRequest) returns (UnarchiveResponse) {}
 }

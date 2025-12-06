@@ -26,6 +26,7 @@ package imagepb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -38,16 +39,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// *
-//
-//	Image represents a product-service-go image struct.
 type Image struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// External id (uuid) for media-service-go
-	PublicId       string `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
-	Url            string `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
-	SecureUrl      string `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
-	MediaServiceId string `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedAt      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt      *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	Url            string                 `protobuf:"bytes,5,opt,name=url,proto3" json:"url,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,6,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	PublicId       string                 `protobuf:"bytes,7,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Width          *int32                 `protobuf:"varint,8,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height         *int32                 `protobuf:"varint,9,opt,name=height,proto3,oneof" json:"height,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -82,9 +84,30 @@ func (*Image) Descriptor() ([]byte, []int) {
 	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Image) GetPublicId() string {
+func (x *Image) GetId() string {
 	if x != nil {
-		return x.PublicId
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Image) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Image) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Image) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
 	}
 	return ""
 }
@@ -103,21 +126,39 @@ func (x *Image) GetSecureUrl() string {
 	return ""
 }
 
-func (x *Image) GetMediaServiceId() string {
+func (x *Image) GetPublicId() string {
 	if x != nil {
-		return x.MediaServiceId
+		return x.PublicId
 	}
 	return ""
 }
 
+func (x *Image) GetWidth() int32 {
+	if x != nil && x.Width != nil {
+		return *x.Width
+	}
+	return 0
+}
+
+func (x *Image) GetHeight() int32 {
+	if x != nil && x.Height != nil {
+		return *x.Height
+	}
+	return 0
+}
+
 type AddRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
-	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
-	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerId        string                 `protobuf:"bytes,5,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,6,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	PublicId       string                 `protobuf:"bytes,3,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	SecureUrl      string                 `protobuf:"bytes,4,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,5,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	Width          *int32                 `protobuf:"varint,6,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height         *int32                 `protobuf:"varint,7,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	Alt            string                 `protobuf:"bytes,8,opt,name=alt,proto3" json:"alt,omitempty"`
+	VariantId      *string                `protobuf:"bytes,9,opt,name=variant_id,json=variantId,proto3,oneof" json:"variant_id,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,10,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -152,9 +193,9 @@ func (*AddRequest) Descriptor() ([]byte, []int) {
 	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AddRequest) GetPublicId() string {
+func (x *AddRequest) GetOwnerId() string {
 	if x != nil {
-		return x.PublicId
+		return x.OwnerId
 	}
 	return ""
 }
@@ -162,6 +203,13 @@ func (x *AddRequest) GetPublicId() string {
 func (x *AddRequest) GetUrl() string {
 	if x != nil {
 		return x.Url
+	}
+	return ""
+}
+
+func (x *AddRequest) GetPublicId() string {
+	if x != nil {
+		return x.PublicId
 	}
 	return ""
 }
@@ -180,9 +228,30 @@ func (x *AddRequest) GetMediaServiceId() string {
 	return ""
 }
 
-func (x *AddRequest) GetOwnerId() string {
+func (x *AddRequest) GetWidth() int32 {
+	if x != nil && x.Width != nil {
+		return *x.Width
+	}
+	return 0
+}
+
+func (x *AddRequest) GetHeight() int32 {
+	if x != nil && x.Height != nil {
+		return *x.Height
+	}
+	return 0
+}
+
+func (x *AddRequest) GetAlt() string {
 	if x != nil {
-		return x.OwnerId
+		return x.Alt
+	}
+	return ""
+}
+
+func (x *AddRequest) GetVariantId() string {
+	if x != nil && x.VariantId != nil {
+		return *x.VariantId
 	}
 	return ""
 }
@@ -195,11 +264,10 @@ func (x *AddRequest) GetOwnerType() string {
 }
 
 type AddResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerId        string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *AddResponse) Reset() {
@@ -232,13 +300,6 @@ func (*AddResponse) Descriptor() ([]byte, []int) {
 	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AddResponse) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
 func (x *AddResponse) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
@@ -246,10 +307,234 @@ func (x *AddResponse) GetOwnerId() string {
 	return ""
 }
 
+type AssociateRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	Alt            string                 `protobuf:"bytes,3,opt,name=alt,proto3" json:"alt,omitempty"`
+	VariantId      *string                `protobuf:"bytes,4,opt,name=variant_id,json=variantId,proto3,oneof" json:"variant_id,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,5,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AssociateRequest) Reset() {
+	*x = AssociateRequest{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssociateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssociateRequest) ProtoMessage() {}
+
+func (x *AssociateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssociateRequest.ProtoReflect.Descriptor instead.
+func (*AssociateRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AssociateRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetAlt() string {
+	if x != nil {
+		return x.Alt
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetVariantId() string {
+	if x != nil && x.VariantId != nil {
+		return *x.VariantId
+	}
+	return ""
+}
+
+func (x *AssociateRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type AssociateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssociateResponse) Reset() {
+	*x = AssociateResponse{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssociateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssociateResponse) ProtoMessage() {}
+
+func (x *AssociateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssociateResponse.ProtoReflect.Descriptor instead.
+func (*AssociateResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AssociateResponse) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type RemoveBatchRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnerIds       []string               `protobuf:"bytes,1,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
+	OwnerType      string                 `protobuf:"bytes,3,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RemoveBatchRequest) Reset() {
+	*x = RemoveBatchRequest{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveBatchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveBatchRequest) ProtoMessage() {}
+
+func (x *RemoveBatchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveBatchRequest.ProtoReflect.Descriptor instead.
+func (*RemoveBatchRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RemoveBatchRequest) GetOwnerIds() []string {
+	if x != nil {
+		return x.OwnerIds
+	}
+	return nil
+}
+
+func (x *RemoveBatchRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
+	}
+	return ""
+}
+
+func (x *RemoveBatchRequest) GetOwnerType() string {
+	if x != nil {
+		return x.OwnerType
+	}
+	return ""
+}
+
+type RemoveBatchResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OwnersAffected int64                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RemoveBatchResponse) Reset() {
+	*x = RemoveBatchResponse{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveBatchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveBatchResponse) ProtoMessage() {}
+
+func (x *RemoveBatchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveBatchResponse.ProtoReflect.Descriptor instead.
+func (*RemoveBatchResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *RemoveBatchResponse) GetOwnersAffected() int64 {
+	if x != nil {
+		return x.OwnersAffected
+	}
+	return 0
+}
+
 type DeleteRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerId        string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	OwnerId        string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	MediaServiceId string                 `protobuf:"bytes,2,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
 	OwnerType      string                 `protobuf:"bytes,3,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -257,7 +542,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	mi := &file_product_service_image_v0_image_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -269,7 +554,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	mi := &file_product_service_image_v0_image_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -282,19 +567,19 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *DeleteRequest) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteRequest) GetOwnerId() string {
 	if x != nil {
 		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *DeleteRequest) GetMediaServiceId() string {
+	if x != nil {
+		return x.MediaServiceId
 	}
 	return ""
 }
@@ -306,352 +591,70 @@ func (x *DeleteRequest) GetOwnerType() string {
 	return ""
 }
 
-// DeleteResponse represents a response after successful image delete operation.
-type DeleteResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// media-service-go asset.ID
-	MediaServiceId string `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	// number of affected owners
-	OwnerId       string `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteResponse) Reset() {
-	*x = DeleteResponse{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteResponse) ProtoMessage() {}
-
-func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *DeleteResponse) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
-func (x *DeleteResponse) GetOwnerId() string {
-	if x != nil {
-		return x.OwnerId
-	}
-	return ""
-}
-
-// AddBatchResponse represents a request to batch add an image to multiple owners.
-type AddBatchRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	PublicId       string                 `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
-	Url            string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
-	SecureUrl      string                 `protobuf:"bytes,3,opt,name=secure_url,json=secureUrl,proto3" json:"secure_url,omitempty"`
-	MediaServiceId string                 `protobuf:"bytes,4,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerIds       []string               `protobuf:"bytes,5,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
-	// owner type 'seminar', 'course', etc.
-	OwnerType     string `protobuf:"bytes,6,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddBatchRequest) Reset() {
-	*x = AddBatchRequest{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddBatchRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddBatchRequest) ProtoMessage() {}
-
-func (x *AddBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddBatchRequest.ProtoReflect.Descriptor instead.
-func (*AddBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *AddBatchRequest) GetPublicId() string {
-	if x != nil {
-		return x.PublicId
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetSecureUrl() string {
-	if x != nil {
-		return x.SecureUrl
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
-func (x *AddBatchRequest) GetOwnerIds() []string {
-	if x != nil {
-		return x.OwnerIds
-	}
-	return nil
-}
-
-func (x *AddBatchRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-// AddBatchResponse represents a response after successful image batch add operation.
-type AddBatchResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// number of affected owners
-	OwnersAffected int64 `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *AddBatchResponse) Reset() {
-	*x = AddBatchResponse{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddBatchResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddBatchResponse) ProtoMessage() {}
-
-func (x *AddBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddBatchResponse.ProtoReflect.Descriptor instead.
-func (*AddBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *AddBatchResponse) GetOwnersAffected() int64 {
-	if x != nil {
-		return x.OwnersAffected
-	}
-	return 0
-}
-
-type DeleteBatchRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	MediaServiceId string                 `protobuf:"bytes,1,opt,name=media_service_id,json=mediaServiceId,proto3" json:"media_service_id,omitempty"`
-	OwnerType      string                 `protobuf:"bytes,2,opt,name=owner_type,json=ownerType,proto3" json:"owner_type,omitempty"`
-	OwnerIds       []string               `protobuf:"bytes,3,rep,name=owner_ids,json=ownerIds,proto3" json:"owner_ids,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *DeleteBatchRequest) Reset() {
-	*x = DeleteBatchRequest{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteBatchRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteBatchRequest) ProtoMessage() {}
-
-func (x *DeleteBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteBatchRequest.ProtoReflect.Descriptor instead.
-func (*DeleteBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *DeleteBatchRequest) GetMediaServiceId() string {
-	if x != nil {
-		return x.MediaServiceId
-	}
-	return ""
-}
-
-func (x *DeleteBatchRequest) GetOwnerType() string {
-	if x != nil {
-		return x.OwnerType
-	}
-	return ""
-}
-
-func (x *DeleteBatchRequest) GetOwnerIds() []string {
-	if x != nil {
-		return x.OwnerIds
-	}
-	return nil
-}
-
-type DeleteBatchResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	OwnersAffected int64                  `protobuf:"varint,1,opt,name=owners_affected,json=ownersAffected,proto3" json:"owners_affected,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *DeleteBatchResponse) Reset() {
-	*x = DeleteBatchResponse{}
-	mi := &file_product_service_image_v0_image_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteBatchResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteBatchResponse) ProtoMessage() {}
-
-func (x *DeleteBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_image_v0_image_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteBatchResponse.ProtoReflect.Descriptor instead.
-func (*DeleteBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *DeleteBatchResponse) GetOwnersAffected() int64 {
-	if x != nil {
-		return x.OwnersAffected
-	}
-	return 0
-}
-
 var File_product_service_image_v0_image_proto protoreflect.FileDescriptor
 
 const file_product_service_image_v0_image_proto_rawDesc = "" +
 	"\n" +
-	"$product_service/image/v0/image.proto\x12\bimage.v0\"\x7f\n" +
-	"\x05Image\x12\x1b\n" +
-	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
-	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
+	"$product_service/image/v0/image.proto\x12\bimage.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd2\x02\n" +
+	"\x05Image\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
-	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
-	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\"\xbe\x01\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"AddRequest\x12\x1b\n" +
-	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
-	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12(\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x10\n" +
+	"\x03url\x18\x05 \x01(\tR\x03url\x12\x1d\n" +
 	"\n" +
-	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
-	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x19\n" +
-	"\bowner_id\x18\x05 \x01(\tR\aownerId\x12\x1d\n" +
+	"secure_url\x18\x06 \x01(\tR\tsecureUrl\x12\x1b\n" +
+	"\tpublic_id\x18\a \x01(\tR\bpublicId\x12\x19\n" +
+	"\x05width\x18\b \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\t \x01(\x05H\x01R\x06height\x88\x01\x01B\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_height\"\xd0\x02\n" +
 	"\n" +
-	"owner_type\x18\x06 \x01(\tR\townerType\"R\n" +
-	"\vAddResponse\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x19\n" +
-	"\bowner_id\x18\x02 \x01(\tR\aownerId\"s\n" +
-	"\rDeleteRequest\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x19\n" +
-	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12\x1d\n" +
+	"AddRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1b\n" +
+	"\tpublic_id\x18\x03 \x01(\tR\bpublicId\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x03 \x01(\tR\townerType\"U\n" +
-	"\x0eDeleteResponse\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x19\n" +
-	"\bowner_id\x18\x02 \x01(\tR\aownerId\"\xc5\x01\n" +
-	"\x0fAddBatchRequest\x12\x1b\n" +
-	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
-	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
+	"secure_url\x18\x04 \x01(\tR\tsecureUrl\x12(\n" +
+	"\x10media_service_id\x18\x05 \x01(\tR\x0emediaServiceId\x12\x19\n" +
+	"\x05width\x18\x06 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\a \x01(\x05H\x01R\x06height\x88\x01\x01\x12\x10\n" +
+	"\x03alt\x18\b \x01(\tR\x03alt\x12\"\n" +
 	"\n" +
-	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
-	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\x12\x1b\n" +
-	"\towner_ids\x18\x05 \x03(\tR\bownerIds\x12\x1d\n" +
+	"variant_id\x18\t \x01(\tH\x02R\tvariantId\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"owner_type\x18\x06 \x01(\tR\townerType\";\n" +
-	"\x10AddBatchResponse\x12'\n" +
-	"\x0fowners_affected\x18\x01 \x01(\x03R\x0eownersAffected\"z\n" +
-	"\x12DeleteBatchRequest\x12(\n" +
-	"\x10media_service_id\x18\x01 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
+	"owner_type\x18\n" +
+	" \x01(\tR\townerTypeB\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_heightB\r\n" +
+	"\v_variant_id\"(\n" +
+	"\vAddResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"\xbb\x01\n" +
+	"\x10AssociateRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x10\n" +
+	"\x03alt\x18\x03 \x01(\tR\x03alt\x12\"\n" +
 	"\n" +
-	"owner_type\x18\x02 \x01(\tR\townerType\x12\x1b\n" +
-	"\towner_ids\x18\x03 \x03(\tR\bownerIds\">\n" +
-	"\x13DeleteBatchResponse\x12'\n" +
-	"\x0fowners_affected\x18\x01 \x01(\x03R\x0eownersAffected2\x96\x02\n" +
-	"\fImageService\x124\n" +
-	"\x03Add\x12\x14.image.v0.AddRequest\x1a\x15.image.v0.AddResponse\"\x00\x12=\n" +
-	"\x06Delete\x12\x17.image.v0.DeleteRequest\x1a\x18.image.v0.DeleteResponse\"\x00\x12C\n" +
-	"\bAddBatch\x12\x19.image.v0.AddBatchRequest\x1a\x1a.image.v0.AddBatchResponse\"\x00\x12L\n" +
-	"\vDeleteBatch\x12\x1c.image.v0.DeleteBatchRequest\x1a\x1d.image.v0.DeleteBatchResponse\"\x00BHZFgithub.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepbb\x06proto3"
+	"variant_id\x18\x04 \x01(\tH\x00R\tvariantId\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x05 \x01(\tR\townerTypeB\r\n" +
+	"\v_variant_id\".\n" +
+	"\x11AssociateResponse\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\"z\n" +
+	"\x12RemoveBatchRequest\x12\x1b\n" +
+	"\towner_ids\x18\x01 \x03(\tR\bownerIds\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x03 \x01(\tR\townerType\">\n" +
+	"\x13RemoveBatchResponse\x12'\n" +
+	"\x0fowners_affected\x18\x01 \x01(\x03R\x0eownersAffected\"s\n" +
+	"\rDeleteRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12(\n" +
+	"\x10media_service_id\x18\x02 \x01(\tR\x0emediaServiceId\x12\x1d\n" +
+	"\n" +
+	"owner_type\x18\x03 \x01(\tR\townerTypeBHZFgithub.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepbb\x06proto3"
 
 var (
 	file_product_service_image_v0_image_proto_rawDescOnce sync.Once
@@ -665,32 +668,26 @@ func file_product_service_image_v0_image_proto_rawDescGZIP() []byte {
 	return file_product_service_image_v0_image_proto_rawDescData
 }
 
-var file_product_service_image_v0_image_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_product_service_image_v0_image_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_product_service_image_v0_image_proto_goTypes = []any{
-	(*Image)(nil),               // 0: image.v0.Image
-	(*AddRequest)(nil),          // 1: image.v0.AddRequest
-	(*AddResponse)(nil),         // 2: image.v0.AddResponse
-	(*DeleteRequest)(nil),       // 3: image.v0.DeleteRequest
-	(*DeleteResponse)(nil),      // 4: image.v0.DeleteResponse
-	(*AddBatchRequest)(nil),     // 5: image.v0.AddBatchRequest
-	(*AddBatchResponse)(nil),    // 6: image.v0.AddBatchResponse
-	(*DeleteBatchRequest)(nil),  // 7: image.v0.DeleteBatchRequest
-	(*DeleteBatchResponse)(nil), // 8: image.v0.DeleteBatchResponse
+	(*Image)(nil),                 // 0: image.v0.Image
+	(*AddRequest)(nil),            // 1: image.v0.AddRequest
+	(*AddResponse)(nil),           // 2: image.v0.AddResponse
+	(*AssociateRequest)(nil),      // 3: image.v0.AssociateRequest
+	(*AssociateResponse)(nil),     // 4: image.v0.AssociateResponse
+	(*RemoveBatchRequest)(nil),    // 5: image.v0.RemoveBatchRequest
+	(*RemoveBatchResponse)(nil),   // 6: image.v0.RemoveBatchResponse
+	(*DeleteRequest)(nil),         // 7: image.v0.DeleteRequest
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_product_service_image_v0_image_proto_depIdxs = []int32{
-	1, // 0: image.v0.ImageService.Add:input_type -> image.v0.AddRequest
-	3, // 1: image.v0.ImageService.Delete:input_type -> image.v0.DeleteRequest
-	5, // 2: image.v0.ImageService.AddBatch:input_type -> image.v0.AddBatchRequest
-	7, // 3: image.v0.ImageService.DeleteBatch:input_type -> image.v0.DeleteBatchRequest
-	2, // 4: image.v0.ImageService.Add:output_type -> image.v0.AddResponse
-	4, // 5: image.v0.ImageService.Delete:output_type -> image.v0.DeleteResponse
-	6, // 6: image.v0.ImageService.AddBatch:output_type -> image.v0.AddBatchResponse
-	8, // 7: image.v0.ImageService.DeleteBatch:output_type -> image.v0.DeleteBatchResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	8, // 0: image.v0.Image.created_at:type_name -> google.protobuf.Timestamp
+	8, // 1: image.v0.Image.updated_at:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_product_service_image_v0_image_proto_init() }
@@ -698,15 +695,18 @@ func file_product_service_image_v0_image_proto_init() {
 	if File_product_service_image_v0_image_proto != nil {
 		return
 	}
+	file_product_service_image_v0_image_proto_msgTypes[0].OneofWrappers = []any{}
+	file_product_service_image_v0_image_proto_msgTypes[1].OneofWrappers = []any{}
+	file_product_service_image_v0_image_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_image_v0_image_proto_rawDesc), len(file_product_service_image_v0_image_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   8,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_product_service_image_v0_image_proto_goTypes,
 		DependencyIndexes: file_product_service_image_v0_image_proto_depIdxs,

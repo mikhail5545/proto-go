@@ -19,77 +19,65 @@ syntax = "proto3";
 
 package image.v0;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepb";
 
-/**
-*   Image represents a product-service-go image struct.
-**/
 message Image{
-    // External id (uuid) for media-service-go
-    string public_id = 1; 
-    string url = 2;
-    string secure_url = 3;
-    string media_service_id = 4;
+   string id = 1;
+   google.protobuf.Timestamp created_at = 2;
+   google.protobuf.Timestamp updated_at = 3;
+   
+   string media_service_id = 4;
+   string url = 5;
+   string secure_url = 6;
+   string public_id = 7;
+   optional int32 width = 8;
+   optional int32 height = 9;
 }
 
 message AddRequest{
-    string public_id = 1;
+    string owner_id = 1;
     string url = 2;
-    string secure_url = 3;
-    string media_service_id = 4;
-    string owner_id = 5;
-    string owner_type = 6;
+    string public_id = 3;
+    string secure_url = 4;
+    string media_service_id = 5;
+    optional int32 width = 6;
+    optional int32 height = 7;
+    string alt = 8;
+    optional string variant_id = 9;
+    string owner_type = 10;
 }
 
 message AddResponse{
-    string media_service_id = 1;
-    string owner_id = 2;
+    string owner_id = 1;
 }
 
-message DeleteRequest{
-    string media_service_id = 1;
-    string owner_id = 2;
+message AssociateRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string alt = 3;
+    optional string variant_id = 4;
+    string owner_type = 5;
+}
+
+message AssociateResponse{
+    string owner_id = 1;
+}
+
+message RemoveBatchRequest{
+    repeated string owner_ids = 1;
+    string media_service_id = 2;
     string owner_type = 3;
 }
 
-// DeleteResponse represents a response after successful image delete operation.
-message DeleteResponse{
-    // media-service-go asset.ID
-    string media_service_id = 1;
-    // number of affected owners
-    string owner_id = 2;
-}
-
-// AddBatchResponse represents a request to batch add an image to multiple owners.
-message AddBatchRequest{
-    string public_id = 1;
-    string url = 2;
-    string secure_url = 3;
-    string media_service_id = 4;
-    repeated string owner_ids = 5;
-    // owner type 'seminar', 'course', etc.
-    string owner_type = 6;
-}
-
-// AddBatchResponse represents a response after successful image batch add operation.
-message AddBatchResponse {
-    // number of affected owners
+message RemoveBatchResponse{
     int64 owners_affected = 1;
 }
 
-message DeleteBatchRequest{
-    string media_service_id = 1;
-    string owner_type = 2;
-    repeated string owner_ids = 3;
+message DeleteRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string owner_type = 3;
 }
 
-message DeleteBatchResponse {
-    int64 owners_affected = 1;
-}
-
-service ImageService{
-    rpc Add(AddRequest) returns (AddResponse) {}
-    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
-    rpc AddBatch(AddBatchRequest) returns (AddBatchResponse) {}
-    rpc DeleteBatch(DeleteBatchRequest) returns (DeleteBatchResponse) {}
-}

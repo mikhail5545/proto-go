@@ -23,90 +23,124 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/video/v0;videopb";
 
+enum VideoStatus{
+    STATUS_PREPARING = 0;
+    STATUS_READY = 1;
+    STATUS_ERRORED = 2;
+    STATUS_SUPERSEDED = 3;
+}
+
 message Video{
     string id = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
     optional google.protobuf.Timestamp deleted_at = 4;
-    optional string mux_upload_id = 5;
-    optional string mux_asset_id = 6;
-    optional string mux_playback_id = 7;
-    string state = 8;
-    optional string status = 9;
-    optional float duration = 10;
-    optional string aspect_ratio = 11;
-    optional int32 height = 12;
-    optional int32 width = 13;
-    optional google.protobuf.Timestamp asset_created_at = 14;
-    optional string max_resolution_tier = 15;
-    optional string max_stored_frame_rate = 16;
-    optional string ingest_type = 17;
-    optional string passthrough = 18;
-    optional string owner_id = 19;
-    optional string owner_type = 20;
-}
 
-// Owner represents minimal necessary information about video owner.
-message Owner{
-    string id = 1;
-    optional string video_id = 2;
+    string media_service_id = 5;
+    string public_playback_id = 6;
+    string signed_playback_id = 7;
+    float duration_seconds = 8;
+    string aspect_ratio = 9;
+    optional string thumbnail_url = 10;
+    VideoStatus status = 11;
 }
 
 message AddRequest{
     string owner_id = 1;
-    string owner_type = 2;
-    string media_service_id = 3;
+    string media_service_id = 2;
+    string public_playback_id = 3;
+    string signed_playback_id = 4;
+    float duration_seconds = 5;
+    string aspect_ratio = 6;
+    string thumbnail_url = 7;
+    VideoStatus status = 8;
+
+    bool is_primary = 9;
+    bool is_required = 10;
+    bool is_extra = 11;
+    string title = 12;
+    string owner_type = 13;
 }
 
 message AddResponse{
     string owner_id = 1;
-    string owner_type = 2;
 }
 
-message AddBatchRequest {
-    string media_service_id = 1;
-    string owner_type = 2;
-    repeated string owner_ids = 3;
-}
-
-message AddBatchResponse{
-    int64 owners_affected = 1;
-}
-
-message RemoveRequest{
-    string owner_id = 1;
-    string owner_type = 2;
-    string media_service_id = 3;
-}
-
-message RemoveResponse{
+message AssociateRequest{
     string owner_id = 1;
     string media_service_id = 2;
+    bool is_primary = 3;
+    bool is_required = 4;
+    bool is_extra = 5;
+    string title = 6;
+    string owner_type = 7;
 }
 
-message RemoveBatchRequest {
-    string media_service_id = 1;
-    string owner_type = 2;
-    repeated string owner_ids = 3;
-}
-
-message RemoveBatchResponse{
-    int64 owners_affected = 1;
-}
-
-message GetOwnerRequest {
+message AssociateResponse{
     string owner_id = 1;
-    string owner_type = 2;
 }
 
-message GetOwnerResponse{
-    Owner owner = 1;
+message ReplaceRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string public_playback_id = 3;
+    string signed_playback_id = 4;
+    float duration_seconds = 5;
+    string aspect_ratio = 6;
+    string thumbnail_url = 7;
+    VideoStatus status = 8;
+    string title = 9;
+    string owner_type = 10;
+}
+
+message ReplaceResponse{
+    string owner_id = 1;
+}
+
+message ReplaceFromExistingRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string title = 3;
+    string owner_type = 4;
+}
+
+message ReplaceFromExistingResponse {
+    string owner_id = 1;
+}
+
+message PushRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string public_playback_id = 3;
+    string signed_playback_id = 4;
+    float duration_seconds = 5;
+    string aspect_ratio = 6;
+    string thumbnail_url = 7;
+    VideoStatus status = 8;
+    string title = 9;
+    string owner_type = 10;
+}
+
+message PushResponse{
+    string owner_id = 1;
+}
+
+message PushFromExistingRequest{
+    string owner_id = 1;
+    string media_service_id = 2;
+    string title = 3;
+    string owner_type = 4;
+}
+
+message PushFromExistingResponse{
+    string owner_id = 1;
 }
 
 service VideoService{
     rpc Add(AddRequest) returns (AddResponse) {}
-    rpc AddBatch(AddBatchRequest) returns (AddBatchResponse) {}
-    rpc Remove(RemoveRequest) returns (RemoveResponse) {}
-    rpc RemoveBatch(RemoveBatchRequest) returns (RemoveBatchResponse) {}
-    rpc GetOwner(GetOwnerRequest) returns (GetOwnerResponse) {}
+    rpc Associate(AssociateRequest) returns (AssociateResponse) {}
+    rpc Replace(ReplaceRequest) returns (ReplaceResponse) {}
+    rpc ReplaceFromExisting(ReplaceFromExistingRequest) returns (ReplaceFromExistingResponse) {}
+    rpc Push(PushRequest) returns (PushResponse) {}
+    rpc PushFromExisting(PushFromExistingRequest) returns (PushFromExistingResponse) {}
 }

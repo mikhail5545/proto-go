@@ -36,38 +36,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PhysicalGoodService_Get_FullMethodName                = "/physical_good.v1.PhysicalGoodService/Get"
-	PhysicalGoodService_GetWithDeleted_FullMethodName     = "/physical_good.v1.PhysicalGoodService/GetWithDeleted"
-	PhysicalGoodService_GetWithUnpublished_FullMethodName = "/physical_good.v1.PhysicalGoodService/GetWithUnpublished"
-	PhysicalGoodService_List_FullMethodName               = "/physical_good.v1.PhysicalGoodService/List"
-	PhysicalGoodService_ListDeleted_FullMethodName        = "/physical_good.v1.PhysicalGoodService/ListDeleted"
-	PhysicalGoodService_ListUnpublished_FullMethodName    = "/physical_good.v1.PhysicalGoodService/ListUnpublished"
-	PhysicalGoodService_Create_FullMethodName             = "/physical_good.v1.PhysicalGoodService/Create"
-	PhysicalGoodService_Publish_FullMethodName            = "/physical_good.v1.PhysicalGoodService/Publish"
-	PhysicalGoodService_Unpublish_FullMethodName          = "/physical_good.v1.PhysicalGoodService/Unpublish"
-	PhysicalGoodService_Update_FullMethodName             = "/physical_good.v1.PhysicalGoodService/Update"
-	PhysicalGoodService_Delete_FullMethodName             = "/physical_good.v1.PhysicalGoodService/Delete"
-	PhysicalGoodService_DeletePermanent_FullMethodName    = "/physical_good.v1.PhysicalGoodService/DeletePermanent"
-	PhysicalGoodService_Restore_FullMethodName            = "/physical_good.v1.PhysicalGoodService/Restore"
+	PhysicalGoodService_Create_FullMethodName        = "/physical_good.v1.PhysicalGoodService/Create"
+	PhysicalGoodService_Update_FullMethodName        = "/physical_good.v1.PhysicalGoodService/Update"
+	PhysicalGoodService_CreateVariant_FullMethodName = "/physical_good.v1.PhysicalGoodService/CreateVariant"
+	PhysicalGoodService_UpdateVariant_FullMethodName = "/physical_good.v1.PhysicalGoodService/UpdateVariant"
+	PhysicalGoodService_Undraft_FullMethodName       = "/physical_good.v1.PhysicalGoodService/Undraft"
 )
 
 // PhysicalGoodServiceClient is the client API for PhysicalGoodService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PhysicalGoodServiceClient interface {
-	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
-	GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error)
-	GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error)
-	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error)
-	ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
-	Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error)
-	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
+	CreateVariant(ctx context.Context, in *CreateVariantRequest, opts ...grpc.CallOption) (*CreateVariantResponse, error)
+	UpdateVariant(ctx context.Context, in *UpdateVariantRequest, opts ...grpc.CallOption) (*UpdateVariantResponse, error)
+	Undraft(ctx context.Context, in *UndraftRequest, opts ...grpc.CallOption) (*UndraftResponse, error)
 }
 
 type physicalGoodServiceClient struct {
@@ -78,90 +62,10 @@ func NewPhysicalGoodServiceClient(cc grpc.ClientConnInterface) PhysicalGoodServi
 	return &physicalGoodServiceClient{cc}
 }
 
-func (c *physicalGoodServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_Get_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) GetWithDeleted(ctx context.Context, in *GetWithDeletedRequest, opts ...grpc.CallOption) (*GetWithDeletedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWithDeletedResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_GetWithDeleted_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) GetWithUnpublished(ctx context.Context, in *GetWithUnpublishedRequest, opts ...grpc.CallOption) (*GetWithUnpublishedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetWithUnpublishedResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_GetWithUnpublished_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_List_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) ListDeleted(ctx context.Context, in *ListDeletedRequest, opts ...grpc.CallOption) (*ListDeletedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListDeletedResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_ListDeleted_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) ListUnpublished(ctx context.Context, in *ListUnpublishedRequest, opts ...grpc.CallOption) (*ListUnpublishedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListUnpublishedResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_ListUnpublished_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *physicalGoodServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateResponse)
 	err := c.cc.Invoke(ctx, PhysicalGoodService_Create_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PublishResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_Publish_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *physicalGoodServiceClient) Unpublish(ctx context.Context, in *UnpublishRequest, opts ...grpc.CallOption) (*UnpublishResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UnpublishResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_Unpublish_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -178,30 +82,30 @@ func (c *physicalGoodServiceClient) Update(ctx context.Context, in *UpdateReques
 	return out, nil
 }
 
-func (c *physicalGoodServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *physicalGoodServiceClient) CreateVariant(ctx context.Context, in *CreateVariantRequest, opts ...grpc.CallOption) (*CreateVariantResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_Delete_FullMethodName, in, out, cOpts...)
+	out := new(CreateVariantResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_CreateVariant_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *physicalGoodServiceClient) DeletePermanent(ctx context.Context, in *DeletePermanentRequest, opts ...grpc.CallOption) (*DeletePermanentResponse, error) {
+func (c *physicalGoodServiceClient) UpdateVariant(ctx context.Context, in *UpdateVariantRequest, opts ...grpc.CallOption) (*UpdateVariantResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeletePermanentResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_DeletePermanent_FullMethodName, in, out, cOpts...)
+	out := new(UpdateVariantResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_UpdateVariant_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *physicalGoodServiceClient) Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error) {
+func (c *physicalGoodServiceClient) Undraft(ctx context.Context, in *UndraftRequest, opts ...grpc.CallOption) (*UndraftResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RestoreResponse)
-	err := c.cc.Invoke(ctx, PhysicalGoodService_Restore_FullMethodName, in, out, cOpts...)
+	out := new(UndraftResponse)
+	err := c.cc.Invoke(ctx, PhysicalGoodService_Undraft_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -212,19 +116,11 @@ func (c *physicalGoodServiceClient) Restore(ctx context.Context, in *RestoreRequ
 // All implementations must embed UnimplementedPhysicalGoodServiceServer
 // for forward compatibility.
 type PhysicalGoodServiceServer interface {
-	Get(context.Context, *GetRequest) (*GetResponse, error)
-	GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error)
-	GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error)
-	List(context.Context, *ListRequest) (*ListResponse, error)
-	ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error)
-	ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
-	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
-	Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error)
-	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
+	CreateVariant(context.Context, *CreateVariantRequest) (*CreateVariantResponse, error)
+	UpdateVariant(context.Context, *UpdateVariantRequest) (*UpdateVariantResponse, error)
+	Undraft(context.Context, *UndraftRequest) (*UndraftResponse, error)
 	mustEmbedUnimplementedPhysicalGoodServiceServer()
 }
 
@@ -235,44 +131,20 @@ type PhysicalGoodServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPhysicalGoodServiceServer struct{}
 
-func (UnimplementedPhysicalGoodServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) GetWithDeleted(context.Context, *GetWithDeletedRequest) (*GetWithDeletedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWithDeleted not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) GetWithUnpublished(context.Context, *GetWithUnpublishedRequest) (*GetWithUnpublishedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWithUnpublished not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) ListDeleted(context.Context, *ListDeletedRequest) (*ListDeletedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDeleted not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) ListUnpublished(context.Context, *ListUnpublishedRequest) (*ListUnpublishedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListUnpublished not implemented")
-}
 func (UnimplementedPhysicalGoodServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) Publish(context.Context, *PublishRequest) (*PublishResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Publish not implemented")
-}
-func (UnimplementedPhysicalGoodServiceServer) Unpublish(context.Context, *UnpublishRequest) (*UnpublishResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unpublish not implemented")
 }
 func (UnimplementedPhysicalGoodServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPhysicalGoodServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+func (UnimplementedPhysicalGoodServiceServer) CreateVariant(context.Context, *CreateVariantRequest) (*CreateVariantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateVariant not implemented")
 }
-func (UnimplementedPhysicalGoodServiceServer) DeletePermanent(context.Context, *DeletePermanentRequest) (*DeletePermanentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePermanent not implemented")
+func (UnimplementedPhysicalGoodServiceServer) UpdateVariant(context.Context, *UpdateVariantRequest) (*UpdateVariantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateVariant not implemented")
 }
-func (UnimplementedPhysicalGoodServiceServer) Restore(context.Context, *RestoreRequest) (*RestoreResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+func (UnimplementedPhysicalGoodServiceServer) Undraft(context.Context, *UndraftRequest) (*UndraftResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Undraft not implemented")
 }
 func (UnimplementedPhysicalGoodServiceServer) mustEmbedUnimplementedPhysicalGoodServiceServer() {}
 func (UnimplementedPhysicalGoodServiceServer) testEmbeddedByValue()                             {}
@@ -295,114 +167,6 @@ func RegisterPhysicalGoodServiceServer(s grpc.ServiceRegistrar, srv PhysicalGood
 	s.RegisterService(&PhysicalGoodService_ServiceDesc, srv)
 }
 
-func _PhysicalGoodService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).Get(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_Get_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).Get(ctx, req.(*GetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_GetWithDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWithDeletedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).GetWithDeleted(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_GetWithDeleted_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).GetWithDeleted(ctx, req.(*GetWithDeletedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_GetWithUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetWithUnpublishedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).GetWithUnpublished(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_GetWithUnpublished_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).GetWithUnpublished(ctx, req.(*GetWithUnpublishedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).List(ctx, req.(*ListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_ListDeleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDeletedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).ListDeleted(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_ListDeleted_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).ListDeleted(ctx, req.(*ListDeletedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_ListUnpublished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListUnpublishedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).ListUnpublished(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_ListUnpublished_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).ListUnpublished(ctx, req.(*ListUnpublishedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PhysicalGoodService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateRequest)
 	if err := dec(in); err != nil {
@@ -417,42 +181,6 @@ func _PhysicalGoodService_Create_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PhysicalGoodServiceServer).Create(ctx, req.(*CreateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_Publish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).Publish(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_Publish_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).Publish(ctx, req.(*PublishRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PhysicalGoodService_Unpublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnpublishRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).Unpublish(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PhysicalGoodService_Unpublish_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).Unpublish(ctx, req.(*UnpublishRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -475,56 +203,56 @@ func _PhysicalGoodService_Update_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PhysicalGoodService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+func _PhysicalGoodService_CreateVariant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateVariantRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).Delete(ctx, in)
+		return srv.(PhysicalGoodServiceServer).CreateVariant(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PhysicalGoodService_Delete_FullMethodName,
+		FullMethod: PhysicalGoodService_CreateVariant_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(PhysicalGoodServiceServer).CreateVariant(ctx, req.(*CreateVariantRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PhysicalGoodService_DeletePermanent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePermanentRequest)
+func _PhysicalGoodService_UpdateVariant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateVariantRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).DeletePermanent(ctx, in)
+		return srv.(PhysicalGoodServiceServer).UpdateVariant(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PhysicalGoodService_DeletePermanent_FullMethodName,
+		FullMethod: PhysicalGoodService_UpdateVariant_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).DeletePermanent(ctx, req.(*DeletePermanentRequest))
+		return srv.(PhysicalGoodServiceServer).UpdateVariant(ctx, req.(*UpdateVariantRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PhysicalGoodService_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RestoreRequest)
+func _PhysicalGoodService_Undraft_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UndraftRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PhysicalGoodServiceServer).Restore(ctx, in)
+		return srv.(PhysicalGoodServiceServer).Undraft(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PhysicalGoodService_Restore_FullMethodName,
+		FullMethod: PhysicalGoodService_Undraft_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PhysicalGoodServiceServer).Restore(ctx, req.(*RestoreRequest))
+		return srv.(PhysicalGoodServiceServer).Undraft(ctx, req.(*UndraftRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -537,56 +265,24 @@ var PhysicalGoodService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PhysicalGoodServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Get",
-			Handler:    _PhysicalGoodService_Get_Handler,
-		},
-		{
-			MethodName: "GetWithDeleted",
-			Handler:    _PhysicalGoodService_GetWithDeleted_Handler,
-		},
-		{
-			MethodName: "GetWithUnpublished",
-			Handler:    _PhysicalGoodService_GetWithUnpublished_Handler,
-		},
-		{
-			MethodName: "List",
-			Handler:    _PhysicalGoodService_List_Handler,
-		},
-		{
-			MethodName: "ListDeleted",
-			Handler:    _PhysicalGoodService_ListDeleted_Handler,
-		},
-		{
-			MethodName: "ListUnpublished",
-			Handler:    _PhysicalGoodService_ListUnpublished_Handler,
-		},
-		{
 			MethodName: "Create",
 			Handler:    _PhysicalGoodService_Create_Handler,
-		},
-		{
-			MethodName: "Publish",
-			Handler:    _PhysicalGoodService_Publish_Handler,
-		},
-		{
-			MethodName: "Unpublish",
-			Handler:    _PhysicalGoodService_Unpublish_Handler,
 		},
 		{
 			MethodName: "Update",
 			Handler:    _PhysicalGoodService_Update_Handler,
 		},
 		{
-			MethodName: "Delete",
-			Handler:    _PhysicalGoodService_Delete_Handler,
+			MethodName: "CreateVariant",
+			Handler:    _PhysicalGoodService_CreateVariant_Handler,
 		},
 		{
-			MethodName: "DeletePermanent",
-			Handler:    _PhysicalGoodService_DeletePermanent_Handler,
+			MethodName: "UpdateVariant",
+			Handler:    _PhysicalGoodService_UpdateVariant_Handler,
 		},
 		{
-			MethodName: "Restore",
-			Handler:    _PhysicalGoodService_Restore_Handler,
+			MethodName: "Undraft",
+			Handler:    _PhysicalGoodService_Undraft_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

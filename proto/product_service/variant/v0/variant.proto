@@ -1,0 +1,286 @@
+// github.com/mikhail5545/proto-go
+// shared proto module for vitainmove project microservices
+// Copyright (C) 2025  Mikhail Kulik
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package variant.v0;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+import "product_service/course_part/v0/course_part.proto";
+import "product_service/digital_asset/v0/digital_asset.proto";
+
+option go_package = "github.com/mikhail5545/proto-go/proto/product_service/variant/v0;variantpb";
+
+enum VariantPriceSource{
+    SOURCE_MANUAL = 0;
+    SOURCE_PROMOTION = 1;
+    SOURCE_AUTO_CONVERTED = 2;
+}
+
+message VariantPrice{
+    string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+
+    string variant_id = 4;
+    string market = 5;
+    string currency = 6;
+    int64 amount_minor = 7;
+
+    google.protobuf.Timestamp valid_from = 8;
+    optional google.protobuf.Timestamp valid_to = 9;
+
+    VariantPriceSource source = 10;
+    optional string created_by = 11;
+
+    optional string promotion_id = 12;
+    repeated course_part.v0.CoursePart course_parts = 13;
+    repeated digital_asset.v0.DigitalAsset digital_assets = 14;
+}
+
+enum VariantStatus{
+    STATUS_ACTIVE = 0;
+    STATUS_DRAFT = 1;
+    STATUS_ARCHIVED = 2;
+}
+
+enum VariantInventoryPolicy{
+    POLICY_DENY = 0;
+    POLICY_CONTINUE = 1;
+}
+
+enum VariantFormat{
+    FORMAT_ONLINE = 0;
+    FORMAT_OFFLINE = 1;
+}
+
+message Variant{
+    string id = 1;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp updated_at = 3;
+    optional google.protobuf.Timestamp deleted_at = 4;
+
+    // Foreign key to the parent Product.
+    string product_id = 5;
+    // The current status of the variant (e.g., draft, active).
+    VariantStatus status = 6;
+    // Stock Keeping Unit, a unique identifier for the variant.
+    string sku = 7;
+    // The title of the variant (e.g., "Large", "Blue").
+    string title = 8;
+
+    // The quantity of this variant in stock.
+    int32 inventory_quantity = 9;
+    // Whether to continue selling when out of stock.
+    VariantInventoryPolicy inventory_policy = 10;
+    // If true, customers can order this variant even if it's out of stock.
+    bool allow_backorder = 11;
+
+    // Whether this variant needs to be physically shipped.
+    bool requires_shipping = 12;
+    // The weight in grams, used for shipping calculations.
+    optional int32 weight_gram = 13;
+    // Harmonized System code for international shipping.
+    optional string hs_code = 14;
+
+    // The value for the first variant option (e.g., "Large").
+    optional string option1 = 15;
+    // The value for the second variant option (e.g., "Blue").
+    optional string option2 = 16;
+    // The value for the third variant option.
+    optional string option3 = 17;
+
+    // True if this is a digital product or service.
+    bool is_digital = 18;
+    // The maximum number of times a digital file can be downloaded.
+    optional int32 download_limit = 19;
+    // How many days the customer has access; null means lifetime.
+    optional int32 access_duration_days = 20;
+
+    // Duration of the course or training in minutes.
+    optional int32 duration_minutes = 21;
+    // The format of the variant (e.g., online, offline).
+    optional VariantFormat foramt = 22;
+    // True if this is the default variant for a product.
+    bool is_default = 23;
+
+    // The date and time this variant becomes available for purchase.
+    optional google.protobuf.Timestamp available_from = 24;
+    // The date and time this variant is no longer available.
+    optional google.protobuf.Timestamp available_to = 25;
+
+    // True if this variant represents an additional charge.
+    bool is_surcharge = 26;
+    // If a surcharge, this points to the base variant.
+    optional string base_variant_id = 27;
+
+    // Maximum seats available, if it varies between variants of an event.
+    optional int32 max_seats = 28;
+
+    optional VariantPrice current_price = 29;
+}
+
+message GetRequest{
+    string id = 1;
+    optional string market = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+}
+
+message GetResponse{
+    Variant variant = 1;
+}
+
+message GetWithDraftRequest{
+    string id = 1;
+    optional string market = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+}
+
+message GetWithDraftResponse{
+    Variant variant = 1;
+}
+
+message GetWithDeletedRequest{
+    string id = 1;
+    optional string market = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+}
+
+message GetWithDeletedResponse{
+    Variant variant = 1;
+}
+
+message ListRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+    optional string market = 5;
+}
+
+message ListResponse{
+    repeated Variant variants = 1;
+    int64 total = 2;
+}
+
+message ListDraftsRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+    optional string market = 5;
+}
+
+message ListDraftsResponse{
+    repeated Variant variants = 1;
+    int64 total = 2;
+}
+
+message ListDeletedRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    optional string option = 3;
+    optional google.protobuf.Any value = 4;
+    optional string market = 5;
+}
+
+message ListDeletedResponse{
+    repeated Variant variants = 1;
+    int64 total = 2;
+}
+
+message ArchiveRequest{
+    string id = 1;
+}
+
+message ArchiveResponse{
+    string id = 1;
+}
+
+message UnarchiveRequest{
+    string id = 1;
+}
+
+message UnarchiveResponse{
+    string id = 1;
+}
+
+message CreatePriceRequest{
+    string variant_id = 1;
+    string market = 2;
+    string currency = 3;
+    int64 amount_minor = 4;
+    optional string created_by = 5;
+}
+
+message CreatePriceResponse{
+    VariantPrice price = 1;
+}
+
+message InvalidatePriceRequest {
+    string price_id = 1;
+}
+
+message InvalidatePriceResponse {
+    string price_id = 1;
+}
+
+message ListPricesRequest{
+    string variant_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+    optional string option = 4;
+    optional google.protobuf.Any value = 5;
+}
+
+message ListPricesResponse {
+    repeated VariantPrice prices = 1;
+    int64 total = 2;
+}
+
+message ListIrrelevantPricesRequest{
+    string variant_id = 1;
+    int32 limit = 2;
+    int32 offset = 3;
+    optional string option = 4;
+    optional google.protobuf.Any value = 5;
+}
+
+message ListIrrelevantPricesResponse {
+    repeated VariantPrice prices = 1;
+    int64 total = 2;
+}
+
+service VariantService{
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetWithDraft(GetWithDraftRequest) returns (GetWithDraftResponse) {}
+    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
+    rpc List(ListRequest) returns (ListResponse) {}
+    rpc ListDrafts(ListDraftsRequest) returns (ListDraftsResponse) {}
+    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {} 
+    rpc Archive(ArchiveRequest) returns (ArchiveResponse) {}
+    rpc Unarchive(UnarchiveRequest) returns (UnarchiveResponse) {}
+    rpc CreatePrice(CreatePriceRequest) returns (CreatePriceResponse) {}
+    rpc InvalidatePrice(InvalidatePriceRequest) returns (InvalidatePriceResponse) {}
+    rpc ListPrices(ListPricesRequest) returns (ListPricesResponse) {}
+    rpc ListIrrelevantPrices(ListIrrelevantPricesRequest) returns (ListIrrelevantPricesResponse) {}
+}
