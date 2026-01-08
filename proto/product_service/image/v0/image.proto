@@ -1,20 +1,3 @@
-// github.com/mikhail5545/proto-go
-// shared proto module for vitainmove project microservices
-// Copyright (C) 2025  Mikhail Kulik
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 syntax = "proto3";
 
 package image.v0;
@@ -23,61 +6,31 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepb";
 
+enum ImageStatus{
+  STATUS_ACTIVE = 0;
+  STATUS_DRAFT = 1;
+  STATUS_ARCHIVED = 2;
+  STATUS_BROKEN = 3;
+}
+
 message Image{
-   string id = 1;
+   bytes uuid = 1;
    google.protobuf.Timestamp created_at = 2;
    google.protobuf.Timestamp updated_at = 3;
-   
-   string media_service_id = 4;
-   string url = 5;
-   string secure_url = 6;
-   string public_id = 7;
-   optional int32 width = 8;
-   optional int32 height = 9;
+
+  ImageStatus Status = 4;
+
+   bytes media_service_uuid = 5;
+   string url = 6;
+   string secure_url = 7;
+   string public_id = 8;
+   string format = 9;
+   string resource_type = 10;
+   string folder = 11;
+   string display_name = 12;
+   optional int32 width = 13;
+   optional int32 height = 14;
 }
 
-message AddRequest{
-    string owner_id = 1;
-    string url = 2;
-    string public_id = 3;
-    string secure_url = 4;
-    string media_service_id = 5;
-    optional int32 width = 6;
-    optional int32 height = 7;
-    string alt = 8;
-    optional string variant_id = 9;
-    string owner_type = 10;
-}
 
-message AddResponse{
-    string owner_id = 1;
-}
-
-message AssociateRequest{
-    string owner_id = 1;
-    string media_service_id = 2;
-    string alt = 3;
-    optional string variant_id = 4;
-    string owner_type = 5;
-}
-
-message AssociateResponse{
-    string owner_id = 1;
-}
-
-message RemoveBatchRequest{
-    repeated string owner_ids = 1;
-    string media_service_id = 2;
-    string owner_type = 3;
-}
-
-message RemoveBatchResponse{
-    int64 owners_affected = 1;
-}
-
-message DeleteRequest{
-    string owner_id = 1;
-    string media_service_id = 2;
-    string owner_type = 3;
-}
 

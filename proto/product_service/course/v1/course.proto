@@ -1,20 +1,3 @@
-// github.com/mikhail5545/proto-go
-// shared proto module for vitainmove project microservices
-// Copyright (C) 2025  Mikhail Kulik
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 syntax = "proto3";
 
 package course.v1;
@@ -23,14 +6,19 @@ import "product_service/product/v0/product.proto";
 import "product_service/variant/v0/variant.proto";
 
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/course/v1;coursepb";
 
 message CreateRequest{
     string title = 1;
-    optional string subtitle = 2;
-    string short_description = 3;
-    repeated string tags = 4;
+    optional string slug = 2;
+    optional string subtitle = 3;
+    string short_description = 4;
+    repeated string tags = 5;
+    bytes admin_uuid = 6;
+    string admin_name = 7;
+    string note = 8;
 }
 
 message CreateResponse{
@@ -38,37 +26,49 @@ message CreateResponse{
 }
 
 message UpdateRequest{
-    string id = 1;
+    bytes uuid = 1;
     optional string title = 2;
-    optional string subtitle = 3;
-    optional string description = 4;
-    optional string short_description = 5;
-    repeated string tags = 6;
-    optional string metadata = 7;
-    optional google.protobuf.FieldMask updates = 8;
+    optional string slug = 3;
+    bool regenerate_slug = 4;
+    optional string subtitle = 5;
+    optional string description = 6;
+    optional string short_description = 7;
+    repeated string tags = 8;
+    optional string metadata = 9;
+    optional string meta_title = 10;
+    optional string meta_description = 11;
+    optional google.protobuf.FieldMask updates = 12;
 }
 
 message UpdateResponse{
-    string id = 1;
+    bytes uuid = 1;
     optional string title = 2;
-    optional string subtitle = 3;
-    optional string description = 4;
-    optional string short_description = 5;
-    repeated string tags = 6;
-    optional string metadata = 7;
-    optional google.protobuf.FieldMask updates = 9;
+    optional string slug = 3;
+    optional string subtitle = 4;
+    optional string description = 5;
+    optional string short_description = 6;
+    repeated string tags = 7;
+    optional string metadata = 8;
+    optional string meta_title = 9;
+    optional string meta_description = 10;
+    optional google.protobuf.FieldMask updates = 11;
 }
 
 message CreateVariantRequest{
-    string product_id = 1;
+    bytes product_uuid = 1;
     string title = 2;
-    optional int32 download_limit = 3;
+    string sku = 3;
+    optional int32 download_limit = 4;
 
-    optional string option1 = 4;
-    optional string option2 = 5;
-    optional string option3 = 6;
+    optional string option1 = 5;
+    optional string option2 = 6;
+    optional string option3 = 7;
 
-    optional int32 access_duration_days = 7;
+    optional int32 access_duration_days = 8;
+
+    bytes admin_uuid = 9;
+    string admin_name = 10;
+    string note = 11;
 }
 
 message CreateVariantResponse{
@@ -76,45 +76,47 @@ message CreateVariantResponse{
 }
 
 message UpdateVariantRequest{
-    string variant_id = 1;
-    string product_id = 2;
+    bytes variant_uuid = 1;
+    bytes product_uuid = 2;
     optional string title = 3;
-    
-    optional variant.v0.VariantInventoryPolicy inventory_policy = 4;
-    optional bool allow_backorder = 5;
-    
-    optional string option1 = 6;
-    optional string option2 = 7;
-    optional string option3 = 8;
+    optional string sku = 4;
+    bool regenerate_sku = 5;
 
-    optional int32 download_limit = 9;
-    optional int32 access_duration_days = 10;
-    optional google.protobuf.FieldMask updates = 11;
+    optional variant.v0.VariantInventoryPolicy inventory_policy = 6;
+    optional bool allow_backorder = 7;
+    
+    optional string option1 = 8;
+    optional string option2 = 9;
+    optional string option3 = 10;
+
+    optional int32 download_limit = 11;
+    optional int32 access_duration_days = 12;
+    optional google.protobuf.FieldMask updates = 13;
 }
 
 message UpdateVariantResponse{
-    string variant_id = 1;
-    string product_id = 2;
+    bytes variant_uuid = 1;
+    bytes product_uuid = 2;
     optional string title = 3;
-    
-    optional variant.v0.VariantInventoryPolicy inventory_policy = 4;
-    optional bool allow_backorder = 5;
-    
-    optional string option1 = 6;
-    optional string option2 = 7;
-    optional string option3 = 8;
+    optional string sku = 4;
 
-    optional int32 download_limit = 9;
-    optional int32 access_duration_days = 10;
-    optional google.protobuf.FieldMask updates = 11;
+    optional variant.v0.VariantInventoryPolicy inventory_policy = 5;
+    optional bool allow_backorder = 6;
+    
+    optional string option1 = 7;
+    optional string option2 = 8;
+    optional string option3 = 9;
+
+    optional int32 download_limit = 10;
+    optional int32 access_duration_days = 11;
+    optional google.protobuf.FieldMask updates = 12;
 }
 
-message UndraftRequest{
-    string id = 1;
-}
-
-message UndraftResponse{
-    string id = 2;
+message ChangeStateRequest {
+    bytes uuid = 1;
+    bytes admin_uuid = 2;
+    string admin_name = 3;
+    string note = 4;
 }
 
 service CourseService{
@@ -122,5 +124,6 @@ service CourseService{
     rpc Update(UpdateRequest) returns (UpdateResponse) {}
     rpc CreateVariant(CreateVariantRequest) returns (CreateVariantResponse) {}
     rpc UpdateVariant(UpdateVariantRequest) returns (UpdateVariantResponse) {}
-    rpc Undraft(UndraftRequest) returns (UndraftResponse) {}
+    rpc Publish(ChangeStateRequest) returns (google.protobuf.Empty) {}
+    rpc Archive(ChangeStateRequest) returns (google.protobuf.Empty) {}
 }

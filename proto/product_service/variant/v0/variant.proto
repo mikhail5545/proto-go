@@ -1,58 +1,15 @@
-// github.com/mikhail5545/proto-go
-// shared proto module for vitainmove project microservices
-// Copyright (C) 2025  Mikhail Kulik
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-
-// You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 syntax = "proto3";
 
 package variant.v0;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
 
-import "product_service/course_part/v0/course_part.proto";
-import "product_service/digital_asset/v0/digital_asset.proto";
+import "product_service/variant/variant_price/v0/variant_price.proto";
+import "product_service/digital/v0/digital.proto";
+import "product_service/lesson/v0/lesson.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/variant/v0;variantpb";
-
-enum VariantPriceSource{
-    SOURCE_MANUAL = 0;
-    SOURCE_PROMOTION = 1;
-    SOURCE_AUTO_CONVERTED = 2;
-}
-
-message VariantPrice{
-    string id = 1;
-    google.protobuf.Timestamp created_at = 2;
-    google.protobuf.Timestamp updated_at = 3;
-
-    string variant_id = 4;
-    string market = 5;
-    string currency = 6;
-    int64 amount_minor = 7;
-
-    google.protobuf.Timestamp valid_from = 8;
-    optional google.protobuf.Timestamp valid_to = 9;
-
-    VariantPriceSource source = 10;
-    optional string created_by = 11;
-
-    optional string promotion_id = 12;
-    repeated course_part.v0.CoursePart course_parts = 13;
-    repeated digital_asset.v0.DigitalAsset digital_assets = 14;
-}
 
 enum VariantStatus{
     STATUS_ACTIVE = 0;
@@ -71,13 +28,13 @@ enum VariantFormat{
 }
 
 message Variant{
-    string id = 1;
+    bytes uuid = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
     optional google.protobuf.Timestamp deleted_at = 4;
 
     // Foreign key to the parent Product.
-    string product_id = 5;
+    bytes product_id = 5;
     // The current status of the variant (e.g., draft, active).
     VariantStatus status = 6;
     // Stock Keeping Unit, a unique identifier for the variant.
@@ -116,7 +73,7 @@ message Variant{
     // Duration of the course or training in minutes.
     optional int32 duration_minutes = 21;
     // The format of the variant (e.g., online, offline).
-    optional VariantFormat foramt = 22;
+    optional VariantFormat format = 22;
     // True if this is the default variant for a product.
     bool is_default = 23;
 
@@ -133,154 +90,71 @@ message Variant{
     // Maximum seats available, if it varies between variants of an event.
     optional int32 max_seats = 28;
 
-    optional VariantPrice current_price = 29;
+    repeated variant_price.v0.VariantPrice prices = 29;
+    repeated lesson.v0.Lesson lessons = 30;
+    repeated digital.v0.Asset assets = 31;
+
+    optional string note = 32;
+    optional string archive_reason = 33;
+
+    optional bytes created_by = 34;
+    optional bytes published_by = 35;
+    optional bytes archived_by = 36;
+    optional bytes restored_by = 37;
+
+    optional string created_by_name = 38;
+    optional string published_by_name = 39;
+    optional string archived_by_name = 40;
+    optional string restored_by_name = 41;
 }
 
 message GetRequest{
-    string id = 1;
-    optional string market = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
+    optional bytes uuid = 1;
+    optional string sku = 2;
+    // ISO 3166 alpha-3 country code to specify the market context.
+    string market = 3;
 }
 
 message GetResponse{
-    Variant variant = 1;
-}
-
-message GetWithDraftRequest{
-    string id = 1;
-    optional string market = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-}
-
-message GetWithDraftResponse{
-    Variant variant = 1;
-}
-
-message GetWithDeletedRequest{
-    string id = 1;
-    optional string market = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-}
-
-message GetWithDeletedResponse{
-    Variant variant = 1;
+    variant.v0.Variant variant = 1;
 }
 
 message ListRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
+    repeated bytes uuids = 1;
+    repeated string skus = 2;
+    repeated bytes product_uuids = 3;
+    repeated string markets = 4;
+    repeated VariantFormat formats = 5;
+    optional bool requires_shipping = 6;
+    optional bool is_digital = 7;
+
+    int32 page_size = 8;
+    string page_token = 9;
+
+    optional string order_by = 10;
+    optional string order_dir = 11;
 }
 
 message ListResponse{
-    repeated Variant variants = 1;
-    int64 total = 2;
+    repeated variant.v0.Variant variants = 1;
+    string next_page_token = 2;
 }
 
-message ListDraftsRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
-}
-
-message ListDraftsResponse{
-    repeated Variant variants = 1;
-    int64 total = 2;
-}
-
-message ListDeletedRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
-}
-
-message ListDeletedResponse{
-    repeated Variant variants = 1;
-    int64 total = 2;
-}
-
-message ArchiveRequest{
-    string id = 1;
-}
-
-message ArchiveResponse{
-    string id = 1;
-}
-
-message UnarchiveRequest{
-    string id = 1;
-}
-
-message UnarchiveResponse{
-    string id = 1;
-}
-
-message CreatePriceRequest{
-    string variant_id = 1;
-    string market = 2;
-    string currency = 3;
-    int64 amount_minor = 4;
-    optional string created_by = 5;
-}
-
-message CreatePriceResponse{
-    VariantPrice price = 1;
-}
-
-message InvalidatePriceRequest {
-    string price_id = 1;
-}
-
-message InvalidatePriceResponse {
-    string price_id = 1;
-}
-
-message ListPricesRequest{
-    string variant_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-    optional string option = 4;
-    optional google.protobuf.Any value = 5;
-}
-
-message ListPricesResponse {
-    repeated VariantPrice prices = 1;
-    int64 total = 2;
-}
-
-message ListIrrelevantPricesRequest{
-    string variant_id = 1;
-    int32 limit = 2;
-    int32 offset = 3;
-    optional string option = 4;
-    optional google.protobuf.Any value = 5;
-}
-
-message ListIrrelevantPricesResponse {
-    repeated VariantPrice prices = 1;
-    int64 total = 2;
+message ChangeStateRequest{
+    bytes uuid = 1;
+    bytes admin_uuid = 3;
+    string admin_name = 4;
+    string note = 5;
 }
 
 service VariantService{
-    rpc Get(GetRequest) returns (GetResponse) {}
-    rpc GetWithDraft(GetWithDraftRequest) returns (GetWithDraftResponse) {}
-    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
-    rpc List(ListRequest) returns (ListResponse) {}
-    rpc ListDrafts(ListDraftsRequest) returns (ListDraftsResponse) {}
-    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse) {} 
-    rpc Archive(ArchiveRequest) returns (ArchiveResponse) {}
-    rpc Unarchive(UnarchiveRequest) returns (UnarchiveResponse) {}
-    rpc CreatePrice(CreatePriceRequest) returns (CreatePriceResponse) {}
-    rpc InvalidatePrice(InvalidatePriceRequest) returns (InvalidatePriceResponse) {}
-    rpc ListPrices(ListPricesRequest) returns (ListPricesResponse) {}
-    rpc ListIrrelevantPrices(ListIrrelevantPricesRequest) returns (ListIrrelevantPricesResponse) {}
+    rpc Get(GetRequest) returns (GetResponse);
+    rpc GetWithDraft(GetRequest) returns (GetResponse);
+    rpc GetWithArchived(GetRequest) returns (GetResponse);
+    rpc List(ListRequest) returns (ListResponse);
+    rpc ListDrafts(ListRequest) returns (ListResponse);
+    rpc ListArchived(ListRequest) returns (ListResponse);
+    rpc Publish(ChangeStateRequest) returns (google.protobuf.Empty);
+    rpc Archive(ChangeStateRequest) returns (google.protobuf.Empty);
+    rpc Restore(ChangeStateRequest) returns (google.protobuf.Empty);
 }

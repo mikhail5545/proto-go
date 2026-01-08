@@ -20,7 +20,7 @@ syntax = "proto3";
 package product.v0;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
 
 import "product_service/variant/v0/variant.proto";
 import "product_service/category/v0/category.proto";
@@ -92,6 +92,18 @@ message Product{
     repeated category.v0.Category categories = 24;
     // Collections the product is part of.
     repeated collection.v0.Collection collections = 25;
+
+    optional bytes created_by = 26;
+    optional bytes published_by = 27;
+    optional bytes archived_by = 28;
+    optional bytes restored_by = 29;
+    optional string created_by_name = 30;
+    optional string published_by_name = 31;
+    optional string archived_by_name = 32;
+    optional string restored_by_name = 33;
+
+    optional string note = 34;
+    optional string archive_reason = 35;
 }
 
 message ProductImage{
@@ -103,144 +115,63 @@ message ProductImage{
 }
 
 message GetRequest{
-    string id = 1;
-    optional string option = 2;
-    optional google.protobuf.Any value = 3;
-    optional string market = 4;
+    optional bytes uuid = 1;
+    optional string slug = 2;
+    string market = 3;
 }
 
 message GetResponse{
-    Product product = 1;
-}
-
-message GetWithDeletedRequest{
-    string id = 1;
-    optional string option = 2;
-    optional google.protobuf.Any value = 3;
-    optional string market = 4;
-}
-
-message GetWithDeletedResponse{
-    Product product = 1;
-}
-
-message GetWithDratRequest{
-    string id = 1;
-    optional string option = 2;
-    optional google.protobuf.Any value = 3;
-    optional string market = 4;
-}
-
-message GetWithDratResponse{
-    Product product = 1;
+    product.v0.Product product = 1;
 }
 
 message ListRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
+    repeated string markets = 1;
+    int32 page_size = 2;
+    string page_token = 3;
+
+    repeated bytes uuids = 4;
+    repeated string slugs = 5;
+    repeated ProductType types = 6;
+    repeated bytes category_uuids = 7;
+    repeated bytes collection_uuids = 8;
+
+    optional string order_by = 9;
+    optional string order_dir = 10;
 }
 
 message ListResponse{
-    repeated Product products = 1;
-    int64 total = 2;
+    repeated product.v0.Product products = 1;
+    string next_page_token = 2;
 }
 
-message ListDraftsRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
+message ManageCategoryRequest{
+    bytes product_uuid = 1;
+    bytes category_uuid = 2;
 }
 
-message ListDraftsResponse{
-    repeated Product products = 1;
-    int64 total = 2;
+message ManageCollectionRequest{
+    bytes product_uuid = 1;
+    bytes collection_uuid = 2;
 }
 
-message ListDeletedRequest{
-    int32 limit = 1;
-    int32 offset = 2;
-    optional string option = 3;
-    optional google.protobuf.Any value = 4;
-    optional string market = 5;
-}
-
-message ListDeletedResponse{
-    repeated Product products = 1;
-    int64 total = 2;
-}
-
-message AddCategoryRequest{
-    string id = 1;
-    string category_id = 2;
-}
-
-message AddCategoryResponse{
-    string id = 1;
-    string category_id = 2;
-}
-
-message AddCollectionRequest{
-    string id = 1;
-    string collection_id = 2;
-}
-
-message AddCollectionResponse{
-    string id = 1;
-    string collection_id = 2;
-}
-
-message RemoveCategoryRequest{
-    string id = 1;
-    string category_id = 2;
-}
-
-message RemoveCategoryResponse{
-    string id = 1;
-    string category_id = 2;
-}
-
-message RemoveCollectionRequest{
-    string id = 1;
-    string collection_id = 2;
-}
-
-message RemoveCollectionResponse{
-    string id = 1;
-    string collection_id = 2;
-}
-
-message ArchiveRequest{
-    string id = 1;
-}
-
-message ArchiveResponse{
-    string id = 1;
-}
-
-message UnarchiveRequest{
-    string id = 1;
-}
-
-message UnarchiveResponse{
-    string id = 1;
+message ChangeStateRequest{
+    bytes uuid = 1;
+    bytes admin_uuid = 2;
+    string admin_name = 3;
+    string note = 4;
 }
 
 service ProductService{
-    rpc Get(GetRequest) returns (GetResponse) {}
-    rpc GetWithDraft(GetWithDratRequest) returns (GetWithDratResponse) {}
-    rpc GetWithDeleted(GetWithDeletedRequest) returns (GetWithDeletedResponse) {}
-    rpc List(ListRequest) returns (ListResponse) {}
-    rpc ListDrafts(ListDraftsRequest) returns (ListDraftsResponse) {}
-    rpc ListDeleted(ListDeletedRequest) returns (ListDeletedResponse){}
-    rpc AddCategory(AddCategoryRequest) returns (AddCategoryResponse) {}
-    rpc RemoveCategory(RemoveCategoryRequest) returns (RemoveCategoryResponse) {}
-    rpc AddCollection(AddCollectionRequest) returns (AddCollectionResponse) {}
-    rpc RemoveCollection(RemoveCollectionRequest) returns (RemoveCollectionResponse) {}
-    rpc Archive(ArchiveRequest) returns (ArchiveResponse) {}
-    rpc Unarchive(UnarchiveRequest) returns (UnarchiveResponse) {}
+    rpc Get(GetRequest) returns (GetResponse);
+    rpc GetWithDraft(GetRequest) returns (GetResponse);
+    rpc GetWithArchived(GetRequest) returns (GetResponse);
+    rpc List(ListRequest) returns (ListResponse);
+    rpc ListDrafts(ListRequest) returns (ListResponse);
+    rpc ListArchived(ListRequest) returns (ListResponse);
+    rpc AddCategory(ManageCategoryRequest) returns (google.protobuf.Empty);
+    rpc RemoveCategory(ManageCategoryRequest) returns (google.protobuf.Empty);
+    rpc AddCollection(ManageCollectionRequest) returns (google.protobuf.Empty);
+    rpc RemoveCollection(ManageCollectionRequest) returns (google.protobuf.Empty);
+    rpc Archive(ChangeStateRequest) returns (google.protobuf.Empty);
+    rpc Restore(ChangeStateRequest) returns (google.protobuf.Empty);
 }

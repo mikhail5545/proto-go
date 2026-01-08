@@ -1,6 +1,6 @@
 # Shared Protobuf Go module
 
-## Protocol bufffer compiler installation
+## Protocol buffer compiler installation
 
 To compile .proto fils you need to install *protocol buffer compiler*, to do so:
 
@@ -16,6 +16,14 @@ To compile .proto fils you need to install *protocol buffer compiler*, to do so:
 ```PowerShell
     winget install protobuf
     protoc --version #Ensure compiler version satisfies your expectations
+```
+
+## Install go packages
+
+```bash
+    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    go install google.golang.org/grpc/cmd/protoc-gen-go@latest
+    which protoc-gen-go
 ```
 
 ## Compile .proto files
@@ -35,18 +43,20 @@ To compile files for `product_service` directory:
     protoc  --proto_path=proto \
     --go_out=. --go_opt=module=github.com/mikhail5545/proto-go \
     --go-grpc_out=. --go-grpc_opt=module=github.com/mikhail5545/proto-go \
-    proto/product_service/course/v0/*.proto \
+    proto/product_service/category/v0/*.proto \
+    proto/product_service/collection/v0/*.proto
     proto/product_service/course/v1/*.proto \
-    proto/product_service/course_part/v0/*.proto \
-    proto/product_service/physical_good/v0/*.proto \
-    proto/product_service/physical_good/v1/*.proto \
-    proto/product_service/product/v0/*.proto \
-    proto/product_service/seminar/v0/*.proto \
-    proto/product_service/seminar/v1/*.proto \
-    proto/product_service/training_session/v0/*.proto \
-    proto/product_service/training_session/v1/*.proto \
+    proto/product_service/digital/v0/*.proto \
     proto/product_service/image/v0/*.proto \
-    proto/product_service/video/v0/*.proto
+    proto/product_service/lesson/v0/*.proto \
+    proto/product_service/lesson/lesson_video/v0/*.proto \
+    proto/product_service/physical/v1/*.proto \
+    proto/product_service/product/v0/*.proto \
+    proto/product_service/seminar/v1/*.proto \
+    proto/product_service/training/v1/*.proto \
+    proto/product_service/variant/v0/*.proto \
+    proto/product_service/variant/variant_price/v0/*.proto \
+    proto/product_service/video/v0/*.proto 
 ```
 
 To compile files for `media_service` directory:

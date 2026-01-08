@@ -1,6 +1,19 @@
-// github.com/mikhail5545/proto-go
-// shared proto module for vitainmove project microservices
-// Copyright (C) 2025  Mikhail Kulik
+/*
+ * github.com/mikhail5545/proto-go
+ * Copyright (c) 2026.  Mikhail Kulik
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -19,9 +32,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.21.12
-// source: product_service/training_session/v0/training_session.proto
+// source: product_service/physical_good/v0/physical_good.proto
 
-package trainingsesssionpb
+package physicalgoodpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -52,7 +65,7 @@ type Image struct {
 
 func (x *Image) Reset() {
 	*x = Image{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[0]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -64,7 +77,7 @@ func (x *Image) String() string {
 func (*Image) ProtoMessage() {}
 
 func (x *Image) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[0]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +90,7 @@ func (x *Image) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Image.ProtoReflect.Descriptor instead.
 func (*Image) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{0}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Image) GetPublicId() string {
@@ -108,40 +121,40 @@ func (x *Image) GetMediaServiceId() string {
 	return ""
 }
 
-type TrainingSession struct {
+type PhysicalGood struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	CreatedAt           *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt           *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	DeletedAt           *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	Tags                []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
-	Images              []*Image               `protobuf:"bytes,6,rep,name=images,proto3" json:"images,omitempty"`
-	Name                string                 `protobuf:"bytes,7,opt,name=name,proto3" json:"name,omitempty"`
-	ShortDescription    string                 `protobuf:"bytes,8,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	LongDescription     string                 `protobuf:"bytes,9,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
+	Name                string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Tags                []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	ShortDescription    string                 `protobuf:"bytes,7,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
+	LongDescription     string                 `protobuf:"bytes,8,opt,name=long_description,json=longDescription,proto3" json:"long_description,omitempty"`
+	Amount              int32                  `protobuf:"varint,9,opt,name=amount,proto3" json:"amount,omitempty"`
 	InStock             bool                   `protobuf:"varint,10,opt,name=in_stock,json=inStock,proto3" json:"in_stock,omitempty"`
-	DurationMinutes     int32                  `protobuf:"varint,11,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
-	Format              string                 `protobuf:"bytes,12,opt,name=format,proto3" json:"format,omitempty"`
+	Images              []*Image               `protobuf:"bytes,11,rep,name=images,proto3" json:"images,omitempty"`
+	ShippingRequired    bool                   `protobuf:"varint,12,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
 	UploadedImageAmount int32                  `protobuf:"varint,13,opt,name=uploaded_image_amount,json=uploadedImageAmount,proto3" json:"uploaded_image_amount,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
 
-func (x *TrainingSession) Reset() {
-	*x = TrainingSession{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[1]
+func (x *PhysicalGood) Reset() {
+	*x = PhysicalGood{}
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TrainingSession) String() string {
+func (x *PhysicalGood) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TrainingSession) ProtoMessage() {}
+func (*PhysicalGood) ProtoMessage() {}
 
-func (x *TrainingSession) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[1]
+func (x *PhysicalGood) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,126 +165,126 @@ func (x *TrainingSession) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TrainingSession.ProtoReflect.Descriptor instead.
-func (*TrainingSession) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use PhysicalGood.ProtoReflect.Descriptor instead.
+func (*PhysicalGood) Descriptor() ([]byte, []int) {
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *TrainingSession) GetId() string {
+func (x *PhysicalGood) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *TrainingSession) GetCreatedAt() *timestamppb.Timestamp {
+func (x *PhysicalGood) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
 }
 
-func (x *TrainingSession) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *PhysicalGood) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
 	return nil
 }
 
-func (x *TrainingSession) GetDeletedAt() *timestamppb.Timestamp {
+func (x *PhysicalGood) GetDeletedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DeletedAt
 	}
 	return nil
 }
 
-func (x *TrainingSession) GetTags() []string {
-	if x != nil {
-		return x.Tags
-	}
-	return nil
-}
-
-func (x *TrainingSession) GetImages() []*Image {
-	if x != nil {
-		return x.Images
-	}
-	return nil
-}
-
-func (x *TrainingSession) GetName() string {
+func (x *PhysicalGood) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *TrainingSession) GetShortDescription() string {
+func (x *PhysicalGood) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *PhysicalGood) GetShortDescription() string {
 	if x != nil {
 		return x.ShortDescription
 	}
 	return ""
 }
 
-func (x *TrainingSession) GetLongDescription() string {
+func (x *PhysicalGood) GetLongDescription() string {
 	if x != nil {
 		return x.LongDescription
 	}
 	return ""
 }
 
-func (x *TrainingSession) GetInStock() bool {
+func (x *PhysicalGood) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *PhysicalGood) GetInStock() bool {
 	if x != nil {
 		return x.InStock
 	}
 	return false
 }
 
-func (x *TrainingSession) GetDurationMinutes() int32 {
+func (x *PhysicalGood) GetImages() []*Image {
 	if x != nil {
-		return x.DurationMinutes
+		return x.Images
 	}
-	return 0
+	return nil
 }
 
-func (x *TrainingSession) GetFormat() string {
+func (x *PhysicalGood) GetShippingRequired() bool {
 	if x != nil {
-		return x.Format
+		return x.ShippingRequired
 	}
-	return ""
+	return false
 }
 
-func (x *TrainingSession) GetUploadedImageAmount() int32 {
+func (x *PhysicalGood) GetUploadedImageAmount() int32 {
 	if x != nil {
 		return x.UploadedImageAmount
 	}
 	return 0
 }
 
-type TrainingSessionDetails struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	TrainingSession *TrainingSession       `protobuf:"bytes,1,opt,name=training_session,json=trainingSession,proto3" json:"training_session,omitempty"`
-	Price           float32                `protobuf:"fixed32,2,opt,name=price,proto3" json:"price,omitempty"`
-	ProductId       string                 `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+type PhysicalGoodDetails struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGood  *PhysicalGood          `protobuf:"bytes,1,opt,name=physical_good,json=physicalGood,proto3" json:"physical_good,omitempty"`
+	Price         float32                `protobuf:"fixed32,2,opt,name=price,proto3" json:"price,omitempty"`
+	ProductId     string                 `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TrainingSessionDetails) Reset() {
-	*x = TrainingSessionDetails{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[2]
+func (x *PhysicalGoodDetails) Reset() {
+	*x = PhysicalGoodDetails{}
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TrainingSessionDetails) String() string {
+func (x *PhysicalGoodDetails) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TrainingSessionDetails) ProtoMessage() {}
+func (*PhysicalGoodDetails) ProtoMessage() {}
 
-func (x *TrainingSessionDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[2]
+func (x *PhysicalGoodDetails) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -282,26 +295,26 @@ func (x *TrainingSessionDetails) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TrainingSessionDetails.ProtoReflect.Descriptor instead.
-func (*TrainingSessionDetails) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use PhysicalGoodDetails.ProtoReflect.Descriptor instead.
+func (*PhysicalGoodDetails) Descriptor() ([]byte, []int) {
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *TrainingSessionDetails) GetTrainingSession() *TrainingSession {
+func (x *PhysicalGoodDetails) GetPhysicalGood() *PhysicalGood {
 	if x != nil {
-		return x.TrainingSession
+		return x.PhysicalGood
 	}
 	return nil
 }
 
-func (x *TrainingSessionDetails) GetPrice() float32 {
+func (x *PhysicalGoodDetails) GetPrice() float32 {
 	if x != nil {
 		return x.Price
 	}
 	return 0
 }
 
-func (x *TrainingSessionDetails) GetProductId() string {
+func (x *PhysicalGoodDetails) GetProductId() string {
 	if x != nil {
 		return x.ProductId
 	}
@@ -317,7 +330,7 @@ type GetRequest struct {
 
 func (x *GetRequest) Reset() {
 	*x = GetRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[3]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -329,7 +342,7 @@ func (x *GetRequest) String() string {
 func (*GetRequest) ProtoMessage() {}
 
 func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[3]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,7 +355,7 @@ func (x *GetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
 func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{3}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetRequest) GetId() string {
@@ -353,15 +366,15 @@ func (x *GetRequest) GetId() string {
 }
 
 type GetResponse struct {
-	state                  protoimpl.MessageState  `protogen:"open.v1"`
-	TrainingSessionDetails *TrainingSessionDetails `protobuf:"bytes,1,opt,name=training_session_details,json=trainingSessionDetails,proto3" json:"training_session_details,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails *PhysicalGoodDetails   `protobuf:"bytes,1,opt,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[4]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -373,7 +386,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[4]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,12 +399,12 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{4}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetResponse) GetTrainingSessionDetails() *TrainingSessionDetails {
+func (x *GetResponse) GetPhysicalGoodDetails() *PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -405,7 +418,7 @@ type GetWithDeletedRequest struct {
 
 func (x *GetWithDeletedRequest) Reset() {
 	*x = GetWithDeletedRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[5]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -417,7 +430,7 @@ func (x *GetWithDeletedRequest) String() string {
 func (*GetWithDeletedRequest) ProtoMessage() {}
 
 func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[5]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -430,7 +443,7 @@ func (x *GetWithDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedRequest.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{5}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetWithDeletedRequest) GetId() string {
@@ -441,15 +454,15 @@ func (x *GetWithDeletedRequest) GetId() string {
 }
 
 type GetWithDeletedResponse struct {
-	state                  protoimpl.MessageState  `protogen:"open.v1"`
-	TrainingSessionDetails *TrainingSessionDetails `protobuf:"bytes,1,opt,name=training_session_details,json=trainingSessionDetails,proto3" json:"training_session_details,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails *PhysicalGoodDetails   `protobuf:"bytes,1,opt,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetWithDeletedResponse) Reset() {
 	*x = GetWithDeletedResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[6]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -461,7 +474,7 @@ func (x *GetWithDeletedResponse) String() string {
 func (*GetWithDeletedResponse) ProtoMessage() {}
 
 func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[6]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -474,12 +487,12 @@ func (x *GetWithDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithDeletedResponse.ProtoReflect.Descriptor instead.
 func (*GetWithDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{6}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetWithDeletedResponse) GetTrainingSessionDetails() *TrainingSessionDetails {
+func (x *GetWithDeletedResponse) GetPhysicalGoodDetails() *PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -493,7 +506,7 @@ type GetWithUnpublishedRequest struct {
 
 func (x *GetWithUnpublishedRequest) Reset() {
 	*x = GetWithUnpublishedRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[7]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -505,7 +518,7 @@ func (x *GetWithUnpublishedRequest) String() string {
 func (*GetWithUnpublishedRequest) ProtoMessage() {}
 
 func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[7]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -518,7 +531,7 @@ func (x *GetWithUnpublishedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithUnpublishedRequest.ProtoReflect.Descriptor instead.
 func (*GetWithUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{7}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetWithUnpublishedRequest) GetId() string {
@@ -529,15 +542,15 @@ func (x *GetWithUnpublishedRequest) GetId() string {
 }
 
 type GetWithUnpublishedResponse struct {
-	state                  protoimpl.MessageState  `protogen:"open.v1"`
-	TrainingSessionDetails *TrainingSessionDetails `protobuf:"bytes,1,opt,name=training_session_details,json=trainingSessionDetails,proto3" json:"training_session_details,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails *PhysicalGoodDetails   `protobuf:"bytes,1,opt,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetWithUnpublishedResponse) Reset() {
 	*x = GetWithUnpublishedResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[8]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -549,7 +562,7 @@ func (x *GetWithUnpublishedResponse) String() string {
 func (*GetWithUnpublishedResponse) ProtoMessage() {}
 
 func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[8]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -562,12 +575,12 @@ func (x *GetWithUnpublishedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWithUnpublishedResponse.ProtoReflect.Descriptor instead.
 func (*GetWithUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{8}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetWithUnpublishedResponse) GetTrainingSessionDetails() *TrainingSessionDetails {
+func (x *GetWithUnpublishedResponse) GetPhysicalGoodDetails() *PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -582,7 +595,7 @@ type ListRequest struct {
 
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[9]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -594,7 +607,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[9]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -607,7 +620,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{9}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListRequest) GetLimit() int32 {
@@ -625,16 +638,16 @@ func (x *ListRequest) GetOffset() int32 {
 }
 
 type ListResponse struct {
-	state                   protoimpl.MessageState    `protogen:"open.v1"`
-	TrainingSessionsDetails []*TrainingSessionDetails `protobuf:"bytes,1,rep,name=training_sessions_details,json=trainingSessionsDetails,proto3" json:"training_sessions_details,omitempty"`
-	Total                   int64                     `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails []*PhysicalGoodDetails `protobuf:"bytes,1,rep,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	Total               int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[10]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -646,7 +659,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[10]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -659,12 +672,12 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{10}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *ListResponse) GetTrainingSessionsDetails() []*TrainingSessionDetails {
+func (x *ListResponse) GetPhysicalGoodDetails() []*PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionsDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -686,7 +699,7 @@ type ListDeletedRequest struct {
 
 func (x *ListDeletedRequest) Reset() {
 	*x = ListDeletedRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[11]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -698,7 +711,7 @@ func (x *ListDeletedRequest) String() string {
 func (*ListDeletedRequest) ProtoMessage() {}
 
 func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[11]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,7 +724,7 @@ func (x *ListDeletedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedRequest.ProtoReflect.Descriptor instead.
 func (*ListDeletedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{11}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListDeletedRequest) GetLimit() int32 {
@@ -729,16 +742,16 @@ func (x *ListDeletedRequest) GetOffset() int32 {
 }
 
 type ListDeletedResponse struct {
-	state                   protoimpl.MessageState    `protogen:"open.v1"`
-	TrainingSessionsDetails []*TrainingSessionDetails `protobuf:"bytes,1,rep,name=training_sessions_details,json=trainingSessionsDetails,proto3" json:"training_sessions_details,omitempty"`
-	Total                   int64                     `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails []*PhysicalGoodDetails `protobuf:"bytes,1,rep,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	Total               int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ListDeletedResponse) Reset() {
 	*x = ListDeletedResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[12]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -750,7 +763,7 @@ func (x *ListDeletedResponse) String() string {
 func (*ListDeletedResponse) ProtoMessage() {}
 
 func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[12]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -763,12 +776,12 @@ func (x *ListDeletedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeletedResponse.ProtoReflect.Descriptor instead.
 func (*ListDeletedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{12}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *ListDeletedResponse) GetTrainingSessionsDetails() []*TrainingSessionDetails {
+func (x *ListDeletedResponse) GetPhysicalGoodDetails() []*PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionsDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -790,7 +803,7 @@ type ListUnpublishedRequest struct {
 
 func (x *ListUnpublishedRequest) Reset() {
 	*x = ListUnpublishedRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[13]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -802,7 +815,7 @@ func (x *ListUnpublishedRequest) String() string {
 func (*ListUnpublishedRequest) ProtoMessage() {}
 
 func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[13]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -815,7 +828,7 @@ func (x *ListUnpublishedRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnpublishedRequest.ProtoReflect.Descriptor instead.
 func (*ListUnpublishedRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{13}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListUnpublishedRequest) GetLimit() int32 {
@@ -833,16 +846,16 @@ func (x *ListUnpublishedRequest) GetOffset() int32 {
 }
 
 type ListUnpublishedResponse struct {
-	state                   protoimpl.MessageState    `protogen:"open.v1"`
-	TrainingSessionsDetails []*TrainingSessionDetails `protobuf:"bytes,1,rep,name=training_sessions_details,json=trainingSessionsDetails,proto3" json:"training_sessions_details,omitempty"`
-	Total                   int64                     `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PhysicalGoodDetails []*PhysicalGoodDetails `protobuf:"bytes,1,rep,name=physical_good_details,json=physicalGoodDetails,proto3" json:"physical_good_details,omitempty"`
+	Total               int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ListUnpublishedResponse) Reset() {
 	*x = ListUnpublishedResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[14]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -854,7 +867,7 @@ func (x *ListUnpublishedResponse) String() string {
 func (*ListUnpublishedResponse) ProtoMessage() {}
 
 func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[14]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -867,12 +880,12 @@ func (x *ListUnpublishedResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUnpublishedResponse.ProtoReflect.Descriptor instead.
 func (*ListUnpublishedResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{14}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *ListUnpublishedResponse) GetTrainingSessionsDetails() []*TrainingSessionDetails {
+func (x *ListUnpublishedResponse) GetPhysicalGoodDetails() []*PhysicalGoodDetails {
 	if x != nil {
-		return x.TrainingSessionsDetails
+		return x.PhysicalGoodDetails
 	}
 	return nil
 }
@@ -888,16 +901,16 @@ type CreateRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Name             string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	ShortDescription string                 `protobuf:"bytes,2,opt,name=short_description,json=shortDescription,proto3" json:"short_description,omitempty"`
-	Format           string                 `protobuf:"bytes,3,opt,name=format,proto3" json:"format,omitempty"`
-	Price            float32                `protobuf:"fixed32,4,opt,name=price,proto3" json:"price,omitempty"`
-	DurationMinutes  int32                  `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
+	Price            float32                `protobuf:"fixed32,3,opt,name=price,proto3" json:"price,omitempty"`
+	Amount           int32                  `protobuf:"varint,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	ShippingRequired bool                   `protobuf:"varint,5,opt,name=shipping_required,json=shippingRequired,proto3" json:"shipping_required,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[15]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -909,7 +922,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[15]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -922,7 +935,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{15}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CreateRequest) GetName() string {
@@ -939,13 +952,6 @@ func (x *CreateRequest) GetShortDescription() string {
 	return ""
 }
 
-func (x *CreateRequest) GetFormat() string {
-	if x != nil {
-		return x.Format
-	}
-	return ""
-}
-
 func (x *CreateRequest) GetPrice() float32 {
 	if x != nil {
 		return x.Price
@@ -953,11 +959,18 @@ func (x *CreateRequest) GetPrice() float32 {
 	return 0
 }
 
-func (x *CreateRequest) GetDurationMinutes() int32 {
+func (x *CreateRequest) GetAmount() int32 {
 	if x != nil {
-		return x.DurationMinutes
+		return x.Amount
 	}
 	return 0
+}
+
+func (x *CreateRequest) GetShippingRequired() bool {
+	if x != nil {
+		return x.ShippingRequired
+	}
+	return false
 }
 
 type CreateResponse struct {
@@ -970,7 +983,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[16]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -982,7 +995,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[16]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -995,7 +1008,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{16}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreateResponse) GetId() string {
@@ -1021,7 +1034,7 @@ type PublishRequest struct {
 
 func (x *PublishRequest) Reset() {
 	*x = PublishRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[17]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1033,7 +1046,7 @@ func (x *PublishRequest) String() string {
 func (*PublishRequest) ProtoMessage() {}
 
 func (x *PublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[17]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1046,7 +1059,7 @@ func (x *PublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishRequest.ProtoReflect.Descriptor instead.
 func (*PublishRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{17}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *PublishRequest) GetId() string {
@@ -1065,7 +1078,7 @@ type PublishResponse struct {
 
 func (x *PublishResponse) Reset() {
 	*x = PublishResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[18]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1077,7 +1090,7 @@ func (x *PublishResponse) String() string {
 func (*PublishResponse) ProtoMessage() {}
 
 func (x *PublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[18]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1090,7 +1103,7 @@ func (x *PublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishResponse.ProtoReflect.Descriptor instead.
 func (*PublishResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{18}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *PublishResponse) GetId() string {
@@ -1109,7 +1122,7 @@ type UnpublishRequest struct {
 
 func (x *UnpublishRequest) Reset() {
 	*x = UnpublishRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[19]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1121,7 +1134,7 @@ func (x *UnpublishRequest) String() string {
 func (*UnpublishRequest) ProtoMessage() {}
 
 func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[19]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1134,7 +1147,7 @@ func (x *UnpublishRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpublishRequest.ProtoReflect.Descriptor instead.
 func (*UnpublishRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{19}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *UnpublishRequest) GetId() string {
@@ -1153,7 +1166,7 @@ type UnpublishResponse struct {
 
 func (x *UnpublishResponse) Reset() {
 	*x = UnpublishResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[20]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1165,7 +1178,7 @@ func (x *UnpublishResponse) String() string {
 func (*UnpublishResponse) ProtoMessage() {}
 
 func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[20]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1178,7 +1191,7 @@ func (x *UnpublishResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpublishResponse.ProtoReflect.Descriptor instead.
 func (*UnpublishResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{20}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *UnpublishResponse) GetId() string {
@@ -1191,13 +1204,13 @@ func (x *UnpublishResponse) GetId() string {
 type UpdateRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name             *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	ShortDescription *string                `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
-	LongDescription  *string                `protobuf:"bytes,4,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
-	DurationMinutes  *int32                 `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
-	Format           *string                `protobuf:"bytes,6,opt,name=format,proto3,oneof" json:"format,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,2,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	LongDescription  *string                `protobuf:"bytes,3,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
+	Price            *float32               `protobuf:"fixed32,4,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Amount           *int32                 `protobuf:"varint,5,opt,name=amount,proto3,oneof" json:"amount,omitempty"`
+	ShippingRequired *bool                  `protobuf:"varint,6,opt,name=shipping_required,json=shippingRequired,proto3,oneof" json:"shipping_required,omitempty"`
 	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
-	Price            *float32               `protobuf:"fixed32,8,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Name             *string                `protobuf:"bytes,8,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	UpdateMask       *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -1205,7 +1218,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[21]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1217,7 +1230,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[21]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1230,19 +1243,12 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{21}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateRequest) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *UpdateRequest) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
 	}
 	return ""
 }
@@ -1261,18 +1267,25 @@ func (x *UpdateRequest) GetLongDescription() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetDurationMinutes() int32 {
-	if x != nil && x.DurationMinutes != nil {
-		return *x.DurationMinutes
+func (x *UpdateRequest) GetPrice() float32 {
+	if x != nil && x.Price != nil {
+		return *x.Price
 	}
 	return 0
 }
 
-func (x *UpdateRequest) GetFormat() string {
-	if x != nil && x.Format != nil {
-		return *x.Format
+func (x *UpdateRequest) GetAmount() int32 {
+	if x != nil && x.Amount != nil {
+		return *x.Amount
 	}
-	return ""
+	return 0
+}
+
+func (x *UpdateRequest) GetShippingRequired() bool {
+	if x != nil && x.ShippingRequired != nil {
+		return *x.ShippingRequired
+	}
+	return false
 }
 
 func (x *UpdateRequest) GetTags() []string {
@@ -1282,11 +1295,11 @@ func (x *UpdateRequest) GetTags() []string {
 	return nil
 }
 
-func (x *UpdateRequest) GetPrice() float32 {
-	if x != nil && x.Price != nil {
-		return *x.Price
+func (x *UpdateRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
@@ -1299,13 +1312,13 @@ func (x *UpdateRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
 type UpdateResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name             *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	ShortDescription *string                `protobuf:"bytes,3,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
-	LongDescription  *string                `protobuf:"bytes,4,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
-	DurationMinutes  *int32                 `protobuf:"varint,5,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
-	Format           *string                `protobuf:"bytes,6,opt,name=format,proto3,oneof" json:"format,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,2,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	LongDescription  *string                `protobuf:"bytes,3,opt,name=long_description,json=longDescription,proto3,oneof" json:"long_description,omitempty"`
+	Price            *float32               `protobuf:"fixed32,4,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Amount           *int32                 `protobuf:"varint,5,opt,name=amount,proto3,oneof" json:"amount,omitempty"`
+	ShippingRequired *bool                  `protobuf:"varint,6,opt,name=shipping_required,json=shippingRequired,proto3,oneof" json:"shipping_required,omitempty"`
 	Tags             []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
-	Price            *float32               `protobuf:"fixed32,8,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Name             *string                `protobuf:"bytes,8,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	Updated          *fieldmaskpb.FieldMask `protobuf:"bytes,9,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -1313,7 +1326,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[22]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1325,7 +1338,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[22]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1338,19 +1351,12 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{22}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateResponse) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *UpdateResponse) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
 	}
 	return ""
 }
@@ -1369,18 +1375,25 @@ func (x *UpdateResponse) GetLongDescription() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetDurationMinutes() int32 {
-	if x != nil && x.DurationMinutes != nil {
-		return *x.DurationMinutes
+func (x *UpdateResponse) GetPrice() float32 {
+	if x != nil && x.Price != nil {
+		return *x.Price
 	}
 	return 0
 }
 
-func (x *UpdateResponse) GetFormat() string {
-	if x != nil && x.Format != nil {
-		return *x.Format
+func (x *UpdateResponse) GetAmount() int32 {
+	if x != nil && x.Amount != nil {
+		return *x.Amount
 	}
-	return ""
+	return 0
+}
+
+func (x *UpdateResponse) GetShippingRequired() bool {
+	if x != nil && x.ShippingRequired != nil {
+		return *x.ShippingRequired
+	}
+	return false
 }
 
 func (x *UpdateResponse) GetTags() []string {
@@ -1390,11 +1403,11 @@ func (x *UpdateResponse) GetTags() []string {
 	return nil
 }
 
-func (x *UpdateResponse) GetPrice() float32 {
-	if x != nil && x.Price != nil {
-		return *x.Price
+func (x *UpdateResponse) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateResponse) GetUpdated() *fieldmaskpb.FieldMask {
@@ -1417,7 +1430,7 @@ type AddImageRequest struct {
 
 func (x *AddImageRequest) Reset() {
 	*x = AddImageRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[23]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1429,7 +1442,7 @@ func (x *AddImageRequest) String() string {
 func (*AddImageRequest) ProtoMessage() {}
 
 func (x *AddImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[23]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1442,7 +1455,7 @@ func (x *AddImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddImageRequest.ProtoReflect.Descriptor instead.
 func (*AddImageRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{23}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AddImageRequest) GetPublicId() string {
@@ -1490,7 +1503,7 @@ type AddImageResponse struct {
 
 func (x *AddImageResponse) Reset() {
 	*x = AddImageResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[24]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1502,7 +1515,7 @@ func (x *AddImageResponse) String() string {
 func (*AddImageResponse) ProtoMessage() {}
 
 func (x *AddImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[24]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1515,7 +1528,7 @@ func (x *AddImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddImageResponse.ProtoReflect.Descriptor instead.
 func (*AddImageResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{24}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AddImageResponse) GetMediaServiceId() string {
@@ -1542,7 +1555,7 @@ type DeleteImageRequest struct {
 
 func (x *DeleteImageRequest) Reset() {
 	*x = DeleteImageRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[25]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1554,7 +1567,7 @@ func (x *DeleteImageRequest) String() string {
 func (*DeleteImageRequest) ProtoMessage() {}
 
 func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[25]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1567,7 +1580,7 @@ func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageRequest.ProtoReflect.Descriptor instead.
 func (*DeleteImageRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{25}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteImageRequest) GetOwnerId() string {
@@ -1594,7 +1607,7 @@ type DeleteImageResponse struct {
 
 func (x *DeleteImageResponse) Reset() {
 	*x = DeleteImageResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[26]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1606,7 +1619,7 @@ func (x *DeleteImageResponse) String() string {
 func (*DeleteImageResponse) ProtoMessage() {}
 
 func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[26]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1619,7 +1632,7 @@ func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageResponse.ProtoReflect.Descriptor instead.
 func (*DeleteImageResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{26}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *DeleteImageResponse) GetOwnerId() string {
@@ -1649,7 +1662,7 @@ type AddImageBatchRequest struct {
 
 func (x *AddImageBatchRequest) Reset() {
 	*x = AddImageBatchRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[27]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1661,7 +1674,7 @@ func (x *AddImageBatchRequest) String() string {
 func (*AddImageBatchRequest) ProtoMessage() {}
 
 func (x *AddImageBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[27]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1674,7 +1687,7 @@ func (x *AddImageBatchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddImageBatchRequest.ProtoReflect.Descriptor instead.
 func (*AddImageBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{27}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *AddImageBatchRequest) GetUrl() string {
@@ -1721,7 +1734,7 @@ type AddImageBatchResponse struct {
 
 func (x *AddImageBatchResponse) Reset() {
 	*x = AddImageBatchResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[28]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1733,7 +1746,7 @@ func (x *AddImageBatchResponse) String() string {
 func (*AddImageBatchResponse) ProtoMessage() {}
 
 func (x *AddImageBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[28]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1746,7 +1759,7 @@ func (x *AddImageBatchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddImageBatchResponse.ProtoReflect.Descriptor instead.
 func (*AddImageBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{28}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *AddImageBatchResponse) GetOwnersAffected() int32 {
@@ -1766,7 +1779,7 @@ type DeleteImageBatchRequest struct {
 
 func (x *DeleteImageBatchRequest) Reset() {
 	*x = DeleteImageBatchRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[29]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1778,7 +1791,7 @@ func (x *DeleteImageBatchRequest) String() string {
 func (*DeleteImageBatchRequest) ProtoMessage() {}
 
 func (x *DeleteImageBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[29]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1791,7 +1804,7 @@ func (x *DeleteImageBatchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageBatchRequest.ProtoReflect.Descriptor instead.
 func (*DeleteImageBatchRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{29}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeleteImageBatchRequest) GetMediaServiceId() string {
@@ -1817,7 +1830,7 @@ type DeleteImageBatchResponse struct {
 
 func (x *DeleteImageBatchResponse) Reset() {
 	*x = DeleteImageBatchResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[30]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1829,7 +1842,7 @@ func (x *DeleteImageBatchResponse) String() string {
 func (*DeleteImageBatchResponse) ProtoMessage() {}
 
 func (x *DeleteImageBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[30]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1842,7 +1855,7 @@ func (x *DeleteImageBatchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageBatchResponse.ProtoReflect.Descriptor instead.
 func (*DeleteImageBatchResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{30}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DeleteImageBatchResponse) GetOwnersAffected() int32 {
@@ -1861,7 +1874,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[31]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1873,7 +1886,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[31]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1886,7 +1899,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{31}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -1905,7 +1918,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[32]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1917,7 +1930,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[32]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1930,7 +1943,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{32}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteResponse) GetId() string {
@@ -1949,7 +1962,7 @@ type DeletePermanentRequest struct {
 
 func (x *DeletePermanentRequest) Reset() {
 	*x = DeletePermanentRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[33]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1961,7 +1974,7 @@ func (x *DeletePermanentRequest) String() string {
 func (*DeletePermanentRequest) ProtoMessage() {}
 
 func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[33]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1974,7 +1987,7 @@ func (x *DeletePermanentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentRequest.ProtoReflect.Descriptor instead.
 func (*DeletePermanentRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{33}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *DeletePermanentRequest) GetId() string {
@@ -1993,7 +2006,7 @@ type DeletePermanentResponse struct {
 
 func (x *DeletePermanentResponse) Reset() {
 	*x = DeletePermanentResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[34]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2005,7 +2018,7 @@ func (x *DeletePermanentResponse) String() string {
 func (*DeletePermanentResponse) ProtoMessage() {}
 
 func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[34]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2018,7 +2031,7 @@ func (x *DeletePermanentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePermanentResponse.ProtoReflect.Descriptor instead.
 func (*DeletePermanentResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{34}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *DeletePermanentResponse) GetId() string {
@@ -2037,7 +2050,7 @@ type RestoreRequest struct {
 
 func (x *RestoreRequest) Reset() {
 	*x = RestoreRequest{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[35]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2049,7 +2062,7 @@ func (x *RestoreRequest) String() string {
 func (*RestoreRequest) ProtoMessage() {}
 
 func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[35]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2062,7 +2075,7 @@ func (x *RestoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreRequest.ProtoReflect.Descriptor instead.
 func (*RestoreRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{35}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *RestoreRequest) GetId() string {
@@ -2081,7 +2094,7 @@ type RestoreResponse struct {
 
 func (x *RestoreResponse) Reset() {
 	*x = RestoreResponse{}
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[36]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2093,7 +2106,7 @@ func (x *RestoreResponse) String() string {
 func (*RestoreResponse) ProtoMessage() {}
 
 func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v0_training_session_proto_msgTypes[36]
+	mi := &file_product_service_physical_good_v0_physical_good_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2106,7 +2119,7 @@ func (x *RestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreResponse.ProtoReflect.Descriptor instead.
 func (*RestoreResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v0_training_session_proto_rawDescGZIP(), []int{36}
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *RestoreResponse) GetId() string {
@@ -2116,18 +2129,18 @@ func (x *RestoreResponse) GetId() string {
 	return ""
 }
 
-var File_product_service_training_session_v0_training_session_proto protoreflect.FileDescriptor
+var File_product_service_physical_good_v0_physical_good_proto protoreflect.FileDescriptor
 
-const file_product_service_training_session_v0_training_session_proto_rawDesc = "" +
+const file_product_service_physical_good_v0_physical_good_proto_rawDesc = "" +
 	"\n" +
-	":product_service/training_session/v0/training_session.proto\x12\x13training_session.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x7f\n" +
+	"4product_service/physical_good/v0/physical_good.proto\x12\x10physical_good.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\"\x7f\n" +
 	"\x05Image\x12\x1b\n" +
 	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
 	"\n" +
 	"secure_url\x18\x03 \x01(\tR\tsecureUrl\x12(\n" +
-	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\"\xac\x04\n" +
-	"\x0fTrainingSession\x12\x0e\n" +
+	"\x10media_service_id\x18\x04 \x01(\tR\x0emediaServiceId\"\xa8\x04\n" +
+	"\fPhysicalGood\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
@@ -2135,59 +2148,59 @@ const file_product_service_training_session_v0_training_session_proto_rawDesc = 
 	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
 	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\x05 \x03(\tR\x04tags\x122\n" +
-	"\x06images\x18\x06 \x03(\v2\x1a.training_session.v0.ImageR\x06images\x12\x12\n" +
-	"\x04name\x18\a \x01(\tR\x04name\x12+\n" +
-	"\x11short_description\x18\b \x01(\tR\x10shortDescription\x12)\n" +
-	"\x10long_description\x18\t \x01(\tR\x0flongDescription\x12\x19\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x12\n" +
+	"\x04tags\x18\x06 \x03(\tR\x04tags\x12+\n" +
+	"\x11short_description\x18\a \x01(\tR\x10shortDescription\x12)\n" +
+	"\x10long_description\x18\b \x01(\tR\x0flongDescription\x12\x16\n" +
+	"\x06amount\x18\t \x01(\x05R\x06amount\x12\x19\n" +
 	"\bin_stock\x18\n" +
-	" \x01(\bR\ainStock\x12)\n" +
-	"\x10duration_minutes\x18\v \x01(\x05R\x0fdurationMinutes\x12\x16\n" +
-	"\x06format\x18\f \x01(\tR\x06format\x122\n" +
+	" \x01(\bR\ainStock\x12/\n" +
+	"\x06images\x18\v \x03(\v2\x17.physical_good.v0.ImageR\x06images\x12+\n" +
+	"\x11shipping_required\x18\f \x01(\bR\x10shippingRequired\x122\n" +
 	"\x15uploaded_image_amount\x18\r \x01(\x05R\x13uploadedImageAmountB\r\n" +
-	"\v_deleted_at\"\x9e\x01\n" +
-	"\x16TrainingSessionDetails\x12O\n" +
-	"\x10training_session\x18\x01 \x01(\v2$.training_session.v0.TrainingSessionR\x0ftrainingSession\x12\x14\n" +
+	"\v_deleted_at\"\x8f\x01\n" +
+	"\x13PhysicalGoodDetails\x12C\n" +
+	"\rphysical_good\x18\x01 \x01(\v2\x1e.physical_good.v0.PhysicalGoodR\fphysicalGood\x12\x14\n" +
 	"\x05price\x18\x02 \x01(\x02R\x05price\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x03 \x01(\tR\tproductId\"\x1c\n" +
 	"\n" +
 	"GetRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"t\n" +
-	"\vGetResponse\x12e\n" +
-	"\x18training_session_details\x18\x01 \x01(\v2+.training_session.v0.TrainingSessionDetailsR\x16trainingSessionDetails\"'\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"h\n" +
+	"\vGetResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x01(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\"'\n" +
 	"\x15GetWithDeletedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x7f\n" +
-	"\x16GetWithDeletedResponse\x12e\n" +
-	"\x18training_session_details\x18\x01 \x01(\v2+.training_session.v0.TrainingSessionDetailsR\x16trainingSessionDetails\"+\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"s\n" +
+	"\x16GetWithDeletedResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x01(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\"+\n" +
 	"\x19GetWithUnpublishedRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x83\x01\n" +
-	"\x1aGetWithUnpublishedResponse\x12e\n" +
-	"\x18training_session_details\x18\x01 \x01(\v2+.training_session.v0.TrainingSessionDetailsR\x16trainingSessionDetails\";\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"w\n" +
+	"\x1aGetWithUnpublishedResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x01(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\";\n" +
 	"\vListRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x8d\x01\n" +
-	"\fListResponse\x12g\n" +
-	"\x19training_sessions_details\x18\x01 \x03(\v2+.training_session.v0.TrainingSessionDetailsR\x17trainingSessionsDetails\x12\x14\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x7f\n" +
+	"\fListResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x03(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\"B\n" +
 	"\x12ListDeletedRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x94\x01\n" +
-	"\x13ListDeletedResponse\x12g\n" +
-	"\x19training_sessions_details\x18\x01 \x03(\v2+.training_session.v0.TrainingSessionDetailsR\x17trainingSessionsDetails\x12\x14\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x86\x01\n" +
+	"\x13ListDeletedResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x03(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\"F\n" +
 	"\x16ListUnpublishedRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x98\x01\n" +
-	"\x17ListUnpublishedResponse\x12g\n" +
-	"\x19training_sessions_details\x18\x01 \x03(\v2+.training_session.v0.TrainingSessionDetailsR\x17trainingSessionsDetails\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total\"\xa9\x01\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"\x8a\x01\n" +
+	"\x17ListUnpublishedResponse\x12Y\n" +
+	"\x15physical_good_details\x18\x01 \x03(\v2%.physical_good.v0.PhysicalGoodDetailsR\x13physicalGoodDetails\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"\xab\x01\n" +
 	"\rCreateRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12+\n" +
-	"\x11short_description\x18\x02 \x01(\tR\x10shortDescription\x12\x16\n" +
-	"\x06format\x18\x03 \x01(\tR\x06format\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x02R\x05price\x12)\n" +
-	"\x10duration_minutes\x18\x05 \x01(\x05R\x0fdurationMinutes\"?\n" +
+	"\x11short_description\x18\x02 \x01(\tR\x10shortDescription\x12\x14\n" +
+	"\x05price\x18\x03 \x01(\x02R\x05price\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x05R\x06amount\x12+\n" +
+	"\x11shipping_required\x18\x05 \x01(\bR\x10shippingRequired\"?\n" +
 	"\x0eCreateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -2199,40 +2212,40 @@ const file_product_service_training_session_v0_training_session_proto_rawDesc = 
 	"\x10UnpublishRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"#\n" +
 	"\x11UnpublishResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xb1\x03\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xb4\x03\n" +
 	"\rUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x120\n" +
-	"\x11short_description\x18\x03 \x01(\tH\x01R\x10shortDescription\x88\x01\x01\x12.\n" +
-	"\x10long_description\x18\x04 \x01(\tH\x02R\x0flongDescription\x88\x01\x01\x12.\n" +
-	"\x10duration_minutes\x18\x05 \x01(\x05H\x03R\x0fdurationMinutes\x88\x01\x01\x12\x1b\n" +
-	"\x06format\x18\x06 \x01(\tH\x04R\x06format\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x12\x19\n" +
-	"\x05price\x18\b \x01(\x02H\x05R\x05price\x88\x01\x01\x12;\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
+	"\x11short_description\x18\x02 \x01(\tH\x00R\x10shortDescription\x88\x01\x01\x12.\n" +
+	"\x10long_description\x18\x03 \x01(\tH\x01R\x0flongDescription\x88\x01\x01\x12\x19\n" +
+	"\x05price\x18\x04 \x01(\x02H\x02R\x05price\x88\x01\x01\x12\x1b\n" +
+	"\x06amount\x18\x05 \x01(\x05H\x03R\x06amount\x88\x01\x01\x120\n" +
+	"\x11shipping_required\x18\x06 \x01(\bH\x04R\x10shippingRequired\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\a \x03(\tR\x04tags\x12\x17\n" +
+	"\x04name\x18\b \x01(\tH\x05R\x04name\x88\x01\x01\x12;\n" +
 	"\vupdate_mask\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMaskB\a\n" +
-	"\x05_nameB\x14\n" +
+	"updateMaskB\x14\n" +
 	"\x12_short_descriptionB\x13\n" +
-	"\x11_long_descriptionB\x13\n" +
-	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\b\n" +
-	"\x06_price\"\xab\x03\n" +
+	"\x11_long_descriptionB\b\n" +
+	"\x06_priceB\t\n" +
+	"\a_amountB\x14\n" +
+	"\x12_shipping_requiredB\a\n" +
+	"\x05_name\"\xae\x03\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x120\n" +
-	"\x11short_description\x18\x03 \x01(\tH\x01R\x10shortDescription\x88\x01\x01\x12.\n" +
-	"\x10long_description\x18\x04 \x01(\tH\x02R\x0flongDescription\x88\x01\x01\x12.\n" +
-	"\x10duration_minutes\x18\x05 \x01(\x05H\x03R\x0fdurationMinutes\x88\x01\x01\x12\x1b\n" +
-	"\x06format\x18\x06 \x01(\tH\x04R\x06format\x88\x01\x01\x12\x12\n" +
-	"\x04tags\x18\a \x03(\tR\x04tags\x12\x19\n" +
-	"\x05price\x18\b \x01(\x02H\x05R\x05price\x88\x01\x01\x124\n" +
-	"\aupdated\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\a\n" +
-	"\x05_nameB\x14\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x120\n" +
+	"\x11short_description\x18\x02 \x01(\tH\x00R\x10shortDescription\x88\x01\x01\x12.\n" +
+	"\x10long_description\x18\x03 \x01(\tH\x01R\x0flongDescription\x88\x01\x01\x12\x19\n" +
+	"\x05price\x18\x04 \x01(\x02H\x02R\x05price\x88\x01\x01\x12\x1b\n" +
+	"\x06amount\x18\x05 \x01(\x05H\x03R\x06amount\x88\x01\x01\x120\n" +
+	"\x11shipping_required\x18\x06 \x01(\bH\x04R\x10shippingRequired\x88\x01\x01\x12\x12\n" +
+	"\x04tags\x18\a \x03(\tR\x04tags\x12\x17\n" +
+	"\x04name\x18\b \x01(\tH\x05R\x04name\x88\x01\x01\x124\n" +
+	"\aupdated\x18\t \x01(\v2\x1a.google.protobuf.FieldMaskR\aupdatedB\x14\n" +
 	"\x12_short_descriptionB\x13\n" +
-	"\x11_long_descriptionB\x13\n" +
-	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\b\n" +
-	"\x06_price\"\xa4\x01\n" +
+	"\x11_long_descriptionB\b\n" +
+	"\x06_priceB\t\n" +
+	"\a_amountB\x14\n" +
+	"\x12_shipping_requiredB\a\n" +
+	"\x05_name\"\xa4\x01\n" +
 	"\x0fAddImageRequest\x12\x1b\n" +
 	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x12\x1d\n" +
@@ -2274,128 +2287,128 @@ const file_product_service_training_session_v0_training_session_proto_rawDesc = 
 	"\x0eRestoreRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fRestoreResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\x86\r\n" +
-	"\x16TrainingSessionService\x12J\n" +
-	"\x03Get\x12\x1f.training_session.v0.GetRequest\x1a .training_session.v0.GetResponse\"\x00\x12k\n" +
-	"\x0eGetWithDeleted\x12*.training_session.v0.GetWithDeletedRequest\x1a+.training_session.v0.GetWithDeletedResponse\"\x00\x12w\n" +
-	"\x12GetWithUnpublished\x12..training_session.v0.GetWithUnpublishedRequest\x1a/.training_session.v0.GetWithUnpublishedResponse\"\x00\x12M\n" +
-	"\x04List\x12 .training_session.v0.ListRequest\x1a!.training_session.v0.ListResponse\"\x00\x12b\n" +
-	"\vListDeleted\x12'.training_session.v0.ListDeletedRequest\x1a(.training_session.v0.ListDeletedResponse\"\x00\x12n\n" +
-	"\x0fListUnpublished\x12+.training_session.v0.ListUnpublishedRequest\x1a,.training_session.v0.ListUnpublishedResponse\"\x00\x12S\n" +
-	"\x06Create\x12\".training_session.v0.CreateRequest\x1a#.training_session.v0.CreateResponse\"\x00\x12V\n" +
-	"\aPublish\x12#.training_session.v0.PublishRequest\x1a$.training_session.v0.PublishResponse\"\x00\x12\\\n" +
-	"\tUnpublish\x12%.training_session.v0.UnpublishRequest\x1a&.training_session.v0.UnpublishResponse\"\x00\x12S\n" +
-	"\x06Update\x12\".training_session.v0.UpdateRequest\x1a#.training_session.v0.UpdateResponse\"\x00\x12Y\n" +
-	"\bAddImage\x12$.training_session.v0.AddImageRequest\x1a%.training_session.v0.AddImageResponse\"\x00\x12b\n" +
-	"\vDeleteImage\x12'.training_session.v0.DeleteImageRequest\x1a(.training_session.v0.DeleteImageResponse\"\x00\x12h\n" +
-	"\rAddImageBatch\x12).training_session.v0.AddImageBatchRequest\x1a*.training_session.v0.AddImageBatchResponse\"\x00\x12q\n" +
-	"\x10DeleteImageBatch\x12,.training_session.v0.DeleteImageBatchRequest\x1a-.training_session.v0.DeleteImageBatchResponse\"\x00\x12S\n" +
-	"\x06Delete\x12\".training_session.v0.DeleteRequest\x1a#.training_session.v0.DeleteResponse\"\x00\x12n\n" +
-	"\x0fDeletePermanent\x12+.training_session.v0.DeletePermanentRequest\x1a,.training_session.v0.DeletePermanentResponse\"\x00\x12V\n" +
-	"\aRestore\x12#.training_session.v0.RestoreRequest\x1a$.training_session.v0.RestoreResponse\"\x00B^Z\\github.com/mikhail5545/proto-go/proto/product_service/training_session/v0;trainingsesssionpbb\x06proto3"
+	"\x02id\x18\x01 \x01(\tR\x02id2\x9d\f\n" +
+	"\x13PhysicalGoodService\x12D\n" +
+	"\x03Get\x12\x1c.physical_good.v0.GetRequest\x1a\x1d.physical_good.v0.GetResponse\"\x00\x12e\n" +
+	"\x0eGetWithDeleted\x12'.physical_good.v0.GetWithDeletedRequest\x1a(.physical_good.v0.GetWithDeletedResponse\"\x00\x12q\n" +
+	"\x12GetWithUnpublished\x12+.physical_good.v0.GetWithUnpublishedRequest\x1a,.physical_good.v0.GetWithUnpublishedResponse\"\x00\x12G\n" +
+	"\x04List\x12\x1d.physical_good.v0.ListRequest\x1a\x1e.physical_good.v0.ListResponse\"\x00\x12\\\n" +
+	"\vListDeleted\x12$.physical_good.v0.ListDeletedRequest\x1a%.physical_good.v0.ListDeletedResponse\"\x00\x12h\n" +
+	"\x0fListUnpublished\x12(.physical_good.v0.ListUnpublishedRequest\x1a).physical_good.v0.ListUnpublishedResponse\"\x00\x12M\n" +
+	"\x06Create\x12\x1f.physical_good.v0.CreateRequest\x1a .physical_good.v0.CreateResponse\"\x00\x12P\n" +
+	"\aPublish\x12 .physical_good.v0.PublishRequest\x1a!.physical_good.v0.PublishResponse\"\x00\x12V\n" +
+	"\tUnpublish\x12\".physical_good.v0.UnpublishRequest\x1a#.physical_good.v0.UnpublishResponse\"\x00\x12M\n" +
+	"\x06Update\x12\x1f.physical_good.v0.UpdateRequest\x1a .physical_good.v0.UpdateResponse\"\x00\x12S\n" +
+	"\bAddImage\x12!.physical_good.v0.AddImageRequest\x1a\".physical_good.v0.AddImageResponse\"\x00\x12\\\n" +
+	"\vDeleteImage\x12$.physical_good.v0.DeleteImageRequest\x1a%.physical_good.v0.DeleteImageResponse\"\x00\x12b\n" +
+	"\rAddImageBatch\x12&.physical_good.v0.AddImageBatchRequest\x1a'.physical_good.v0.AddImageBatchResponse\"\x00\x12k\n" +
+	"\x10DeleteImageBatch\x12).physical_good.v0.DeleteImageBatchRequest\x1a*.physical_good.v0.DeleteImageBatchResponse\"\x00\x12M\n" +
+	"\x06Delete\x12\x1f.physical_good.v0.DeleteRequest\x1a .physical_good.v0.DeleteResponse\"\x00\x12h\n" +
+	"\x0fDeletePermanent\x12(.physical_good.v0.DeletePermanentRequest\x1a).physical_good.v0.DeletePermanentResponse\"\x00\x12P\n" +
+	"\aRestore\x12 .physical_good.v0.RestoreRequest\x1a!.physical_good.v0.RestoreResponse\"\x00BWZUgithub.com/mikhail5545/proto-go/proto/product_service/physical_good/v0;physicalgoodpbb\x06proto3"
 
 var (
-	file_product_service_training_session_v0_training_session_proto_rawDescOnce sync.Once
-	file_product_service_training_session_v0_training_session_proto_rawDescData []byte
+	file_product_service_physical_good_v0_physical_good_proto_rawDescOnce sync.Once
+	file_product_service_physical_good_v0_physical_good_proto_rawDescData []byte
 )
 
-func file_product_service_training_session_v0_training_session_proto_rawDescGZIP() []byte {
-	file_product_service_training_session_v0_training_session_proto_rawDescOnce.Do(func() {
-		file_product_service_training_session_v0_training_session_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_product_service_training_session_v0_training_session_proto_rawDesc), len(file_product_service_training_session_v0_training_session_proto_rawDesc)))
+func file_product_service_physical_good_v0_physical_good_proto_rawDescGZIP() []byte {
+	file_product_service_physical_good_v0_physical_good_proto_rawDescOnce.Do(func() {
+		file_product_service_physical_good_v0_physical_good_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_product_service_physical_good_v0_physical_good_proto_rawDesc), len(file_product_service_physical_good_v0_physical_good_proto_rawDesc)))
 	})
-	return file_product_service_training_session_v0_training_session_proto_rawDescData
+	return file_product_service_physical_good_v0_physical_good_proto_rawDescData
 }
 
-var file_product_service_training_session_v0_training_session_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
-var file_product_service_training_session_v0_training_session_proto_goTypes = []any{
-	(*Image)(nil),                      // 0: training_session.v0.Image
-	(*TrainingSession)(nil),            // 1: training_session.v0.TrainingSession
-	(*TrainingSessionDetails)(nil),     // 2: training_session.v0.TrainingSessionDetails
-	(*GetRequest)(nil),                 // 3: training_session.v0.GetRequest
-	(*GetResponse)(nil),                // 4: training_session.v0.GetResponse
-	(*GetWithDeletedRequest)(nil),      // 5: training_session.v0.GetWithDeletedRequest
-	(*GetWithDeletedResponse)(nil),     // 6: training_session.v0.GetWithDeletedResponse
-	(*GetWithUnpublishedRequest)(nil),  // 7: training_session.v0.GetWithUnpublishedRequest
-	(*GetWithUnpublishedResponse)(nil), // 8: training_session.v0.GetWithUnpublishedResponse
-	(*ListRequest)(nil),                // 9: training_session.v0.ListRequest
-	(*ListResponse)(nil),               // 10: training_session.v0.ListResponse
-	(*ListDeletedRequest)(nil),         // 11: training_session.v0.ListDeletedRequest
-	(*ListDeletedResponse)(nil),        // 12: training_session.v0.ListDeletedResponse
-	(*ListUnpublishedRequest)(nil),     // 13: training_session.v0.ListUnpublishedRequest
-	(*ListUnpublishedResponse)(nil),    // 14: training_session.v0.ListUnpublishedResponse
-	(*CreateRequest)(nil),              // 15: training_session.v0.CreateRequest
-	(*CreateResponse)(nil),             // 16: training_session.v0.CreateResponse
-	(*PublishRequest)(nil),             // 17: training_session.v0.PublishRequest
-	(*PublishResponse)(nil),            // 18: training_session.v0.PublishResponse
-	(*UnpublishRequest)(nil),           // 19: training_session.v0.UnpublishRequest
-	(*UnpublishResponse)(nil),          // 20: training_session.v0.UnpublishResponse
-	(*UpdateRequest)(nil),              // 21: training_session.v0.UpdateRequest
-	(*UpdateResponse)(nil),             // 22: training_session.v0.UpdateResponse
-	(*AddImageRequest)(nil),            // 23: training_session.v0.AddImageRequest
-	(*AddImageResponse)(nil),           // 24: training_session.v0.AddImageResponse
-	(*DeleteImageRequest)(nil),         // 25: training_session.v0.DeleteImageRequest
-	(*DeleteImageResponse)(nil),        // 26: training_session.v0.DeleteImageResponse
-	(*AddImageBatchRequest)(nil),       // 27: training_session.v0.AddImageBatchRequest
-	(*AddImageBatchResponse)(nil),      // 28: training_session.v0.AddImageBatchResponse
-	(*DeleteImageBatchRequest)(nil),    // 29: training_session.v0.DeleteImageBatchRequest
-	(*DeleteImageBatchResponse)(nil),   // 30: training_session.v0.DeleteImageBatchResponse
-	(*DeleteRequest)(nil),              // 31: training_session.v0.DeleteRequest
-	(*DeleteResponse)(nil),             // 32: training_session.v0.DeleteResponse
-	(*DeletePermanentRequest)(nil),     // 33: training_session.v0.DeletePermanentRequest
-	(*DeletePermanentResponse)(nil),    // 34: training_session.v0.DeletePermanentResponse
-	(*RestoreRequest)(nil),             // 35: training_session.v0.RestoreRequest
-	(*RestoreResponse)(nil),            // 36: training_session.v0.RestoreResponse
+var file_product_service_physical_good_v0_physical_good_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_product_service_physical_good_v0_physical_good_proto_goTypes = []any{
+	(*Image)(nil),                      // 0: physical_good.v0.Image
+	(*PhysicalGood)(nil),               // 1: physical_good.v0.PhysicalGood
+	(*PhysicalGoodDetails)(nil),        // 2: physical_good.v0.PhysicalGoodDetails
+	(*GetRequest)(nil),                 // 3: physical_good.v0.GetRequest
+	(*GetResponse)(nil),                // 4: physical_good.v0.GetResponse
+	(*GetWithDeletedRequest)(nil),      // 5: physical_good.v0.GetWithDeletedRequest
+	(*GetWithDeletedResponse)(nil),     // 6: physical_good.v0.GetWithDeletedResponse
+	(*GetWithUnpublishedRequest)(nil),  // 7: physical_good.v0.GetWithUnpublishedRequest
+	(*GetWithUnpublishedResponse)(nil), // 8: physical_good.v0.GetWithUnpublishedResponse
+	(*ListRequest)(nil),                // 9: physical_good.v0.ListRequest
+	(*ListResponse)(nil),               // 10: physical_good.v0.ListResponse
+	(*ListDeletedRequest)(nil),         // 11: physical_good.v0.ListDeletedRequest
+	(*ListDeletedResponse)(nil),        // 12: physical_good.v0.ListDeletedResponse
+	(*ListUnpublishedRequest)(nil),     // 13: physical_good.v0.ListUnpublishedRequest
+	(*ListUnpublishedResponse)(nil),    // 14: physical_good.v0.ListUnpublishedResponse
+	(*CreateRequest)(nil),              // 15: physical_good.v0.CreateRequest
+	(*CreateResponse)(nil),             // 16: physical_good.v0.CreateResponse
+	(*PublishRequest)(nil),             // 17: physical_good.v0.PublishRequest
+	(*PublishResponse)(nil),            // 18: physical_good.v0.PublishResponse
+	(*UnpublishRequest)(nil),           // 19: physical_good.v0.UnpublishRequest
+	(*UnpublishResponse)(nil),          // 20: physical_good.v0.UnpublishResponse
+	(*UpdateRequest)(nil),              // 21: physical_good.v0.UpdateRequest
+	(*UpdateResponse)(nil),             // 22: physical_good.v0.UpdateResponse
+	(*AddImageRequest)(nil),            // 23: physical_good.v0.AddImageRequest
+	(*AddImageResponse)(nil),           // 24: physical_good.v0.AddImageResponse
+	(*DeleteImageRequest)(nil),         // 25: physical_good.v0.DeleteImageRequest
+	(*DeleteImageResponse)(nil),        // 26: physical_good.v0.DeleteImageResponse
+	(*AddImageBatchRequest)(nil),       // 27: physical_good.v0.AddImageBatchRequest
+	(*AddImageBatchResponse)(nil),      // 28: physical_good.v0.AddImageBatchResponse
+	(*DeleteImageBatchRequest)(nil),    // 29: physical_good.v0.DeleteImageBatchRequest
+	(*DeleteImageBatchResponse)(nil),   // 30: physical_good.v0.DeleteImageBatchResponse
+	(*DeleteRequest)(nil),              // 31: physical_good.v0.DeleteRequest
+	(*DeleteResponse)(nil),             // 32: physical_good.v0.DeleteResponse
+	(*DeletePermanentRequest)(nil),     // 33: physical_good.v0.DeletePermanentRequest
+	(*DeletePermanentResponse)(nil),    // 34: physical_good.v0.DeletePermanentResponse
+	(*RestoreRequest)(nil),             // 35: physical_good.v0.RestoreRequest
+	(*RestoreResponse)(nil),            // 36: physical_good.v0.RestoreResponse
 	(*timestamppb.Timestamp)(nil),      // 37: google.protobuf.Timestamp
 	(*fieldmaskpb.FieldMask)(nil),      // 38: google.protobuf.FieldMask
 }
-var file_product_service_training_session_v0_training_session_proto_depIdxs = []int32{
-	37, // 0: training_session.v0.TrainingSession.created_at:type_name -> google.protobuf.Timestamp
-	37, // 1: training_session.v0.TrainingSession.updated_at:type_name -> google.protobuf.Timestamp
-	37, // 2: training_session.v0.TrainingSession.deleted_at:type_name -> google.protobuf.Timestamp
-	0,  // 3: training_session.v0.TrainingSession.images:type_name -> training_session.v0.Image
-	1,  // 4: training_session.v0.TrainingSessionDetails.training_session:type_name -> training_session.v0.TrainingSession
-	2,  // 5: training_session.v0.GetResponse.training_session_details:type_name -> training_session.v0.TrainingSessionDetails
-	2,  // 6: training_session.v0.GetWithDeletedResponse.training_session_details:type_name -> training_session.v0.TrainingSessionDetails
-	2,  // 7: training_session.v0.GetWithUnpublishedResponse.training_session_details:type_name -> training_session.v0.TrainingSessionDetails
-	2,  // 8: training_session.v0.ListResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
-	2,  // 9: training_session.v0.ListDeletedResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
-	2,  // 10: training_session.v0.ListUnpublishedResponse.training_sessions_details:type_name -> training_session.v0.TrainingSessionDetails
-	38, // 11: training_session.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
-	38, // 12: training_session.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
-	3,  // 13: training_session.v0.TrainingSessionService.Get:input_type -> training_session.v0.GetRequest
-	5,  // 14: training_session.v0.TrainingSessionService.GetWithDeleted:input_type -> training_session.v0.GetWithDeletedRequest
-	7,  // 15: training_session.v0.TrainingSessionService.GetWithUnpublished:input_type -> training_session.v0.GetWithUnpublishedRequest
-	9,  // 16: training_session.v0.TrainingSessionService.List:input_type -> training_session.v0.ListRequest
-	11, // 17: training_session.v0.TrainingSessionService.ListDeleted:input_type -> training_session.v0.ListDeletedRequest
-	13, // 18: training_session.v0.TrainingSessionService.ListUnpublished:input_type -> training_session.v0.ListUnpublishedRequest
-	15, // 19: training_session.v0.TrainingSessionService.Create:input_type -> training_session.v0.CreateRequest
-	17, // 20: training_session.v0.TrainingSessionService.Publish:input_type -> training_session.v0.PublishRequest
-	19, // 21: training_session.v0.TrainingSessionService.Unpublish:input_type -> training_session.v0.UnpublishRequest
-	21, // 22: training_session.v0.TrainingSessionService.Update:input_type -> training_session.v0.UpdateRequest
-	23, // 23: training_session.v0.TrainingSessionService.AddImage:input_type -> training_session.v0.AddImageRequest
-	25, // 24: training_session.v0.TrainingSessionService.DeleteImage:input_type -> training_session.v0.DeleteImageRequest
-	27, // 25: training_session.v0.TrainingSessionService.AddImageBatch:input_type -> training_session.v0.AddImageBatchRequest
-	29, // 26: training_session.v0.TrainingSessionService.DeleteImageBatch:input_type -> training_session.v0.DeleteImageBatchRequest
-	31, // 27: training_session.v0.TrainingSessionService.Delete:input_type -> training_session.v0.DeleteRequest
-	33, // 28: training_session.v0.TrainingSessionService.DeletePermanent:input_type -> training_session.v0.DeletePermanentRequest
-	35, // 29: training_session.v0.TrainingSessionService.Restore:input_type -> training_session.v0.RestoreRequest
-	4,  // 30: training_session.v0.TrainingSessionService.Get:output_type -> training_session.v0.GetResponse
-	6,  // 31: training_session.v0.TrainingSessionService.GetWithDeleted:output_type -> training_session.v0.GetWithDeletedResponse
-	8,  // 32: training_session.v0.TrainingSessionService.GetWithUnpublished:output_type -> training_session.v0.GetWithUnpublishedResponse
-	10, // 33: training_session.v0.TrainingSessionService.List:output_type -> training_session.v0.ListResponse
-	12, // 34: training_session.v0.TrainingSessionService.ListDeleted:output_type -> training_session.v0.ListDeletedResponse
-	14, // 35: training_session.v0.TrainingSessionService.ListUnpublished:output_type -> training_session.v0.ListUnpublishedResponse
-	16, // 36: training_session.v0.TrainingSessionService.Create:output_type -> training_session.v0.CreateResponse
-	18, // 37: training_session.v0.TrainingSessionService.Publish:output_type -> training_session.v0.PublishResponse
-	20, // 38: training_session.v0.TrainingSessionService.Unpublish:output_type -> training_session.v0.UnpublishResponse
-	22, // 39: training_session.v0.TrainingSessionService.Update:output_type -> training_session.v0.UpdateResponse
-	24, // 40: training_session.v0.TrainingSessionService.AddImage:output_type -> training_session.v0.AddImageResponse
-	26, // 41: training_session.v0.TrainingSessionService.DeleteImage:output_type -> training_session.v0.DeleteImageResponse
-	28, // 42: training_session.v0.TrainingSessionService.AddImageBatch:output_type -> training_session.v0.AddImageBatchResponse
-	30, // 43: training_session.v0.TrainingSessionService.DeleteImageBatch:output_type -> training_session.v0.DeleteImageBatchResponse
-	32, // 44: training_session.v0.TrainingSessionService.Delete:output_type -> training_session.v0.DeleteResponse
-	34, // 45: training_session.v0.TrainingSessionService.DeletePermanent:output_type -> training_session.v0.DeletePermanentResponse
-	36, // 46: training_session.v0.TrainingSessionService.Restore:output_type -> training_session.v0.RestoreResponse
+var file_product_service_physical_good_v0_physical_good_proto_depIdxs = []int32{
+	37, // 0: physical_good.v0.PhysicalGood.created_at:type_name -> google.protobuf.Timestamp
+	37, // 1: physical_good.v0.PhysicalGood.updated_at:type_name -> google.protobuf.Timestamp
+	37, // 2: physical_good.v0.PhysicalGood.deleted_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: physical_good.v0.PhysicalGood.images:type_name -> physical_good.v0.Image
+	1,  // 4: physical_good.v0.PhysicalGoodDetails.physical_good:type_name -> physical_good.v0.PhysicalGood
+	2,  // 5: physical_good.v0.GetResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	2,  // 6: physical_good.v0.GetWithDeletedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	2,  // 7: physical_good.v0.GetWithUnpublishedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	2,  // 8: physical_good.v0.ListResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	2,  // 9: physical_good.v0.ListDeletedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	2,  // 10: physical_good.v0.ListUnpublishedResponse.physical_good_details:type_name -> physical_good.v0.PhysicalGoodDetails
+	38, // 11: physical_good.v0.UpdateRequest.update_mask:type_name -> google.protobuf.FieldMask
+	38, // 12: physical_good.v0.UpdateResponse.updated:type_name -> google.protobuf.FieldMask
+	3,  // 13: physical_good.v0.PhysicalGoodService.Get:input_type -> physical_good.v0.GetRequest
+	5,  // 14: physical_good.v0.PhysicalGoodService.GetWithDeleted:input_type -> physical_good.v0.GetWithDeletedRequest
+	7,  // 15: physical_good.v0.PhysicalGoodService.GetWithUnpublished:input_type -> physical_good.v0.GetWithUnpublishedRequest
+	9,  // 16: physical_good.v0.PhysicalGoodService.List:input_type -> physical_good.v0.ListRequest
+	11, // 17: physical_good.v0.PhysicalGoodService.ListDeleted:input_type -> physical_good.v0.ListDeletedRequest
+	13, // 18: physical_good.v0.PhysicalGoodService.ListUnpublished:input_type -> physical_good.v0.ListUnpublishedRequest
+	15, // 19: physical_good.v0.PhysicalGoodService.Create:input_type -> physical_good.v0.CreateRequest
+	17, // 20: physical_good.v0.PhysicalGoodService.Publish:input_type -> physical_good.v0.PublishRequest
+	19, // 21: physical_good.v0.PhysicalGoodService.Unpublish:input_type -> physical_good.v0.UnpublishRequest
+	21, // 22: physical_good.v0.PhysicalGoodService.Update:input_type -> physical_good.v0.UpdateRequest
+	23, // 23: physical_good.v0.PhysicalGoodService.AddImage:input_type -> physical_good.v0.AddImageRequest
+	25, // 24: physical_good.v0.PhysicalGoodService.DeleteImage:input_type -> physical_good.v0.DeleteImageRequest
+	27, // 25: physical_good.v0.PhysicalGoodService.AddImageBatch:input_type -> physical_good.v0.AddImageBatchRequest
+	29, // 26: physical_good.v0.PhysicalGoodService.DeleteImageBatch:input_type -> physical_good.v0.DeleteImageBatchRequest
+	31, // 27: physical_good.v0.PhysicalGoodService.Delete:input_type -> physical_good.v0.DeleteRequest
+	33, // 28: physical_good.v0.PhysicalGoodService.DeletePermanent:input_type -> physical_good.v0.DeletePermanentRequest
+	35, // 29: physical_good.v0.PhysicalGoodService.Restore:input_type -> physical_good.v0.RestoreRequest
+	4,  // 30: physical_good.v0.PhysicalGoodService.Get:output_type -> physical_good.v0.GetResponse
+	6,  // 31: physical_good.v0.PhysicalGoodService.GetWithDeleted:output_type -> physical_good.v0.GetWithDeletedResponse
+	8,  // 32: physical_good.v0.PhysicalGoodService.GetWithUnpublished:output_type -> physical_good.v0.GetWithUnpublishedResponse
+	10, // 33: physical_good.v0.PhysicalGoodService.List:output_type -> physical_good.v0.ListResponse
+	12, // 34: physical_good.v0.PhysicalGoodService.ListDeleted:output_type -> physical_good.v0.ListDeletedResponse
+	14, // 35: physical_good.v0.PhysicalGoodService.ListUnpublished:output_type -> physical_good.v0.ListUnpublishedResponse
+	16, // 36: physical_good.v0.PhysicalGoodService.Create:output_type -> physical_good.v0.CreateResponse
+	18, // 37: physical_good.v0.PhysicalGoodService.Publish:output_type -> physical_good.v0.PublishResponse
+	20, // 38: physical_good.v0.PhysicalGoodService.Unpublish:output_type -> physical_good.v0.UnpublishResponse
+	22, // 39: physical_good.v0.PhysicalGoodService.Update:output_type -> physical_good.v0.UpdateResponse
+	24, // 40: physical_good.v0.PhysicalGoodService.AddImage:output_type -> physical_good.v0.AddImageResponse
+	26, // 41: physical_good.v0.PhysicalGoodService.DeleteImage:output_type -> physical_good.v0.DeleteImageResponse
+	28, // 42: physical_good.v0.PhysicalGoodService.AddImageBatch:output_type -> physical_good.v0.AddImageBatchResponse
+	30, // 43: physical_good.v0.PhysicalGoodService.DeleteImageBatch:output_type -> physical_good.v0.DeleteImageBatchResponse
+	32, // 44: physical_good.v0.PhysicalGoodService.Delete:output_type -> physical_good.v0.DeleteResponse
+	34, // 45: physical_good.v0.PhysicalGoodService.DeletePermanent:output_type -> physical_good.v0.DeletePermanentResponse
+	36, // 46: physical_good.v0.PhysicalGoodService.Restore:output_type -> physical_good.v0.RestoreResponse
 	30, // [30:47] is the sub-list for method output_type
 	13, // [13:30] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
@@ -2403,29 +2416,29 @@ var file_product_service_training_session_v0_training_session_proto_depIdxs = []
 	0,  // [0:13] is the sub-list for field type_name
 }
 
-func init() { file_product_service_training_session_v0_training_session_proto_init() }
-func file_product_service_training_session_v0_training_session_proto_init() {
-	if File_product_service_training_session_v0_training_session_proto != nil {
+func init() { file_product_service_physical_good_v0_physical_good_proto_init() }
+func file_product_service_physical_good_v0_physical_good_proto_init() {
+	if File_product_service_physical_good_v0_physical_good_proto != nil {
 		return
 	}
-	file_product_service_training_session_v0_training_session_proto_msgTypes[1].OneofWrappers = []any{}
-	file_product_service_training_session_v0_training_session_proto_msgTypes[21].OneofWrappers = []any{}
-	file_product_service_training_session_v0_training_session_proto_msgTypes[22].OneofWrappers = []any{}
+	file_product_service_physical_good_v0_physical_good_proto_msgTypes[1].OneofWrappers = []any{}
+	file_product_service_physical_good_v0_physical_good_proto_msgTypes[21].OneofWrappers = []any{}
+	file_product_service_physical_good_v0_physical_good_proto_msgTypes[22].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_training_session_v0_training_session_proto_rawDesc), len(file_product_service_training_session_v0_training_session_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_physical_good_v0_physical_good_proto_rawDesc), len(file_product_service_physical_good_v0_physical_good_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_product_service_training_session_v0_training_session_proto_goTypes,
-		DependencyIndexes: file_product_service_training_session_v0_training_session_proto_depIdxs,
-		MessageInfos:      file_product_service_training_session_v0_training_session_proto_msgTypes,
+		GoTypes:           file_product_service_physical_good_v0_physical_good_proto_goTypes,
+		DependencyIndexes: file_product_service_physical_good_v0_physical_good_proto_depIdxs,
+		MessageInfos:      file_product_service_physical_good_v0_physical_good_proto_msgTypes,
 	}.Build()
-	File_product_service_training_session_v0_training_session_proto = out.File
-	file_product_service_training_session_v0_training_session_proto_goTypes = nil
-	file_product_service_training_session_v0_training_session_proto_depIdxs = nil
+	File_product_service_physical_good_v0_physical_good_proto = out.File
+	file_product_service_physical_good_v0_physical_good_proto_goTypes = nil
+	file_product_service_physical_good_v0_physical_good_proto_depIdxs = nil
 }

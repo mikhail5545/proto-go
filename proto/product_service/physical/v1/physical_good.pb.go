@@ -1,6 +1,19 @@
-// github.com/mikhail5545/proto-go
-// shared proto module for vitainmove project microservices
-// Copyright (C) 2025  Mikhail Kulik
+/*
+ * github.com/mikhail5545/proto-go
+ * Copyright (c) 2026.  Mikhail Kulik
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published
@@ -19,9 +32,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.21.12
-// source: product_service/training_session/v1/training_session.proto
+// source: product_service/physical_good/v1/physical_good.proto
 
-package trainingsesssionpb
+package physicalgoodpb
 
 import (
 	v0 "github.com/mikhail5545/proto-go/proto/product_service/product/v0"
@@ -53,7 +66,7 @@ type CreateRequest struct {
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[0]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -65,7 +78,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[0]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -78,7 +91,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{0}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateRequest) GetTitle() string {
@@ -118,7 +131,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[1]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -130,7 +143,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[1]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +156,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{1}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateResponse) GetProduct() *v0.Product {
@@ -169,7 +182,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[2]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -181,7 +194,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[2]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -194,7 +207,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{2}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -269,7 +282,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[3]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -281,7 +294,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[3]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -294,7 +307,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{3}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UpdateResponse) GetId() string {
@@ -354,22 +367,22 @@ func (x *UpdateResponse) GetUpdates() *fieldmaskpb.FieldMask {
 }
 
 type CreateVariantRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ProductId       string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	Title           string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Option1         *string                `protobuf:"bytes,3,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
-	Option2         *string                `protobuf:"bytes,4,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
-	Option3         *string                `protobuf:"bytes,5,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
-	DurationMinutes *int32                 `protobuf:"varint,6,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
-	Format          v01.VariantFormat      `protobuf:"varint,7,opt,name=format,proto3,enum=variant.v0.VariantFormat" json:"format,omitempty"`
-	MaxSeats        *int32                 `protobuf:"varint,8,opt,name=max_seats,json=maxSeats,proto3,oneof" json:"max_seats,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	ProductId         string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title             string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	InventoryQuantity int32                  `protobuf:"varint,3,opt,name=inventory_quantity,json=inventoryQuantity,proto3" json:"inventory_quantity,omitempty"`
+	WeightGram        int32                  `protobuf:"varint,4,opt,name=weight_gram,json=weightGram,proto3" json:"weight_gram,omitempty"`
+	HsCode            string                 `protobuf:"bytes,5,opt,name=hs_code,json=hsCode,proto3" json:"hs_code,omitempty"`
+	Option1           *string                `protobuf:"bytes,6,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2           *string                `protobuf:"bytes,7,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3           *string                `protobuf:"bytes,8,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *CreateVariantRequest) Reset() {
 	*x = CreateVariantRequest{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[4]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -381,7 +394,7 @@ func (x *CreateVariantRequest) String() string {
 func (*CreateVariantRequest) ProtoMessage() {}
 
 func (x *CreateVariantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[4]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,7 +407,7 @@ func (x *CreateVariantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVariantRequest.ProtoReflect.Descriptor instead.
 func (*CreateVariantRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{4}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateVariantRequest) GetProductId() string {
@@ -407,6 +420,27 @@ func (x *CreateVariantRequest) GetProductId() string {
 func (x *CreateVariantRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateVariantRequest) GetInventoryQuantity() int32 {
+	if x != nil {
+		return x.InventoryQuantity
+	}
+	return 0
+}
+
+func (x *CreateVariantRequest) GetWeightGram() int32 {
+	if x != nil {
+		return x.WeightGram
+	}
+	return 0
+}
+
+func (x *CreateVariantRequest) GetHsCode() string {
+	if x != nil {
+		return x.HsCode
 	}
 	return ""
 }
@@ -432,27 +466,6 @@ func (x *CreateVariantRequest) GetOption3() string {
 	return ""
 }
 
-func (x *CreateVariantRequest) GetDurationMinutes() int32 {
-	if x != nil && x.DurationMinutes != nil {
-		return *x.DurationMinutes
-	}
-	return 0
-}
-
-func (x *CreateVariantRequest) GetFormat() v01.VariantFormat {
-	if x != nil {
-		return x.Format
-	}
-	return v01.VariantFormat(0)
-}
-
-func (x *CreateVariantRequest) GetMaxSeats() int32 {
-	if x != nil && x.MaxSeats != nil {
-		return *x.MaxSeats
-	}
-	return 0
-}
-
 type CreateVariantResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Variant       *v01.Variant           `protobuf:"bytes,1,opt,name=variant,proto3" json:"variant,omitempty"`
@@ -462,7 +475,7 @@ type CreateVariantResponse struct {
 
 func (x *CreateVariantResponse) Reset() {
 	*x = CreateVariantResponse{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[5]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -474,7 +487,7 @@ func (x *CreateVariantResponse) String() string {
 func (*CreateVariantResponse) ProtoMessage() {}
 
 func (x *CreateVariantResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[5]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -487,7 +500,7 @@ func (x *CreateVariantResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVariantResponse.ProtoReflect.Descriptor instead.
 func (*CreateVariantResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{5}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateVariantResponse) GetVariant() *v01.Variant {
@@ -498,26 +511,26 @@ func (x *CreateVariantResponse) GetVariant() *v01.Variant {
 }
 
 type UpdateVariantRequest struct {
-	state           protoimpl.MessageState      `protogen:"open.v1"`
-	VariantId       string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
-	ProductId       string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	Title           *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
-	InventoryPolicy *v01.VariantInventoryPolicy `protobuf:"varint,4,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
-	AllowBackorder  *bool                       `protobuf:"varint,5,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
-	Option1         *string                     `protobuf:"bytes,6,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
-	Option2         *string                     `protobuf:"bytes,7,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
-	Option3         *string                     `protobuf:"bytes,8,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
-	DurationMinutes *int32                      `protobuf:"varint,9,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
-	Format          *v01.VariantFormat          `protobuf:"varint,10,opt,name=format,proto3,enum=variant.v0.VariantFormat,oneof" json:"format,omitempty"`
-	MaxSeats        *int32                      `protobuf:"varint,11,opt,name=max_seats,json=maxSeats,proto3,oneof" json:"max_seats,omitempty"`
-	Updates         *fieldmaskpb.FieldMask      `protobuf:"bytes,12,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState      `protogen:"open.v1"`
+	VariantId         string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
+	ProductId         string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title             *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	InventoryQuantity *int32                      `protobuf:"varint,4,opt,name=inventory_quantity,json=inventoryQuantity,proto3,oneof" json:"inventory_quantity,omitempty"`
+	InventoryPolicy   *v01.VariantInventoryPolicy `protobuf:"varint,5,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
+	AllowBackorder    *bool                       `protobuf:"varint,6,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
+	WeightGram        *int32                      `protobuf:"varint,7,opt,name=weight_gram,json=weightGram,proto3,oneof" json:"weight_gram,omitempty"`
+	HsCode            *string                     `protobuf:"bytes,8,opt,name=hs_code,json=hsCode,proto3,oneof" json:"hs_code,omitempty"`
+	Option1           *string                     `protobuf:"bytes,9,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2           *string                     `protobuf:"bytes,10,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3           *string                     `protobuf:"bytes,11,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	Updates           *fieldmaskpb.FieldMask      `protobuf:"bytes,12,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *UpdateVariantRequest) Reset() {
 	*x = UpdateVariantRequest{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[6]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -529,7 +542,7 @@ func (x *UpdateVariantRequest) String() string {
 func (*UpdateVariantRequest) ProtoMessage() {}
 
 func (x *UpdateVariantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[6]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -542,7 +555,7 @@ func (x *UpdateVariantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateVariantRequest.ProtoReflect.Descriptor instead.
 func (*UpdateVariantRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{6}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateVariantRequest) GetVariantId() string {
@@ -566,6 +579,13 @@ func (x *UpdateVariantRequest) GetTitle() string {
 	return ""
 }
 
+func (x *UpdateVariantRequest) GetInventoryQuantity() int32 {
+	if x != nil && x.InventoryQuantity != nil {
+		return *x.InventoryQuantity
+	}
+	return 0
+}
+
 func (x *UpdateVariantRequest) GetInventoryPolicy() v01.VariantInventoryPolicy {
 	if x != nil && x.InventoryPolicy != nil {
 		return *x.InventoryPolicy
@@ -578,6 +598,20 @@ func (x *UpdateVariantRequest) GetAllowBackorder() bool {
 		return *x.AllowBackorder
 	}
 	return false
+}
+
+func (x *UpdateVariantRequest) GetWeightGram() int32 {
+	if x != nil && x.WeightGram != nil {
+		return *x.WeightGram
+	}
+	return 0
+}
+
+func (x *UpdateVariantRequest) GetHsCode() string {
+	if x != nil && x.HsCode != nil {
+		return *x.HsCode
+	}
+	return ""
 }
 
 func (x *UpdateVariantRequest) GetOption1() string {
@@ -601,27 +635,6 @@ func (x *UpdateVariantRequest) GetOption3() string {
 	return ""
 }
 
-func (x *UpdateVariantRequest) GetDurationMinutes() int32 {
-	if x != nil && x.DurationMinutes != nil {
-		return *x.DurationMinutes
-	}
-	return 0
-}
-
-func (x *UpdateVariantRequest) GetFormat() v01.VariantFormat {
-	if x != nil && x.Format != nil {
-		return *x.Format
-	}
-	return v01.VariantFormat(0)
-}
-
-func (x *UpdateVariantRequest) GetMaxSeats() int32 {
-	if x != nil && x.MaxSeats != nil {
-		return *x.MaxSeats
-	}
-	return 0
-}
-
 func (x *UpdateVariantRequest) GetUpdates() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.Updates
@@ -630,26 +643,26 @@ func (x *UpdateVariantRequest) GetUpdates() *fieldmaskpb.FieldMask {
 }
 
 type UpdateVariantResponse struct {
-	state           protoimpl.MessageState      `protogen:"open.v1"`
-	VariantId       string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
-	ProductId       string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	Title           *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
-	InventoryPolicy *v01.VariantInventoryPolicy `protobuf:"varint,4,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
-	AllowBackorder  *bool                       `protobuf:"varint,5,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
-	Option1         *string                     `protobuf:"bytes,6,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
-	Option2         *string                     `protobuf:"bytes,7,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
-	Option3         *string                     `protobuf:"bytes,8,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
-	DurationMinutes *int32                      `protobuf:"varint,9,opt,name=duration_minutes,json=durationMinutes,proto3,oneof" json:"duration_minutes,omitempty"`
-	Format          *v01.VariantFormat          `protobuf:"varint,10,opt,name=format,proto3,enum=variant.v0.VariantFormat,oneof" json:"format,omitempty"`
-	MaxSeats        *int32                      `protobuf:"varint,11,opt,name=max_seats,json=maxSeats,proto3,oneof" json:"max_seats,omitempty"`
-	Updates         *fieldmaskpb.FieldMask      `protobuf:"bytes,12,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState      `protogen:"open.v1"`
+	VariantId         string                      `protobuf:"bytes,1,opt,name=variant_id,json=variantId,proto3" json:"variant_id,omitempty"`
+	ProductId         string                      `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title             *string                     `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	InventoryQuantity *int32                      `protobuf:"varint,4,opt,name=inventory_quantity,json=inventoryQuantity,proto3,oneof" json:"inventory_quantity,omitempty"`
+	InventoryPolicy   *v01.VariantInventoryPolicy `protobuf:"varint,5,opt,name=inventory_policy,json=inventoryPolicy,proto3,enum=variant.v0.VariantInventoryPolicy,oneof" json:"inventory_policy,omitempty"`
+	AllowBackorder    *bool                       `protobuf:"varint,6,opt,name=allow_backorder,json=allowBackorder,proto3,oneof" json:"allow_backorder,omitempty"`
+	WeightGram        *int32                      `protobuf:"varint,7,opt,name=weight_gram,json=weightGram,proto3,oneof" json:"weight_gram,omitempty"`
+	HsCode            *string                     `protobuf:"bytes,8,opt,name=hs_code,json=hsCode,proto3,oneof" json:"hs_code,omitempty"`
+	Option1           *string                     `protobuf:"bytes,9,opt,name=option1,proto3,oneof" json:"option1,omitempty"`
+	Option2           *string                     `protobuf:"bytes,10,opt,name=option2,proto3,oneof" json:"option2,omitempty"`
+	Option3           *string                     `protobuf:"bytes,11,opt,name=option3,proto3,oneof" json:"option3,omitempty"`
+	Updates           *fieldmaskpb.FieldMask      `protobuf:"bytes,12,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *UpdateVariantResponse) Reset() {
 	*x = UpdateVariantResponse{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[7]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -661,7 +674,7 @@ func (x *UpdateVariantResponse) String() string {
 func (*UpdateVariantResponse) ProtoMessage() {}
 
 func (x *UpdateVariantResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[7]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +687,7 @@ func (x *UpdateVariantResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateVariantResponse.ProtoReflect.Descriptor instead.
 func (*UpdateVariantResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{7}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateVariantResponse) GetVariantId() string {
@@ -698,6 +711,13 @@ func (x *UpdateVariantResponse) GetTitle() string {
 	return ""
 }
 
+func (x *UpdateVariantResponse) GetInventoryQuantity() int32 {
+	if x != nil && x.InventoryQuantity != nil {
+		return *x.InventoryQuantity
+	}
+	return 0
+}
+
 func (x *UpdateVariantResponse) GetInventoryPolicy() v01.VariantInventoryPolicy {
 	if x != nil && x.InventoryPolicy != nil {
 		return *x.InventoryPolicy
@@ -710,6 +730,20 @@ func (x *UpdateVariantResponse) GetAllowBackorder() bool {
 		return *x.AllowBackorder
 	}
 	return false
+}
+
+func (x *UpdateVariantResponse) GetWeightGram() int32 {
+	if x != nil && x.WeightGram != nil {
+		return *x.WeightGram
+	}
+	return 0
+}
+
+func (x *UpdateVariantResponse) GetHsCode() string {
+	if x != nil && x.HsCode != nil {
+		return *x.HsCode
+	}
+	return ""
 }
 
 func (x *UpdateVariantResponse) GetOption1() string {
@@ -733,27 +767,6 @@ func (x *UpdateVariantResponse) GetOption3() string {
 	return ""
 }
 
-func (x *UpdateVariantResponse) GetDurationMinutes() int32 {
-	if x != nil && x.DurationMinutes != nil {
-		return *x.DurationMinutes
-	}
-	return 0
-}
-
-func (x *UpdateVariantResponse) GetFormat() v01.VariantFormat {
-	if x != nil && x.Format != nil {
-		return *x.Format
-	}
-	return v01.VariantFormat(0)
-}
-
-func (x *UpdateVariantResponse) GetMaxSeats() int32 {
-	if x != nil && x.MaxSeats != nil {
-		return *x.MaxSeats
-	}
-	return 0
-}
-
 func (x *UpdateVariantResponse) GetUpdates() *fieldmaskpb.FieldMask {
 	if x != nil {
 		return x.Updates
@@ -770,7 +783,7 @@ type UndraftRequest struct {
 
 func (x *UndraftRequest) Reset() {
 	*x = UndraftRequest{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[8]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -782,7 +795,7 @@ func (x *UndraftRequest) String() string {
 func (*UndraftRequest) ProtoMessage() {}
 
 func (x *UndraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[8]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -795,7 +808,7 @@ func (x *UndraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UndraftRequest.ProtoReflect.Descriptor instead.
 func (*UndraftRequest) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{8}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UndraftRequest) GetId() string {
@@ -807,14 +820,14 @@ func (x *UndraftRequest) GetId() string {
 
 type UndraftResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UndraftResponse) Reset() {
 	*x = UndraftResponse{}
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[9]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -826,7 +839,7 @@ func (x *UndraftResponse) String() string {
 func (*UndraftResponse) ProtoMessage() {}
 
 func (x *UndraftResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_product_service_training_session_v1_training_session_proto_msgTypes[9]
+	mi := &file_product_service_physical_good_v1_physical_good_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -839,7 +852,7 @@ func (x *UndraftResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UndraftResponse.ProtoReflect.Descriptor instead.
 func (*UndraftResponse) Descriptor() ([]byte, []int) {
-	return file_product_service_training_session_v1_training_session_proto_rawDescGZIP(), []int{9}
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UndraftResponse) GetId() string {
@@ -849,11 +862,11 @@ func (x *UndraftResponse) GetId() string {
 	return ""
 }
 
-var File_product_service_training_session_v1_training_session_proto protoreflect.FileDescriptor
+var File_product_service_physical_good_v1_physical_good_proto protoreflect.FileDescriptor
 
-const file_product_service_training_session_v1_training_session_proto_rawDesc = "" +
+const file_product_service_physical_good_v1_physical_good_proto_rawDesc = "" +
 	"\n" +
-	":product_service/training_session/v1/training_session.proto\x12\x13training_session.v1\x1a(product_service/variant/v0/variant.proto\x1a(product_service/product/v0/product.proto\x1a google/protobuf/field_mask.proto\"\x94\x01\n" +
+	"4product_service/physical_good/v1/physical_good.proto\x12\x10physical_good.v1\x1a(product_service/product/v0/product.proto\x1a(product_service/variant/v0/variant.proto\x1a google/protobuf/field_mask.proto\"\x94\x01\n" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1f\n" +
 	"\bsubtitle\x18\x02 \x01(\tH\x00R\bsubtitle\x88\x01\x01\x12+\n" +
@@ -893,186 +906,182 @@ const file_product_service_training_session_v1_training_session_proto_rawDesc = 
 	"\x12_short_descriptionB\v\n" +
 	"\t_metadataB\n" +
 	"\n" +
-	"\b_updates\"\xf4\x02\n" +
+	"\b_updates\"\xb5\x02\n" +
 	"\x14CreateVariantRequest\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1d\n" +
-	"\aoption1\x18\x03 \x01(\tH\x00R\aoption1\x88\x01\x01\x12\x1d\n" +
-	"\aoption2\x18\x04 \x01(\tH\x01R\aoption2\x88\x01\x01\x12\x1d\n" +
-	"\aoption3\x18\x05 \x01(\tH\x02R\aoption3\x88\x01\x01\x12.\n" +
-	"\x10duration_minutes\x18\x06 \x01(\x05H\x03R\x0fdurationMinutes\x88\x01\x01\x121\n" +
-	"\x06format\x18\a \x01(\x0e2\x19.variant.v0.VariantFormatR\x06format\x12 \n" +
-	"\tmax_seats\x18\b \x01(\x05H\x04R\bmaxSeats\x88\x01\x01B\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12-\n" +
+	"\x12inventory_quantity\x18\x03 \x01(\x05R\x11inventoryQuantity\x12\x1f\n" +
+	"\vweight_gram\x18\x04 \x01(\x05R\n" +
+	"weightGram\x12\x17\n" +
+	"\ahs_code\x18\x05 \x01(\tR\x06hsCode\x12\x1d\n" +
+	"\aoption1\x18\x06 \x01(\tH\x00R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\a \x01(\tH\x01R\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\b \x01(\tH\x02R\aoption3\x88\x01\x01B\n" +
 	"\n" +
 	"\b_option1B\n" +
 	"\n" +
 	"\b_option2B\n" +
 	"\n" +
-	"\b_option3B\x13\n" +
-	"\x11_duration_minutesB\f\n" +
-	"\n" +
-	"_max_seats\"F\n" +
+	"\b_option3\"F\n" +
 	"\x15CreateVariantResponse\x12-\n" +
-	"\avariant\x18\x01 \x01(\v2\x13.variant.v0.VariantR\avariant\"\xa4\x05\n" +
+	"\avariant\x18\x01 \x01(\v2\x13.variant.v0.VariantR\avariant\"\x97\x05\n" +
 	"\x14UpdateVariantRequest\x12\x1d\n" +
 	"\n" +
 	"variant_id\x18\x01 \x01(\tR\tvariantId\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x02 \x01(\tR\tproductId\x12\x19\n" +
-	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12R\n" +
-	"\x10inventory_policy\x18\x04 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x01R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
-	"\x0fallow_backorder\x18\x05 \x01(\bH\x02R\x0eallowBackorder\x88\x01\x01\x12\x1d\n" +
-	"\aoption1\x18\x06 \x01(\tH\x03R\aoption1\x88\x01\x01\x12\x1d\n" +
-	"\aoption2\x18\a \x01(\tH\x04R\aoption2\x88\x01\x01\x12\x1d\n" +
-	"\aoption3\x18\b \x01(\tH\x05R\aoption3\x88\x01\x01\x12.\n" +
-	"\x10duration_minutes\x18\t \x01(\x05H\x06R\x0fdurationMinutes\x88\x01\x01\x126\n" +
-	"\x06format\x18\n" +
-	" \x01(\x0e2\x19.variant.v0.VariantFormatH\aR\x06format\x88\x01\x01\x12 \n" +
-	"\tmax_seats\x18\v \x01(\x05H\bR\bmaxSeats\x88\x01\x01\x129\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x122\n" +
+	"\x12inventory_quantity\x18\x04 \x01(\x05H\x01R\x11inventoryQuantity\x88\x01\x01\x12R\n" +
+	"\x10inventory_policy\x18\x05 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x02R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
+	"\x0fallow_backorder\x18\x06 \x01(\bH\x03R\x0eallowBackorder\x88\x01\x01\x12$\n" +
+	"\vweight_gram\x18\a \x01(\x05H\x04R\n" +
+	"weightGram\x88\x01\x01\x12\x1c\n" +
+	"\ahs_code\x18\b \x01(\tH\x05R\x06hsCode\x88\x01\x01\x12\x1d\n" +
+	"\aoption1\x18\t \x01(\tH\x06R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\n" +
+	" \x01(\tH\aR\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\v \x01(\tH\bR\aoption3\x88\x01\x01\x129\n" +
 	"\aupdates\x18\f \x01(\v2\x1a.google.protobuf.FieldMaskH\tR\aupdates\x88\x01\x01B\b\n" +
-	"\x06_titleB\x13\n" +
+	"\x06_titleB\x15\n" +
+	"\x13_inventory_quantityB\x13\n" +
 	"\x11_inventory_policyB\x12\n" +
-	"\x10_allow_backorderB\n" +
+	"\x10_allow_backorderB\x0e\n" +
+	"\f_weight_gramB\n" +
+	"\n" +
+	"\b_hs_codeB\n" +
 	"\n" +
 	"\b_option1B\n" +
 	"\n" +
 	"\b_option2B\n" +
 	"\n" +
-	"\b_option3B\x13\n" +
-	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\f\n" +
+	"\b_option3B\n" +
 	"\n" +
-	"_max_seatsB\n" +
-	"\n" +
-	"\b_updates\"\xa5\x05\n" +
+	"\b_updates\"\x98\x05\n" +
 	"\x15UpdateVariantResponse\x12\x1d\n" +
 	"\n" +
 	"variant_id\x18\x01 \x01(\tR\tvariantId\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x02 \x01(\tR\tproductId\x12\x19\n" +
-	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12R\n" +
-	"\x10inventory_policy\x18\x04 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x01R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
-	"\x0fallow_backorder\x18\x05 \x01(\bH\x02R\x0eallowBackorder\x88\x01\x01\x12\x1d\n" +
-	"\aoption1\x18\x06 \x01(\tH\x03R\aoption1\x88\x01\x01\x12\x1d\n" +
-	"\aoption2\x18\a \x01(\tH\x04R\aoption2\x88\x01\x01\x12\x1d\n" +
-	"\aoption3\x18\b \x01(\tH\x05R\aoption3\x88\x01\x01\x12.\n" +
-	"\x10duration_minutes\x18\t \x01(\x05H\x06R\x0fdurationMinutes\x88\x01\x01\x126\n" +
-	"\x06format\x18\n" +
-	" \x01(\x0e2\x19.variant.v0.VariantFormatH\aR\x06format\x88\x01\x01\x12 \n" +
-	"\tmax_seats\x18\v \x01(\x05H\bR\bmaxSeats\x88\x01\x01\x129\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x122\n" +
+	"\x12inventory_quantity\x18\x04 \x01(\x05H\x01R\x11inventoryQuantity\x88\x01\x01\x12R\n" +
+	"\x10inventory_policy\x18\x05 \x01(\x0e2\".variant.v0.VariantInventoryPolicyH\x02R\x0finventoryPolicy\x88\x01\x01\x12,\n" +
+	"\x0fallow_backorder\x18\x06 \x01(\bH\x03R\x0eallowBackorder\x88\x01\x01\x12$\n" +
+	"\vweight_gram\x18\a \x01(\x05H\x04R\n" +
+	"weightGram\x88\x01\x01\x12\x1c\n" +
+	"\ahs_code\x18\b \x01(\tH\x05R\x06hsCode\x88\x01\x01\x12\x1d\n" +
+	"\aoption1\x18\t \x01(\tH\x06R\aoption1\x88\x01\x01\x12\x1d\n" +
+	"\aoption2\x18\n" +
+	" \x01(\tH\aR\aoption2\x88\x01\x01\x12\x1d\n" +
+	"\aoption3\x18\v \x01(\tH\bR\aoption3\x88\x01\x01\x129\n" +
 	"\aupdates\x18\f \x01(\v2\x1a.google.protobuf.FieldMaskH\tR\aupdates\x88\x01\x01B\b\n" +
-	"\x06_titleB\x13\n" +
+	"\x06_titleB\x15\n" +
+	"\x13_inventory_quantityB\x13\n" +
 	"\x11_inventory_policyB\x12\n" +
-	"\x10_allow_backorderB\n" +
+	"\x10_allow_backorderB\x0e\n" +
+	"\f_weight_gramB\n" +
+	"\n" +
+	"\b_hs_codeB\n" +
 	"\n" +
 	"\b_option1B\n" +
 	"\n" +
 	"\b_option2B\n" +
 	"\n" +
-	"\b_option3B\x13\n" +
-	"\x11_duration_minutesB\t\n" +
-	"\a_formatB\f\n" +
-	"\n" +
-	"_max_seatsB\n" +
+	"\b_option3B\n" +
 	"\n" +
 	"\b_updates\" \n" +
 	"\x0eUndraftRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
 	"\x0fUndraftResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xee\x03\n" +
-	"\x16TrainingSessionService\x12S\n" +
-	"\x06Create\x12\".training_session.v1.CreateRequest\x1a#.training_session.v1.CreateResponse\"\x00\x12S\n" +
-	"\x06Update\x12\".training_session.v1.UpdateRequest\x1a#.training_session.v1.UpdateResponse\"\x00\x12h\n" +
-	"\rCreateVariant\x12).training_session.v1.CreateVariantRequest\x1a*.training_session.v1.CreateVariantResponse\"\x00\x12h\n" +
-	"\rUpdateVariant\x12).training_session.v1.UpdateVariantRequest\x1a*.training_session.v1.UpdateVariantResponse\"\x00\x12V\n" +
-	"\aUndraft\x12#.training_session.v1.UndraftRequest\x1a$.training_session.v1.UndraftResponse\"\x00B^Z\\github.com/mikhail5545/proto-go/proto/product_service/training_session/v1;trainingsesssionpbb\x06proto3"
+	"\x02id\x18\x02 \x01(\tR\x02id2\xcd\x03\n" +
+	"\x13PhysicalGoodService\x12M\n" +
+	"\x06Create\x12\x1f.physical_good.v1.CreateRequest\x1a .physical_good.v1.CreateResponse\"\x00\x12M\n" +
+	"\x06Update\x12\x1f.physical_good.v1.UpdateRequest\x1a .physical_good.v1.UpdateResponse\"\x00\x12b\n" +
+	"\rCreateVariant\x12&.physical_good.v1.CreateVariantRequest\x1a'.physical_good.v1.CreateVariantResponse\"\x00\x12b\n" +
+	"\rUpdateVariant\x12&.physical_good.v1.UpdateVariantRequest\x1a'.physical_good.v1.UpdateVariantResponse\"\x00\x12P\n" +
+	"\aUndraft\x12 .physical_good.v1.UndraftRequest\x1a!.physical_good.v1.UndraftResponse\"\x00BWZUgithub.com/mikhail5545/proto-go/proto/product_service/physical_good/v1;physicalgoodpbb\x06proto3"
 
 var (
-	file_product_service_training_session_v1_training_session_proto_rawDescOnce sync.Once
-	file_product_service_training_session_v1_training_session_proto_rawDescData []byte
+	file_product_service_physical_good_v1_physical_good_proto_rawDescOnce sync.Once
+	file_product_service_physical_good_v1_physical_good_proto_rawDescData []byte
 )
 
-func file_product_service_training_session_v1_training_session_proto_rawDescGZIP() []byte {
-	file_product_service_training_session_v1_training_session_proto_rawDescOnce.Do(func() {
-		file_product_service_training_session_v1_training_session_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_product_service_training_session_v1_training_session_proto_rawDesc), len(file_product_service_training_session_v1_training_session_proto_rawDesc)))
+func file_product_service_physical_good_v1_physical_good_proto_rawDescGZIP() []byte {
+	file_product_service_physical_good_v1_physical_good_proto_rawDescOnce.Do(func() {
+		file_product_service_physical_good_v1_physical_good_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_product_service_physical_good_v1_physical_good_proto_rawDesc), len(file_product_service_physical_good_v1_physical_good_proto_rawDesc)))
 	})
-	return file_product_service_training_session_v1_training_session_proto_rawDescData
+	return file_product_service_physical_good_v1_physical_good_proto_rawDescData
 }
 
-var file_product_service_training_session_v1_training_session_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_product_service_training_session_v1_training_session_proto_goTypes = []any{
-	(*CreateRequest)(nil),           // 0: training_session.v1.CreateRequest
-	(*CreateResponse)(nil),          // 1: training_session.v1.CreateResponse
-	(*UpdateRequest)(nil),           // 2: training_session.v1.UpdateRequest
-	(*UpdateResponse)(nil),          // 3: training_session.v1.UpdateResponse
-	(*CreateVariantRequest)(nil),    // 4: training_session.v1.CreateVariantRequest
-	(*CreateVariantResponse)(nil),   // 5: training_session.v1.CreateVariantResponse
-	(*UpdateVariantRequest)(nil),    // 6: training_session.v1.UpdateVariantRequest
-	(*UpdateVariantResponse)(nil),   // 7: training_session.v1.UpdateVariantResponse
-	(*UndraftRequest)(nil),          // 8: training_session.v1.UndraftRequest
-	(*UndraftResponse)(nil),         // 9: training_session.v1.UndraftResponse
+var file_product_service_physical_good_v1_physical_good_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_product_service_physical_good_v1_physical_good_proto_goTypes = []any{
+	(*CreateRequest)(nil),           // 0: physical_good.v1.CreateRequest
+	(*CreateResponse)(nil),          // 1: physical_good.v1.CreateResponse
+	(*UpdateRequest)(nil),           // 2: physical_good.v1.UpdateRequest
+	(*UpdateResponse)(nil),          // 3: physical_good.v1.UpdateResponse
+	(*CreateVariantRequest)(nil),    // 4: physical_good.v1.CreateVariantRequest
+	(*CreateVariantResponse)(nil),   // 5: physical_good.v1.CreateVariantResponse
+	(*UpdateVariantRequest)(nil),    // 6: physical_good.v1.UpdateVariantRequest
+	(*UpdateVariantResponse)(nil),   // 7: physical_good.v1.UpdateVariantResponse
+	(*UndraftRequest)(nil),          // 8: physical_good.v1.UndraftRequest
+	(*UndraftResponse)(nil),         // 9: physical_good.v1.UndraftResponse
 	(*v0.Product)(nil),              // 10: product.v0.Product
 	(*fieldmaskpb.FieldMask)(nil),   // 11: google.protobuf.FieldMask
-	(v01.VariantFormat)(0),          // 12: variant.v0.VariantFormat
-	(*v01.Variant)(nil),             // 13: variant.v0.Variant
-	(v01.VariantInventoryPolicy)(0), // 14: variant.v0.VariantInventoryPolicy
+	(*v01.Variant)(nil),             // 12: variant.v0.Variant
+	(v01.VariantInventoryPolicy)(0), // 13: variant.v0.VariantInventoryPolicy
 }
-var file_product_service_training_session_v1_training_session_proto_depIdxs = []int32{
-	10, // 0: training_session.v1.CreateResponse.product:type_name -> product.v0.Product
-	11, // 1: training_session.v1.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
-	11, // 2: training_session.v1.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
-	12, // 3: training_session.v1.CreateVariantRequest.format:type_name -> variant.v0.VariantFormat
-	13, // 4: training_session.v1.CreateVariantResponse.variant:type_name -> variant.v0.Variant
-	14, // 5: training_session.v1.UpdateVariantRequest.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
-	12, // 6: training_session.v1.UpdateVariantRequest.format:type_name -> variant.v0.VariantFormat
-	11, // 7: training_session.v1.UpdateVariantRequest.updates:type_name -> google.protobuf.FieldMask
-	14, // 8: training_session.v1.UpdateVariantResponse.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
-	12, // 9: training_session.v1.UpdateVariantResponse.format:type_name -> variant.v0.VariantFormat
-	11, // 10: training_session.v1.UpdateVariantResponse.updates:type_name -> google.protobuf.FieldMask
-	0,  // 11: training_session.v1.TrainingSessionService.Create:input_type -> training_session.v1.CreateRequest
-	2,  // 12: training_session.v1.TrainingSessionService.Update:input_type -> training_session.v1.UpdateRequest
-	4,  // 13: training_session.v1.TrainingSessionService.CreateVariant:input_type -> training_session.v1.CreateVariantRequest
-	6,  // 14: training_session.v1.TrainingSessionService.UpdateVariant:input_type -> training_session.v1.UpdateVariantRequest
-	8,  // 15: training_session.v1.TrainingSessionService.Undraft:input_type -> training_session.v1.UndraftRequest
-	1,  // 16: training_session.v1.TrainingSessionService.Create:output_type -> training_session.v1.CreateResponse
-	3,  // 17: training_session.v1.TrainingSessionService.Update:output_type -> training_session.v1.UpdateResponse
-	5,  // 18: training_session.v1.TrainingSessionService.CreateVariant:output_type -> training_session.v1.CreateVariantResponse
-	7,  // 19: training_session.v1.TrainingSessionService.UpdateVariant:output_type -> training_session.v1.UpdateVariantResponse
-	9,  // 20: training_session.v1.TrainingSessionService.Undraft:output_type -> training_session.v1.UndraftResponse
-	16, // [16:21] is the sub-list for method output_type
-	11, // [11:16] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+var file_product_service_physical_good_v1_physical_good_proto_depIdxs = []int32{
+	10, // 0: physical_good.v1.CreateResponse.product:type_name -> product.v0.Product
+	11, // 1: physical_good.v1.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
+	11, // 2: physical_good.v1.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
+	12, // 3: physical_good.v1.CreateVariantResponse.variant:type_name -> variant.v0.Variant
+	13, // 4: physical_good.v1.UpdateVariantRequest.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
+	11, // 5: physical_good.v1.UpdateVariantRequest.updates:type_name -> google.protobuf.FieldMask
+	13, // 6: physical_good.v1.UpdateVariantResponse.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
+	11, // 7: physical_good.v1.UpdateVariantResponse.updates:type_name -> google.protobuf.FieldMask
+	0,  // 8: physical_good.v1.PhysicalGoodService.Create:input_type -> physical_good.v1.CreateRequest
+	2,  // 9: physical_good.v1.PhysicalGoodService.Update:input_type -> physical_good.v1.UpdateRequest
+	4,  // 10: physical_good.v1.PhysicalGoodService.CreateVariant:input_type -> physical_good.v1.CreateVariantRequest
+	6,  // 11: physical_good.v1.PhysicalGoodService.UpdateVariant:input_type -> physical_good.v1.UpdateVariantRequest
+	8,  // 12: physical_good.v1.PhysicalGoodService.Undraft:input_type -> physical_good.v1.UndraftRequest
+	1,  // 13: physical_good.v1.PhysicalGoodService.Create:output_type -> physical_good.v1.CreateResponse
+	3,  // 14: physical_good.v1.PhysicalGoodService.Update:output_type -> physical_good.v1.UpdateResponse
+	5,  // 15: physical_good.v1.PhysicalGoodService.CreateVariant:output_type -> physical_good.v1.CreateVariantResponse
+	7,  // 16: physical_good.v1.PhysicalGoodService.UpdateVariant:output_type -> physical_good.v1.UpdateVariantResponse
+	9,  // 17: physical_good.v1.PhysicalGoodService.Undraft:output_type -> physical_good.v1.UndraftResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
-func init() { file_product_service_training_session_v1_training_session_proto_init() }
-func file_product_service_training_session_v1_training_session_proto_init() {
-	if File_product_service_training_session_v1_training_session_proto != nil {
+func init() { file_product_service_physical_good_v1_physical_good_proto_init() }
+func file_product_service_physical_good_v1_physical_good_proto_init() {
+	if File_product_service_physical_good_v1_physical_good_proto != nil {
 		return
 	}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[0].OneofWrappers = []any{}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[2].OneofWrappers = []any{}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[3].OneofWrappers = []any{}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[4].OneofWrappers = []any{}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[6].OneofWrappers = []any{}
-	file_product_service_training_session_v1_training_session_proto_msgTypes[7].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[0].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[2].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[3].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[4].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[6].OneofWrappers = []any{}
+	file_product_service_physical_good_v1_physical_good_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_training_session_v1_training_session_proto_rawDesc), len(file_product_service_training_session_v1_training_session_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_physical_good_v1_physical_good_proto_rawDesc), len(file_product_service_physical_good_v1_physical_good_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_product_service_training_session_v1_training_session_proto_goTypes,
-		DependencyIndexes: file_product_service_training_session_v1_training_session_proto_depIdxs,
-		MessageInfos:      file_product_service_training_session_v1_training_session_proto_msgTypes,
+		GoTypes:           file_product_service_physical_good_v1_physical_good_proto_goTypes,
+		DependencyIndexes: file_product_service_physical_good_v1_physical_good_proto_depIdxs,
+		MessageInfos:      file_product_service_physical_good_v1_physical_good_proto_msgTypes,
 	}.Build()
-	File_product_service_training_session_v1_training_session_proto = out.File
-	file_product_service_training_session_v1_training_session_proto_goTypes = nil
-	file_product_service_training_session_v1_training_session_proto_depIdxs = nil
+	File_product_service_physical_good_v1_physical_good_proto = out.File
+	file_product_service_physical_good_v1_physical_good_proto_goTypes = nil
+	file_product_service_physical_good_v1_physical_good_proto_depIdxs = nil
 }
