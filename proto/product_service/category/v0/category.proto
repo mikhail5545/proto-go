@@ -35,7 +35,7 @@ message Category{
     // The current status of the category (e.g., draft, active).
     CategoryStatus status = 11;
     // Sub-categories, for GORM relations.
-    optional Category children = 12;
+    repeated Category children = 12;
     // Optional admin note about the category/on the specific event.
     optional string note = 13;
     // Reason for archiving the category.
@@ -85,7 +85,7 @@ message CreateRequest{
     string description = 4;
     string icon_alias = 5;
     optional bytes parent_uuid = 6;
-    string admin_id = 7;
+    bytes admin_uuid = 7;
     string note = 8;
     string admin_name = 9;
 }
@@ -117,7 +117,7 @@ message UpdateResponse{
 
 message ChangeStateRequest{
     bytes uuid = 1;
-    string admin_id = 2;
+    bytes admin_uuid = 2;
     string note = 3;
     string admin_name = 4;
 }

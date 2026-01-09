@@ -111,7 +111,7 @@ type Category struct {
 	// The current status of the category (e.g., draft, active).
 	Status CategoryStatus `protobuf:"varint,11,opt,name=status,proto3,enum=category.v0.CategoryStatus" json:"status,omitempty"`
 	// Sub-categories, for GORM relations.
-	Children *Category `protobuf:"bytes,12,opt,name=children,proto3,oneof" json:"children,omitempty"`
+	Children []*Category `protobuf:"bytes,12,rep,name=children,proto3" json:"children,omitempty"`
 	// Optional admin note about the category/on the specific event.
 	Note *string `protobuf:"bytes,13,opt,name=note,proto3,oneof" json:"note,omitempty"`
 	// Reason for archiving the category.
@@ -237,7 +237,7 @@ func (x *Category) GetStatus() CategoryStatus {
 	return CategoryStatus_STATUS_ACTIVE
 }
 
-func (x *Category) GetChildren() *Category {
+func (x *Category) GetChildren() []*Category {
 	if x != nil {
 		return x.Children
 	}
@@ -578,7 +578,7 @@ type CreateRequest struct {
 	Description      string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	IconAlias        string                 `protobuf:"bytes,5,opt,name=icon_alias,json=iconAlias,proto3" json:"icon_alias,omitempty"`
 	ParentUuid       []byte                 `protobuf:"bytes,6,opt,name=parent_uuid,json=parentUuid,proto3,oneof" json:"parent_uuid,omitempty"`
-	AdminId          string                 `protobuf:"bytes,7,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
+	AdminUuid        []byte                 `protobuf:"bytes,7,opt,name=admin_uuid,json=adminUuid,proto3" json:"admin_uuid,omitempty"`
 	Note             string                 `protobuf:"bytes,8,opt,name=note,proto3" json:"note,omitempty"`
 	AdminName        string                 `protobuf:"bytes,9,opt,name=admin_name,json=adminName,proto3" json:"admin_name,omitempty"`
 	unknownFields    protoimpl.UnknownFields
@@ -657,11 +657,11 @@ func (x *CreateRequest) GetParentUuid() []byte {
 	return nil
 }
 
-func (x *CreateRequest) GetAdminId() string {
+func (x *CreateRequest) GetAdminUuid() []byte {
 	if x != nil {
-		return x.AdminId
+		return x.AdminUuid
 	}
-	return ""
+	return nil
 }
 
 func (x *CreateRequest) GetNote() string {
@@ -917,7 +917,7 @@ func (x *UpdateResponse) GetUpdates() *fieldmaskpb.FieldMask {
 type ChangeStateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          []byte                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	AdminId       string                 `protobuf:"bytes,2,opt,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
+	AdminUuid     []byte                 `protobuf:"bytes,2,opt,name=admin_uuid,json=adminUuid,proto3" json:"admin_uuid,omitempty"`
 	Note          string                 `protobuf:"bytes,3,opt,name=note,proto3" json:"note,omitempty"`
 	AdminName     string                 `protobuf:"bytes,4,opt,name=admin_name,json=adminName,proto3" json:"admin_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -961,11 +961,11 @@ func (x *ChangeStateRequest) GetUuid() []byte {
 	return nil
 }
 
-func (x *ChangeStateRequest) GetAdminId() string {
+func (x *ChangeStateRequest) GetAdminUuid() []byte {
 	if x != nil {
-		return x.AdminId
+		return x.AdminUuid
 	}
-	return ""
+	return nil
 }
 
 func (x *ChangeStateRequest) GetNote() string {
@@ -986,7 +986,7 @@ var File_product_service_category_v0_category_proto protoreflect.FileDescriptor
 
 const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"\n" +
-	"*product_service/category/v0/category.proto\x12\vcategory.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xa2\t\n" +
+	"*product_service/category/v0/category.proto\x12\vcategory.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a google/protobuf/field_mask.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x90\t\n" +
 	"\bCategory\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x129\n" +
 	"\n" +
@@ -1004,27 +1004,26 @@ const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"\vparent_uuid\x18\n" +
 	" \x01(\fH\x03R\n" +
 	"parentUuid\x88\x01\x01\x123\n" +
-	"\x06status\x18\v \x01(\x0e2\x1b.category.v0.CategoryStatusR\x06status\x126\n" +
-	"\bchildren\x18\f \x01(\v2\x15.category.v0.CategoryH\x04R\bchildren\x88\x01\x01\x12\x17\n" +
-	"\x04note\x18\r \x01(\tH\x05R\x04note\x88\x01\x01\x12*\n" +
-	"\x0earchive_reason\x18\x0e \x01(\tH\x06R\rarchiveReason\x88\x01\x01\x12\"\n" +
+	"\x06status\x18\v \x01(\x0e2\x1b.category.v0.CategoryStatusR\x06status\x121\n" +
+	"\bchildren\x18\f \x03(\v2\x15.category.v0.CategoryR\bchildren\x12\x17\n" +
+	"\x04note\x18\r \x01(\tH\x04R\x04note\x88\x01\x01\x12*\n" +
+	"\x0earchive_reason\x18\x0e \x01(\tH\x05R\rarchiveReason\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"created_by\x18\x0f \x01(\fH\aR\tcreatedBy\x88\x01\x01\x12&\n" +
-	"\fpublished_by\x18\x10 \x01(\fH\bR\vpublishedBy\x88\x01\x01\x12$\n" +
-	"\varchived_by\x18\x11 \x01(\fH\tR\n" +
+	"created_by\x18\x0f \x01(\fH\x06R\tcreatedBy\x88\x01\x01\x12&\n" +
+	"\fpublished_by\x18\x10 \x01(\fH\aR\vpublishedBy\x88\x01\x01\x12$\n" +
+	"\varchived_by\x18\x11 \x01(\fH\bR\n" +
 	"archivedBy\x88\x01\x01\x12$\n" +
-	"\vrestored_by\x18\x12 \x01(\fH\n" +
-	"R\n" +
+	"\vrestored_by\x18\x12 \x01(\fH\tR\n" +
 	"restoredBy\x88\x01\x01\x12+\n" +
-	"\x0fcreated_by_name\x18\x13 \x01(\tH\vR\rcreatedByName\x88\x01\x01\x12/\n" +
-	"\x11published_by_name\x18\x14 \x01(\tH\fR\x0fpublishedByName\x88\x01\x01\x12-\n" +
-	"\x10archived_by_name\x18\x15 \x01(\tH\rR\x0earchivedByName\x88\x01\x01\x12-\n" +
-	"\x10restored_by_name\x18\x16 \x01(\tH\x0eR\x0erestoredByName\x88\x01\x01B\r\n" +
+	"\x0fcreated_by_name\x18\x13 \x01(\tH\n" +
+	"R\rcreatedByName\x88\x01\x01\x12/\n" +
+	"\x11published_by_name\x18\x14 \x01(\tH\vR\x0fpublishedByName\x88\x01\x01\x12-\n" +
+	"\x10archived_by_name\x18\x15 \x01(\tH\fR\x0earchivedByName\x88\x01\x01\x12-\n" +
+	"\x10restored_by_name\x18\x16 \x01(\tH\rR\x0erestoredByName\x88\x01\x01B\r\n" +
 	"\v_deleted_atB\x0e\n" +
 	"\f_descriptionB\x14\n" +
 	"\x12_short_descriptionB\x0e\n" +
-	"\f_parent_uuidB\v\n" +
-	"\t_childrenB\a\n" +
+	"\f_parent_uuidB\a\n" +
 	"\x05_noteB\x11\n" +
 	"\x0f_archive_reasonB\r\n" +
 	"\v_created_byB\x0f\n" +
@@ -1061,7 +1060,7 @@ const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"\n" +
 	"categories\x18\x01 \x03(\v2\x15.category.v0.CategoryR\n" +
 	"categories\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xa9\x02\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xad\x02\n" +
 	"\rCreateRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12+\n" +
@@ -1070,8 +1069,9 @@ const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"\n" +
 	"icon_alias\x18\x05 \x01(\tR\ticonAlias\x12$\n" +
 	"\vparent_uuid\x18\x06 \x01(\fH\x00R\n" +
-	"parentUuid\x88\x01\x01\x12\x19\n" +
-	"\badmin_id\x18\a \x01(\tR\aadminId\x12\x12\n" +
+	"parentUuid\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"admin_uuid\x18\a \x01(\fR\tadminUuid\x12\x12\n" +
 	"\x04note\x18\b \x01(\tR\x04note\x12\x1d\n" +
 	"\n" +
 	"admin_name\x18\t \x01(\tR\tadminNameB\x0e\n" +
@@ -1110,10 +1110,11 @@ const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"\f_descriptionB\r\n" +
 	"\v_icon_aliasB\n" +
 	"\n" +
-	"\b_updates\"v\n" +
+	"\b_updates\"z\n" +
 	"\x12ChangeStateRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x12\x19\n" +
-	"\badmin_id\x18\x02 \x01(\tR\aadminId\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x12\x1d\n" +
+	"\n" +
+	"admin_uuid\x18\x02 \x01(\fR\tadminUuid\x12\x12\n" +
 	"\x04note\x18\x03 \x01(\tR\x04note\x12\x1d\n" +
 	"\n" +
 	"admin_name\x18\x04 \x01(\tR\tadminName*J\n" +
