@@ -13,8 +13,9 @@ option go_package = "github.com/mikhail5545/proto-go/proto/product_service/varia
 
 enum VariantStatus{
     STATUS_ACTIVE = 0;
-    STATUS_DRAFT = 1;
-    STATUS_ARCHIVED = 2;
+    STATUS_SCHEDULED = 1;
+    STATUS_DRAFT = 2;
+    STATUS_ARCHIVED = 3;
 }
 
 enum VariantInventoryPolicy{
@@ -25,6 +26,7 @@ enum VariantInventoryPolicy{
 enum VariantFormat{
     FORMAT_ONLINE = 0;
     FORMAT_OFFLINE = 1;
+    FORMAT_HYBRID = 2;
 }
 
 message Variant{

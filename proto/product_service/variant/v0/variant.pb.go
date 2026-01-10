@@ -46,22 +46,25 @@ const (
 type VariantStatus int32
 
 const (
-	VariantStatus_STATUS_ACTIVE   VariantStatus = 0
-	VariantStatus_STATUS_DRAFT    VariantStatus = 1
-	VariantStatus_STATUS_ARCHIVED VariantStatus = 2
+	VariantStatus_STATUS_ACTIVE    VariantStatus = 0
+	VariantStatus_STATUS_SCHEDULED VariantStatus = 1
+	VariantStatus_STATUS_DRAFT     VariantStatus = 2
+	VariantStatus_STATUS_ARCHIVED  VariantStatus = 3
 )
 
 // Enum value maps for VariantStatus.
 var (
 	VariantStatus_name = map[int32]string{
 		0: "STATUS_ACTIVE",
-		1: "STATUS_DRAFT",
-		2: "STATUS_ARCHIVED",
+		1: "STATUS_SCHEDULED",
+		2: "STATUS_DRAFT",
+		3: "STATUS_ARCHIVED",
 	}
 	VariantStatus_value = map[string]int32{
-		"STATUS_ACTIVE":   0,
-		"STATUS_DRAFT":    1,
-		"STATUS_ARCHIVED": 2,
+		"STATUS_ACTIVE":    0,
+		"STATUS_SCHEDULED": 1,
+		"STATUS_DRAFT":     2,
+		"STATUS_ARCHIVED":  3,
 	}
 )
 
@@ -143,6 +146,7 @@ type VariantFormat int32
 const (
 	VariantFormat_FORMAT_ONLINE  VariantFormat = 0
 	VariantFormat_FORMAT_OFFLINE VariantFormat = 1
+	VariantFormat_FORMAT_HYBRID  VariantFormat = 2
 )
 
 // Enum value maps for VariantFormat.
@@ -150,10 +154,12 @@ var (
 	VariantFormat_name = map[int32]string{
 		0: "FORMAT_ONLINE",
 		1: "FORMAT_OFFLINE",
+		2: "FORMAT_HYBRID",
 	}
 	VariantFormat_value = map[string]int32{
 		"FORMAT_ONLINE":  0,
 		"FORMAT_OFFLINE": 1,
+		"FORMAT_HYBRID":  2,
 	}
 )
 
@@ -1094,17 +1100,19 @@ const file_product_service_variant_v0_variant_proto_rawDesc = "" +
 	"admin_name\x18\x04 \x01(\tR\tadminName\x12\x12\n" +
 	"\x04note\x18\x05 \x01(\tR\x04note\",\n" +
 	"\fPingResponse\x12\x1c\n" +
-	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp*I\n" +
+	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp*_\n" +
 	"\rVariantStatus\x12\x11\n" +
-	"\rSTATUS_ACTIVE\x10\x00\x12\x10\n" +
-	"\fSTATUS_DRAFT\x10\x01\x12\x13\n" +
-	"\x0fSTATUS_ARCHIVED\x10\x02*>\n" +
+	"\rSTATUS_ACTIVE\x10\x00\x12\x14\n" +
+	"\x10STATUS_SCHEDULED\x10\x01\x12\x10\n" +
+	"\fSTATUS_DRAFT\x10\x02\x12\x13\n" +
+	"\x0fSTATUS_ARCHIVED\x10\x03*>\n" +
 	"\x16VariantInventoryPolicy\x12\x0f\n" +
 	"\vPOLICY_DENY\x10\x00\x12\x13\n" +
-	"\x0fPOLICY_CONTINUE\x10\x01*6\n" +
+	"\x0fPOLICY_CONTINUE\x10\x01*I\n" +
 	"\rVariantFormat\x12\x11\n" +
 	"\rFORMAT_ONLINE\x10\x00\x12\x12\n" +
-	"\x0eFORMAT_OFFLINE\x10\x012\x8f\x05\n" +
+	"\x0eFORMAT_OFFLINE\x10\x01\x12\x11\n" +
+	"\rFORMAT_HYBRID\x10\x022\x8f\x05\n" +
 	"\x0eVariantService\x128\n" +
 	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x18.variant.v0.PingResponse\x126\n" +
 	"\x03Get\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x12?\n" +
