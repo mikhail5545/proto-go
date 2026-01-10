@@ -93,7 +93,12 @@ message InvalidateRequest{
   string note = 4;
 }
 
+message PingResponse {
+  int64 timestamp = 1;
+}
+
 service VariantPriceService{
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
   rpc Get(GetRequest) returns (GetResponse);
   rpc List(ListRequest) returns (ListResponse);
   rpc ListIrrelevant(ListRequest) returns (ListResponse);

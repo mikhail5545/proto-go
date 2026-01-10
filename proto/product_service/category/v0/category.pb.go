@@ -982,6 +982,50 @@ func (x *ChangeStateRequest) GetAdminName() string {
 	return ""
 }
 
+type PingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Timestamp     int64                  `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PingResponse) Reset() {
+	*x = PingResponse{}
+	mi := &file_product_service_category_v0_category_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PingResponse) ProtoMessage() {}
+
+func (x *PingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_category_v0_category_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
+func (*PingResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_category_v0_category_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PingResponse) GetTimestamp() int64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
 var File_product_service_category_v0_category_proto protoreflect.FileDescriptor
 
 const file_product_service_category_v0_category_proto_rawDesc = "" +
@@ -1117,12 +1161,15 @@ const file_product_service_category_v0_category_proto_rawDesc = "" +
 	"admin_uuid\x18\x02 \x01(\fR\tadminUuid\x12\x12\n" +
 	"\x04note\x18\x03 \x01(\tR\x04note\x12\x1d\n" +
 	"\n" +
-	"admin_name\x18\x04 \x01(\tR\tadminName*J\n" +
+	"admin_name\x18\x04 \x01(\tR\tadminName\",\n" +
+	"\fPingResponse\x12\x1c\n" +
+	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp*J\n" +
 	"\x0eCategoryStatus\x12\x11\n" +
 	"\rSTATUS_ACTIVE\x10\x00\x12\x10\n" +
 	"\fSTATUS_DRAFT\x10\x01\x12\x13\n" +
-	"\x0fSTATUS_ARCHIVED\x10\x022\xeb\x05\n" +
-	"\x0fCategoryService\x128\n" +
+	"\x0fSTATUS_ARCHIVED\x10\x022\xa6\x06\n" +
+	"\x0fCategoryService\x129\n" +
+	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x19.category.v0.PingResponse\x128\n" +
 	"\x03Get\x12\x17.category.v0.GetRequest\x1a\x18.category.v0.GetResponse\x12A\n" +
 	"\fGetWithDraft\x12\x17.category.v0.GetRequest\x1a\x18.category.v0.GetResponse\x12D\n" +
 	"\x0fGetWithArchived\x12\x17.category.v0.GetRequest\x1a\x18.category.v0.GetResponse\x12;\n" +
@@ -1149,7 +1196,7 @@ func file_product_service_category_v0_category_proto_rawDescGZIP() []byte {
 }
 
 var file_product_service_category_v0_category_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_product_service_category_v0_category_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_product_service_category_v0_category_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_product_service_category_v0_category_proto_goTypes = []any{
 	(CategoryStatus)(0),           // 0: category.v0.CategoryStatus
 	(*Category)(nil),              // 1: category.v0.Category
@@ -1162,45 +1209,48 @@ var file_product_service_category_v0_category_proto_goTypes = []any{
 	(*UpdateRequest)(nil),         // 8: category.v0.UpdateRequest
 	(*UpdateResponse)(nil),        // 9: category.v0.UpdateResponse
 	(*ChangeStateRequest)(nil),    // 10: category.v0.ChangeStateRequest
-	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil), // 12: google.protobuf.FieldMask
-	(*emptypb.Empty)(nil),         // 13: google.protobuf.Empty
+	(*PingResponse)(nil),          // 11: category.v0.PingResponse
+	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil), // 13: google.protobuf.FieldMask
+	(*emptypb.Empty)(nil),         // 14: google.protobuf.Empty
 }
 var file_product_service_category_v0_category_proto_depIdxs = []int32{
-	11, // 0: category.v0.Category.created_at:type_name -> google.protobuf.Timestamp
-	11, // 1: category.v0.Category.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 2: category.v0.Category.deleted_at:type_name -> google.protobuf.Timestamp
+	12, // 0: category.v0.Category.created_at:type_name -> google.protobuf.Timestamp
+	12, // 1: category.v0.Category.updated_at:type_name -> google.protobuf.Timestamp
+	12, // 2: category.v0.Category.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: category.v0.Category.status:type_name -> category.v0.CategoryStatus
 	1,  // 4: category.v0.Category.children:type_name -> category.v0.Category
 	1,  // 5: category.v0.GetResponse.category:type_name -> category.v0.Category
 	1,  // 6: category.v0.ListResponse.categories:type_name -> category.v0.Category
 	1,  // 7: category.v0.CreateResponse.category:type_name -> category.v0.Category
-	12, // 8: category.v0.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
-	12, // 9: category.v0.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
-	2,  // 10: category.v0.CategoryService.Get:input_type -> category.v0.GetRequest
-	2,  // 11: category.v0.CategoryService.GetWithDraft:input_type -> category.v0.GetRequest
-	2,  // 12: category.v0.CategoryService.GetWithArchived:input_type -> category.v0.GetRequest
-	4,  // 13: category.v0.CategoryService.List:input_type -> category.v0.ListRequest
-	4,  // 14: category.v0.CategoryService.ListDrafts:input_type -> category.v0.ListRequest
-	4,  // 15: category.v0.CategoryService.ListArchived:input_type -> category.v0.ListRequest
-	6,  // 16: category.v0.CategoryService.Create:input_type -> category.v0.CreateRequest
-	8,  // 17: category.v0.CategoryService.Update:input_type -> category.v0.UpdateRequest
-	10, // 18: category.v0.CategoryService.Publish:input_type -> category.v0.ChangeStateRequest
-	10, // 19: category.v0.CategoryService.Archive:input_type -> category.v0.ChangeStateRequest
-	10, // 20: category.v0.CategoryService.Restore:input_type -> category.v0.ChangeStateRequest
-	3,  // 21: category.v0.CategoryService.Get:output_type -> category.v0.GetResponse
-	3,  // 22: category.v0.CategoryService.GetWithDraft:output_type -> category.v0.GetResponse
-	3,  // 23: category.v0.CategoryService.GetWithArchived:output_type -> category.v0.GetResponse
-	5,  // 24: category.v0.CategoryService.List:output_type -> category.v0.ListResponse
-	5,  // 25: category.v0.CategoryService.ListDrafts:output_type -> category.v0.ListResponse
-	5,  // 26: category.v0.CategoryService.ListArchived:output_type -> category.v0.ListResponse
-	7,  // 27: category.v0.CategoryService.Create:output_type -> category.v0.CreateResponse
-	9,  // 28: category.v0.CategoryService.Update:output_type -> category.v0.UpdateResponse
-	13, // 29: category.v0.CategoryService.Publish:output_type -> google.protobuf.Empty
-	13, // 30: category.v0.CategoryService.Archive:output_type -> google.protobuf.Empty
-	13, // 31: category.v0.CategoryService.Restore:output_type -> google.protobuf.Empty
-	21, // [21:32] is the sub-list for method output_type
-	10, // [10:21] is the sub-list for method input_type
+	13, // 8: category.v0.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
+	13, // 9: category.v0.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
+	14, // 10: category.v0.CategoryService.Ping:input_type -> google.protobuf.Empty
+	2,  // 11: category.v0.CategoryService.Get:input_type -> category.v0.GetRequest
+	2,  // 12: category.v0.CategoryService.GetWithDraft:input_type -> category.v0.GetRequest
+	2,  // 13: category.v0.CategoryService.GetWithArchived:input_type -> category.v0.GetRequest
+	4,  // 14: category.v0.CategoryService.List:input_type -> category.v0.ListRequest
+	4,  // 15: category.v0.CategoryService.ListDrafts:input_type -> category.v0.ListRequest
+	4,  // 16: category.v0.CategoryService.ListArchived:input_type -> category.v0.ListRequest
+	6,  // 17: category.v0.CategoryService.Create:input_type -> category.v0.CreateRequest
+	8,  // 18: category.v0.CategoryService.Update:input_type -> category.v0.UpdateRequest
+	10, // 19: category.v0.CategoryService.Publish:input_type -> category.v0.ChangeStateRequest
+	10, // 20: category.v0.CategoryService.Archive:input_type -> category.v0.ChangeStateRequest
+	10, // 21: category.v0.CategoryService.Restore:input_type -> category.v0.ChangeStateRequest
+	11, // 22: category.v0.CategoryService.Ping:output_type -> category.v0.PingResponse
+	3,  // 23: category.v0.CategoryService.Get:output_type -> category.v0.GetResponse
+	3,  // 24: category.v0.CategoryService.GetWithDraft:output_type -> category.v0.GetResponse
+	3,  // 25: category.v0.CategoryService.GetWithArchived:output_type -> category.v0.GetResponse
+	5,  // 26: category.v0.CategoryService.List:output_type -> category.v0.ListResponse
+	5,  // 27: category.v0.CategoryService.ListDrafts:output_type -> category.v0.ListResponse
+	5,  // 28: category.v0.CategoryService.ListArchived:output_type -> category.v0.ListResponse
+	7,  // 29: category.v0.CategoryService.Create:output_type -> category.v0.CreateResponse
+	9,  // 30: category.v0.CategoryService.Update:output_type -> category.v0.UpdateResponse
+	14, // 31: category.v0.CategoryService.Publish:output_type -> google.protobuf.Empty
+	14, // 32: category.v0.CategoryService.Archive:output_type -> google.protobuf.Empty
+	14, // 33: category.v0.CategoryService.Restore:output_type -> google.protobuf.Empty
+	22, // [22:34] is the sub-list for method output_type
+	10, // [10:22] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name
 	10, // [10:10] is the sub-list for extension extendee
 	0,  // [0:10] is the sub-list for field type_name
@@ -1223,7 +1273,7 @@ func file_product_service_category_v0_category_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_category_v0_category_proto_rawDesc), len(file_product_service_category_v0_category_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

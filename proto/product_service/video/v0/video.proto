@@ -58,6 +58,11 @@ message BrokenVideoRequest{
   string admin_name = 4;
 }
 
+message PingResponse {
+  int64 timestamp = 1;
+}
+
 service VideoService{
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
   rpc BrokenVideo(BrokenVideoRequest) returns (google.protobuf.Empty);
 }

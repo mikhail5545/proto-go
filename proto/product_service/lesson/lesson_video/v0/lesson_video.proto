@@ -83,7 +83,12 @@ message DeleteDraftRequest{
   bytes uuid = 1;
 }
 
+message PingResponse {
+  int64 timestamp = 1;
+}
+
 service LessonVideoVersionService{
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
   rpc List(ListRequest) returns (ListResponse);
   rpc ListDrafts(ListRequest) returns (ListResponse);
   rpc ListSuperseded(ListRequest) returns (ListResponse);

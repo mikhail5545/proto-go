@@ -37,6 +37,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	CategoryService_Ping_FullMethodName            = "/category.v0.CategoryService/Ping"
 	CategoryService_Get_FullMethodName             = "/category.v0.CategoryService/Get"
 	CategoryService_GetWithDraft_FullMethodName    = "/category.v0.CategoryService/GetWithDraft"
 	CategoryService_GetWithArchived_FullMethodName = "/category.v0.CategoryService/GetWithArchived"
@@ -54,6 +55,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CategoryServiceClient interface {
+	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithDraft(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithArchived(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
@@ -73,6 +75,16 @@ type categoryServiceClient struct {
 
 func NewCategoryServiceClient(cc grpc.ClientConnInterface) CategoryServiceClient {
 	return &categoryServiceClient{cc}
+}
+
+func (c *categoryServiceClient) Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, CategoryService_Ping_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *categoryServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
@@ -189,6 +201,7 @@ func (c *categoryServiceClient) Restore(ctx context.Context, in *ChangeStateRequ
 // All implementations must embed UnimplementedCategoryServiceServer
 // for forward compatibility.
 type CategoryServiceServer interface {
+	Ping(context.Context, *emptypb.Empty) (*PingResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithDraft(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithArchived(context.Context, *GetRequest) (*GetResponse, error)
@@ -210,6 +223,9 @@ type CategoryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCategoryServiceServer struct{}
 
+func (UnimplementedCategoryServiceServer) Ping(context.Context, *emptypb.Empty) (*PingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Ping not implemented")
+}
 func (UnimplementedCategoryServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Get not implemented")
 }
@@ -262,6 +278,24 @@ func RegisterCategoryServiceServer(s grpc.ServiceRegistrar, srv CategoryServiceS
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&CategoryService_ServiceDesc, srv)
+}
+
+func _CategoryService_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CategoryServiceServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CategoryService_Ping_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CategoryServiceServer).Ping(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CategoryService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -469,6 +503,10 @@ var CategoryService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "category.v0.CategoryService",
 	HandlerType: (*CategoryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ping",
+			Handler:    _CategoryService_Ping_Handler,
+		},
 		{
 			MethodName: "Get",
 			Handler:    _CategoryService_Get_Handler,

@@ -42,21 +42,7 @@ To compile files for `product_service` directory:
 ```bash
     protoc  --proto_path=proto \
     --go_out=. --go_opt=module=github.com/mikhail5545/proto-go \
-    --go-grpc_out=. --go-grpc_opt=module=github.com/mikhail5545/proto-go \
-    proto/product_service/category/v0/*.proto \
-    proto/product_service/collection/v0/*.proto
-    proto/product_service/course/v1/*.proto \
-    proto/product_service/digital/v0/*.proto \
-    proto/product_service/image/v0/*.proto \
-    proto/product_service/lesson/v0/*.proto \
-    proto/product_service/lesson/lesson_video/v0/*.proto \
-    proto/product_service/physical/v1/*.proto \
-    proto/product_service/product/v0/*.proto \
-    proto/product_service/seminar/v1/*.proto \
-    proto/product_service/training/v1/*.proto \
-    proto/product_service/variant/v0/*.proto \
-    proto/product_service/variant/variant_price/v0/*.proto \
-    proto/product_service/video/v0/*.proto 
+    --go-grpc_out=. --go-grpc_opt=module=github.com/mikhail5545/proto-go proto/product_service/category/v0/*.proto proto/product_service/collection/v0/*.proto proto/product_service/course/v1/*.proto proto/product_service/digital/v0/*.proto proto/product_service/image/v0/*.proto proto/product_service/lesson/v0/*.proto proto/product_service/lesson/lesson_video/v0/*.proto proto/product_service/physical/v1/*.proto proto/product_service/product/v0/*.proto proto/product_service/seminar/v1/*.proto proto/product_service/training/v1/*.proto proto/product_service/variant/v0/*.proto proto/product_service/variant/variant_price/v0/*.proto proto/product_service/video/v0/*.proto 
 ```
 
 To compile files for `media_service` directory:

@@ -136,7 +136,12 @@ message CreateOrUpdateRuleSetRequest{
     optional RuleSet rule_set = 2;
 }
 
+message PingResponse {
+    int64 timestamp = 1;
+}
+
 service CollectionService{
+    rpc Ping(google.protobuf.Empty) returns (PingResponse);
     rpc Get(GetRequest) returns (GetResponse);
     rpc GetWithDraft(GetRequest) returns (GetResponse);
     rpc GetWithArchived(GetRequest) returns (GetResponse);

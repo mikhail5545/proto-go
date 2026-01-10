@@ -114,14 +114,14 @@ message UpdateVariantRequest{
   optional string option2 = 9;
   optional string option3 = 10;
 
-  optional google.protobuf.Timestamp available_from = 10;
-  optional google.protobuf.Timestamp available_to = 11;
-  optional int32 max_seats = 12;
+  optional google.protobuf.Timestamp available_from = 11;
+  optional google.protobuf.Timestamp available_to = 12;
+  optional int32 max_seats = 13;
 
-  optional bool is_surcharge = 13;
-  optional bytes base_variant_uuid = 14;
+  optional bool is_surcharge = 14;
+  optional bytes base_variant_uuid = 15;
 
-  optional google.protobuf.FieldMask updates = 15;
+  optional google.protobuf.FieldMask updates = 16;
 }
 
 message UpdateVariantResponse{
@@ -152,7 +152,12 @@ message ChangeStateRequest{
   string note = 4;
 }
 
+message PingResponse {
+  int64 timestamp = 1;
+}
+
 service SeminarService{
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
   rpc Create(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc CreateVariant(CreateVariantRequest) returns (CreateVariantResponse);

@@ -1130,6 +1130,50 @@ func (x *CreateOrUpdateRuleSetRequest) GetRuleSet() *RuleSet {
 	return nil
 }
 
+type PingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Timestamp     int64                  `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PingResponse) Reset() {
+	*x = PingResponse{}
+	mi := &file_product_service_collection_v0_collection_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PingResponse) ProtoMessage() {}
+
+func (x *PingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_collection_v0_collection_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
+func (*PingResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_collection_v0_collection_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PingResponse) GetTimestamp() int64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
 var File_product_service_collection_v0_collection_proto protoreflect.FileDescriptor
 
 const file_product_service_collection_v0_collection_proto_rawDesc = "" +
@@ -1276,12 +1320,15 @@ const file_product_service_collection_v0_collection_proto_rawDesc = "" +
 	"\x1cCreateOrUpdateRuleSetRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x126\n" +
 	"\brule_set\x18\x02 \x01(\v2\x16.collection.v0.RuleSetH\x00R\aruleSet\x88\x01\x01B\v\n" +
-	"\t_rule_set*L\n" +
+	"\t_rule_set\",\n" +
+	"\fPingResponse\x12\x1c\n" +
+	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp*L\n" +
 	"\x10CollectionStatus\x12\x11\n" +
 	"\rSTATUS_ACTIVE\x10\x00\x12\x10\n" +
 	"\fSTATUS_DRAFT\x10\x01\x12\x13\n" +
-	"\x0fSTATUS_ARCHIVED\x10\x022\xf1\x06\n" +
-	"\x11CollectionService\x12<\n" +
+	"\x0fSTATUS_ARCHIVED\x10\x022\xae\a\n" +
+	"\x11CollectionService\x12;\n" +
+	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x1b.collection.v0.PingResponse\x12<\n" +
 	"\x03Get\x12\x19.collection.v0.GetRequest\x1a\x1a.collection.v0.GetResponse\x12E\n" +
 	"\fGetWithDraft\x12\x19.collection.v0.GetRequest\x1a\x1a.collection.v0.GetResponse\x12H\n" +
 	"\x0fGetWithArchived\x12\x19.collection.v0.GetRequest\x1a\x1a.collection.v0.GetResponse\x12?\n" +
@@ -1309,7 +1356,7 @@ func file_product_service_collection_v0_collection_proto_rawDescGZIP() []byte {
 }
 
 var file_product_service_collection_v0_collection_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_product_service_collection_v0_collection_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_product_service_collection_v0_collection_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_product_service_collection_v0_collection_proto_goTypes = []any{
 	(CollectionStatus)(0),                // 0: collection.v0.CollectionStatus
 	(*Rule)(nil),                         // 1: collection.v0.Rule
@@ -1325,49 +1372,52 @@ var file_product_service_collection_v0_collection_proto_goTypes = []any{
 	(*UpdateResponse)(nil),               // 11: collection.v0.UpdateResponse
 	(*ChangeStateRequest)(nil),           // 12: collection.v0.ChangeStateRequest
 	(*CreateOrUpdateRuleSetRequest)(nil), // 13: collection.v0.CreateOrUpdateRuleSetRequest
-	(*timestamppb.Timestamp)(nil),        // 14: google.protobuf.Timestamp
-	(*fieldmaskpb.FieldMask)(nil),        // 15: google.protobuf.FieldMask
-	(*emptypb.Empty)(nil),                // 16: google.protobuf.Empty
+	(*PingResponse)(nil),                 // 14: collection.v0.PingResponse
+	(*timestamppb.Timestamp)(nil),        // 15: google.protobuf.Timestamp
+	(*fieldmaskpb.FieldMask)(nil),        // 16: google.protobuf.FieldMask
+	(*emptypb.Empty)(nil),                // 17: google.protobuf.Empty
 }
 var file_product_service_collection_v0_collection_proto_depIdxs = []int32{
 	1,  // 0: collection.v0.RuleSet.rules:type_name -> collection.v0.Rule
-	14, // 1: collection.v0.Collection.created_at:type_name -> google.protobuf.Timestamp
-	14, // 2: collection.v0.Collection.updated_at:type_name -> google.protobuf.Timestamp
-	14, // 3: collection.v0.Collection.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 1: collection.v0.Collection.created_at:type_name -> google.protobuf.Timestamp
+	15, // 2: collection.v0.Collection.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 3: collection.v0.Collection.deleted_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: collection.v0.Collection.status:type_name -> collection.v0.CollectionStatus
 	2,  // 5: collection.v0.Collection.rule_set:type_name -> collection.v0.RuleSet
 	3,  // 6: collection.v0.GetResponse.collection:type_name -> collection.v0.Collection
 	3,  // 7: collection.v0.ListResponse.collections:type_name -> collection.v0.Collection
 	3,  // 8: collection.v0.CreateResponse.collection:type_name -> collection.v0.Collection
-	15, // 9: collection.v0.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
-	15, // 10: collection.v0.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
+	16, // 9: collection.v0.UpdateRequest.updates:type_name -> google.protobuf.FieldMask
+	16, // 10: collection.v0.UpdateResponse.updates:type_name -> google.protobuf.FieldMask
 	2,  // 11: collection.v0.CreateOrUpdateRuleSetRequest.rule_set:type_name -> collection.v0.RuleSet
-	4,  // 12: collection.v0.CollectionService.Get:input_type -> collection.v0.GetRequest
-	4,  // 13: collection.v0.CollectionService.GetWithDraft:input_type -> collection.v0.GetRequest
-	4,  // 14: collection.v0.CollectionService.GetWithArchived:input_type -> collection.v0.GetRequest
-	6,  // 15: collection.v0.CollectionService.List:input_type -> collection.v0.ListRequest
-	6,  // 16: collection.v0.CollectionService.ListDrafts:input_type -> collection.v0.ListRequest
-	6,  // 17: collection.v0.CollectionService.ListArchived:input_type -> collection.v0.ListRequest
-	8,  // 18: collection.v0.CollectionService.Create:input_type -> collection.v0.CreateRequest
-	10, // 19: collection.v0.CollectionService.Update:input_type -> collection.v0.UpdateRequest
-	12, // 20: collection.v0.CollectionService.Publish:input_type -> collection.v0.ChangeStateRequest
-	12, // 21: collection.v0.CollectionService.Archive:input_type -> collection.v0.ChangeStateRequest
-	12, // 22: collection.v0.CollectionService.Restore:input_type -> collection.v0.ChangeStateRequest
-	13, // 23: collection.v0.CollectionService.CreateOrUpdateRuleSet:input_type -> collection.v0.CreateOrUpdateRuleSetRequest
-	5,  // 24: collection.v0.CollectionService.Get:output_type -> collection.v0.GetResponse
-	5,  // 25: collection.v0.CollectionService.GetWithDraft:output_type -> collection.v0.GetResponse
-	5,  // 26: collection.v0.CollectionService.GetWithArchived:output_type -> collection.v0.GetResponse
-	7,  // 27: collection.v0.CollectionService.List:output_type -> collection.v0.ListResponse
-	7,  // 28: collection.v0.CollectionService.ListDrafts:output_type -> collection.v0.ListResponse
-	7,  // 29: collection.v0.CollectionService.ListArchived:output_type -> collection.v0.ListResponse
-	9,  // 30: collection.v0.CollectionService.Create:output_type -> collection.v0.CreateResponse
-	11, // 31: collection.v0.CollectionService.Update:output_type -> collection.v0.UpdateResponse
-	16, // 32: collection.v0.CollectionService.Publish:output_type -> google.protobuf.Empty
-	16, // 33: collection.v0.CollectionService.Archive:output_type -> google.protobuf.Empty
-	16, // 34: collection.v0.CollectionService.Restore:output_type -> google.protobuf.Empty
-	16, // 35: collection.v0.CollectionService.CreateOrUpdateRuleSet:output_type -> google.protobuf.Empty
-	24, // [24:36] is the sub-list for method output_type
-	12, // [12:24] is the sub-list for method input_type
+	17, // 12: collection.v0.CollectionService.Ping:input_type -> google.protobuf.Empty
+	4,  // 13: collection.v0.CollectionService.Get:input_type -> collection.v0.GetRequest
+	4,  // 14: collection.v0.CollectionService.GetWithDraft:input_type -> collection.v0.GetRequest
+	4,  // 15: collection.v0.CollectionService.GetWithArchived:input_type -> collection.v0.GetRequest
+	6,  // 16: collection.v0.CollectionService.List:input_type -> collection.v0.ListRequest
+	6,  // 17: collection.v0.CollectionService.ListDrafts:input_type -> collection.v0.ListRequest
+	6,  // 18: collection.v0.CollectionService.ListArchived:input_type -> collection.v0.ListRequest
+	8,  // 19: collection.v0.CollectionService.Create:input_type -> collection.v0.CreateRequest
+	10, // 20: collection.v0.CollectionService.Update:input_type -> collection.v0.UpdateRequest
+	12, // 21: collection.v0.CollectionService.Publish:input_type -> collection.v0.ChangeStateRequest
+	12, // 22: collection.v0.CollectionService.Archive:input_type -> collection.v0.ChangeStateRequest
+	12, // 23: collection.v0.CollectionService.Restore:input_type -> collection.v0.ChangeStateRequest
+	13, // 24: collection.v0.CollectionService.CreateOrUpdateRuleSet:input_type -> collection.v0.CreateOrUpdateRuleSetRequest
+	14, // 25: collection.v0.CollectionService.Ping:output_type -> collection.v0.PingResponse
+	5,  // 26: collection.v0.CollectionService.Get:output_type -> collection.v0.GetResponse
+	5,  // 27: collection.v0.CollectionService.GetWithDraft:output_type -> collection.v0.GetResponse
+	5,  // 28: collection.v0.CollectionService.GetWithArchived:output_type -> collection.v0.GetResponse
+	7,  // 29: collection.v0.CollectionService.List:output_type -> collection.v0.ListResponse
+	7,  // 30: collection.v0.CollectionService.ListDrafts:output_type -> collection.v0.ListResponse
+	7,  // 31: collection.v0.CollectionService.ListArchived:output_type -> collection.v0.ListResponse
+	9,  // 32: collection.v0.CollectionService.Create:output_type -> collection.v0.CreateResponse
+	11, // 33: collection.v0.CollectionService.Update:output_type -> collection.v0.UpdateResponse
+	17, // 34: collection.v0.CollectionService.Publish:output_type -> google.protobuf.Empty
+	17, // 35: collection.v0.CollectionService.Archive:output_type -> google.protobuf.Empty
+	17, // 36: collection.v0.CollectionService.Restore:output_type -> google.protobuf.Empty
+	17, // 37: collection.v0.CollectionService.CreateOrUpdateRuleSet:output_type -> google.protobuf.Empty
+	25, // [25:38] is the sub-list for method output_type
+	12, // [12:25] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
 	12, // [12:12] is the sub-list for extension extendee
 	0,  // [0:12] is the sub-list for field type_name
@@ -1390,7 +1440,7 @@ func file_product_service_collection_v0_collection_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_collection_v0_collection_proto_rawDesc), len(file_product_service_collection_v0_collection_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   13,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

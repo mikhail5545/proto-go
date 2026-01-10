@@ -118,7 +118,12 @@ message ChangeStateRequest{
     string note = 4;
 }
 
+message PingResponse {
+  int64 timestamp = 1;
+}
+
 service TrainingService{
+    rpc Ping(google.protobuf.Empty) returns (PingResponse);
     rpc Create(CreateRequest) returns (CreateResponse);
     rpc Update(UpdateRequest) returns (UpdateResponse);
     rpc CreateVariant(CreateVariantRequest) returns (CreateVariantResponse);

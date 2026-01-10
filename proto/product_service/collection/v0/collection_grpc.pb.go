@@ -37,6 +37,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	CollectionService_Ping_FullMethodName                  = "/collection.v0.CollectionService/Ping"
 	CollectionService_Get_FullMethodName                   = "/collection.v0.CollectionService/Get"
 	CollectionService_GetWithDraft_FullMethodName          = "/collection.v0.CollectionService/GetWithDraft"
 	CollectionService_GetWithArchived_FullMethodName       = "/collection.v0.CollectionService/GetWithArchived"
@@ -55,6 +56,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CollectionServiceClient interface {
+	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithDraft(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithArchived(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
@@ -75,6 +77,16 @@ type collectionServiceClient struct {
 
 func NewCollectionServiceClient(cc grpc.ClientConnInterface) CollectionServiceClient {
 	return &collectionServiceClient{cc}
+}
+
+func (c *collectionServiceClient) Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, CollectionService_Ping_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *collectionServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
@@ -201,6 +213,7 @@ func (c *collectionServiceClient) CreateOrUpdateRuleSet(ctx context.Context, in 
 // All implementations must embed UnimplementedCollectionServiceServer
 // for forward compatibility.
 type CollectionServiceServer interface {
+	Ping(context.Context, *emptypb.Empty) (*PingResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithDraft(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithArchived(context.Context, *GetRequest) (*GetResponse, error)
@@ -223,6 +236,9 @@ type CollectionServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCollectionServiceServer struct{}
 
+func (UnimplementedCollectionServiceServer) Ping(context.Context, *emptypb.Empty) (*PingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Ping not implemented")
+}
 func (UnimplementedCollectionServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Get not implemented")
 }
@@ -278,6 +294,24 @@ func RegisterCollectionServiceServer(s grpc.ServiceRegistrar, srv CollectionServ
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&CollectionService_ServiceDesc, srv)
+}
+
+func _CollectionService_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CollectionServiceServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CollectionService_Ping_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CollectionServiceServer).Ping(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CollectionService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -503,6 +537,10 @@ var CollectionService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "collection.v0.CollectionService",
 	HandlerType: (*CollectionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ping",
+			Handler:    _CollectionService_Ping_Handler,
+		},
 		{
 			MethodName: "Get",
 			Handler:    _CollectionService_Get_Handler,

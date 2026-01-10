@@ -132,7 +132,12 @@ message ChangeStateRequest {
     string admin_name = 4;
 }
 
+message PingResponse {
+    int64 timestamp = 1;
+}
+
 service AssetService{
+    rpc Ping(google.protobuf.Empty) returns (PingResponse);
     rpc Get(GetRequest) returns (GetResponse);
     rpc GetWithDraft(GetRequest) returns (GetResponse);
     rpc GetWithArchived(GetRequest) returns (GetResponse);
