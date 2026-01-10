@@ -43,7 +43,7 @@ enum ProductStatus{
 }
 
 message Product{
-    string id = 1;
+    bytes uuid = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp updated_at = 3;
     optional google.protobuf.Timestamp deleted_at = 4;

@@ -162,7 +162,7 @@ func (ProductStatus) EnumDescriptor() ([]byte, []int) {
 
 type Product struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
-	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid      []byte                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	DeletedAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
@@ -252,11 +252,11 @@ func (*Product) Descriptor() ([]byte, []int) {
 	return file_product_service_product_v0_product_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Product) GetId() string {
+func (x *Product) GetUuid() []byte {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
-	return ""
+	return nil
 }
 
 func (x *Product) GetCreatedAt() *timestamppb.Timestamp {
@@ -1066,9 +1066,9 @@ var File_product_service_product_v0_product_proto protoreflect.FileDescriptor
 const file_product_service_product_v0_product_proto_rawDesc = "" +
 	"\n" +
 	"(product_service/product/v0/product.proto\x12\n" +
-	"product.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a(product_service/variant/v0/variant.proto\x1a*product_service/category/v0/category.proto\x1a.product_service/collection/v0/collection.proto\"\xee\x0e\n" +
-	"\aProduct\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x129\n" +
+	"product.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a(product_service/variant/v0/variant.proto\x1a*product_service/category/v0/category.proto\x1a.product_service/collection/v0/collection.proto\"\xf2\x0e\n" +
+	"\aProduct\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x129\n" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
