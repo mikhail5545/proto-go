@@ -235,7 +235,7 @@ type Variant struct {
 	// True if this variant represents an additional charge.
 	IsSurcharge bool `protobuf:"varint,26,opt,name=is_surcharge,json=isSurcharge,proto3" json:"is_surcharge,omitempty"`
 	// If a surcharge, this points to the base variant.
-	BaseVariantId *string `protobuf:"bytes,27,opt,name=base_variant_id,json=baseVariantId,proto3,oneof" json:"base_variant_id,omitempty"`
+	BaseVariantId []byte `protobuf:"bytes,27,opt,name=base_variant_id,json=baseVariantId,proto3,oneof" json:"base_variant_id,omitempty"`
 	// Maximum seats available, if it varies between variants of an event.
 	MaxSeats        *int32             `protobuf:"varint,28,opt,name=max_seats,json=maxSeats,proto3,oneof" json:"max_seats,omitempty"`
 	Prices          []*v0.VariantPrice `protobuf:"bytes,29,rep,name=prices,proto3" json:"prices,omitempty"`
@@ -467,11 +467,11 @@ func (x *Variant) GetIsSurcharge() bool {
 	return false
 }
 
-func (x *Variant) GetBaseVariantId() string {
-	if x != nil && x.BaseVariantId != nil {
-		return *x.BaseVariantId
+func (x *Variant) GetBaseVariantId() []byte {
+	if x != nil {
+		return x.BaseVariantId
 	}
-	return ""
+	return nil
 }
 
 func (x *Variant) GetMaxSeats() int32 {
@@ -1007,7 +1007,7 @@ const file_product_service_variant_v0_variant_proto_rawDesc = "" +
 	"R\ravailableFrom\x88\x01\x01\x12B\n" +
 	"\favailable_to\x18\x19 \x01(\v2\x1a.google.protobuf.TimestampH\vR\vavailableTo\x88\x01\x01\x12!\n" +
 	"\fis_surcharge\x18\x1a \x01(\bR\visSurcharge\x12+\n" +
-	"\x0fbase_variant_id\x18\x1b \x01(\tH\fR\rbaseVariantId\x88\x01\x01\x12 \n" +
+	"\x0fbase_variant_id\x18\x1b \x01(\fH\fR\rbaseVariantId\x88\x01\x01\x12 \n" +
 	"\tmax_seats\x18\x1c \x01(\x05H\rR\bmaxSeats\x88\x01\x01\x126\n" +
 	"\x06prices\x18\x1d \x03(\v2\x1e.variant_price.v0.VariantPriceR\x06prices\x12+\n" +
 	"\alessons\x18\x1e \x03(\v2\x11.lesson.v0.LessonR\alessons\x12)\n" +

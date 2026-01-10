@@ -85,7 +85,7 @@ message Variant{
     // True if this variant represents an additional charge.
     bool is_surcharge = 26;
     // If a surcharge, this points to the base variant.
-    optional string base_variant_id = 27;
+    optional bytes base_variant_id = 27;
 
     // Maximum seats available, if it varies between variants of an event.
     optional int32 max_seats = 28;
