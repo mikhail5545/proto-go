@@ -96,6 +96,7 @@ message CreateVariantResponse{
 
 message UpdateVariantRequest{
   bytes uuid = 1;
+  bytes product_uuid = 14;
   optional string title = 2;
   optional string sku = 3;
   bool regenerate_sku = 4;

@@ -143,6 +143,8 @@ message UpdateVariantResponse{
 
   optional bool is_surcharge = 13;
   optional bytes base_variant_uuid = 14;
+
+  optional google.protobuf.FieldMask updates = 15;
 }
 
 message ChangeStateRequest{

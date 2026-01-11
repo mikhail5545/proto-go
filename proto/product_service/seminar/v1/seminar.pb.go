@@ -935,6 +935,7 @@ type UpdateVariantResponse struct {
 	MaxSeats        *int32                      `protobuf:"varint,12,opt,name=max_seats,json=maxSeats,proto3,oneof" json:"max_seats,omitempty"`
 	IsSurcharge     *bool                       `protobuf:"varint,13,opt,name=is_surcharge,json=isSurcharge,proto3,oneof" json:"is_surcharge,omitempty"`
 	BaseVariantUuid []byte                      `protobuf:"bytes,14,opt,name=base_variant_uuid,json=baseVariantUuid,proto3,oneof" json:"base_variant_uuid,omitempty"`
+	Updates         *fieldmaskpb.FieldMask      `protobuf:"bytes,15,opt,name=updates,proto3,oneof" json:"updates,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1063,6 +1064,13 @@ func (x *UpdateVariantResponse) GetIsSurcharge() bool {
 func (x *UpdateVariantResponse) GetBaseVariantUuid() []byte {
 	if x != nil {
 		return x.BaseVariantUuid
+	}
+	return nil
+}
+
+func (x *UpdateVariantResponse) GetUpdates() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.Updates
 	}
 	return nil
 }
@@ -1350,7 +1358,7 @@ const file_product_service_seminar_v1_seminar_proto_rawDesc = "" +
 	"\r_is_surchargeB\x14\n" +
 	"\x12_base_variant_uuidB\n" +
 	"\n" +
-	"\b_updates\"\xad\x06\n" +
+	"\b_updates\"\xf4\x06\n" +
 	"\x15UpdateVariantResponse\x12!\n" +
 	"\fvariant_uuid\x18\x01 \x01(\fR\vvariantUuid\x12!\n" +
 	"\fproduct_uuid\x18\x02 \x01(\fR\vproductUuid\x12\x19\n" +
@@ -1367,7 +1375,8 @@ const file_product_service_seminar_v1_seminar_proto_rawDesc = "" +
 	"\tmax_seats\x18\f \x01(\x05H\tR\bmaxSeats\x88\x01\x01\x12&\n" +
 	"\fis_surcharge\x18\r \x01(\bH\n" +
 	"R\visSurcharge\x88\x01\x01\x12/\n" +
-	"\x11base_variant_uuid\x18\x0e \x01(\fH\vR\x0fbaseVariantUuid\x88\x01\x01B\b\n" +
+	"\x11base_variant_uuid\x18\x0e \x01(\fH\vR\x0fbaseVariantUuid\x88\x01\x01\x129\n" +
+	"\aupdates\x18\x0f \x01(\v2\x1a.google.protobuf.FieldMaskH\fR\aupdates\x88\x01\x01B\b\n" +
 	"\x06_titleB\x06\n" +
 	"\x04_skuB\x13\n" +
 	"\x11_inventory_policyB\x12\n" +
@@ -1383,7 +1392,9 @@ const file_product_service_seminar_v1_seminar_proto_rawDesc = "" +
 	"\n" +
 	"_max_seatsB\x0f\n" +
 	"\r_is_surchargeB\x14\n" +
-	"\x12_base_variant_uuid\"z\n" +
+	"\x12_base_variant_uuidB\n" +
+	"\n" +
+	"\b_updates\"z\n" +
 	"\x12ChangeStateRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x12\x1d\n" +
 	"\n" +
@@ -1452,23 +1463,24 @@ var file_product_service_seminar_v1_seminar_proto_depIdxs = []int32{
 	14, // 16: seminar.v1.UpdateVariantResponse.inventory_policy:type_name -> variant.v0.VariantInventoryPolicy
 	10, // 17: seminar.v1.UpdateVariantResponse.available_from:type_name -> google.protobuf.Timestamp
 	10, // 18: seminar.v1.UpdateVariantResponse.available_to:type_name -> google.protobuf.Timestamp
-	15, // 19: seminar.v1.SeminarService.Ping:input_type -> google.protobuf.Empty
-	0,  // 20: seminar.v1.SeminarService.Create:input_type -> seminar.v1.CreateRequest
-	2,  // 21: seminar.v1.SeminarService.Update:input_type -> seminar.v1.UpdateRequest
-	4,  // 22: seminar.v1.SeminarService.CreateVariant:input_type -> seminar.v1.CreateVariantRequest
-	6,  // 23: seminar.v1.SeminarService.UpdateVariant:input_type -> seminar.v1.UpdateVariantRequest
-	8,  // 24: seminar.v1.SeminarService.Publish:input_type -> seminar.v1.ChangeStateRequest
-	9,  // 25: seminar.v1.SeminarService.Ping:output_type -> seminar.v1.PingResponse
-	1,  // 26: seminar.v1.SeminarService.Create:output_type -> seminar.v1.CreateResponse
-	3,  // 27: seminar.v1.SeminarService.Update:output_type -> seminar.v1.UpdateResponse
-	5,  // 28: seminar.v1.SeminarService.CreateVariant:output_type -> seminar.v1.CreateVariantResponse
-	7,  // 29: seminar.v1.SeminarService.UpdateVariant:output_type -> seminar.v1.UpdateVariantResponse
-	15, // 30: seminar.v1.SeminarService.Publish:output_type -> google.protobuf.Empty
-	25, // [25:31] is the sub-list for method output_type
-	19, // [19:25] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	12, // 19: seminar.v1.UpdateVariantResponse.updates:type_name -> google.protobuf.FieldMask
+	15, // 20: seminar.v1.SeminarService.Ping:input_type -> google.protobuf.Empty
+	0,  // 21: seminar.v1.SeminarService.Create:input_type -> seminar.v1.CreateRequest
+	2,  // 22: seminar.v1.SeminarService.Update:input_type -> seminar.v1.UpdateRequest
+	4,  // 23: seminar.v1.SeminarService.CreateVariant:input_type -> seminar.v1.CreateVariantRequest
+	6,  // 24: seminar.v1.SeminarService.UpdateVariant:input_type -> seminar.v1.UpdateVariantRequest
+	8,  // 25: seminar.v1.SeminarService.Publish:input_type -> seminar.v1.ChangeStateRequest
+	9,  // 26: seminar.v1.SeminarService.Ping:output_type -> seminar.v1.PingResponse
+	1,  // 27: seminar.v1.SeminarService.Create:output_type -> seminar.v1.CreateResponse
+	3,  // 28: seminar.v1.SeminarService.Update:output_type -> seminar.v1.UpdateResponse
+	5,  // 29: seminar.v1.SeminarService.CreateVariant:output_type -> seminar.v1.CreateVariantResponse
+	7,  // 30: seminar.v1.SeminarService.UpdateVariant:output_type -> seminar.v1.UpdateVariantResponse
+	15, // 31: seminar.v1.SeminarService.Publish:output_type -> google.protobuf.Empty
+	26, // [26:32] is the sub-list for method output_type
+	20, // [20:26] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_product_service_seminar_v1_seminar_proto_init() }
