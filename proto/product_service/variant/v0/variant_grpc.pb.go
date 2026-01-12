@@ -37,16 +37,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	VariantService_Ping_FullMethodName            = "/variant.v0.VariantService/Ping"
-	VariantService_Get_FullMethodName             = "/variant.v0.VariantService/Get"
-	VariantService_GetWithDraft_FullMethodName    = "/variant.v0.VariantService/GetWithDraft"
-	VariantService_GetWithArchived_FullMethodName = "/variant.v0.VariantService/GetWithArchived"
-	VariantService_List_FullMethodName            = "/variant.v0.VariantService/List"
-	VariantService_ListDrafts_FullMethodName      = "/variant.v0.VariantService/ListDrafts"
-	VariantService_ListArchived_FullMethodName    = "/variant.v0.VariantService/ListArchived"
-	VariantService_Publish_FullMethodName         = "/variant.v0.VariantService/Publish"
-	VariantService_Archive_FullMethodName         = "/variant.v0.VariantService/Archive"
-	VariantService_Restore_FullMethodName         = "/variant.v0.VariantService/Restore"
+	VariantService_Ping_FullMethodName             = "/variant.v0.VariantService/Ping"
+	VariantService_Get_FullMethodName              = "/variant.v0.VariantService/Get"
+	VariantService_GetWithScheduled_FullMethodName = "/variant.v0.VariantService/GetWithScheduled"
+	VariantService_GetWithDraft_FullMethodName     = "/variant.v0.VariantService/GetWithDraft"
+	VariantService_GetWithArchived_FullMethodName  = "/variant.v0.VariantService/GetWithArchived"
+	VariantService_List_FullMethodName             = "/variant.v0.VariantService/List"
+	VariantService_ListScheduled_FullMethodName    = "/variant.v0.VariantService/ListScheduled"
+	VariantService_ListDrafts_FullMethodName       = "/variant.v0.VariantService/ListDrafts"
+	VariantService_ListArchived_FullMethodName     = "/variant.v0.VariantService/ListArchived"
+	VariantService_Publish_FullMethodName          = "/variant.v0.VariantService/Publish"
+	VariantService_Archive_FullMethodName          = "/variant.v0.VariantService/Archive"
+	VariantService_Restore_FullMethodName          = "/variant.v0.VariantService/Restore"
 )
 
 // VariantServiceClient is the client API for VariantService service.
@@ -55,9 +57,11 @@ const (
 type VariantServiceClient interface {
 	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PingResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	GetWithScheduled(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithDraft(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	GetWithArchived(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
+	ListScheduled(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListDrafts(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	ListArchived(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Publish(ctx context.Context, in *ChangeStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -93,6 +97,16 @@ func (c *variantServiceClient) Get(ctx context.Context, in *GetRequest, opts ...
 	return out, nil
 }
 
+func (c *variantServiceClient) GetWithScheduled(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetResponse)
+	err := c.cc.Invoke(ctx, VariantService_GetWithScheduled_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *variantServiceClient) GetWithDraft(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetResponse)
@@ -117,6 +131,16 @@ func (c *variantServiceClient) List(ctx context.Context, in *ListRequest, opts .
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListResponse)
 	err := c.cc.Invoke(ctx, VariantService_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *variantServiceClient) ListScheduled(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, VariantService_ListScheduled_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -179,9 +203,11 @@ func (c *variantServiceClient) Restore(ctx context.Context, in *ChangeStateReque
 type VariantServiceServer interface {
 	Ping(context.Context, *emptypb.Empty) (*PingResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
+	GetWithScheduled(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithDraft(context.Context, *GetRequest) (*GetResponse, error)
 	GetWithArchived(context.Context, *GetRequest) (*GetResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
+	ListScheduled(context.Context, *ListRequest) (*ListResponse, error)
 	ListDrafts(context.Context, *ListRequest) (*ListResponse, error)
 	ListArchived(context.Context, *ListRequest) (*ListResponse, error)
 	Publish(context.Context, *ChangeStateRequest) (*emptypb.Empty, error)
@@ -203,6 +229,9 @@ func (UnimplementedVariantServiceServer) Ping(context.Context, *emptypb.Empty) (
 func (UnimplementedVariantServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Get not implemented")
 }
+func (UnimplementedVariantServiceServer) GetWithScheduled(context.Context, *GetRequest) (*GetResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetWithScheduled not implemented")
+}
 func (UnimplementedVariantServiceServer) GetWithDraft(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetWithDraft not implemented")
 }
@@ -211,6 +240,9 @@ func (UnimplementedVariantServiceServer) GetWithArchived(context.Context, *GetRe
 }
 func (UnimplementedVariantServiceServer) List(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedVariantServiceServer) ListScheduled(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListScheduled not implemented")
 }
 func (UnimplementedVariantServiceServer) ListDrafts(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListDrafts not implemented")
@@ -284,6 +316,24 @@ func _VariantService_Get_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VariantService_GetWithScheduled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VariantServiceServer).GetWithScheduled(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VariantService_GetWithScheduled_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VariantServiceServer).GetWithScheduled(ctx, req.(*GetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _VariantService_GetWithDraft_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRequest)
 	if err := dec(in); err != nil {
@@ -334,6 +384,24 @@ func _VariantService_List_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(VariantServiceServer).List(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VariantService_ListScheduled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VariantServiceServer).ListScheduled(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VariantService_ListScheduled_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VariantServiceServer).ListScheduled(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -444,6 +512,10 @@ var VariantService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _VariantService_Get_Handler,
 		},
 		{
+			MethodName: "GetWithScheduled",
+			Handler:    _VariantService_GetWithScheduled_Handler,
+		},
+		{
 			MethodName: "GetWithDraft",
 			Handler:    _VariantService_GetWithDraft_Handler,
 		},
@@ -454,6 +526,10 @@ var VariantService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _VariantService_List_Handler,
+		},
+		{
+			MethodName: "ListScheduled",
+			Handler:    _VariantService_ListScheduled_Handler,
 		},
 		{
 			MethodName: "ListDrafts",

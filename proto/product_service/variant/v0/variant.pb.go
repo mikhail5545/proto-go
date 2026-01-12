@@ -1112,13 +1112,15 @@ const file_product_service_variant_v0_variant_proto_rawDesc = "" +
 	"\rVariantFormat\x12\x11\n" +
 	"\rFORMAT_ONLINE\x10\x00\x12\x12\n" +
 	"\x0eFORMAT_OFFLINE\x10\x01\x12\x11\n" +
-	"\rFORMAT_HYBRID\x10\x022\x8f\x05\n" +
+	"\rFORMAT_HYBRID\x10\x022\x98\x06\n" +
 	"\x0eVariantService\x128\n" +
 	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x18.variant.v0.PingResponse\x126\n" +
-	"\x03Get\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x12?\n" +
+	"\x03Get\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x12C\n" +
+	"\x10GetWithScheduled\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x12?\n" +
 	"\fGetWithDraft\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x12B\n" +
 	"\x0fGetWithArchived\x12\x16.variant.v0.GetRequest\x1a\x17.variant.v0.GetResponse\x129\n" +
-	"\x04List\x12\x17.variant.v0.ListRequest\x1a\x18.variant.v0.ListResponse\x12?\n" +
+	"\x04List\x12\x17.variant.v0.ListRequest\x1a\x18.variant.v0.ListResponse\x12B\n" +
+	"\rListScheduled\x12\x17.variant.v0.ListRequest\x1a\x18.variant.v0.ListResponse\x12?\n" +
 	"\n" +
 	"ListDrafts\x12\x17.variant.v0.ListRequest\x1a\x18.variant.v0.ListResponse\x12A\n" +
 	"\fListArchived\x12\x17.variant.v0.ListRequest\x1a\x18.variant.v0.ListResponse\x12A\n" +
@@ -1174,26 +1176,30 @@ var file_product_service_variant_v0_variant_proto_depIdxs = []int32{
 	3,  // 13: variant.v0.ListResponse.variants:type_name -> variant.v0.Variant
 	14, // 14: variant.v0.VariantService.Ping:input_type -> google.protobuf.Empty
 	4,  // 15: variant.v0.VariantService.Get:input_type -> variant.v0.GetRequest
-	4,  // 16: variant.v0.VariantService.GetWithDraft:input_type -> variant.v0.GetRequest
-	4,  // 17: variant.v0.VariantService.GetWithArchived:input_type -> variant.v0.GetRequest
-	6,  // 18: variant.v0.VariantService.List:input_type -> variant.v0.ListRequest
-	6,  // 19: variant.v0.VariantService.ListDrafts:input_type -> variant.v0.ListRequest
-	6,  // 20: variant.v0.VariantService.ListArchived:input_type -> variant.v0.ListRequest
-	8,  // 21: variant.v0.VariantService.Publish:input_type -> variant.v0.ChangeStateRequest
-	8,  // 22: variant.v0.VariantService.Archive:input_type -> variant.v0.ChangeStateRequest
-	8,  // 23: variant.v0.VariantService.Restore:input_type -> variant.v0.ChangeStateRequest
-	9,  // 24: variant.v0.VariantService.Ping:output_type -> variant.v0.PingResponse
-	5,  // 25: variant.v0.VariantService.Get:output_type -> variant.v0.GetResponse
-	5,  // 26: variant.v0.VariantService.GetWithDraft:output_type -> variant.v0.GetResponse
-	5,  // 27: variant.v0.VariantService.GetWithArchived:output_type -> variant.v0.GetResponse
-	7,  // 28: variant.v0.VariantService.List:output_type -> variant.v0.ListResponse
-	7,  // 29: variant.v0.VariantService.ListDrafts:output_type -> variant.v0.ListResponse
-	7,  // 30: variant.v0.VariantService.ListArchived:output_type -> variant.v0.ListResponse
-	14, // 31: variant.v0.VariantService.Publish:output_type -> google.protobuf.Empty
-	14, // 32: variant.v0.VariantService.Archive:output_type -> google.protobuf.Empty
-	14, // 33: variant.v0.VariantService.Restore:output_type -> google.protobuf.Empty
-	24, // [24:34] is the sub-list for method output_type
-	14, // [14:24] is the sub-list for method input_type
+	4,  // 16: variant.v0.VariantService.GetWithScheduled:input_type -> variant.v0.GetRequest
+	4,  // 17: variant.v0.VariantService.GetWithDraft:input_type -> variant.v0.GetRequest
+	4,  // 18: variant.v0.VariantService.GetWithArchived:input_type -> variant.v0.GetRequest
+	6,  // 19: variant.v0.VariantService.List:input_type -> variant.v0.ListRequest
+	6,  // 20: variant.v0.VariantService.ListScheduled:input_type -> variant.v0.ListRequest
+	6,  // 21: variant.v0.VariantService.ListDrafts:input_type -> variant.v0.ListRequest
+	6,  // 22: variant.v0.VariantService.ListArchived:input_type -> variant.v0.ListRequest
+	8,  // 23: variant.v0.VariantService.Publish:input_type -> variant.v0.ChangeStateRequest
+	8,  // 24: variant.v0.VariantService.Archive:input_type -> variant.v0.ChangeStateRequest
+	8,  // 25: variant.v0.VariantService.Restore:input_type -> variant.v0.ChangeStateRequest
+	9,  // 26: variant.v0.VariantService.Ping:output_type -> variant.v0.PingResponse
+	5,  // 27: variant.v0.VariantService.Get:output_type -> variant.v0.GetResponse
+	5,  // 28: variant.v0.VariantService.GetWithScheduled:output_type -> variant.v0.GetResponse
+	5,  // 29: variant.v0.VariantService.GetWithDraft:output_type -> variant.v0.GetResponse
+	5,  // 30: variant.v0.VariantService.GetWithArchived:output_type -> variant.v0.GetResponse
+	7,  // 31: variant.v0.VariantService.List:output_type -> variant.v0.ListResponse
+	7,  // 32: variant.v0.VariantService.ListScheduled:output_type -> variant.v0.ListResponse
+	7,  // 33: variant.v0.VariantService.ListDrafts:output_type -> variant.v0.ListResponse
+	7,  // 34: variant.v0.VariantService.ListArchived:output_type -> variant.v0.ListResponse
+	14, // 35: variant.v0.VariantService.Publish:output_type -> google.protobuf.Empty
+	14, // 36: variant.v0.VariantService.Archive:output_type -> google.protobuf.Empty
+	14, // 37: variant.v0.VariantService.Restore:output_type -> google.protobuf.Empty
+	26, // [26:38] is the sub-list for method output_type
+	14, // [14:26] is the sub-list for method input_type
 	14, // [14:14] is the sub-list for extension type_name
 	14, // [14:14] is the sub-list for extension extendee
 	0,  // [0:14] is the sub-list for field type_name

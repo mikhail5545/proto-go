@@ -156,9 +156,11 @@ message PingResponse {
 service VariantService{
     rpc Ping(google.protobuf.Empty) returns (PingResponse);
     rpc Get(GetRequest) returns (GetResponse);
+    rpc GetWithScheduled(GetRequest) returns (GetResponse);
     rpc GetWithDraft(GetRequest) returns (GetResponse);
     rpc GetWithArchived(GetRequest) returns (GetResponse);
     rpc List(ListRequest) returns (ListResponse);
+    rpc ListScheduled(ListRequest) returns (ListResponse);
     rpc ListDrafts(ListRequest) returns (ListResponse);
     rpc ListArchived(ListRequest) returns (ListResponse);
     rpc Publish(ChangeStateRequest) returns (google.protobuf.Empty);

@@ -25,6 +25,7 @@ import "google/protobuf/empty.proto";
 import "product_service/variant/v0/variant.proto";
 import "product_service/category/v0/category.proto";
 import "product_service/collection/v0/collection.proto";
+import "product_service/product/product_image/v0/product_image.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/product/v0;productpb";
 
@@ -87,7 +88,7 @@ message Product{
     // Product variants (e.g., size, color).
     repeated variant.v0.Variant variants = 22;
     // Associated product images.
-    repeated ProductImage images = 23;
+    repeated product_image.v0.ProductImage images = 23;
     // Categories the product belongs to.
     repeated category.v0.Category categories = 24;
     // Collections the product is part of.
@@ -104,14 +105,6 @@ message Product{
 
     optional string note = 34;
     optional string archive_reason = 35;
-}
-
-message ProductImage{
-    string product_id = 1;
-    string image_id = 2;
-    int32 position = 3;
-    string alt = 4;
-    optional string variant_id = 5;
 }
 
 message GetRequest{

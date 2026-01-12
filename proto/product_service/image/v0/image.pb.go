@@ -26,6 +26,7 @@ package imagepb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -239,11 +240,167 @@ func (x *Image) GetHeight() int32 {
 	return 0
 }
 
+type BrokenImageRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceUuid []byte                 `protobuf:"bytes,1,opt,name=media_service_uuid,json=mediaServiceUuid,proto3" json:"media_service_uuid,omitempty"`
+	Reason           string                 `protobuf:"bytes,2,opt,name=reason,proto3" json:"reason,omitempty"`
+	AdminUuid        []byte                 `protobuf:"bytes,3,opt,name=admin_uuid,json=adminUuid,proto3" json:"admin_uuid,omitempty"`
+	AdminName        string                 `protobuf:"bytes,4,opt,name=admin_name,json=adminName,proto3" json:"admin_name,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *BrokenImageRequest) Reset() {
+	*x = BrokenImageRequest{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BrokenImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BrokenImageRequest) ProtoMessage() {}
+
+func (x *BrokenImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BrokenImageRequest.ProtoReflect.Descriptor instead.
+func (*BrokenImageRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BrokenImageRequest) GetMediaServiceUuid() []byte {
+	if x != nil {
+		return x.MediaServiceUuid
+	}
+	return nil
+}
+
+func (x *BrokenImageRequest) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+func (x *BrokenImageRequest) GetAdminUuid() []byte {
+	if x != nil {
+		return x.AdminUuid
+	}
+	return nil
+}
+
+func (x *BrokenImageRequest) GetAdminName() string {
+	if x != nil {
+		return x.AdminName
+	}
+	return ""
+}
+
+type DeleteRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	MediaServiceUuid []byte                 `protobuf:"bytes,1,opt,name=media_service_uuid,json=mediaServiceUuid,proto3" json:"media_service_uuid,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DeleteRequest) GetMediaServiceUuid() []byte {
+	if x != nil {
+		return x.MediaServiceUuid
+	}
+	return nil
+}
+
+type PingResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Timestamp     int64                  `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PingResponse) Reset() {
+	*x = PingResponse{}
+	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PingResponse) ProtoMessage() {}
+
+func (x *PingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_service_image_v0_image_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PingResponse.ProtoReflect.Descriptor instead.
+func (*PingResponse) Descriptor() ([]byte, []int) {
+	return file_product_service_image_v0_image_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PingResponse) GetTimestamp() int64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
 var File_product_service_image_v0_image_proto protoreflect.FileDescriptor
 
 const file_product_service_image_v0_image_proto_rawDesc = "" +
 	"\n" +
-	"$product_service/image/v0/image.proto\x12\bimage.v0\x1a\x1fgoogle/protobuf/timestamp.proto\"\x81\x04\n" +
+	"$product_service/image/v0/image.proto\x12\bimage.v0\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x81\x04\n" +
 	"\x05Image\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x129\n" +
 	"\n" +
@@ -264,12 +421,27 @@ const file_product_service_image_v0_image_proto_rawDesc = "" +
 	"\x05width\x18\r \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
 	"\x06height\x18\x0e \x01(\x05H\x01R\x06height\x88\x01\x01B\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_height*Z\n" +
+	"\a_height\"\x98\x01\n" +
+	"\x12BrokenImageRequest\x12,\n" +
+	"\x12media_service_uuid\x18\x01 \x01(\fR\x10mediaServiceUuid\x12\x16\n" +
+	"\x06reason\x18\x02 \x01(\tR\x06reason\x12\x1d\n" +
+	"\n" +
+	"admin_uuid\x18\x03 \x01(\fR\tadminUuid\x12\x1d\n" +
+	"\n" +
+	"admin_name\x18\x04 \x01(\tR\tadminName\"=\n" +
+	"\rDeleteRequest\x12,\n" +
+	"\x12media_service_uuid\x18\x01 \x01(\fR\x10mediaServiceUuid\",\n" +
+	"\fPingResponse\x12\x1c\n" +
+	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp*Z\n" +
 	"\vImageStatus\x12\x11\n" +
 	"\rSTATUS_ACTIVE\x10\x00\x12\x10\n" +
 	"\fSTATUS_DRAFT\x10\x01\x12\x13\n" +
 	"\x0fSTATUS_ARCHIVED\x10\x02\x12\x11\n" +
-	"\rSTATUS_BROKEN\x10\x03BHZFgithub.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepbb\x06proto3"
+	"\rSTATUS_BROKEN\x10\x032\xc7\x01\n" +
+	"\fImageService\x126\n" +
+	"\x04Ping\x12\x16.google.protobuf.Empty\x1a\x16.image.v0.PingResponse\x12D\n" +
+	"\fMarkAsBroken\x12\x1c.image.v0.BrokenImageRequest\x1a\x16.google.protobuf.Empty\x129\n" +
+	"\x06Delete\x12\x17.image.v0.DeleteRequest\x1a\x16.google.protobuf.EmptyBHZFgithub.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepbb\x06proto3"
 
 var (
 	file_product_service_image_v0_image_proto_rawDescOnce sync.Once
@@ -284,18 +456,28 @@ func file_product_service_image_v0_image_proto_rawDescGZIP() []byte {
 }
 
 var file_product_service_image_v0_image_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_product_service_image_v0_image_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_product_service_image_v0_image_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_product_service_image_v0_image_proto_goTypes = []any{
 	(ImageStatus)(0),              // 0: image.v0.ImageStatus
 	(*Image)(nil),                 // 1: image.v0.Image
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*BrokenImageRequest)(nil),    // 2: image.v0.BrokenImageRequest
+	(*DeleteRequest)(nil),         // 3: image.v0.DeleteRequest
+	(*PingResponse)(nil),          // 4: image.v0.PingResponse
+	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 6: google.protobuf.Empty
 }
 var file_product_service_image_v0_image_proto_depIdxs = []int32{
-	2, // 0: image.v0.Image.created_at:type_name -> google.protobuf.Timestamp
-	2, // 1: image.v0.Image.updated_at:type_name -> google.protobuf.Timestamp
+	5, // 0: image.v0.Image.created_at:type_name -> google.protobuf.Timestamp
+	5, // 1: image.v0.Image.updated_at:type_name -> google.protobuf.Timestamp
 	0, // 2: image.v0.Image.Status:type_name -> image.v0.ImageStatus
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
+	6, // 3: image.v0.ImageService.Ping:input_type -> google.protobuf.Empty
+	2, // 4: image.v0.ImageService.MarkAsBroken:input_type -> image.v0.BrokenImageRequest
+	3, // 5: image.v0.ImageService.Delete:input_type -> image.v0.DeleteRequest
+	4, // 6: image.v0.ImageService.Ping:output_type -> image.v0.PingResponse
+	6, // 7: image.v0.ImageService.MarkAsBroken:output_type -> google.protobuf.Empty
+	6, // 8: image.v0.ImageService.Delete:output_type -> google.protobuf.Empty
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -313,9 +495,9 @@ func file_product_service_image_v0_image_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_service_image_v0_image_proto_rawDesc), len(file_product_service_image_v0_image_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   1,
+			NumMessages:   4,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_product_service_image_v0_image_proto_goTypes,
 		DependencyIndexes: file_product_service_image_v0_image_proto_depIdxs,

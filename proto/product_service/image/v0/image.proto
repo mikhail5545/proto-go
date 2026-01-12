@@ -3,6 +3,7 @@ syntax = "proto3";
 package image.v0;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/mikhail5545/proto-go/proto/product_service/image/v0;imagepb";
 
@@ -32,5 +33,24 @@ message Image{
    optional int32 height = 14;
 }
 
+message BrokenImageRequest{
+  bytes media_service_uuid = 1;
+  string reason = 2;
+  bytes admin_uuid = 3;
+  string admin_name = 4;
+}
 
+message DeleteRequest{
+  bytes media_service_uuid = 1;
+}
+
+message PingResponse {
+  int64 timestamp = 1;
+}
+
+service ImageService{
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
+  rpc MarkAsBroken(BrokenImageRequest) returns (google.protobuf.Empty);
+  rpc Delete(DeleteRequest) returns (google.protobuf.Empty);
+}
 
