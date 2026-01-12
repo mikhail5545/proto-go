@@ -621,6 +621,7 @@ func (x *CreateVariantResponse) GetVariant() *v01.Variant {
 type UpdateVariantRequest struct {
 	state           protoimpl.MessageState      `protogen:"open.v1"`
 	Uuid            []byte                      `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	ProductUuid     []byte                      `protobuf:"bytes,5,opt,name=product_uuid,json=productUuid,proto3" json:"product_uuid,omitempty"`
 	Title           *string                     `protobuf:"bytes,2,opt,name=title,proto3,oneof" json:"title,omitempty"`
 	Sku             *string                     `protobuf:"bytes,3,opt,name=sku,proto3,oneof" json:"sku,omitempty"`
 	RegenerateSku   bool                        `protobuf:"varint,4,opt,name=regenerate_sku,json=regenerateSku,proto3" json:"regenerate_sku,omitempty"`
@@ -670,6 +671,13 @@ func (*UpdateVariantRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateVariantRequest) GetUuid() []byte {
 	if x != nil {
 		return x.Uuid
+	}
+	return nil
+}
+
+func (x *UpdateVariantRequest) GetProductUuid() []byte {
+	if x != nil {
+		return x.ProductUuid
 	}
 	return nil
 }
@@ -1099,9 +1107,10 @@ const file_product_service_training_v1_training_session_proto_rawDesc = "" +
 	"\n" +
 	"_max_seats\"F\n" +
 	"\x15CreateVariantResponse\x12-\n" +
-	"\avariant\x18\x01 \x01(\v2\x13.variant.v0.VariantR\avariant\"\xc0\x05\n" +
+	"\avariant\x18\x01 \x01(\v2\x13.variant.v0.VariantR\avariant\"\xe3\x05\n" +
 	"\x14UpdateVariantRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x12\x19\n" +
+	"\x04uuid\x18\x01 \x01(\fR\x04uuid\x12!\n" +
+	"\fproduct_uuid\x18\x05 \x01(\fR\vproductUuid\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x15\n" +
 	"\x03sku\x18\x03 \x01(\tH\x01R\x03sku\x88\x01\x01\x12%\n" +
 	"\x0eregenerate_sku\x18\x04 \x01(\bR\rregenerateSku\x12R\n" +
